@@ -29,15 +29,15 @@
 <p>The burden of the web is heavier than ever. People talk about cybersecurity, digital self-determination, cyber-resilience, freedom-from-the-feed, <em>The Algorithm</em>, and a thousand more topics that sound so strange and so-vague-yet-so-hype that they suggest a market is forming around them. But this is all pretty much the same market trying to correct something that's heavily skewed, on top of what's essentially a pretty weak model.</p>
 <p>Most of the <em>solutions</em> we tend to see in this space actually add more, instead of removing. So in order to fight abuse with cookies, we created laws like GDPR, so a new market opportunity appeared for apps managing cookies, for apps managing cookie dismissal actions, and for lawyers especially. While we users are not really better off after the entire exchange. Bloating that only gets worse the more layers we add to it.</p>
 <h3>The solution is actually quite simple, but it's not really about adding more.</h3>
-<p>Let's remove the clutter. Let's remove the bulk of accounts, and logins, and metrics, and cookies, and terms and conditions that regulate the use of my data. When you remove the overhead, the experience of personal computing gets pretty simple, gets more secure, gets more <em>resilient and more self-determined</em>. It gets more fun. Which is funny because that's exactly what we had 20 years ago.</p>
-<p>Let's make it easy, and let's make it simple. Clutterfree, local-first apps that use minimal energy because AI can (and arguably should) be opt-in, default to local models, default to tiny models, default to offline, <strong>private work that's highly satisfying because it's after all, yours</strong>.</p>
+<p>It's really about removing layer. Let's remove the clutter. Let's remove the bulk of accounts, and logins, and metrics, and cookies, and terms and conditions that regulate the use of my data. When you remove the overhead, the experience of personal computing gets pretty simple, gets more secure, gets more <em>resilient and more self-determined</em>. It gets more fun. Which is funny because that's exactly what we had 20 years ago.</p>
+<p>Let's make it easy, and let's make it simple. Clutterfree, local-first apps that use minimal energy because AI can (and arguably should) be opt-in, default to local models, default to tiny models, default to offline, which leads to <strong>private work that's highly satisfying because it's truly yours</strong>.</p>
 <figure>
   <picture>
     <source type="image/webp" srcset="/moui-grove/assets/moui-notes-screenshot-claude-480w.webp 480w, /moui-grove/assets/moui-notes-screenshot-claude-960w.webp 960w, /moui-grove/assets/moui-notes-screenshot-claude-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
     <source type="image/png" srcset="/moui-grove/assets/moui-notes-screenshot-claude-480w.png 480w, /moui-grove/assets/moui-notes-screenshot-claude-960w.png 960w, /moui-grove/assets/moui-notes-screenshot-claude-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <img src="/moui-grove/assets/moui-notes-screenshot-claude.png" alt="A screenshot of our very own app in action while we were crafting this post, with a bit of local, opt-in AI just for research" loading="lazy">
+    <img src="/moui-grove/assets/moui-notes-screenshot-claude.png" alt="A screenshot of our very own app in action while we were crafting this post, with a bit of local, opt-in AI to help with research" loading="lazy">
   </picture>
-  <figcaption>A screenshot of our very own app in action while we were crafting this post, with a bit of local, opt-in AI just for research</figcaption>
+  <figcaption>A screenshot of our very own app in action while we were crafting this post, with a bit of local, opt-in AI to help with research</figcaption>
 </figure>
 <hr />
 <h6>A few notes</h6>
