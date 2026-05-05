@@ -1,0 +1,47 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Local-First, or: How I Learned to Stop Browsing and Love the Machine</h1>
+            <time datetime="2026-05-04">04.05.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>I still remember the day we got our first computer. It was an Intel 486 with a tiny bit of RAM, I believe it to be 4MB. My dad used to work at the desk every night after coming back from the university, to prepare lessons, and documents, and to meddle with strange programs to do simple things. I would sit by his desk and would spend countless hours watching him, learning the commands, playing around with the terminal, even if we never did something remotely sophisticated. He used to take contrarian moves to everything, so instead of using Microsoft Word, he went the WordPerfect and LaTEX route, and would be preaching frequently on <em>how difficult things were with Microsoft Word</em>. Strangely enough, people around seemed not to bother much with it, taking a few workarounds here and there to achieve stuff using Word. They got used to the interface with its quirks and conditions, they got used to accepting things the way they were, to just concede and get the job done.</p>
+<p>A few years afterwards, we bought a more capable machine, and I started coding out of necessity. I was using the now-extinct-but-absolutely-fantastic Flash to animate a movie, but just moving things around in frames didn't make sense anymore. I wanted some interaction, and I started coding on Actionscript (a javascript-inspired scripting language), and I built what I call &quot;games&quot;, but were in reality just a few interactive prototypes testing the limits of what coding without StackOverflow would feel like, at a time when I didn't have training on programming concepts or enough use cases/motivation/incentives to build. It was fun to draw some objects and animate them with code, and people loved it so much that they started using it for everything, which made it insecure. Flash was banned after a while by all browsers and <em>we moved on</em>.</p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/moui-grove/assets/QWOP_screenshot-480w.webp 480w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/jpeg" srcset="/moui-grove/assets/QWOP_screenshot-480w.jpg 480w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/moui-grove/assets/QWOP_screenshot.jpg" alt="A serious game developed in Flash — By Bennett Foddy - The uploader on Wikimedia Commons received this from the author/copyright holder., CC0, https://commons.wikimedia.org/w/index.php?curid=65720108" loading="eager">
+  </picture>
+  <figcaption>A serious game developed in Flash — By Bennett Foddy - The uploader on Wikimedia Commons received this from the author/copyright holder., CC0, https://commons.wikimedia.org/w/index.php?curid=65720108</figcaption>
+</figure>
+<p>We moved on. <strong>Funnily, we have moved away from some of the most interesting things in tech: hardware, local computing</strong>... applications that operate without the hassle of the browser: infinite passwords, cookie-management mechanisms we have grown to accept, and do not even need any Internet at all. The digital world became browser-centric: your documents, spreadsheets, design, music creation; almost everything started to happen in a browser context. And so our computers became just clients, as we developers call them. At some point in time we moved everything to the cloud, disregarding what a personal computer actually meant. Like we forgot that it literally entailed the word <em>computing: it wasn’t a browser</em>. And it definitely was more than a keyboard with a screen that needs a data plan to work.</p>
+<p>Creating stuff using a personal computer was so much fun, that over the years I kept remembering the feeling with a little bit of nostalgia. Two months ago, as a result of all the discussions around data privacy, cybersecurity, digital resilience, et al. that I was having with people, an idea began to grow in me:</p>
+<blockquote>
+<p>Our machines are much more capable than the computer that sent people to the moon, and yet we just use them to access a browser.</p>
+</blockquote>
+<p>Like millions of times more powerful. So I started building a few prototypes. Pretty much like my father, I went down the rabbit hole, taking a possibly contrarian but almost inevitable path of local-first, principle-based development: <strong>a new sort of personal computing, only this time, available for all</strong>. A flash of insight moved me towards building out of First Principles, which was quite an endearing experience, me trying to find out <em>what those first principles were about</em>, me finding them long forgotten and buried in the past.</p>
+<blockquote>
+<p>Once upon a time we owned a personal computer. And this computer was pretty capable, and we used it to create silly games and we were able to do work while offline.</p>
+</blockquote>
+<p>There was not the concept of being offline; on the contrary, one was &quot;going online&quot; briefly to do some stuff; the noise and beeps of the modem connecting us at extremely slow speeds, unreliably getting access somehow to another world. A world we now live in constantly, one we can’t even escape. But can someone explain to me what really happened here? We exchanged the power of the personal computer for... exactly what?</p>
+<p>The burden of the web is heavier than ever. People talk about cybersecurity, digital self-determination, cyber-resilience, freedom-from-the-feed, The Algorithm, and a thousand more topics that sound so strange and so-vague-yet-so-hype that they suggest a market is forming around them. But this is all pretty much the same market trying to correct something that's heavily skewed, on top of what's essentially a pretty weak model.</p>
+<p>Most of the <em>solutions</em> we tend to see in this space actually add more, instead of removing. So in order to fight abuse with cookies, we created laws like GDPR, so a new market opportunity appeared for apps managing cookies, for apps managing cookie dismissal actions, and for lawyers especially. While we users are not really better off after the entire exchange. Bloating that only gets worse the more layers we add to it.</p>
+<p>The solution is actually quite simple, but it's not really about adding more. Let's remove the clutter. Let's remove the bulk of accounts, and logins, and metrics, and cookies, and terms and conditions that regulate the use of my data. When you remove the overhead, the experience of personal computing gets pretty simple, gets more secure, gets more <em>resilient and more self-determined</em>. It gets more fun. Which is funny because that's exactly what we had 20 years ago.</p>
+<p>Let's make it easy, and let's make it simple. Clutterfree, local-first apps that use minimal energy because AI can (and arguably should) be opt-in, default to local models, default to tiny models, default to offline, <strong>private work that's highly satisfying because it's after all, yours</strong>.</p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/moui-grove/assets/moui-notes-screenshot-claude-480w.webp 480w, /moui-grove/assets/moui-notes-screenshot-claude-960w.webp 960w, /moui-grove/assets/moui-notes-screenshot-claude-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/moui-grove/assets/moui-notes-screenshot-claude-480w.png 480w, /moui-grove/assets/moui-notes-screenshot-claude-960w.png 960w, /moui-grove/assets/moui-notes-screenshot-claude-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/moui-grove/assets/moui-notes-screenshot-claude.png" alt="A screenshot of our very own app in action while we were crafting this post" loading="lazy">
+  </picture>
+  <figcaption>A screenshot of our very own app in action while we were crafting this post</figcaption>
+</figure>
+<hr />
+<h6>A few notes</h6>
+<p>4MB of RAM might not mean much to people nowadays, so let's put it in context. My current phone, which was launched two years ago, has 12GB of RAM onboard, which is <strong>three thousand times the amount of available memory for apps</strong>. Yet most of the time it's used for rendering web pages. Go figure.</p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "a-few-notes", "text": "A few notes", "level": 6}]</script>

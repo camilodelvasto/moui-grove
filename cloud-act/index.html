@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="grove-base-path" content="/moui-grove">
+    <title>The US CLOUD Act and the Illusion of Data Sovereignty</title>
+    <link rel="icon" href="/moui-grove/theme/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/moui-grove/theme/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/moui-grove/theme/apple-touch-icon.png">
+    <meta property="og:title" content="The US CLOUD Act and the Illusion of Data Sovereignty">
+    <meta property="og:description" content="Your data is on US servers, under US law. The CLOUD Act makes this explicit. The question is what you do about it.">
+    <meta property="og:image" content="https://camilodelvasto.github.io/moui-grove/assets/dw-digital-dilemma.png">
+    <meta property="og:url" content="https://camilodelvasto.github.io/moui-grove/cloud-act/">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary">
+    <link rel="alternate" type="application/rss+xml" title="Moui Grove" href="https://camilodelvasto.github.io/moui-grove/feed.xml">
+    <style id="grove-tokens">
+:root {
+  --palette-primary: #ff1055;
+  --palette-primary-dark: #e00e49;
+  --palette-secondary: #E5F20D;
+  --palette-secondary-dark: #c9d300;
+  --palette-near-black: #101010;
+  --palette-dark-gray: #474646;
+  --palette-white: #ffffff;
+  --palette-warm-white: #fbfaf8;
+  --palette-code-bg: #f3f2ef;
+  --palette-gray-100: #f1f2f4;
+  --palette-gray-200: #E5E7EB;
+  --palette-gray-300: #cbd5e1;
+  --palette-gray-400: #94a3b8;
+  --palette-gray-600: #475569;
+  --palette-gray-800: #1F2937;
+  --palette-black: #0f172a;
+  --palette-banner-info-bg: #e8f4fd;
+  --palette-banner-info-text: #1a5276;
+  --palette-banner-info-border: #aed6f1;
+  --palette-banner-warning-bg: #fef9e7;
+  --palette-banner-warning-text: #7d6608;
+  --palette-banner-warning-border: #f9e79f;
+  --palette-banner-error-bg: #fdedec;
+  --palette-banner-error-text: #922b21;
+  --palette-banner-error-border: #f5b7b1;
+  --palette-banner-success-bg: #eafaf1;
+  --palette-banner-success-text: #1e8449;
+  --palette-banner-success-border: #a9dfbf;
+  --color-bg: warm-white;
+  --color-surface: gray-100;
+  --color-code-bg: code-bg;
+  --color-text: gray-800;
+  --color-text-secondary: gray-600;
+  --color-accent: primary;
+  --color-accent-hover: primary-dark;
+  --color-border: gray-200;
+  --color-card-bg: white;
+  --color-btn-primary: near-black;
+  --color-btn-primary-hover: dark-gray;
+  --color-btn-primary-text: white;
+  --color-gradient-start: primary;
+  --color-gradient-end: secondary;
+  --color-banner-info-bg: banner-info-bg;
+  --color-banner-info-text: banner-info-text;
+  --color-banner-info-border: banner-info-border;
+  --color-banner-warning-bg: banner-warning-bg;
+  --color-banner-warning-text: banner-warning-text;
+  --color-banner-warning-border: banner-warning-border;
+  --color-banner-error-bg: banner-error-bg;
+  --color-banner-error-text: banner-error-text;
+  --color-banner-error-border: banner-error-border;
+  --color-banner-success-bg: banner-success-bg;
+  --color-banner-success-text: banner-success-text;
+  --color-banner-success-border: banner-success-border;
+  --font-body: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-mono: 'SF Mono', 'Cascadia Code', 'JetBrains Mono', monospace;
+  --font-base: 16px;
+  --line-height: 1.7;
+  --weight-body: 400;
+  --weight-heading: 600;
+  --leading-body: 1.7;
+  --leading-heading: 1.2;
+  --scale-sm: 0.875;
+  --scale-md: 1;
+  --scale-lg: 1.25;
+  --scale-xl: 1.5;
+  --scale-xxl: 2;
+  --scale-display: 2.5;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-xxl: 3rem;
+  --space-content-width: 720px;
+  --space-card-padding: 1.25rem;
+  --color-bg-resolved: #fbfaf8;
+  --color-surface-resolved: #f1f2f4;
+  --color-code-bg-resolved: #f3f2ef;
+  --color-text-resolved: #1F2937;
+  --color-text-secondary-resolved: #475569;
+  --color-accent-resolved: #ff1055;
+  --color-accent-hover-resolved: #e00e49;
+  --color-border-resolved: #E5E7EB;
+  --color-card-bg-resolved: #ffffff;
+  --color-btn-primary-resolved: #101010;
+  --color-btn-primary-hover-resolved: #474646;
+  --color-btn-primary-text-resolved: #ffffff;
+  --color-gradient-start-resolved: #ff1055;
+  --color-gradient-end-resolved: #E5F20D;
+  --color-banner-info-bg-resolved: #e8f4fd;
+  --color-banner-info-text-resolved: #1a5276;
+  --color-banner-info-border-resolved: #aed6f1;
+  --color-banner-warning-bg-resolved: #fef9e7;
+  --color-banner-warning-text-resolved: #7d6608;
+  --color-banner-warning-border-resolved: #f9e79f;
+  --color-banner-error-bg-resolved: #fdedec;
+  --color-banner-error-text-resolved: #922b21;
+  --color-banner-error-border-resolved: #f5b7b1;
+  --color-banner-success-bg-resolved: #eafaf1;
+  --color-banner-success-text-resolved: #1e8449;
+  --color-banner-success-border-resolved: #a9dfbf;
+}
+
+:root[data-theme="dark"] {
+  --palette-primary: #ff3a70;
+  --palette-primary-dark: #ff1055;
+  --palette-secondary: #E5F20D;
+  --palette-secondary-dark: #c9d300;
+  --palette-near-black: #101010;
+  --palette-dark-gray: #474646;
+  --palette-white: #ffffff;
+  --palette-warm-white: #1a1a1a;
+  --palette-code-bg: #242429;
+  --palette-gray-100: #1a1a22;
+  --palette-gray-200: #2a2a35;
+  --palette-gray-300: #3a3a48;
+  --palette-gray-400: #666680;
+  --palette-gray-600: #999999;
+  --palette-gray-800: #e0e0e0;
+  --palette-black: #0f172a;
+  --palette-banner-info-bg: #162a3f;
+  --palette-banner-info-text: #8ec5ff;
+  --palette-banner-info-border: #2e4a6a;
+  --palette-banner-warning-bg: #3a3215;
+  --palette-banner-warning-text: #f0d570;
+  --palette-banner-warning-border: #6a5a20;
+  --palette-banner-error-bg: #3a1f1f;
+  --palette-banner-error-text: #f5a29a;
+  --palette-banner-error-border: #6e3838;
+  --palette-banner-success-bg: #18362a;
+  --palette-banner-success-text: #8fd9b0;
+  --palette-banner-success-border: #2f5a43;
+  --color-bg: warm-white;
+  --color-surface: gray-100;
+  --color-code-bg: code-bg;
+  --color-text: gray-800;
+  --color-text-secondary: gray-600;
+  --color-accent: primary;
+  --color-accent-hover: primary-dark;
+  --color-border: gray-200;
+  --color-card-bg: gray-100;
+  --color-btn-primary: white;
+  --color-btn-primary-hover: gray-600;
+  --color-btn-primary-text: near-black;
+  --color-gradient-start: primary;
+  --color-gradient-end: secondary;
+  --color-banner-info-bg: banner-info-bg;
+  --color-banner-info-text: banner-info-text;
+  --color-banner-info-border: banner-info-border;
+  --color-banner-warning-bg: banner-warning-bg;
+  --color-banner-warning-text: banner-warning-text;
+  --color-banner-warning-border: banner-warning-border;
+  --color-banner-error-bg: banner-error-bg;
+  --color-banner-error-text: banner-error-text;
+  --color-banner-error-border: banner-error-border;
+  --color-banner-success-bg: banner-success-bg;
+  --color-banner-success-text: banner-success-text;
+  --color-banner-success-border: banner-success-border;
+  --font-body: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-mono: 'SF Mono', 'Cascadia Code', 'JetBrains Mono', monospace;
+  --font-base: 16px;
+  --line-height: 1.7;
+  --weight-body: 400;
+  --weight-heading: 600;
+  --leading-body: 1.7;
+  --leading-heading: 1.2;
+  --scale-sm: 0.875;
+  --scale-md: 1;
+  --scale-lg: 1.25;
+  --scale-xl: 1.5;
+  --scale-xxl: 2;
+  --scale-display: 2.5;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-xxl: 3rem;
+  --space-content-width: 720px;
+  --space-card-padding: 1.25rem;
+  --color-bg-resolved: #1a1a1a;
+  --color-surface-resolved: #1a1a22;
+  --color-code-bg-resolved: #242429;
+  --color-text-resolved: #e0e0e0;
+  --color-text-secondary-resolved: #999999;
+  --color-accent-resolved: #ff3a70;
+  --color-accent-hover-resolved: #ff1055;
+  --color-border-resolved: #2a2a35;
+  --color-card-bg-resolved: #1a1a22;
+  --color-btn-primary-resolved: #ffffff;
+  --color-btn-primary-hover-resolved: #999999;
+  --color-btn-primary-text-resolved: #101010;
+  --color-gradient-start-resolved: #ff3a70;
+  --color-gradient-end-resolved: #E5F20D;
+  --color-banner-info-bg-resolved: #162a3f;
+  --color-banner-info-text-resolved: #8ec5ff;
+  --color-banner-info-border-resolved: #2e4a6a;
+  --color-banner-warning-bg-resolved: #3a3215;
+  --color-banner-warning-text-resolved: #f0d570;
+  --color-banner-warning-border-resolved: #6a5a20;
+  --color-banner-error-bg-resolved: #3a1f1f;
+  --color-banner-error-text-resolved: #f5a29a;
+  --color-banner-error-border-resolved: #6e3838;
+  --color-banner-success-bg-resolved: #18362a;
+  --color-banner-success-text-resolved: #8fd9b0;
+  --color-banner-success-border-resolved: #2f5a43;
+}
+
+    </style>
+    <link rel="stylesheet" href="/moui-grove/style.css">
+    <link rel="stylesheet" href="/moui-grove/elements.css">
+    <link rel="stylesheet" href="/moui-grove/transitions.css">
+    <link rel="stylesheet" href="/moui-grove/syntax.css">
+    <script>
+      (function() {
+        var stored = localStorage.getItem('grove-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+</head>
+<body data-layout="index">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" role="banner">
+    <a href="/moui-grove/" class="site-title">Moui Grove</a>
+    <div class="header-actions">
+        <a href="/moui-grove/archive/" class="btn btn-ghost btn-sm" aria-label="Archive">Archive</a>
+        <button class="btn btn-accent btn-sm" data-action="open-search" data-interaction="press" aria-label="Search" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+            <span class="btn-label">Search</span>
+        </button>
+    </div>
+</header>
+    <main id="main"></main>
+    <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+        <span>Moui Grove</span>
+        <a href="https://camilodelvasto.github.io/moui-grove/feed.xml">RSS</a>
+        <button class="btn btn-ghost btn-sm btn-icon btn-theme" data-action="toggle-theme" data-interaction="press" aria-label="Toggle theme" type="button">
+            <span class="btn-state-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+            <span class="btn-state-dark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+        </button>
+        <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Clear site data" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
+        </button>
+        <span class="build-id">4f5b02b91436</span>
+    </div>
+</footer>
+    <script type="module" src="/moui-grove/app.js"></script>
+</body>
+</html>

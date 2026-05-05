@@ -1,0 +1,46 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Why You Need This</h1>
+            <time datetime="2026-04-23">23.04.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>So you use the AI for work and you get something out of it, but you know there's so much more out there that you're somehow not capitalizing.</p>
+<p>You have seen videos, and courses, but somehow you feel that something is missing, that you might be getting out of the wagon.</p>
+<p>Deep down you know the moment is coming for you to face a harsh truth: that you can only learn by doing, and the faster you face that truth, the better.</p>
+<hr />
+<p>So let's get something straight: learning how to use the AI for your workflow is NOT a matter of tools or tricks. Tools are cool, but they are mostly <em>wrappers</em> around the model, and they are quickly being absorbed by <em>The Model</em>. So you don't want to spend time learning tools or tricks.
+We are entering an era in which things get obsolete by the minute.</p>
+<p>So it's time to do things differently.</p>
+<p>You need the fundamentals. You need to fill the gap of knowledge that is holding you back from making efficient and safe use of the AI. From being someone who <em>uses</em> a tool to <strong>someone that develops products for your own use</strong>. Because if you're <em>only</em> using tools, you're like everybody else. Everybody has access to the same tools. But you want more, you're not like everybody else.</p>
+<hr />
+<p>Let me give you an example. This is Claude Cowork:</p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/moui-grove/assets/claude-code-1-480w.webp 480w, /moui-grove/assets/claude-code-1-960w.webp 960w, /moui-grove/assets/claude-code-1-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/moui-grove/assets/claude-code-1-480w.png 480w, /moui-grove/assets/claude-code-1-960w.png 960w, /moui-grove/assets/claude-code-1-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/moui-grove/assets/claude-code-1.png" alt="Claude Cowork: it can do a lot of things" loading="eager">
+  </picture>
+  <figcaption>Claude Cowork: it can do a lot of things</figcaption>
+</figure>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/moui-grove/assets/claude-code-2-480w.webp 480w, /moui-grove/assets/claude-code-2-960w.webp 960w, /moui-grove/assets/claude-code-2-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/moui-grove/assets/claude-code-2-480w.png 480w, /moui-grove/assets/claude-code-2-960w.png 960w, /moui-grove/assets/claude-code-2-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/moui-grove/assets/claude-code-2.png" alt="But it's still kinda more of the same" loading="lazy">
+  </picture>
+  <figcaption>But it's still kinda more of the same</figcaption>
+</figure>
+<p>It is extremely powerful, and as an <strong>agentic tool</strong>, it can do things in the background, which is great. But at what cost?</p>
+<p>To start off, the subscription costs money, and it uses a lot of tokens (like AI coins) to do it. But the most problematic thing is that you can use it for years and after all that time, you still haven't built anything that's actually yours.</p>
+<blockquote>
+<p>You can build dashboards, vibe-code applications, and after a thousand iterations, they are still not really yours.</p>
+</blockquote>
+<p>For something to be truly yours, you need to <em>know how it works</em>, <em>where it is stored</em>, <em>how secure it is</em>, and <strong>how you can improve it over time</strong>.</p>
+<h3>You don't want to build the same thing over and over again</h3>
+<p>That's why you need this. So that you can build your own little arsenal of tools that you carry around and enhance over time. Today you might use Claude, and tomorrow something else. You don't want to be dependent on any technology, you want to own your stuff.</p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "you-don-t-want-to-build-the-same-thing-over-and-over-again", "text": "You don't want to build the same thing over and over again", "level": 3}]</script>

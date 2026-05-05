@@ -1,0 +1,487 @@
+{
+  "version": "4f5b02b91436",
+  "build_date": "2026-05-05T18:51:38Z",
+  "encrypted": false,
+  "loading": {
+    "strategy": "progressive",
+    "priority_count": 5
+  },
+  "entries": [
+    {
+      "route": "/insights/personal-computing-love-the-machine/",
+      "blob": "eca0c66b211c18c7.bin",
+      "hash": "eca0c66b211c18c7",
+      "priority": 1,
+      "type": "post",
+      "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
+      "excerpt": "Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?",
+      "date": "2026-05-04",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
+        "description": "Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?",
+        "image": "assets/QWOP_screenshot.jpg"
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/manifesto/",
+      "blob": "923bad4eb385ffba.bin",
+      "hash": "923bad4eb385ffba",
+      "priority": 1,
+      "type": "post",
+      "title": "Manifesto",
+      "excerpt": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
+      "date": "2026-05-03",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Manifesto",
+        "description": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
+        "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/school/why-you-need-this/",
+      "blob": "2566f34b06bfd6dc.bin",
+      "hash": "2566f34b06bfd6dc",
+      "priority": 1,
+      "type": "post",
+      "title": "Why You Need This",
+      "excerpt": "You've used AI, but have you really used it?",
+      "date": "2026-04-23",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Why You Need This",
+        "description": "You've used AI, but have you really used it?",
+        "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/insights/coding-out-of-first-principles/",
+      "blob": "11dfa729f9d8ec68.bin",
+      "hash": "11dfa729f9d8ec68",
+      "priority": 1,
+      "type": "post",
+      "title": "Building Out Of First Principles",
+      "excerpt": "How first principles can shape a new wave of creations",
+      "date": "2026-04-22",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Building Out Of First Principles",
+        "description": "How first principles can shape a new wave of creations",
+        "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/cloud-act/",
+      "blob": "7d3ceca0bfb0fcdb.bin",
+      "hash": "7d3ceca0bfb0fcdb",
+      "priority": 1,
+      "type": "post",
+      "title": "The US CLOUD Act and the Illusion of Data Sovereignty",
+      "excerpt": "Your data is on US servers, under US law. The CLOUD Act makes this explicit. The question is what you do about it.",
+      "date": "2026-04-17",
+      "section": "",
+      "tags": [
+        "sovereignty",
+        "policy",
+        "privacy"
+      ],
+      "og": {
+        "title": "The US CLOUD Act and the Illusion of Data Sovereignty",
+        "description": "Your data is on US servers, under US law. The CLOUD Act makes this explicit. The question is what you do about it.",
+        "image": "assets/dw-digital-dilemma.png"
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/contracts-not-code/",
+      "blob": "6203524e99e02178.bin",
+      "hash": "6203524e99e02178",
+      "priority": 2,
+      "type": "post",
+      "title": "Contracts, not code",
+      "excerpt": "Most systems drift. A declarative core holds because the shape of the code is the enforcement.",
+      "date": "2026-04-16",
+      "section": "",
+      "tags": [
+        "architecture",
+        "contracts"
+      ],
+      "og": {
+        "title": "Contracts, not code",
+        "description": "Most systems drift. A declarative core holds because the shape of the code is the enforcement.",
+        "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/welcome/",
+      "blob": "6b6adce96294e961.bin",
+      "hash": "6b6adce96294e961",
+      "priority": 2,
+      "type": "post",
+      "title": "Welcome to Grove",
+      "excerpt": "Grove organizes your writing into a navigable, deployable site.",
+      "date": "2026-04-14",
+      "section": "",
+      "tags": [
+        "grove",
+        "getting-started"
+      ],
+      "og": {
+        "title": "Welcome to Grove",
+        "description": "Grove organizes your writing into a navigable, deployable site.",
+        "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/architecture/data-isolation/",
+      "blob": "24c3c7f9a50dae54.bin",
+      "hash": "24c3c7f9a50dae54",
+      "priority": 2,
+      "type": "post",
+      "title": "Data, Interface, Infrastructure",
+      "excerpt": "The three layers must be separable. Your data outlasts any interface.",
+      "date": "2026-04-13",
+      "section": "",
+      "tags": [
+        "architecture",
+        "manifesto"
+      ],
+      "og": {
+        "title": "Data, Interface, Infrastructure",
+        "description": "The three layers must be separable. Your data outlasts any interface.",
+        "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/on-joy/",
+      "blob": "afa10e46f31dca14.bin",
+      "hash": "afa10e46f31dca14",
+      "priority": 2,
+      "type": "post",
+      "title": "Joy Without Extraction",
+      "excerpt": "Technology should produce joy, not compulsion.",
+      "date": "2026-04-12",
+      "section": "",
+      "tags": [
+        "philosophy"
+      ],
+      "og": {
+        "title": "Joy Without Extraction",
+        "description": "Technology should produce joy, not compulsion.",
+        "image": ""
+      },
+      "layout": "quote",
+      "theme": ""
+    },
+    {
+      "route": "/",
+      "blob": "bc62eacb6a27889b.bin",
+      "hash": "bc62eacb6a27889b",
+      "priority": 0,
+      "type": "index",
+      "title": "Moui Grove",
+      "layout": "index",
+      "theme": ""
+    },
+    {
+      "route": "/archive/",
+      "blob": "25aece114348dd8e.bin",
+      "hash": "25aece114348dd8e",
+      "priority": 0,
+      "type": "archive",
+      "title": "Archive — Moui Grove",
+      "layout": "archive",
+      "theme": ""
+    },
+    {
+      "route": "/insights/",
+      "blob": "9f9b59d623b5666b.bin",
+      "hash": "9f9b59d623b5666b",
+      "priority": 1,
+      "type": "section_index",
+      "title": "Insights",
+      "layout": "index",
+      "theme": ""
+    },
+    {
+      "route": "/school/",
+      "blob": "914cbef73f112f11.bin",
+      "hash": "914cbef73f112f11",
+      "priority": 1,
+      "type": "section_index",
+      "title": "School",
+      "layout": "index",
+      "theme": ""
+    },
+    {
+      "route": "/architecture/",
+      "blob": "fbaf8acc75b53cb1.bin",
+      "hash": "fbaf8acc75b53cb1",
+      "priority": 1,
+      "type": "section_index",
+      "title": "Architecture",
+      "layout": "index",
+      "theme": ""
+    }
+  ],
+  "assets": [
+    {
+      "path": "assets/QWOP_screenshot.jpg",
+      "mime": "image/jpeg",
+      "width": 800,
+      "height": 500
+    },
+    {
+      "path": "assets/QWOP_screenshot-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/QWOP_screenshot-480w.jpg",
+      "mime": "image/jpeg",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-1.png",
+      "mime": "image/png",
+      "width": 1660,
+      "height": 950
+    },
+    {
+      "path": "assets/claude-code-1-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-1-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-1-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/claude-code-1-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/claude-code-1-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/claude-code-1-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/claude-code-2.png",
+      "mime": "image/png",
+      "width": 1606,
+      "height": 918
+    },
+    {
+      "path": "assets/claude-code-2-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-2-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-2-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/claude-code-2-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/claude-code-2-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/claude-code-2-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/dw-digital-dilemma.png",
+      "mime": "image/png",
+      "width": 2860,
+      "height": 1428
+    },
+    {
+      "path": "assets/dw-digital-dilemma-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/dw-digital-dilemma-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/dw-digital-dilemma-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/dw-digital-dilemma-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/dw-digital-dilemma-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/dw-digital-dilemma-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/google-ad-no-ads.png",
+      "mime": "image/png",
+      "width": 1008,
+      "height": 1140
+    },
+    {
+      "path": "assets/google-ad-no-ads-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/google-ad-no-ads-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/google-ad-no-ads-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/google-ad-no-ads-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/latin-women-singing.jpg",
+      "mime": "image/jpeg",
+      "width": 6000,
+      "height": 4000
+    },
+    {
+      "path": "assets/latin-women-singing-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/latin-women-singing-480w.jpg",
+      "mime": "image/jpeg",
+      "width": 480
+    },
+    {
+      "path": "assets/latin-women-singing-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/latin-women-singing-960w.jpg",
+      "mime": "image/jpeg",
+      "width": 960
+    },
+    {
+      "path": "assets/latin-women-singing-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/latin-women-singing-1440w.jpg",
+      "mime": "image/jpeg",
+      "width": 1440
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude.png",
+      "mime": "image/png",
+      "width": 2880,
+      "height": 1800
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/og.png",
+      "mime": "image/png",
+      "width": 500,
+      "height": 158
+    },
+    {
+      "path": "assets/og-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/og-480w.png",
+      "mime": "image/png",
+      "width": 480
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Building Out Of First Principles</h1>
+            <time datetime="2026-04-22">22.04.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>The problem with doing things <em>the usual way</em> is that <em>the usual way usually implies locking people in to secure ARR</em>. So what's what?</p>
+<ul>
+<li>ARR: annual recurring revenue, or how much money people are giving you regularly, on a contract basis.</li>
+<li>Vendor lock-in: the mechanism by which you lock users into your ecosystem. The price you pay (only it is deferred, once you are invested).</li>
+</ul>
+<p>So for years the playbook was simple: lock people in with a really nice offer, a too-good-to-be-true kind of deal, the kind of deal that <em>you know it's hiding something</em>:</p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/moui-grove/assets/google-ad-no-ads-480w.webp 480w, /moui-grove/assets/google-ad-no-ads-960w.webp 960w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/moui-grove/assets/google-ad-no-ads-480w.png 480w, /moui-grove/assets/google-ad-no-ads-960w.png 960w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/moui-grove/assets/google-ad-no-ads.png" alt="Google ad on newspaper, taken from X" loading="eager">
+  </picture>
+  <figcaption>Google ad on newspaper, taken from X</figcaption>
+</figure>
+<p>And then one day, maybe slowly, or rather rapidly, somebody changes the conditions. The service, which was previously loved for the clean interface and the no-ad, no-clutter approach, gets ads, gets cluttered.</p>
+<p>That's the moment you consider leaving it. The problem is that leaving is pretty hard now that you have adopted it.</p>
+<hr />
+<p>A few weeks ago, the word &quot;First Principles&quot; arrived to my vocabulary. I'm still not sure how it came to me, but it was loud and clear. I started looking for them in multiple places, and when I was thinking about data privacy, all I could see was GDPR, and processes, and rules. And cookies: <strong>most of all, I saw cookie banners everywhere</strong>. We have been seeing cookie banners for a few years now, which always seemed to me quite bad in terms of user experience, but now that I'm thinking of data privacy issues, it all smelled. Cookie banners are possibly a patch, a bandaid on something that's fundamentally flawed and bleeding.</p>
+<p>The problem is that once you start challenging assumptions, you get to something pretty fundamental: that <strong>data that's not stored in your physical devices is not really yours</strong>. We could even argue that an OS that's not fully open source and auditable, is also operating as a layer that can literally limit said ownership. But let's not go there just yet, let's focus on the matter at hand.</p>
+<p>So what are those first principles applied to software development? The first thing that comes to my mind is SOLID. And AGILE. And MVC. And others... but curiously, none of them talks about the data ownership model.</p>
+<h2>The data-ownership model</h2>
+<p>This is probably a topic for a different moment, but a brief explanation is simple: service providers, a.k.a. SaaS/Cloud services conflate hosting your application data with the interface that enables the service. Most applications are, in essence, a database operation of a certain scale, but those means to achieve that differ. So if you take a famous application for creating designs, in the end what you are doing is modifying some code that produces the design. Hosting that data and serving you with the ability to create those designs is something that has traditionally been part of what we call &quot;the service&quot; in the &quot;Software as a Service&quot; statement. However, hosting a few bytes here and there requires almost no infrastructure, but you have no other way: you have to create an account, rent an application (usually per seat) and live with the consequences of not being able to leave that service without taking the data with you.</p>
+<p>True, you can still export and all that, but in essence, your data is worthless without the interface. We acquired the service because we wanted the interface, but we stayed there because of the data lock-in. Other services might give us better interfaces, but the move is difficult enough, so much that we stay there in spite of the (sometimes) abusive relationship.</p>
+<p>How can we reclaim our agency in these matters? We need to own our data. Not in the legal sense only, but especially, in the physical sense of it. <strong>Owning as in possessing, as in deciding what to do with that data: what's private, where is it hosted, where is it deployed, who's having access to it</strong>. Let's stop right there because this is not a political post. This post was about coding from first principles.</p>
+<p>So the rant must be over at some point. And the principles need to be exposed, because they offer possibilities, and challenges. We build out of first principles because they give us new perspectives, and provide orientation for those moments when we are lost and have no clue how to solve the different issues that arise.</p>
+<h3>A hint at the principles</h3>
+<p>Those principles are actually quite simple:</p>
+<blockquote>
+<p>Data, interfaces, and infrastructure as separate concerns</p>
+</blockquote>
+<p>Interfaces are what people came for. Data storage is what people pay for. As long as those two are intertwined, people won't be able to leave, they won't have full freedom. But we believe that interfaces can evolve independently, especially in these times of AI-assisted development. But it is exactly because we are living through these times with AI-entrenched lives that we have to own our data again, as it the case was not too long ago.</p>
+<p>Own your data, and everything will emerge from that.</p>
+<p><em>For more on our principles, have a look at <a href="/manifesto">our manifesto</a></em></p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "the-data-ownership-model", "text": "The data-ownership model", "level": 2}, {"id": "a-hint-at-the-principles", "text": "A hint at the principles", "level": 3}]</script>

@@ -1,0 +1,352 @@
+{
+  "assets/QWOP_screenshot.jpg": {
+    "source_hash": "31a8346bb75d",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/QWOP_screenshot.jpg",
+      "width": 800,
+      "height": 500,
+      "format": "jpg",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/QWOP_screenshot-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/QWOP_screenshot-480w.jpg",
+        "width": 480,
+        "format": "jpg",
+        "encrypted": false
+      }
+    ]
+  },
+  "assets/claude-code-1.png": {
+    "source_hash": "2b0b157be90c",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/claude-code-1.png",
+      "width": 1660,
+      "height": 950,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/claude-code-1-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/claude-code-1-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/claude-code-1-960w.webp",
+        "width": 960,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/claude-code-1-960w.png",
+        "width": 960,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/claude-code-1-1440w.webp",
+        "width": 1440,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/claude-code-1-1440w.png",
+        "width": 1440,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
+  "assets/claude-code-2.png": {
+    "source_hash": "43d08e0ddff6",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/claude-code-2.png",
+      "width": 1606,
+      "height": 918,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/claude-code-2-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/claude-code-2-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/claude-code-2-960w.webp",
+        "width": 960,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/claude-code-2-960w.png",
+        "width": 960,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/claude-code-2-1440w.webp",
+        "width": 1440,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/claude-code-2-1440w.png",
+        "width": 1440,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
+  "assets/dw-digital-dilemma.png": {
+    "source_hash": "001d193cd566",
+    "post_slugs": [
+      "cloud-act"
+    ],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/dw-digital-dilemma.png",
+      "width": 2860,
+      "height": 1428,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/dw-digital-dilemma-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/dw-digital-dilemma-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/dw-digital-dilemma-960w.webp",
+        "width": 960,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/dw-digital-dilemma-960w.png",
+        "width": 960,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/dw-digital-dilemma-1440w.webp",
+        "width": 1440,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/dw-digital-dilemma-1440w.png",
+        "width": 1440,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
+  "assets/google-ad-no-ads.png": {
+    "source_hash": "8977739402af",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/google-ad-no-ads.png",
+      "width": 1008,
+      "height": 1140,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/google-ad-no-ads-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/google-ad-no-ads-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/google-ad-no-ads-960w.webp",
+        "width": 960,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/google-ad-no-ads-960w.png",
+        "width": 960,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
+  "assets/latin-women-singing.jpg": {
+    "source_hash": "d9161cd6d3cb",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/latin-women-singing.jpg",
+      "width": 6000,
+      "height": 4000,
+      "format": "jpg",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/latin-women-singing-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/latin-women-singing-480w.jpg",
+        "width": 480,
+        "format": "jpg",
+        "encrypted": false
+      },
+      {
+        "path": "assets/latin-women-singing-960w.webp",
+        "width": 960,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/latin-women-singing-960w.jpg",
+        "width": 960,
+        "format": "jpg",
+        "encrypted": false
+      },
+      {
+        "path": "assets/latin-women-singing-1440w.webp",
+        "width": 1440,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/latin-women-singing-1440w.jpg",
+        "width": 1440,
+        "format": "jpg",
+        "encrypted": false
+      }
+    ]
+  },
+  "assets/moui-notes-screenshot-claude.png": {
+    "source_hash": "f8535abee861",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/moui-notes-screenshot-claude.png",
+      "width": 2880,
+      "height": 1800,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/moui-notes-screenshot-claude-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/moui-notes-screenshot-claude-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/moui-notes-screenshot-claude-960w.webp",
+        "width": 960,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/moui-notes-screenshot-claude-960w.png",
+        "width": 960,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/moui-notes-screenshot-claude-1440w.webp",
+        "width": 1440,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/moui-notes-screenshot-claude-1440w.png",
+        "width": 1440,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
+  "assets/og.png": {
+    "source_hash": "aa1412ec3d42",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/og.png",
+      "width": 500,
+      "height": 158,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/og-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/og-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  }
+}

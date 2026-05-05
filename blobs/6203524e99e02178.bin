@@ -1,0 +1,100 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Contracts, not code</h1>
+            <time datetime="2026-04-16">16.04.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>Most systems drift. Rules creep into command handlers. A fuzzy matcher written for one command turns into a chunk of logic nobody else can use. Business rules and plumbing become indistinguishable.</p>
+<p>The alternative is older than code: <strong>declare what exists, let the system read the declaration.</strong></p>
+<h2>The four parts</h2>
+<p>A declarative core has four moving parts:</p>
+<ol>
+<li><strong>A registry</strong> — YAML or JSON. Lists what exists.</li>
+<li><strong>A resolver</strong> — matches input to a registry entry.</li>
+<li><strong>A handler</strong> — does the work the entry describes.</li>
+<li><strong>A router</strong> — pipes input through resolver into handler.</li>
+</ol>
+<p>No business logic in the router. No matching logic in the handler. Each part has one job.</p>
+<figure class="arch-diagram">
+<svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Input flows through the router to the resolver, which reads the registry, then dispatches to the handler.">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: var(--color-accent-resolved)"/></marker>
+</defs>
+<g font-family="inherit" text-anchor="middle" style="fill: var(--color-text-resolved)">
+<rect x="290" y="10" width="120" height="40" rx="6" style="fill: var(--color-bg-resolved); stroke: var(--color-accent-resolved); stroke-dasharray: 3,3"/>
+<text x="350" y="35" font-size="13" style="fill: var(--color-accent-resolved)">Registry (YAML)</text>
+<rect x="20" y="90" width="120" height="60" rx="6" style="fill: var(--color-surface-resolved); stroke: var(--color-border-resolved)"/>
+<text x="80" y="125" font-size="14" font-weight="600">Input</text>
+<rect x="180" y="90" width="120" height="60" rx="6" style="fill: var(--color-surface-resolved); stroke: var(--color-border-resolved)"/>
+<text x="240" y="118" font-size="14" font-weight="600">Router</text>
+<text x="240" y="138" font-size="11" style="fill: var(--color-text-secondary-resolved)">the pipe</text>
+<rect x="340" y="90" width="120" height="60" rx="6" style="fill: var(--color-surface-resolved); stroke: var(--color-border-resolved)"/>
+<text x="400" y="118" font-size="14" font-weight="600">Resolver</text>
+<text x="400" y="138" font-size="11" style="fill: var(--color-text-secondary-resolved)">matcher</text>
+<rect x="500" y="90" width="120" height="60" rx="6" style="fill: var(--color-surface-resolved); stroke: var(--color-border-resolved)"/>
+<text x="560" y="118" font-size="14" font-weight="600">Handler</text>
+<text x="560" y="138" font-size="11" style="fill: var(--color-text-secondary-resolved)">does work</text>
+<line x1="145" y1="120" x2="175" y2="120" style="stroke: var(--color-accent-resolved); stroke-width: 1.5" marker-end="url(#arrow)"/>
+<line x1="305" y1="120" x2="335" y2="120" style="stroke: var(--color-accent-resolved); stroke-width: 1.5" marker-end="url(#arrow)"/>
+<line x1="465" y1="120" x2="495" y2="120" style="stroke: var(--color-accent-resolved); stroke-width: 1.5" marker-end="url(#arrow)"/>
+<line x1="350" y1="50" x2="400" y2="90" style="stroke: var(--color-accent-resolved); stroke-dasharray: 3,3"/>
+<text x="350" y="195" font-size="12" style="fill: var(--color-text-secondary-resolved)">The contract stays. The implementation swaps.</text>
+</g>
+</svg>
+<figcaption>Four parts, one contract. Each can be replaced without touching the others.</figcaption>
+</figure>
+<h2>A registry</h2>
+<p>A registry is just data. It lists commands and the patterns that match them.</p>
+<pre class="highlight" data-lang="yaml"><code class="language-yaml"><span class="nt">commands</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note.create</span>
+<span class="w">    </span><span class="nt">patterns</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;new</span><span class="nv"> </span><span class="s">note&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;create</span><span class="nv"> </span><span class="s">note&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;jot&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">handler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">notes.create</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note.search</span>
+<span class="w">    </span><span class="nt">patterns</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;find</span><span class="nv"> </span><span class="s">note&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;search</span><span class="nv"> </span><span class="s">notes&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">handler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">notes.search</span></code></pre>
+<p>Adding a command means adding an entry. Nothing else changes.</p>
+<h2>A resolver</h2>
+<p>The resolver does not know what commands mean. It knows how to match input against patterns.</p>
+<pre class="highlight" data-lang="python"><code class="language-python"><span class="k">def</span><span class="w"> </span><span class="nf">resolve</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the matching registry entry. Raise if nothing matches.&quot;&quot;&quot;</span>
+    <span class="n">lowered</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">registry</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;patterns&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">lowered</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">entry</span>
+    <span class="k">raise</span> <span class="n">NoMatch</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></code></pre>
+<p>Swap this for fuzzy matching, a small neural network, a tiny on-device LLM. The contract stays: <strong>input in, registry entry out.</strong></p>
+<blockquote>
+<p>A fuzzy matcher is not code inside a command handler.
+It is a capability with a defined interface that the system uses through a contract.</p>
+</blockquote>
+<h2>A handler</h2>
+<p>The handler does not know how the match was made. It receives a context and does the work.</p>
+<pre class="highlight" data-lang="python"><code class="language-python"><span class="k">def</span><span class="w"> </span><span class="nf">notes_create</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Result</span><span class="p">:</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="n">context</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">]</span>
+    <span class="n">note</span> <span class="o">=</span> <span class="n">Note</span><span class="o">.</span><span class="n">from_text</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+    <span class="n">note</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="n">ok</span><span class="p">(</span><span class="n">note</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></code></pre>
+<p>Handlers never reference each other. They only touch the context they are given.</p>
+<h2>A router</h2>
+<p>The router is the pipe. Three lines.</p>
+<pre class="highlight" data-lang="python"><code class="language-python"><span class="k">def</span><span class="w"> </span><span class="nf">route</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Result</span><span class="p">:</span>
+    <span class="n">entry</span> <span class="o">=</span> <span class="n">resolve</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">registry</span><span class="p">)</span>
+    <span class="n">handler</span> <span class="o">=</span> <span class="n">handlers</span><span class="p">[</span><span class="n">entry</span><span class="p">[</span><span class="s2">&quot;handler&quot;</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">handler</span><span class="p">(</span><span class="n">context_for</span><span class="p">(</span><span class="n">text</span><span class="p">))</span></code></pre>
+<p>No conditionals by command name. No special cases. If it belongs in the router, it applies to every command.</p>
+<h2>Why this holds</h2>
+<p>The shape of the code is the enforcement.</p>
+<ul>
+<li>You cannot add a command without adding a registry entry.</li>
+<li>You cannot change matching without changing the resolver.</li>
+<li>You cannot couple handlers because handlers only receive context.</li>
+</ul>
+<p>Every piece is replaceable. The router stays stupid. Matching lives in the resolver. Work lives in the handler. Contracts at every seam.</p>
+<p>That is the whole trick.</p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "the-four-parts", "text": "The four parts", "level": 2}, {"id": "a-registry", "text": "A registry", "level": 2}, {"id": "a-resolver", "text": "A resolver", "level": 2}, {"id": "a-handler", "text": "A handler", "level": 2}, {"id": "a-router", "text": "A router", "level": 2}, {"id": "why-this-holds", "text": "Why this holds", "level": 2}]</script>
