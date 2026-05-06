@@ -1,7 +1,7 @@
 <article class="article-layout">
     <header class="post-hero">
         <div class="post-hero-inner">
-            <h1>Why You Need This</h1>
+            <h1>Why You Need To Learn to Code</h1>
             <time datetime="2026-04-23">23.04.2026</time>
         </div>
     </header>
@@ -28,9 +28,9 @@ We are entering an era in which things get obsolete by the minute.</p>
   <picture>
     <source type="image/webp" srcset="/moui-grove/assets/claude-code-2-480w.webp 480w, /moui-grove/assets/claude-code-2-960w.webp 960w, /moui-grove/assets/claude-code-2-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
     <source type="image/png" srcset="/moui-grove/assets/claude-code-2-480w.png 480w, /moui-grove/assets/claude-code-2-960w.png 960w, /moui-grove/assets/claude-code-2-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <img src="/moui-grove/assets/claude-code-2.png" alt="But it's still kinda more of the same" loading="lazy">
+    <img src="/moui-grove/assets/claude-code-2.png" alt="But it uses Claude Code in the background" loading="lazy">
   </picture>
-  <figcaption>But it's still kinda more of the same</figcaption>
+  <figcaption>But it uses Claude Code in the background</figcaption>
 </figure>
 <p>It is extremely powerful, and as an <strong>agentic tool</strong>, it can do things in the background, which is great. But at what cost?</p>
 <p>To start off, the subscription costs money, and it uses a lot of tokens (like AI coins) to do it. But the most problematic thing is that you can use it for years and after all that time, you still haven't built anything that's actually yours.</p>
@@ -39,7 +39,7 @@ We are entering an era in which things get obsolete by the minute.</p>
 </blockquote>
 <p>For something to be truly yours, you need to <em>know how it works</em>, <em>where it is stored</em>, <em>how secure it is</em>, and <strong>how you can improve it over time</strong>.</p>
 <h3>You don't want to build the same thing over and over again</h3>
-<p>That's why you need this. So that you can build your own little arsenal of tools that you carry around and enhance over time. Today you might use Claude, and tomorrow something else. You don't want to be dependent on any technology, you want to own your stuff.</p>
+<p>That's why you need to learn the fundamentals. So that you can build your own little arsenal of tools that you carry around and enhance over time. Today you might use Claude, and tomorrow something else. You don't want to be dependent on any technology, you want to own your stuff.</p>
 
     </div>
 </article>

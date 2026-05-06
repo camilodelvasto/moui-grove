@@ -9,7 +9,7 @@
  * this file runs.
  */
 
-const BUILD_VERSION = '8d26671b461c';
+const BUILD_VERSION = 'c03e6f7898f2';
 const CACHE_STATIC = `grove-static-${BUILD_VERSION}`;
 const CACHE_PAGES = `grove-pages-${BUILD_VERSION}`;
 const CACHE_BLOBS = `grove-blobs-${BUILD_VERSION}`;
@@ -32,7 +32,7 @@ const STATIC_ASSETS = [
 ];
 
 // Pages enumerable at build time — network-first, serve cached if offline.
-const OWNED_PAGES = ["/", "/architecture/data-isolation/", "/archive/", "/cloud-act/", "/contracts-not-code/", "/insights/coding-out-of-first-principles/", "/insights/personal-computing-love-the-machine/", "/manifesto/", "/on-joy/", "/school/why-you-need-this/", "/welcome/"];
+const OWNED_PAGES = ["/", "/architecture/data-isolation/", "/archive/", "/cloud-act/", "/contracts-not-code/", "/insights/coding-out-of-first-principles/", "/insights/personal-computing-love-the-machine/", "/manifesto/", "/on-joy/", "/school/why-you-need-to-learn-to-code/", "/welcome/"];
 
 // SPA entry points with client-side routing — grove is multi-page, not SPA.
 const OWNED_SPA_ROOTS = [];

@@ -1,6 +1,6 @@
 {
-  "version": "8d26671b461c",
-  "build_date": "2026-05-05T19:47:14Z",
+  "version": "c03e6f7898f2",
+  "build_date": "2026-05-06T06:34:26Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -46,19 +46,19 @@
       "theme": ""
     },
     {
-      "route": "/school/why-you-need-this/",
-      "blob": "2566f34b06bfd6dc.bin",
-      "hash": "2566f34b06bfd6dc",
+      "route": "/school/why-you-need-to-learn-to-code/",
+      "blob": "3aaacf267abceb63.bin",
+      "hash": "3aaacf267abceb63",
       "priority": 1,
       "type": "post",
-      "title": "Why You Need This",
-      "excerpt": "You've used AI, but have you really used it?",
+      "title": "Why You Need To Learn to Code",
+      "excerpt": "AI is useful and all, but is the output really yours?",
       "date": "2026-04-23",
       "section": "",
       "tags": [],
       "og": {
-        "title": "Why You Need This",
-        "description": "You've used AI, but have you really used it?",
+        "title": "Why You Need To Learn to Code",
+        "description": "AI is useful and all, but is the output really yours?",
         "image": ""
       },
       "layout": "article",
@@ -195,8 +195,8 @@
     },
     {
       "route": "/",
-      "blob": "bc62eacb6a27889b.bin",
-      "hash": "bc62eacb6a27889b",
+      "blob": "502a52ff07f6dcc3.bin",
+      "hash": "502a52ff07f6dcc3",
       "priority": 0,
       "type": "index",
       "title": "Moui Grove",
@@ -205,8 +205,8 @@
     },
     {
       "route": "/archive/",
-      "blob": "25aece114348dd8e.bin",
-      "hash": "25aece114348dd8e",
+      "blob": "7e7983a1aaa4b2fa.bin",
+      "hash": "7e7983a1aaa4b2fa",
       "priority": 0,
       "type": "archive",
       "title": "Archive — Moui Grove",
@@ -225,8 +225,8 @@
     },
     {
       "route": "/school/",
-      "blob": "914cbef73f112f11.bin",
-      "hash": "914cbef73f112f11",
+      "blob": "050d2a22cc2a9481.bin",
+      "hash": "050d2a22cc2a9481",
       "priority": 1,
       "type": "section_index",
       "title": "School",

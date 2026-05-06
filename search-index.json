@@ -926,9 +926,9 @@
     "date": "2026-05-03"
   },
   {
-    "path": "school/why-you-need-this",
-    "title": "Why You Need This",
-    "url_path": "/moui-grove/school/why-you-need-this/",
+    "path": "school/why-you-need-to-learn-to-code",
+    "title": "Why You Need To Learn to Code",
+    "url_path": "/moui-grove/school/why-you-need-to-learn-to-code/",
     "tokens": [
       "1",
       "2",
@@ -1015,7 +1015,6 @@
       "is",
       "it",
       "iterations",
-      "kinda",
       "know",
       "knowledge",
       "learn",
@@ -1046,6 +1045,7 @@
       "only",
       "or",
       "out",
+      "output",
       "over",
       "own",
       "png",
@@ -1092,10 +1092,9 @@
       "truly",
       "truth",
       "use",
-      "used",
+      "useful",
       "uses",
       "using",
-      "ve",
       "vibe",
       "videos",
       "wagon",
@@ -1115,7 +1114,7 @@
       "your",
       "yours"
     ],
-    "excerpt": "You've used AI, but have you really used it?",
+    "excerpt": "AI is useful and all, but is the output really yours?",
     "date": "2026-04-23"
   },
   {
