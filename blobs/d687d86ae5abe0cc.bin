@@ -26,7 +26,7 @@
 <p>Once upon a time we owned a personal computer. And this computer was pretty capable, and we used it to create silly games and we were able to do work while offline.</p>
 </blockquote>
 <p>There was not the concept of being offline; on the contrary, one was &quot;going online&quot; briefly to do some stuff; the noise and beeps of the modem connecting us at extremely slow speeds, unreliably getting access somehow to another world. A world we now live in constantly, one we can’t even escape. But can someone explain to me what really happened here? We exchanged the power of the personal computer for... exactly what?</p>
-<h6>Data privacy matters now more than ever</h6>
+<h3>Data privacy matters now more than ever</h3>
 <p>Yet, most of the <em>solutions</em> we tend to see in this space actually add more, instead of removing. So in order to fight abuse with cookies, we created laws like GDPR, so a new market opportunity appeared for apps managing cookies, for apps managing cookie dismissal actions, and for lawyers especially. While we users are not really better off after the entire exchange. Bloating that only gets worse the more layers we add to it.</p>
 <h3>The solution is actually quite simple, but it's not really about adding more.</h3>
 <p>It's really about removing layers. Let's remove the clutter. Let's remove the bulk of accounts, and logins, and metrics, and cookies, and terms and conditions that regulate the use of my data. When you remove the overhead, the experience of personal computing gets pretty simple, gets more secure, gets more <em>resilient and more self-determined</em>. It gets more fun. Which is funny because that's exactly what we had 20 years ago.</p>
@@ -45,4 +45,4 @@
 
     </div>
 </article>
-    <script type="application/json" id="toc-data">[{"id": "data-privacy-matters-now-more-than-ever", "text": "Data privacy matters now more than ever", "level": 6}, {"id": "the-solution-is-actually-quite-simple-but-it-s-not-really-about-adding-more", "text": "The solution is actually quite simple, but it's not really about adding more.", "level": 3}, {"id": "a-few-notes", "text": "A few notes", "level": 6}]</script>
+    <script type="application/json" id="toc-data">[{"id": "data-privacy-matters-now-more-than-ever", "text": "Data privacy matters now more than ever", "level": 3}, {"id": "the-solution-is-actually-quite-simple-but-it-s-not-really-about-adding-more", "text": "The solution is actually quite simple, but it's not really about adding more.", "level": 3}, {"id": "a-few-notes", "text": "A few notes", "level": 6}]</script>
