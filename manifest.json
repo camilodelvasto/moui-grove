@@ -1,6 +1,6 @@
 {
-  "version": "175a3a2467f4",
-  "build_date": "2026-05-06T08:56:47Z",
+  "version": "29a8b4b2d97e",
+  "build_date": "2026-05-06T09:47:25Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -9,8 +9,8 @@
   "entries": [
     {
       "route": "/insights/personal-computing-love-the-machine/",
-      "blob": "d687d86ae5abe0cc.bin",
-      "hash": "d687d86ae5abe0cc",
+      "blob": "8677729b55db1cab.bin",
+      "hash": "8677729b55db1cab",
       "priority": 1,
       "type": "post",
       "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
