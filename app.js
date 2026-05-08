@@ -102,6 +102,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // Fetch priority-0 blobs (index page), then start navigation
       const remaining = await _bootstrapPriority0(manifest, basePath);
+
+      // Deep-link: if the browser landed on a non-index route, ensure its
+      // blob is in IDB before the router tries to render it.  Without this,
+      // priority-1/2 content shows "Content not available" on direct access.
+      await _ensureCurrentRoute(manifest, basePath);
+
       _initNavigation('pushState', basePath, manifest);
       _initSubsystems();
       startNavigation();
@@ -185,6 +191,22 @@ function _renderSkeletonCards(manifest, basePath) {
 }
 
 // --- Bootstrap ---
+
+async function _ensureCurrentRoute(manifest, basePath) {
+  let route = window.location.pathname;
+  if (basePath && route.startsWith(basePath)) route = route.slice(basePath.length);
+  if (!route || route === '/') return;            // index — already priority-0
+  if (!route.endsWith('/')) route += '/';
+
+  const entry = manifest.entries.find(e => e.route === route);
+  if (!entry || entry.priority === 0) return;     // unknown or already fetched
+
+  // Already in IDB? (e.g. version matched and blobs were kept)
+  const existing = await transportLoadPage(route);
+  if (existing && existing.html) return;
+
+  await _fetchBlobs([entry], basePath);
+}
 
 async function _bootstrapPriority0(manifest, basePath) {
   await storeOpen();
