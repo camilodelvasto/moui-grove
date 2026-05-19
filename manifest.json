@@ -1,6 +1,6 @@
 {
-  "version": "ae8f8434e608",
-  "build_date": "2026-05-08T14:28:12Z",
+  "version": "0d6427481a37",
+  "build_date": "2026-05-19T14:00:05Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -9,8 +9,8 @@
   "entries": [
     {
       "route": "/insights/personal-computing-love-the-machine/",
-      "blob": "8677729b55db1cab.bin",
-      "hash": "8677729b55db1cab",
+      "blob": "859a8c492e8cdb38.bin",
+      "hash": "859a8c492e8cdb38",
       "priority": 1,
       "type": "post",
       "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
@@ -430,6 +430,12 @@
       "path": "assets/latin-women-singing-1440w.jpg",
       "mime": "image/jpeg",
       "width": 1440
+    },
+    {
+      "path": "assets/moui-fire-logo.webp",
+      "mime": "image/webp",
+      "width": 400,
+      "height": 126
     },
     {
       "path": "assets/moui-notes-screenshot-claude.png",

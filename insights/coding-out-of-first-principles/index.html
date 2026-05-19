@@ -17,21 +17,21 @@
     <style id="grove-tokens">
 :root {
   --palette-primary: #ff1055;
-  --palette-primary-dark: #e00e49;
+  --palette-primary-dark: #d40d47;
   --palette-secondary: #E5F20D;
   --palette-secondary-dark: #c9d300;
-  --palette-near-black: #101010;
-  --palette-dark-gray: #474646;
+  --palette-near-black: #0a0a0a;
+  --palette-dark-gray: #3a3a3a;
   --palette-white: #ffffff;
-  --palette-warm-white: #fbfaf8;
-  --palette-code-bg: #f3f2ef;
-  --palette-gray-100: #f1f2f4;
-  --palette-gray-200: #E5E7EB;
-  --palette-gray-300: #cbd5e1;
-  --palette-gray-400: #94a3b8;
-  --palette-gray-600: #475569;
-  --palette-gray-800: #1F2937;
-  --palette-black: #0f172a;
+  --palette-warm-white: #faf9f7;
+  --palette-code-bg: #f5f4f0;
+  --palette-gray-100: #f3f3f1;
+  --palette-gray-200: #e2e2de;
+  --palette-gray-300: #c8c8c2;
+  --palette-gray-400: #8a8a82;
+  --palette-gray-600: #52524c;
+  --palette-gray-800: #1c1c18;
+  --palette-black: #0f0f0c;
   --palette-banner-info-bg: #e8f4fd;
   --palette-banner-info-text: #1a5276;
   --palette-banner-info-border: #aed6f1;
@@ -70,41 +70,43 @@
   --color-banner-success-bg: banner-success-bg;
   --color-banner-success-text: banner-success-text;
   --color-banner-success-border: banner-success-border;
-  --font-body: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-mono: 'SF Mono', 'Cascadia Code', 'JetBrains Mono', monospace;
-  --font-base: 16px;
-  --line-height: 1.7;
+  --font-body: eb-garamond, 'EB Garamond', 'Garamond', Georgia, serif;
+  --font-heading: lato, 'Lato', system-ui, sans-serif;
+  --font-display: lora, 'Lora', Georgia, serif;
+  --font-ui: lato, 'Lato', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --font-base: 17px;
+  --line-height: 1.75;
   --weight-body: 400;
-  --weight-heading: 600;
-  --leading-body: 1.7;
-  --leading-heading: 1.2;
+  --weight-heading: 700;
+  --leading-body: 1.75;
+  --leading-heading: 1.15;
+  --logo-width: 120px;
   --scale-sm: 0.875;
   --scale-md: 1;
-  --scale-lg: 1.25;
-  --scale-xl: 1.5;
-  --scale-xxl: 2;
-  --scale-display: 2.5;
+  --scale-lg: 1.3;
+  --scale-xl: 1.6;
+  --scale-xxl: 2.2;
+  --scale-display: 3;
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-xxl: 3rem;
-  --space-content-width: 720px;
-  --space-card-padding: 1.25rem;
-  --color-bg-resolved: #fbfaf8;
-  --color-surface-resolved: #f1f2f4;
-  --color-code-bg-resolved: #f3f2ef;
-  --color-text-resolved: #1F2937;
-  --color-text-secondary-resolved: #475569;
+  --space-lg: 1.75rem;
+  --space-xl: 2.5rem;
+  --space-xxl: 4rem;
+  --space-content-width: 780px;
+  --space-card-padding: 1.5rem;
+  --color-bg-resolved: #faf9f7;
+  --color-surface-resolved: #f3f3f1;
+  --color-code-bg-resolved: #f5f4f0;
+  --color-text-resolved: #1c1c18;
+  --color-text-secondary-resolved: #52524c;
   --color-accent-resolved: #ff1055;
-  --color-accent-hover-resolved: #e00e49;
-  --color-border-resolved: #E5E7EB;
+  --color-accent-hover-resolved: #d40d47;
+  --color-border-resolved: #e2e2de;
   --color-card-bg-resolved: #ffffff;
-  --color-btn-primary-resolved: #101010;
-  --color-btn-primary-hover-resolved: #474646;
+  --color-btn-primary-resolved: #0a0a0a;
+  --color-btn-primary-hover-resolved: #3a3a3a;
   --color-btn-primary-text-resolved: #ffffff;
   --color-gradient-start-resolved: #ff1055;
   --color-gradient-end-resolved: #E5F20D;
@@ -177,30 +179,32 @@
   --color-banner-success-bg: banner-success-bg;
   --color-banner-success-text: banner-success-text;
   --color-banner-success-border: banner-success-border;
-  --font-body: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-mono: 'SF Mono', 'Cascadia Code', 'JetBrains Mono', monospace;
-  --font-base: 16px;
-  --line-height: 1.7;
+  --font-body: eb-garamond, 'EB Garamond', 'Garamond', Georgia, serif;
+  --font-heading: lora, 'Lora', Georgia, serif;
+  --font-display: lora, 'Lora', Georgia, serif;
+  --font-ui: lato, 'Lato', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --font-base: 17px;
+  --line-height: 1.75;
   --weight-body: 400;
-  --weight-heading: 600;
-  --leading-body: 1.7;
-  --leading-heading: 1.2;
+  --weight-heading: 700;
+  --leading-body: 1.75;
+  --leading-heading: 1.15;
+  --logo-width: 120px;
   --scale-sm: 0.875;
   --scale-md: 1;
-  --scale-lg: 1.25;
-  --scale-xl: 1.5;
-  --scale-xxl: 2;
-  --scale-display: 2.5;
+  --scale-lg: 1.3;
+  --scale-xl: 1.6;
+  --scale-xxl: 2.2;
+  --scale-display: 3;
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-xxl: 3rem;
-  --space-content-width: 720px;
-  --space-card-padding: 1.25rem;
+  --space-lg: 1.75rem;
+  --space-xl: 2.5rem;
+  --space-xxl: 4rem;
+  --space-content-width: 780px;
+  --space-card-padding: 1.5rem;
   --color-bg-resolved: #1a1a1a;
   --color-surface-resolved: #1a1a22;
   --color-code-bg-resolved: #242429;
@@ -245,7 +249,7 @@
 <body data-layout="index">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header" role="banner">
-    <a href="/moui-grove/" class="site-title">Moui Grove</a>
+    <a href="/moui-grove/" class="site-title"><img src="/moui-grove/assets/moui-fire-logo.webp" alt="Moui Grove" class="site-logo" width="400" height="126"></a>
     <div class="header-actions">
         <a href="/moui-grove/archive/" class="btn btn-ghost btn-sm" aria-label="Archive">Archive</a>
         <button class="btn btn-accent btn-sm" data-action="open-search" data-interaction="press" aria-label="Search" type="button">
@@ -310,7 +314,7 @@
         <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Clear site data" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
         </button>
-        <span class="build-id">ae8f8434e608</span>
+        <span class="build-id">0d6427481a37</span>
     </div>
 </footer>
     <script type="module" src="/moui-grove/app.js"></script>

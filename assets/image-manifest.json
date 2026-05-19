@@ -271,6 +271,20 @@
       }
     ]
   },
+  "assets/moui-fire-logo.webp": {
+    "source_hash": "212bcc11e9c9",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/moui-fire-logo.webp",
+      "width": 400,
+      "height": 126,
+      "format": "webp",
+      "og_safe": false
+    },
+    "variants": []
+  },
   "assets/moui-notes-screenshot-claude.png": {
     "source_hash": "f8535abee861",
     "post_slugs": [],

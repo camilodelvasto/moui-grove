@@ -58,3 +58,13 @@ export async function getMeta(key) { return _require('getMeta')(key); }
 
 /** Set a value in user_state store. */
 export async function setMeta(key, value) { return _require('setMeta')(key, value); }
+
+/** Close the data store connection. */
+export async function storeClose() {
+  if (_impl && typeof _impl.storeClose === 'function') return _impl.storeClose();
+}
+
+/** Clear all data from all object stores. Database structure stays intact. */
+export async function storeClearAll() {
+  if (_impl && typeof _impl.storeClearAll === 'function') return _impl.storeClearAll();
+}

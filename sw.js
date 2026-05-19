@@ -9,7 +9,7 @@
  * this file runs.
  */
 
-const BUILD_VERSION = 'ae8f8434e608';
+const BUILD_VERSION = '0d6427481a37';
 const CACHE_STATIC = `grove-static-${BUILD_VERSION}`;
 const CACHE_PAGES = `grove-pages-${BUILD_VERSION}`;
 const CACHE_BLOBS = `grove-blobs-${BUILD_VERSION}`;
@@ -41,7 +41,7 @@ const OWNED_SPA_ROOTS = [];
 const OWNED_DYNAMIC_PATHS = ["/feed.xml", "/feed.json", "/sitemap.xml", "/search-index.json", "/first-load-index.json"];
 
 // Assets intercepted for runtime processing (encrypted image decryption).
-const OWNED_ASSETS = ["/assets/QWOP_screenshot.jpg", "/assets/QWOP_screenshot-480w.webp", "/assets/QWOP_screenshot-480w.jpg", "/assets/claude-code-1.png", "/assets/claude-code-1-480w.webp", "/assets/claude-code-1-480w.png", "/assets/claude-code-1-960w.webp", "/assets/claude-code-1-960w.png", "/assets/claude-code-1-1440w.webp", "/assets/claude-code-1-1440w.png", "/assets/claude-code-2.png", "/assets/claude-code-2-480w.webp", "/assets/claude-code-2-480w.png", "/assets/claude-code-2-960w.webp", "/assets/claude-code-2-960w.png", "/assets/claude-code-2-1440w.webp", "/assets/claude-code-2-1440w.png", "/assets/dw-digital-dilemma.png", "/assets/dw-digital-dilemma-480w.webp", "/assets/dw-digital-dilemma-480w.png", "/assets/dw-digital-dilemma-960w.webp", "/assets/dw-digital-dilemma-960w.png", "/assets/dw-digital-dilemma-1440w.webp", "/assets/dw-digital-dilemma-1440w.png", "/assets/google-ad-no-ads.png", "/assets/google-ad-no-ads-480w.webp", "/assets/google-ad-no-ads-480w.png", "/assets/google-ad-no-ads-960w.webp", "/assets/google-ad-no-ads-960w.png", "/assets/latin-women-singing.jpg", "/assets/latin-women-singing-480w.webp", "/assets/latin-women-singing-480w.jpg", "/assets/latin-women-singing-960w.webp", "/assets/latin-women-singing-960w.jpg", "/assets/latin-women-singing-1440w.webp", "/assets/latin-women-singing-1440w.jpg", "/assets/moui-notes-screenshot-claude.png", "/assets/moui-notes-screenshot-claude-480w.webp", "/assets/moui-notes-screenshot-claude-480w.png", "/assets/moui-notes-screenshot-claude-960w.webp", "/assets/moui-notes-screenshot-claude-960w.png", "/assets/moui-notes-screenshot-claude-1440w.webp", "/assets/moui-notes-screenshot-claude-1440w.png", "/assets/og.png", "/assets/og-480w.webp", "/assets/og-480w.png"];
+const OWNED_ASSETS = ["/assets/QWOP_screenshot.jpg", "/assets/QWOP_screenshot-480w.webp", "/assets/QWOP_screenshot-480w.jpg", "/assets/claude-code-1.png", "/assets/claude-code-1-480w.webp", "/assets/claude-code-1-480w.png", "/assets/claude-code-1-960w.webp", "/assets/claude-code-1-960w.png", "/assets/claude-code-1-1440w.webp", "/assets/claude-code-1-1440w.png", "/assets/claude-code-2.png", "/assets/claude-code-2-480w.webp", "/assets/claude-code-2-480w.png", "/assets/claude-code-2-960w.webp", "/assets/claude-code-2-960w.png", "/assets/claude-code-2-1440w.webp", "/assets/claude-code-2-1440w.png", "/assets/dw-digital-dilemma.png", "/assets/dw-digital-dilemma-480w.webp", "/assets/dw-digital-dilemma-480w.png", "/assets/dw-digital-dilemma-960w.webp", "/assets/dw-digital-dilemma-960w.png", "/assets/dw-digital-dilemma-1440w.webp", "/assets/dw-digital-dilemma-1440w.png", "/assets/google-ad-no-ads.png", "/assets/google-ad-no-ads-480w.webp", "/assets/google-ad-no-ads-480w.png", "/assets/google-ad-no-ads-960w.webp", "/assets/google-ad-no-ads-960w.png", "/assets/latin-women-singing.jpg", "/assets/latin-women-singing-480w.webp", "/assets/latin-women-singing-480w.jpg", "/assets/latin-women-singing-960w.webp", "/assets/latin-women-singing-960w.jpg", "/assets/latin-women-singing-1440w.webp", "/assets/latin-women-singing-1440w.jpg", "/assets/moui-fire-logo.webp", "/assets/moui-notes-screenshot-claude.png", "/assets/moui-notes-screenshot-claude-480w.webp", "/assets/moui-notes-screenshot-claude-480w.png", "/assets/moui-notes-screenshot-claude-960w.webp", "/assets/moui-notes-screenshot-claude-960w.png", "/assets/moui-notes-screenshot-claude-1440w.webp", "/assets/moui-notes-screenshot-claude-1440w.png", "/assets/og.png", "/assets/og-480w.webp", "/assets/og-480w.png"];
 
 // Sibling shape paths on the same domain — never intercept these.
 // Build-injected from infrastructure/targets/ scan.
@@ -143,33 +143,30 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // 4. Navigation to owned page? → network-first, serve cached if offline
-  if (e.request.mode === 'navigate' && _PAGES_SET.has(pathname)) {
-    e.respondWith(_networkFirst(e.request, CACHE_PAGES));
-    return;
-  }
-
-  // 5. Navigation under SPA root? → serve cached gate page.
-  //    Encrypted groves are SPA after unlock — all URLs serve the gate page,
-  //    client-side JS loads content from the in-memory bundle.
-  if (e.request.mode === 'navigate' && _matchesSpaRoot(pathname)) {
-    e.respondWith(_networkFirst(new Request(BASE_PATH + '/'), CACHE_PAGES));
-    return;
-  }
-
-  // 6. Navigation under a sibling shape's path? → pass through. Not ours.
+  // 4. Sibling shape's path? → not ours, pass through.
+  //    Must come before owned-page and SPA checks so we never intercept
+  //    another shape's routes, even when our SPA root is '/'.
   if (e.request.mode === 'navigate' &&
       _SIBLING_PREFIXES.some(p => pathname.startsWith(p))) {
     return;
   }
 
-  // 7. Navigation to any path — serve app shell (local-first content routing)
-  if (e.request.mode === 'navigate') {
-    e.respondWith(_cacheFirst(new Request(BASE_PATH + '/'), CACHE_PAGES));
+  // 5. Navigation to owned page? → network-first, serve cached if offline
+  if (e.request.mode === 'navigate' && _PAGES_SET.has(pathname)) {
+    e.respondWith(_networkFirst(e.request, CACHE_PAGES));
     return;
   }
 
-  // 8. Not declared → pass through. Not ours.
+  // 6. Navigation under SPA root? → serve cached gate page.
+  //    Encrypted groves are SPA after unlock — all URLs serve the gate page,
+  //    client-side JS loads content from the in-memory bundle.
+  //    Siblings already excluded in step 4.
+  if (e.request.mode === 'navigate' && _matchesSpaRoot(pathname)) {
+    e.respondWith(_networkFirst(new Request(BASE_PATH + '/'), CACHE_PAGES));
+    return;
+  }
+
+  // 7. Not declared → pass through. Not ours.
 });
 
 // --- Crypto helpers ---

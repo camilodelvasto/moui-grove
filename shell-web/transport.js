@@ -143,4 +143,22 @@ export const webTransport = {
   async setMeta(key, value) {
     return _idbRequest('user_state', 'readwrite', (store) => store.put(value, key));
   },
+
+  async storeClose() {
+    if (_db) { _db.close(); _db = null; }
+  },
+
+  async storeClearAll() {
+    const db = await _openDb();
+    const names = [...db.objectStoreNames];
+    if (names.length === 0) return;
+    const tx = db.transaction(names, 'readwrite');
+    for (const name of names) {
+      tx.objectStore(name).clear();
+    }
+    return new Promise((resolve, reject) => {
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error);
+    });
+  },
 };

@@ -484,6 +484,15 @@ figure picture img {
   text-decoration: none;
   color: var(--color-text-resolved);
   letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-logo {
+  width: var(--logo-width, 32px);
+  height: auto;
+  object-fit: contain;
 }
 
 .header-actions {

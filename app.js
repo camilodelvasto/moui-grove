@@ -10,7 +10,7 @@
 // determine the routing strategy. No client-side configuration.
 
 import { registerTransport, loadPage as transportLoadPage } from './transport.js';
-import { storeOpen, getMeta, setMeta, storePut } from './transport.js';
+import { storeOpen, storeClose, storeClearAll, getMeta, setMeta, storePut } from './transport.js';
 import { getBasePath } from './base-path.js';
 import { applyStoredTheme, toggleTheme } from './theme.js';
 import { init as initA11y } from './a11y.js';
@@ -100,12 +100,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         _renderSkeletonCards(manifest, basePath);
       }
 
-      // Fetch priority-0 blobs (index page), then start navigation
       const remaining = await _bootstrapPriority0(manifest, basePath);
-
-      // Deep-link: if the browser landed on a non-index route, ensure its
-      // blob is in IDB before the router tries to render it.  Without this,
-      // priority-1/2 content shows "Content not available" on direct access.
       await _ensureCurrentRoute(manifest, basePath);
 
       _initNavigation('pushState', basePath, manifest);
@@ -192,16 +187,16 @@ function _renderSkeletonCards(manifest, basePath) {
 
 // --- Bootstrap ---
 
+// Fetch the deep-linked route's blob before the router starts.
 async function _ensureCurrentRoute(manifest, basePath) {
   let route = window.location.pathname;
   if (basePath && route.startsWith(basePath)) route = route.slice(basePath.length);
-  if (!route || route === '/') return;            // index — already priority-0
+  if (!route || route === '/') return;
   if (!route.endsWith('/')) route += '/';
 
   const entry = manifest.entries.find(e => e.route === route);
-  if (!entry || entry.priority === 0) return;     // unknown or already fetched
+  if (!entry || entry.priority === 0) return;
 
-  // Already in IDB? (e.g. version matched and blobs were kept)
   const existing = await transportLoadPage(route);
   if (existing && existing.html) return;
 
@@ -336,11 +331,16 @@ async function _clearSite(onClear) {
   try { localStorage.clear(); } catch (e) { /* storage unavailable */ }
   try { sessionStorage.clear(); } catch (e) { /* storage unavailable */ }
   try {
-    if (indexedDB.databases) {
-      const dbs = await indexedDB.databases();
-      dbs.forEach(db => indexedDB.deleteDatabase(db.name));
-    }
-  } catch (e) { console.warn('[grove] IndexedDB clear:', e); }
+    await storeClearAll();
+  } catch {
+    // Transport may not be registered — fall back to deleteDatabase
+    try {
+      if (indexedDB.databases) {
+        const dbs = await indexedDB.databases();
+        for (const db of dbs) indexedDB.deleteDatabase(db.name);
+      }
+    } catch (e) { console.warn('[grove] IndexedDB clear:', e); }
+  }
   if (onClear === 'reload') {
     // Navigate to root — after a full wipe, only priority-0 content
     // (index page) will be available on first bootstrap. Reloading the
