@@ -179,6 +179,45 @@
       }
     ]
   },
+  "assets/cookie-bot-screenshot.png": {
+    "source_hash": "1ba4b1677148",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/cookie-bot-screenshot.png",
+      "width": 992,
+      "height": 1392,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/cookie-bot-screenshot-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/cookie-bot-screenshot-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/cookie-bot-screenshot-960w.webp",
+        "width": 960,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/cookie-bot-screenshot-960w.png",
+        "width": 960,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
   "assets/dw-digital-dilemma.png": {
     "source_hash": "001d193cd566",
     "post_slugs": [

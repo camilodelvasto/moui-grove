@@ -1,6 +1,6 @@
 {
-  "version": "41f81ce4f1fb",
-  "build_date": "2026-05-20T16:21:52Z",
+  "version": "f32849d5db95",
+  "build_date": "2026-05-20T16:44:01Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -47,8 +47,8 @@
     },
     {
       "route": "/privacy/fingerprinting-analogy-supermarket/",
-      "blob": "bacea04358eb7405.bin",
-      "hash": "bacea04358eb7405",
+      "blob": "7c679f098993b586.bin",
+      "hash": "7c679f098993b586",
       "priority": 1,
       "type": "post",
       "title": "I too, was fingerprinting everyone",
@@ -397,6 +397,32 @@
       "path": "assets/claude-code-2-1440w.png",
       "mime": "image/png",
       "width": 1440
+    },
+    {
+      "path": "assets/cookie-bot-screenshot.png",
+      "mime": "image/png",
+      "width": 992,
+      "height": 1392
+    },
+    {
+      "path": "assets/cookie-bot-screenshot-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/cookie-bot-screenshot-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/cookie-bot-screenshot-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/cookie-bot-screenshot-960w.png",
+      "mime": "image/png",
+      "width": 960
     },
     {
       "path": "assets/dw-digital-dilemma.png",
