@@ -1,6 +1,6 @@
 {
-  "version": "0d6427481a37",
-  "build_date": "2026-05-19T14:00:05Z",
+  "version": "6fd9d6e14ca2",
+  "build_date": "2026-05-20T04:40:42Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -8,9 +8,28 @@
   },
   "entries": [
     {
+      "route": "/privacy/fingerprinting-analogy-supermarket/",
+      "blob": "855121db9ac0b1f5.bin",
+      "hash": "855121db9ac0b1f5",
+      "priority": 1,
+      "type": "post",
+      "title": "I too, was fingerprinting everyone",
+      "excerpt": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
+      "date": "2026-05-19",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "I too, was fingerprinting everyone",
+        "description": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
+        "image": "assets/Piwik_screenshot_german.png"
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
       "route": "/insights/personal-computing-love-the-machine/",
-      "blob": "859a8c492e8cdb38.bin",
-      "hash": "859a8c492e8cdb38",
+      "blob": "b96c5cb6cdd47912.bin",
+      "hash": "b96c5cb6cdd47912",
       "priority": 1,
       "type": "post",
       "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
@@ -87,7 +106,7 @@
       "route": "/cloud-act/",
       "blob": "7d3ceca0bfb0fcdb.bin",
       "hash": "7d3ceca0bfb0fcdb",
-      "priority": 1,
+      "priority": 2,
       "type": "post",
       "title": "The US CLOUD Act and the Illusion of Data Sovereignty",
       "excerpt": "Your data is on US servers, under US law. The CLOUD Act makes this explicit. The question is what you do about it.",
@@ -195,8 +214,8 @@
     },
     {
       "route": "/",
-      "blob": "502a52ff07f6dcc3.bin",
-      "hash": "502a52ff07f6dcc3",
+      "blob": "b7f6a729be6351e4.bin",
+      "hash": "b7f6a729be6351e4",
       "priority": 0,
       "type": "index",
       "title": "Moui Grove",
@@ -205,12 +224,22 @@
     },
     {
       "route": "/archive/",
-      "blob": "7e7983a1aaa4b2fa.bin",
-      "hash": "7e7983a1aaa4b2fa",
+      "blob": "314950cd1b641130.bin",
+      "hash": "314950cd1b641130",
       "priority": 0,
       "type": "archive",
       "title": "Archive — Moui Grove",
       "layout": "archive",
+      "theme": ""
+    },
+    {
+      "route": "/privacy/",
+      "blob": "dac1b1d91a5c6e3b.bin",
+      "hash": "dac1b1d91a5c6e3b",
+      "priority": 1,
+      "type": "section_index",
+      "title": "Privacy",
+      "layout": "index",
       "theme": ""
     },
     {
@@ -245,6 +274,42 @@
     }
   ],
   "assets": [
+    {
+      "path": "assets/Piwik_screenshot_german.png",
+      "mime": "image/png",
+      "width": 1904,
+      "height": 977
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
     {
       "path": "assets/QWOP_screenshot.jpg",
       "mime": "image/jpeg",

@@ -7,6 +7,13 @@
   "language": "en",
   "items": [
     {
+      "id": "privacy/fingerprinting-analogy-supermarket",
+      "title": "I too, was fingerprinting everyone",
+      "url": "https://camilodelvasto.github.io/moui-grove/privacy/fingerprinting-analogy-supermarket/",
+      "summary": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
+      "date_published": "2026-05-19"
+    },
+    {
       "id": "insights/personal-computing-love-the-machine",
       "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
       "url": "https://camilodelvasto.github.io/moui-grove/insights/personal-computing-love-the-machine/",

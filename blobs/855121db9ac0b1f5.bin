@@ -1,0 +1,41 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>I too, was fingerprinting everyone</h1>
+            <time datetime="2026-05-19">19.05.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>And I stopped the moment I realized that it was creepy.</p>
+<p>So there is this library that's called <strong>fingerprint.js</strong> that will do a neat trick for you: it produces a unique identifier based on the characteristics that the browsers leak to the javascript application, namely operating system, browser vendor, screen size, languages, and other elements.</p>
+<p>Sure, you can also set cookies from the server, and do <em>other types of identification</em>, but this post is about the very act of identifying a user. Let's take the case of a website: a very simple act, which most consider harmless, usually justified with the &quot;we need to know the visitors we are getting to optimize their experience&quot; can quickly turn into a &quot;let's observe what everybody does in the website so we understand their behavior and ultimately, influence it&quot;.</p>
+<hr />
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/moui-grove/assets/Piwik_screenshot_german-480w.webp 480w, /moui-grove/assets/Piwik_screenshot_german-960w.webp 960w, /moui-grove/assets/Piwik_screenshot_german-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/moui-grove/assets/Piwik_screenshot_german-480w.png 480w, /moui-grove/assets/Piwik_screenshot_german-960w.png 960w, /moui-grove/assets/Piwik_screenshot_german-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/moui-grove/assets/Piwik_screenshot_german.png" alt="Website analytics: another form of fingerprinting? — Matomo Developer Team, CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0, via Wikimedia Commons" loading="eager">
+  </picture>
+  <figcaption>Website analytics: another form of fingerprinting? — Matomo Developer Team, CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0, via Wikimedia Commons</figcaption>
+</figure>
+<p>See, the thing is really easy: you insert a library and you’re good to go. Heck, Google Analytics will even do it for free!</p>
+<p>Somehow this was the practice: just install pixel or whatever tracker, and you will know where your traffic is coming from, who are they, so you can optimize.</p>
+<h2>It sounds pretty innocent, but is it really harmless?</h2>
+<p>A few days ago I was thinking that tracking visitors with the aim of “improving the experience” is more or less like <strong>having a supermarket and then watching over every shopper on every aisle</strong>. That lady over there? She just had a look at the vegetables. She wasn’t really interested in the noodles. The guy over there? He’s taking ages to decide which cereal to buy.</p>
+<p>And then it would be like magically sorting things so the next time they come, we have designed a customized experience so that they buy more. Not what they want, or what they reasonably need, <em>just more</em>.</p>
+<h2>Websites are not really different</h2>
+<p>Now, website analytics are a different category, you could say. It's like measuring the result of your campaigns, how else are you supposed to know if what you did is working? The thing is that people don't want to be tracked. You can ask for their consent and they still could give you out of convenience, but <em>they don't want to be tracked and you know it</em>. <strong>Do you want to be tracked?</strong></p>
+<blockquote>
+<p>The very act of observing someone's behavior feels a bit creepy.</p>
+</blockquote>
+<h2>It's not just about cookies</h2>
+<p>It is about <em>the act of being creepy</em>. Especially when you realize that <em>those cookies aren’t even ours to begin with</em>.</p>
+<p>I think it's time to start <em>untracking</em> people. I think that if my business model requires that I observe people closely and tweak things here and there to improve my conversion funnel a few percentage points, maybe my product-market fit is forced.</p>
+<p><strong>Let's untrack people, let them come and surprise us, and let them come and buy whatever they want.</strong></p>
+<h6>Notes</h6>
+<p><em>On cookies: you're essentially shipping someone else's surveillance code on your domain, and you're responsible for that.</em></p>
+<p><em>This website doesn't use any tracking technologies: not third-party ones, not proprietary, nada. We trust you like the content and that's it.</em></p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "it-sounds-pretty-innocent-but-is-it-really-harmless", "text": "It sounds pretty innocent, but is it really harmless?", "level": 2}, {"id": "websites-are-not-really-different", "text": "Websites are not really different", "level": 2}, {"id": "it-s-not-just-about-cookies", "text": "It's not just about cookies", "level": 2}, {"id": "notes", "text": "Notes", "level": 6}]</script>

@@ -1,4 +1,55 @@
 {
+  "assets/Piwik_screenshot_german.png": {
+    "source_hash": "0c55b8262ecf",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/Piwik_screenshot_german.png",
+      "width": 1904,
+      "height": 977,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/Piwik_screenshot_german-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/Piwik_screenshot_german-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/Piwik_screenshot_german-960w.webp",
+        "width": 960,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/Piwik_screenshot_german-960w.png",
+        "width": 960,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/Piwik_screenshot_german-1440w.webp",
+        "width": 1440,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/Piwik_screenshot_german-1440w.png",
+        "width": 1440,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
   "assets/QWOP_screenshot.jpg": {
     "source_hash": "31a8346bb75d",
     "post_slugs": [],
