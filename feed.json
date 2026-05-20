@@ -7,13 +7,6 @@
   "language": "en",
   "items": [
     {
-      "id": "privacy/fingerprinting-analogy-supermarket",
-      "title": "I too, was fingerprinting everyone",
-      "url": "https://camilodelvasto.github.io/moui-grove/privacy/fingerprinting-analogy-supermarket/",
-      "summary": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
-      "date_published": "2026-05-19"
-    },
-    {
       "id": "insights/personal-computing-love-the-machine",
       "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
       "url": "https://camilodelvasto.github.io/moui-grove/insights/personal-computing-love-the-machine/",
@@ -26,6 +19,13 @@
       "url": "https://camilodelvasto.github.io/moui-grove/manifesto/",
       "summary": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
       "date_published": "2026-05-03"
+    },
+    {
+      "id": "privacy/fingerprinting-analogy-supermarket",
+      "title": "I too, was fingerprinting everyone",
+      "url": "https://camilodelvasto.github.io/moui-grove/privacy/fingerprinting-analogy-supermarket/",
+      "summary": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
+      "date_published": "2026-05-19"
     },
     {
       "id": "school/why-you-need-to-learn-to-code",

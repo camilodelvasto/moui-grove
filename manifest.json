@@ -1,6 +1,6 @@
 {
-  "version": "6fd9d6e14ca2",
-  "build_date": "2026-05-20T04:40:42Z",
+  "version": "17896c4a237d",
+  "build_date": "2026-05-20T16:19:17Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -8,28 +8,9 @@
   },
   "entries": [
     {
-      "route": "/privacy/fingerprinting-analogy-supermarket/",
-      "blob": "855121db9ac0b1f5.bin",
-      "hash": "855121db9ac0b1f5",
-      "priority": 1,
-      "type": "post",
-      "title": "I too, was fingerprinting everyone",
-      "excerpt": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
-      "date": "2026-05-19",
-      "section": "",
-      "tags": [],
-      "og": {
-        "title": "I too, was fingerprinting everyone",
-        "description": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
-        "image": "assets/Piwik_screenshot_german.png"
-      },
-      "layout": "article",
-      "theme": ""
-    },
-    {
       "route": "/insights/personal-computing-love-the-machine/",
-      "blob": "b96c5cb6cdd47912.bin",
-      "hash": "b96c5cb6cdd47912",
+      "blob": "aa0e61deb19bd5bd.bin",
+      "hash": "aa0e61deb19bd5bd",
       "priority": 1,
       "type": "post",
       "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
@@ -60,6 +41,25 @@
         "title": "Manifesto",
         "description": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
         "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/privacy/fingerprinting-analogy-supermarket/",
+      "blob": "855121db9ac0b1f5.bin",
+      "hash": "855121db9ac0b1f5",
+      "priority": 1,
+      "type": "post",
+      "title": "I too, was fingerprinting everyone",
+      "excerpt": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
+      "date": "2026-05-19",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "I too, was fingerprinting everyone",
+        "description": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
+        "image": "assets/Piwik_screenshot_german.png"
       },
       "layout": "article",
       "theme": ""
@@ -214,8 +214,8 @@
     },
     {
       "route": "/",
-      "blob": "b7f6a729be6351e4.bin",
-      "hash": "b7f6a729be6351e4",
+      "blob": "4876cf6a1699f22f.bin",
+      "hash": "4876cf6a1699f22f",
       "priority": 0,
       "type": "index",
       "title": "Moui Grove",
@@ -224,8 +224,8 @@
     },
     {
       "route": "/archive/",
-      "blob": "314950cd1b641130.bin",
-      "hash": "314950cd1b641130",
+      "blob": "50aa472e76abccdf.bin",
+      "hash": "50aa472e76abccdf",
       "priority": 0,
       "type": "archive",
       "title": "Archive — Moui Grove",
@@ -233,19 +233,9 @@
       "theme": ""
     },
     {
-      "route": "/privacy/",
-      "blob": "dac1b1d91a5c6e3b.bin",
-      "hash": "dac1b1d91a5c6e3b",
-      "priority": 1,
-      "type": "section_index",
-      "title": "Privacy",
-      "layout": "index",
-      "theme": ""
-    },
-    {
       "route": "/insights/",
-      "blob": "9f9b59d623b5666b.bin",
-      "hash": "9f9b59d623b5666b",
+      "blob": "1fafc71c3321c275.bin",
+      "hash": "1fafc71c3321c275",
       "priority": 1,
       "type": "section_index",
       "title": "Insights",
@@ -253,9 +243,19 @@
       "theme": ""
     },
     {
+      "route": "/privacy/",
+      "blob": "3334c6bf17c37279.bin",
+      "hash": "3334c6bf17c37279",
+      "priority": 1,
+      "type": "section_index",
+      "title": "Privacy",
+      "layout": "index",
+      "theme": ""
+    },
+    {
       "route": "/school/",
-      "blob": "050d2a22cc2a9481.bin",
-      "hash": "050d2a22cc2a9481",
+      "blob": "1ad0576614277658.bin",
+      "hash": "1ad0576614277658",
       "priority": 1,
       "type": "section_index",
       "title": "School",
@@ -264,8 +264,8 @@
     },
     {
       "route": "/architecture/",
-      "blob": "fbaf8acc75b53cb1.bin",
-      "hash": "fbaf8acc75b53cb1",
+      "blob": "3667e21b4da4a485.bin",
+      "hash": "3667e21b4da4a485",
       "priority": 1,
       "type": "section_index",
       "title": "Architecture",

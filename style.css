@@ -70,6 +70,11 @@ main {
   padding: var(--space-xl);
 }
 
+/* When main contains a feed grid, break out of content-width */
+main:has(.feed-grid) {
+  max-width: 100%;
+}
+
 /* Programmatic focus (a11y.focusMain) — no visible ring on non-interactive containers. */
 main:focus-visible { outline: none; }
 
@@ -228,34 +233,60 @@ hr {
   background: linear-gradient(90deg, transparent 0%, var(--color-accent-resolved) 50%, transparent 100%);
 }
 
-/* === Feed Grid === */
+/* === Feed Grid (masonry via CSS columns) === */
 .feed-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--space-lg);
+  columns: 2;
+  column-gap: var(--space-lg);
 }
+
+@media (min-width: 1024px)  { .feed-grid { columns: 3; } }
+@media (min-width: 1280px)  { .feed-grid { columns: 4; } }
+@media (min-width: 1536px)  { .feed-grid { columns: 5; } }
+@media (min-width: 1920px)  { .feed-grid { columns: 7; } }
 
 /* === Card === */
 .card {
   background: var(--color-card-bg-resolved);
-  border: 1px solid var(--color-border-resolved);
-  border-radius: 6px;
-  padding: var(--space-card-padding);
+  border-radius: var(--space-card-radius);
+  overflow: hidden;
   position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   transition: box-shadow 200ms ease-out, transform 200ms ease-out;
+  break-inside: avoid;
+  margin-bottom: var(--space-lg);
 }
 
 .card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.card-thumbnail {
+  display: block;
+  width: 100%;
+  height: var(--space-card-image-height);
+  object-fit: cover;
+}
+
+.card-body {
+  padding: var(--space-md) var(--space-card-padding) var(--space-card-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
 }
 
 .card-link {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: 0.35rem;
   text-decoration: none;
   color: inherit;
+}
+
+.card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
 }
 
 .card-link:hover .card-title {
@@ -263,21 +294,42 @@ hr {
 }
 
 .card time {
-  font-size: calc(var(--font-base) * var(--scale-sm));
+  font-size: calc(var(--font-base) * 0.8);
   color: var(--color-text-secondary-resolved);
 }
 
 .card-title {
-  font-size: calc(var(--font-base) * var(--scale-lg));
-  font-weight: var(--weight-heading);
+  font-size: calc(var(--font-base) * 1.15);
+  font-weight: var(--weight-body);
+  line-height: 1.2;
   transition: color 150ms ease-out;
   margin: 0;
 }
 
 .card-excerpt {
-  font-size: var(--font-base);
+  font-size: calc(var(--font-base) * var(--scale-sm));
   color: var(--color-text-secondary-resolved);
+  line-height: 1.45;
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.card-tag {
+  font-size: calc(var(--font-base) * 0.8);
+  padding: 0.3em 0.75em;
+  border-radius: 8px;
+  background: var(--color-tag-bg-resolved);
+  color: var(--color-tag-text-resolved);
+  text-decoration: none;
 }
 
 /* === Skeleton cards === */
@@ -288,6 +340,9 @@ hr {
 
 .card-skeleton {
   pointer-events: none;
+}
+
+.card-skeleton .card-body {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
@@ -296,6 +351,12 @@ hr {
 .skeleton-bar {
   background: var(--color-surface-resolved);
   border-radius: 3px;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: var(--space-card-image-height);
+  border-radius: 0;
 }
 
 .skeleton-date {
@@ -319,7 +380,7 @@ hr {
 
 .card-skeleton .skeleton-bar {
   animation: skeleton-pulse 2s ease-in-out infinite;
-  animation-delay: calc(var(--stagger-index, 0) * 150ms);
+  animation-delay: calc(var(--stagger-index) * 150ms);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -472,7 +533,7 @@ figure picture img {
   align-items: center;
   justify-content: space-between;
   padding: var(--space-md) var(--space-xl);
-  max-width: var(--space-content-width);
+  max-width: 100%;
   margin: 0 auto;
   gap: var(--space-md);
 }
@@ -712,9 +773,9 @@ body[data-layout="gate"] .skip-link {
 
 /* === Responsive === */
 @media (max-width: 640px) {
-  .feed-grid { grid-template-columns: 1fr; }
+  .feed-grid { columns: 1; }
   main { padding: var(--space-md); }
-  .feed-grid { gap: var(--space-md); }
+  .card { margin-bottom: var(--space-md); }
   .site-header {
     padding: 0.75rem var(--space-md);
   }

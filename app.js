@@ -174,11 +174,14 @@ function _renderSkeletonCards(manifest, basePath) {
   for (let i = 0; i < count; i++) {
     const staggerIndex = Math.min(i, 8);
     cards += `<article class="card card-skeleton" style="--stagger-index: ${staggerIndex}">
-    <div class="skeleton-bar skeleton-date"></div>
-    <div class="skeleton-bar skeleton-title"></div>
-    <div class="skeleton-bar skeleton-excerpt"></div>
-    <div class="skeleton-bar skeleton-excerpt skeleton-short"></div>
-</article>\n`;
+    <div class="skeleton-bar skeleton-image"></div>
+    <div class="card-body">
+        <div class="skeleton-bar skeleton-date"></div>
+        <div class="skeleton-bar skeleton-title"></div>
+        <div class="skeleton-bar skeleton-excerpt"></div>
+        <div class="skeleton-bar skeleton-excerpt skeleton-short"></div>
+    </div>
+    </article>\n`;
   }
 
   const main = document.getElementById('main');

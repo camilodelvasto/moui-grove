@@ -6,12 +6,6 @@
     <description>A test grove for manual verification.</description>
     <language>en</language>
     <item>
-      <title>I too, was fingerprinting everyone</title>
-      <link>https://camilodelvasto.github.io/moui-grove/privacy/fingerprinting-analogy-supermarket/</link>
-      <description>There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?</description>
-      <pubDate>2026-05-19</pubDate>
-    </item>
-    <item>
       <title>Local-First, or: How I Learned to Stop Browsing and Love the Machine</title>
       <link>https://camilodelvasto.github.io/moui-grove/insights/personal-computing-love-the-machine/</link>
       <description>Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?</description>
@@ -22,6 +16,12 @@
       <link>https://camilodelvasto.github.io/moui-grove/manifesto/</link>
       <description>The future is behind us. Local-first, privacy-first, user-first development starts here.</description>
       <pubDate>2026-05-03</pubDate>
+    </item>
+    <item>
+      <title>I too, was fingerprinting everyone</title>
+      <link>https://camilodelvasto.github.io/moui-grove/privacy/fingerprinting-analogy-supermarket/</link>
+      <description>There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?</description>
+      <pubDate>2026-05-19</pubDate>
     </item>
     <item>
       <title>Why You Need To Learn to Code</title>

@@ -71,7 +71,7 @@
   --color-banner-success-text: banner-success-text;
   --color-banner-success-border: banner-success-border;
   --font-body: eb-garamond, 'EB Garamond', 'Garamond', Georgia, serif;
-  --font-heading: lato, 'Lato', system-ui, sans-serif;
+  --font-header: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
   --font-display: lora, 'Lora', Georgia, serif;
   --font-ui: lato, 'Lato', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
@@ -86,16 +86,20 @@
   --scale-md: 1;
   --scale-lg: 1.3;
   --scale-xl: 1.6;
-  --scale-xxl: 2.2;
+  --scale-xxl: 1.8;
   --scale-display: 3;
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
-  --space-lg: 1.75rem;
-  --space-xl: 2.5rem;
-  --space-xxl: 3rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2rem;
   --space-content-width: 780px;
   --space-card-padding: 1rem;
+  --space-card-radius: 6px;
+  --space-card-image-height: 180px;
+  --color-tag-bg: gray-100;
+  --color-tag-text: gray-600;
   --color-bg-resolved: #faf9f7;
   --color-surface-resolved: #f3f3f1;
   --color-code-bg-resolved: #f5f4f0;
@@ -122,6 +126,8 @@
   --color-banner-success-bg-resolved: #eafaf1;
   --color-banner-success-text-resolved: #1e8449;
   --color-banner-success-border-resolved: #a9dfbf;
+  --color-tag-bg-resolved: #f3f3f1;
+  --color-tag-text-resolved: #52524c;
 }
 
 :root[data-theme="dark"] {
@@ -161,7 +167,7 @@
   --color-accent: primary;
   --color-accent-hover: primary-dark;
   --color-border: gray-200;
-  --color-card-bg: gray-100;
+  --color-card-bg: gray-300;
   --color-btn-primary: white;
   --color-btn-primary-hover: gray-600;
   --color-btn-primary-text: near-black;
@@ -180,7 +186,7 @@
   --color-banner-success-text: banner-success-text;
   --color-banner-success-border: banner-success-border;
   --font-body: eb-garamond, 'EB Garamond', 'Garamond', Georgia, serif;
-  --font-heading: lora, 'Lora', Georgia, serif;
+  --font-header: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
   --font-display: lora, 'Lora', Georgia, serif;
   --font-ui: lato, 'Lato', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
@@ -195,16 +201,20 @@
   --scale-md: 1;
   --scale-lg: 1.3;
   --scale-xl: 1.6;
-  --scale-xxl: 2.2;
+  --scale-xxl: 1.8;
   --scale-display: 3;
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
-  --space-lg: 1.75rem;
-  --space-xl: 2.5rem;
-  --space-xxl: 4rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2rem;
   --space-content-width: 780px;
-  --space-card-padding: 1.5rem;
+  --space-card-padding: 1rem;
+  --space-card-radius: 6px;
+  --space-card-image-height: 180px;
+  --color-tag-bg: gray-400;
+  --color-tag-text: gray-800;
   --color-bg-resolved: #1a1a1a;
   --color-surface-resolved: #1a1a22;
   --color-code-bg-resolved: #242429;
@@ -213,7 +223,7 @@
   --color-accent-resolved: #ff3a70;
   --color-accent-hover-resolved: #ff1055;
   --color-border-resolved: #2a2a35;
-  --color-card-bg-resolved: #1a1a22;
+  --color-card-bg-resolved: #3a3a48;
   --color-btn-primary-resolved: #ffffff;
   --color-btn-primary-hover-resolved: #999999;
   --color-btn-primary-text-resolved: #101010;
@@ -231,6 +241,8 @@
   --color-banner-success-bg-resolved: #18362a;
   --color-banner-success-text-resolved: #8fd9b0;
   --color-banner-success-border-resolved: #2f5a43;
+  --color-tag-bg-resolved: #666680;
+  --color-tag-text-resolved: #e0e0e0;
 }
 
     </style>
@@ -369,7 +381,7 @@ It is a capability with a defined interface that the system uses through a contr
         <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Clear site data" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
         </button>
-        <span class="build-id">6fd9d6e14ca2</span>
+        <span class="build-id">17896c4a237d</span>
     </div>
 </footer>
     <script type="module" src="/moui-grove/app.js"></script>

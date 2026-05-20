@@ -1,12 +1,5 @@
 [
   {
-    "title": "I too, was fingerprinting everyone",
-    "url_path": "/moui-grove/privacy/fingerprinting-analogy-supermarket/",
-    "content_path": "privacy/fingerprinting-analogy-supermarket",
-    "excerpt": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
-    "publish_date": "2026-05-19"
-  },
-  {
     "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
     "url_path": "/moui-grove/insights/personal-computing-love-the-machine/",
     "content_path": "insights/personal-computing-love-the-machine",
@@ -19,6 +12,13 @@
     "content_path": "manifesto",
     "excerpt": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
     "publish_date": "2026-05-03"
+  },
+  {
+    "title": "I too, was fingerprinting everyone",
+    "url_path": "/moui-grove/privacy/fingerprinting-analogy-supermarket/",
+    "content_path": "privacy/fingerprinting-analogy-supermarket",
+    "excerpt": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
+    "publish_date": "2026-05-19"
   },
   {
     "title": "Why You Need To Learn to Code",

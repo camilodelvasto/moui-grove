@@ -1,0 +1,99 @@
+<div class="feed-grid">
+        <article class="card" data-stagger style="--stagger-index: 0">
+    <img class="card-thumbnail" src="/moui-grove/assets/QWOP_screenshot.jpg" alt="" loading="lazy">
+    <div class="card-body">
+        <a href="/moui-grove/insights/personal-computing-love-the-machine/" class="card-link">
+            <time datetime="2026-05-04">04.05.2026</time>
+            <h2 class="card-title">Local-First, or: How I Learned to Stop Browsing and Love the Machine</h2>
+            <p class="card-excerpt">Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?</p>
+        </a>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 1; --color-card-bg-resolved: linear-gradient(135deg, #ff1055,rgb(139, 13, 242)); --color-text-resolved: #ffffff; --color-text-secondary-resolved: #ffffff; --color-accent-resolved: #ffffff">
+    <div class="card-body">
+        <a href="/moui-grove/manifesto/" class="card-link">
+            <time datetime="2026-05-03">03.05.2026</time>
+            <h2 class="card-title">Manifesto</h2>
+            <p class="card-excerpt">The future is behind us. Local-first, privacy-first, user-first development starts here.</p>
+        </a>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 2">
+    <img class="card-thumbnail" src="/moui-grove/assets/Piwik_screenshot_german.png" alt="" loading="lazy">
+    <div class="card-body">
+        <a href="/moui-grove/privacy/fingerprinting-analogy-supermarket/" class="card-link">
+            <time datetime="2026-05-19">19.05.2026</time>
+            <h2 class="card-title">I too, was fingerprinting everyone</h2>
+            <p class="card-excerpt">There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?</p>
+        </a>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 3">
+    <div class="card-body">
+        <a href="/moui-grove/school/why-you-need-to-learn-to-code/" class="card-link">
+            <time datetime="2026-04-23">23.04.2026</time>
+            <h2 class="card-title">Why You Need To Learn to Code</h2>
+            <p class="card-excerpt">AI is useful and all, but is the output really yours?</p>
+        </a>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 4">
+    <div class="card-body">
+        <a href="/moui-grove/insights/coding-out-of-first-principles/" class="card-link">
+            <time datetime="2026-04-22">22.04.2026</time>
+            <h2 class="card-title">Building Out Of First Principles</h2>
+            <p class="card-excerpt">How first principles can shape a new wave of creations</p>
+        </a>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 5">
+    <div class="card-body">
+        <a href="/moui-grove/cloud-act/" class="card-link">
+            <time datetime="2026-04-17">17.04.2026</time>
+            <h2 class="card-title">The US CLOUD Act and the Illusion of Data Sovereignty</h2>
+            <p class="card-excerpt">Your data is on US servers, under US law. The CLOUD Act makes this explicit. The question is what you do about it.</p>
+        </a>
+        <div class="card-tags"><span class="card-tag">sovereignty</span><span class="card-tag">policy</span><span class="card-tag">privacy</span></div>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 6">
+    <div class="card-body">
+        <a href="/moui-grove/contracts-not-code/" class="card-link">
+            <time datetime="2026-04-16">16.04.2026</time>
+            <h2 class="card-title">Contracts, not code</h2>
+            <p class="card-excerpt">Most systems drift. A declarative core holds because the shape of the code is the enforcement.</p>
+        </a>
+        <div class="card-tags"><span class="card-tag">architecture</span><span class="card-tag">contracts</span></div>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 7">
+    <div class="card-body">
+        <a href="/moui-grove/welcome/" class="card-link">
+            <time datetime="2026-04-14">14.04.2026</time>
+            <h2 class="card-title">Welcome to Grove</h2>
+            <p class="card-excerpt">Grove organizes your writing into a navigable, deployable site.</p>
+        </a>
+        <div class="card-tags"><span class="card-tag">grove</span><span class="card-tag">getting-started</span></div>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 8">
+    <div class="card-body">
+        <a href="/moui-grove/architecture/data-isolation/" class="card-link">
+            <time datetime="2026-04-13">13.04.2026</time>
+            <h2 class="card-title">Data, Interface, Infrastructure</h2>
+            <p class="card-excerpt">The three layers must be separable. Your data outlasts any interface.</p>
+        </a>
+        <div class="card-tags"><span class="card-tag">architecture</span><span class="card-tag">manifesto</span></div>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 8">
+    <div class="card-body">
+        <a href="/moui-grove/on-joy/" class="card-link">
+            <time datetime="2026-04-12">12.04.2026</time>
+            <h2 class="card-title">Joy Without Extraction</h2>
+            <p class="card-excerpt">Technology should produce joy, not compulsion.</p>
+        </a>
+        <div class="card-tags"><span class="card-tag">philosophy</span></div>
+    </div>
+</article>
+        </div>
