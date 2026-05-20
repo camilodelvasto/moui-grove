@@ -1,6 +1,6 @@
 {
-  "version": "17896c4a237d",
-  "build_date": "2026-05-20T16:19:17Z",
+  "version": "41f81ce4f1fb",
+  "build_date": "2026-05-20T16:21:52Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -9,8 +9,8 @@
   "entries": [
     {
       "route": "/insights/personal-computing-love-the-machine/",
-      "blob": "aa0e61deb19bd5bd.bin",
-      "hash": "aa0e61deb19bd5bd",
+      "blob": "07e1cdc571298692.bin",
+      "hash": "07e1cdc571298692",
       "priority": 1,
       "type": "post",
       "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
@@ -47,8 +47,8 @@
     },
     {
       "route": "/privacy/fingerprinting-analogy-supermarket/",
-      "blob": "855121db9ac0b1f5.bin",
-      "hash": "855121db9ac0b1f5",
+      "blob": "bacea04358eb7405.bin",
+      "hash": "bacea04358eb7405",
       "priority": 1,
       "type": "post",
       "title": "I too, was fingerprinting everyone",
