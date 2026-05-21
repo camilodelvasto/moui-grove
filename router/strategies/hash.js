@@ -31,13 +31,16 @@ export function createHashStrategy(basePath) {
 
     isInternal(href) {
       if (!href) return false;
+      if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('data:')) return false;
+      // Static files (feed.xml, manifest.json, etc.) — never SPA routes
+      const path = href.split('?')[0].split('#')[0];
+      if (/\.\w+$/.test(path)) return false;
       // Hash strategy: only same-origin matters. All paths within origin are internal.
       if (href.startsWith('http') || href.startsWith('//')) {
         try {
           return new URL(href).origin === window.location.origin;
         } catch { return false; }
       }
-      if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('data:')) return false;
       // Hash-only links that aren't our route format
       if (href.startsWith('#') && !href.startsWith('#/')) return false;
       return true;
