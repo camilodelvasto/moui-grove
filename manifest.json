@@ -1,6 +1,6 @@
 {
-  "version": "9c557edc0c23",
-  "build_date": "2026-05-21T08:32:43Z",
+  "version": "d24934658165",
+  "build_date": "2026-05-27T04:49:00Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -579,6 +579,78 @@
       "path": "assets/og-480w.png",
       "mime": "image/png",
       "width": 480
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll.png",
+      "mime": "image/png",
+      "width": 2878,
+      "height": 1668
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets.png",
+      "mime": "image/png",
+      "width": 2442,
+      "height": 624
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.png",
+      "mime": "image/png",
+      "width": 1440
     }
   ]
 }

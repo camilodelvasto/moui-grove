@@ -452,5 +452,107 @@
         "encrypted": false
       }
     ]
+  },
+  "assets/screenshot-tui-suchprotokoll.png": {
+    "source_hash": "de5cde13bd19",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/screenshot-tui-suchprotokoll.png",
+      "width": 2878,
+      "height": 1668,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/screenshot-tui-suchprotokoll-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/screenshot-tui-suchprotokoll-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/screenshot-tui-suchprotokoll-960w.webp",
+        "width": 960,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/screenshot-tui-suchprotokoll-960w.png",
+        "width": 960,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/screenshot-tui-suchprotokoll-1440w.webp",
+        "width": 1440,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/screenshot-tui-suchprotokoll-1440w.png",
+        "width": 1440,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
+  "assets/suchprotokoll-screehnshot-google-spreadsheets.png": {
+    "source_hash": "992148a7602c",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets.png",
+      "width": 2442,
+      "height": 624,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-960w.webp",
+        "width": 960,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-960w.png",
+        "width": 960,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.webp",
+        "width": 1440,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.png",
+        "width": 1440,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
   }
 }
