@@ -2,7 +2,7 @@
   {
     "path": "insights/personal-computing-love-the-machine",
     "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
-    "url_path": "/moui-grove/insights/personal-computing-love-the-machine/",
+    "url_path": "/insights/personal-computing-love-the-machine/",
     "tokens": [
       "12gb",
       "20",
@@ -501,7 +501,7 @@
   {
     "path": "manifesto",
     "title": "Manifesto",
-    "url_path": "/moui-grove/manifesto/",
+    "url_path": "/manifesto/",
     "tokens": [
       "1",
       "2",
@@ -915,7 +915,7 @@
   {
     "path": "privacy/fingerprinting-analogy-supermarket",
     "title": "I too, was fingerprinting everyone",
-    "url_path": "/moui-grove/privacy/fingerprinting-analogy-supermarket/",
+    "url_path": "/privacy/fingerprinting-analogy-supermarket/",
     "tokens": [
       "0",
       "3",
@@ -1221,7 +1221,7 @@
   {
     "path": "school/why-you-need-to-learn-to-code",
     "title": "Why You Need To Learn to Code",
-    "url_path": "/moui-grove/school/why-you-need-to-learn-to-code/",
+    "url_path": "/school/why-you-need-to-learn-to-code/",
     "tokens": [
       "1",
       "2",
@@ -1413,7 +1413,7 @@
   {
     "path": "insights/coding-out-of-first-principles",
     "title": "Building Out Of First Principles",
-    "url_path": "/moui-grove/insights/coding-out-of-first-principles/",
+    "url_path": "/insights/coding-out-of-first-principles/",
     "tokens": [
       "a",
       "ability",
@@ -1798,7 +1798,7 @@
   {
     "path": "cloud-act",
     "title": "The US CLOUD Act and the Illusion of Data Sovereignty",
-    "url_path": "/moui-grove/cloud-act/",
+    "url_path": "/cloud-act/",
     "tokens": [
       "2018",
       "2020",
@@ -2145,7 +2145,7 @@
   {
     "path": "architecture/contracts-not-code",
     "title": "Contracts, not code",
-    "url_path": "/moui-grove/contracts-not-code/",
+    "url_path": "/contracts-not-code/",
     "tokens": [
       "0",
       "1",
@@ -2458,7 +2458,7 @@
   {
     "path": "welcome",
     "title": "Welcome to Grove",
-    "url_path": "/moui-grove/welcome/",
+    "url_path": "/welcome/",
     "tokens": [
       "a",
       "and",
@@ -2550,7 +2550,7 @@
   {
     "path": "architecture/data-isolation",
     "title": "Data, Interface, Infrastructure",
-    "url_path": "/moui-grove/architecture/data-isolation/",
+    "url_path": "/architecture/data-isolation/",
     "tokens": [
       "1",
       "2",
@@ -2624,7 +2624,7 @@
   {
     "path": "on-joy",
     "title": "Joy Without Extraction",
-    "url_path": "/moui-grove/on-joy/",
+    "url_path": "/on-joy/",
     "tokens": [
       "a",
       "anxiety",

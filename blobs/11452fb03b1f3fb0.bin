@@ -18,17 +18,17 @@ We are entering an era in which things get obsolete by the minute.</p>
 <p>Let me give you an example. This is Claude Cowork:</p>
 <figure>
   <picture>
-    <source type="image/webp" srcset="/moui-grove/assets/claude-code-1-480w.webp 480w, /moui-grove/assets/claude-code-1-960w.webp 960w, /moui-grove/assets/claude-code-1-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <source type="image/png" srcset="/moui-grove/assets/claude-code-1-480w.png 480w, /moui-grove/assets/claude-code-1-960w.png 960w, /moui-grove/assets/claude-code-1-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <img src="/moui-grove/assets/claude-code-1.png" alt="Claude Cowork: it can do a lot of things" loading="eager">
+    <source type="image/webp" srcset="/assets/claude-code-1-480w.webp 480w, /assets/claude-code-1-960w.webp 960w, /assets/claude-code-1-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/assets/claude-code-1-480w.png 480w, /assets/claude-code-1-960w.png 960w, /assets/claude-code-1-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/assets/claude-code-1.png" alt="Claude Cowork: it can do a lot of things" loading="eager">
   </picture>
   <figcaption>Claude Cowork: it can do a lot of things</figcaption>
 </figure>
 <figure>
   <picture>
-    <source type="image/webp" srcset="/moui-grove/assets/claude-code-2-480w.webp 480w, /moui-grove/assets/claude-code-2-960w.webp 960w, /moui-grove/assets/claude-code-2-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <source type="image/png" srcset="/moui-grove/assets/claude-code-2-480w.png 480w, /moui-grove/assets/claude-code-2-960w.png 960w, /moui-grove/assets/claude-code-2-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <img src="/moui-grove/assets/claude-code-2.png" alt="But it uses Claude Code in the background" loading="lazy">
+    <source type="image/webp" srcset="/assets/claude-code-2-480w.webp 480w, /assets/claude-code-2-960w.webp 960w, /assets/claude-code-2-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/assets/claude-code-2-480w.png 480w, /assets/claude-code-2-960w.png 960w, /assets/claude-code-2-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/assets/claude-code-2.png" alt="But it uses Claude Code in the background" loading="lazy">
   </picture>
   <figcaption>But it uses Claude Code in the background</figcaption>
 </figure>

@@ -1,42 +1,42 @@
 [
   {
     "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
-    "url_path": "/moui-grove/insights/personal-computing-love-the-machine/",
+    "url_path": "/insights/personal-computing-love-the-machine/",
     "content_path": "insights/personal-computing-love-the-machine",
     "excerpt": "Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?",
     "publish_date": "2026-05-04"
   },
   {
     "title": "Manifesto",
-    "url_path": "/moui-grove/manifesto/",
+    "url_path": "/manifesto/",
     "content_path": "manifesto",
     "excerpt": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
     "publish_date": "2026-05-03"
   },
   {
     "title": "I too, was fingerprinting everyone",
-    "url_path": "/moui-grove/privacy/fingerprinting-analogy-supermarket/",
+    "url_path": "/privacy/fingerprinting-analogy-supermarket/",
     "content_path": "privacy/fingerprinting-analogy-supermarket",
     "excerpt": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
     "publish_date": "2026-05-19"
   },
   {
     "title": "Why You Need To Learn to Code",
-    "url_path": "/moui-grove/school/why-you-need-to-learn-to-code/",
+    "url_path": "/school/why-you-need-to-learn-to-code/",
     "content_path": "school/why-you-need-to-learn-to-code",
     "excerpt": "AI is useful and all, but is the output really yours?",
     "publish_date": "2026-04-23"
   },
   {
     "title": "Building Out Of First Principles",
-    "url_path": "/moui-grove/insights/coding-out-of-first-principles/",
+    "url_path": "/insights/coding-out-of-first-principles/",
     "content_path": "insights/coding-out-of-first-principles",
     "excerpt": "How first principles can shape a new wave of creations",
     "publish_date": "2026-04-22"
   },
   {
     "title": "The US CLOUD Act and the Illusion of Data Sovereignty",
-    "url_path": "/moui-grove/cloud-act/",
+    "url_path": "/cloud-act/",
     "content_path": "cloud-act",
     "excerpt": "Your data is on US servers, under US law. The CLOUD Act makes this explicit. The question is what you do about it.",
     "publish_date": "2026-04-17",
@@ -48,7 +48,7 @@
   },
   {
     "title": "Contracts, not code",
-    "url_path": "/moui-grove/contracts-not-code/",
+    "url_path": "/contracts-not-code/",
     "content_path": "architecture/contracts-not-code",
     "excerpt": "Most systems drift. A declarative core holds because the shape of the code is the enforcement.",
     "publish_date": "2026-04-16",
@@ -59,7 +59,7 @@
   },
   {
     "title": "Welcome to Grove",
-    "url_path": "/moui-grove/welcome/",
+    "url_path": "/welcome/",
     "content_path": "welcome",
     "excerpt": "Grove organizes your writing into a navigable, deployable site.",
     "publish_date": "2026-04-14",
@@ -70,7 +70,7 @@
   },
   {
     "title": "Data, Interface, Infrastructure",
-    "url_path": "/moui-grove/architecture/data-isolation/",
+    "url_path": "/architecture/data-isolation/",
     "content_path": "architecture/data-isolation",
     "excerpt": "The three layers must be separable. Your data outlasts any interface.",
     "publish_date": "2026-04-13",
@@ -81,7 +81,7 @@
   },
   {
     "title": "Joy Without Extraction",
-    "url_path": "/moui-grove/on-joy/",
+    "url_path": "/on-joy/",
     "content_path": "on-joy",
     "excerpt": "Technology should produce joy, not compulsion.",
     "publish_date": "2026-04-12",

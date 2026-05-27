@@ -1,7 +1,7 @@
 <div class="feed-grid">
         <article class="card" data-stagger style="--stagger-index: 0">
     <div class="card-body">
-        <a href="/moui-grove/school/why-you-need-to-learn-to-code/" class="card-link">
+        <a href="/school/why-you-need-to-learn-to-code/" class="card-link">
             <time datetime="2026-04-23">23.04.2026</time>
             <h2 class="card-title">Why You Need To Learn to Code</h2>
             <p class="card-excerpt">AI is useful and all, but is the output really yours?</p>

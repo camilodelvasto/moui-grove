@@ -1,6 +1,6 @@
 {
-  "version": "d24934658165",
-  "build_date": "2026-05-27T04:49:00Z",
+  "version": "b33b88fcc189",
+  "build_date": "2026-05-27T05:32:40Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -9,8 +9,8 @@
   "entries": [
     {
       "route": "/insights/personal-computing-love-the-machine/",
-      "blob": "07e1cdc571298692.bin",
-      "hash": "07e1cdc571298692",
+      "blob": "68f757ec26354461.bin",
+      "hash": "68f757ec26354461",
       "priority": 1,
       "type": "post",
       "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
@@ -47,8 +47,8 @@
     },
     {
       "route": "/privacy/fingerprinting-analogy-supermarket/",
-      "blob": "7c679f098993b586.bin",
-      "hash": "7c679f098993b586",
+      "blob": "959705160f878120.bin",
+      "hash": "959705160f878120",
       "priority": 1,
       "type": "post",
       "title": "I too, was fingerprinting everyone",
@@ -66,8 +66,8 @@
     },
     {
       "route": "/school/why-you-need-to-learn-to-code/",
-      "blob": "3aaacf267abceb63.bin",
-      "hash": "3aaacf267abceb63",
+      "blob": "11452fb03b1f3fb0.bin",
+      "hash": "11452fb03b1f3fb0",
       "priority": 1,
       "type": "post",
       "title": "Why You Need To Learn to Code",
@@ -85,8 +85,8 @@
     },
     {
       "route": "/insights/coding-out-of-first-principles/",
-      "blob": "11dfa729f9d8ec68.bin",
-      "hash": "11dfa729f9d8ec68",
+      "blob": "efe89e1af28dea16.bin",
+      "hash": "efe89e1af28dea16",
       "priority": 1,
       "type": "post",
       "title": "Building Out Of First Principles",
@@ -104,8 +104,8 @@
     },
     {
       "route": "/cloud-act/",
-      "blob": "7d3ceca0bfb0fcdb.bin",
-      "hash": "7d3ceca0bfb0fcdb",
+      "blob": "2fded2188713e510.bin",
+      "hash": "2fded2188713e510",
       "priority": 2,
       "type": "post",
       "title": "The US CLOUD Act and the Illusion of Data Sovereignty",
@@ -214,8 +214,8 @@
     },
     {
       "route": "/",
-      "blob": "4876cf6a1699f22f.bin",
-      "hash": "4876cf6a1699f22f",
+      "blob": "f0d048f6cc25ed21.bin",
+      "hash": "f0d048f6cc25ed21",
       "priority": 0,
       "type": "index",
       "title": "Moui Grove",
@@ -224,8 +224,8 @@
     },
     {
       "route": "/archive/",
-      "blob": "50aa472e76abccdf.bin",
-      "hash": "50aa472e76abccdf",
+      "blob": "912ba7100d2f0978.bin",
+      "hash": "912ba7100d2f0978",
       "priority": 0,
       "type": "archive",
       "title": "Archive — Moui Grove",
@@ -234,8 +234,8 @@
     },
     {
       "route": "/insights/",
-      "blob": "1fafc71c3321c275.bin",
-      "hash": "1fafc71c3321c275",
+      "blob": "01043caf732cf472.bin",
+      "hash": "01043caf732cf472",
       "priority": 1,
       "type": "section_index",
       "title": "Insights",
@@ -244,8 +244,8 @@
     },
     {
       "route": "/privacy/",
-      "blob": "3334c6bf17c37279.bin",
-      "hash": "3334c6bf17c37279",
+      "blob": "ed681e822e87e88e.bin",
+      "hash": "ed681e822e87e88e",
       "priority": 1,
       "type": "section_index",
       "title": "Privacy",
@@ -254,8 +254,8 @@
     },
     {
       "route": "/school/",
-      "blob": "1ad0576614277658.bin",
-      "hash": "1ad0576614277658",
+      "blob": "c23663b94ea9d84d.bin",
+      "hash": "c23663b94ea9d84d",
       "priority": 1,
       "type": "section_index",
       "title": "School",
@@ -264,8 +264,8 @@
     },
     {
       "route": "/architecture/",
-      "blob": "3667e21b4da4a485.bin",
-      "hash": "3667e21b4da4a485",
+      "blob": "bbb04d12a56f89d7.bin",
+      "hash": "bbb04d12a56f89d7",
       "priority": 1,
       "type": "section_index",
       "title": "Architecture",

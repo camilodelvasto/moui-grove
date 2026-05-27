@@ -2,66 +2,66 @@
 <rss version="2.0">
   <channel>
     <title>Moui Grove</title>
-    <link>https://camilodelvasto.github.io/moui-grove</link>
+    <link>https://www.moui.io</link>
     <description>A test grove for manual verification.</description>
     <language>en</language>
     <item>
       <title>Local-First, or: How I Learned to Stop Browsing and Love the Machine</title>
-      <link>https://camilodelvasto.github.io/moui-grove/insights/personal-computing-love-the-machine/</link>
+      <link>https://www.moui.io/insights/personal-computing-love-the-machine/</link>
       <description>Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?</description>
       <pubDate>2026-05-04</pubDate>
     </item>
     <item>
       <title>Manifesto</title>
-      <link>https://camilodelvasto.github.io/moui-grove/manifesto/</link>
+      <link>https://www.moui.io/manifesto/</link>
       <description>The future is behind us. Local-first, privacy-first, user-first development starts here.</description>
       <pubDate>2026-05-03</pubDate>
     </item>
     <item>
       <title>I too, was fingerprinting everyone</title>
-      <link>https://camilodelvasto.github.io/moui-grove/privacy/fingerprinting-analogy-supermarket/</link>
+      <link>https://www.moui.io/privacy/fingerprinting-analogy-supermarket/</link>
       <description>There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?</description>
       <pubDate>2026-05-19</pubDate>
     </item>
     <item>
       <title>Why You Need To Learn to Code</title>
-      <link>https://camilodelvasto.github.io/moui-grove/school/why-you-need-to-learn-to-code/</link>
+      <link>https://www.moui.io/school/why-you-need-to-learn-to-code/</link>
       <description>AI is useful and all, but is the output really yours?</description>
       <pubDate>2026-04-23</pubDate>
     </item>
     <item>
       <title>Building Out Of First Principles</title>
-      <link>https://camilodelvasto.github.io/moui-grove/insights/coding-out-of-first-principles/</link>
+      <link>https://www.moui.io/insights/coding-out-of-first-principles/</link>
       <description>How first principles can shape a new wave of creations</description>
       <pubDate>2026-04-22</pubDate>
     </item>
     <item>
       <title>The US CLOUD Act and the Illusion of Data Sovereignty</title>
-      <link>https://camilodelvasto.github.io/moui-grove/cloud-act/</link>
+      <link>https://www.moui.io/cloud-act/</link>
       <description>Your data is on US servers, under US law. The CLOUD Act makes this explicit. The question is what you do about it.</description>
       <pubDate>2026-04-17</pubDate>
     </item>
     <item>
       <title>Contracts, not code</title>
-      <link>https://camilodelvasto.github.io/moui-grove/contracts-not-code/</link>
+      <link>https://www.moui.io/contracts-not-code/</link>
       <description>Most systems drift. A declarative core holds because the shape of the code is the enforcement.</description>
       <pubDate>2026-04-16</pubDate>
     </item>
     <item>
       <title>Welcome to Grove</title>
-      <link>https://camilodelvasto.github.io/moui-grove/welcome/</link>
+      <link>https://www.moui.io/welcome/</link>
       <description>Grove organizes your writing into a navigable, deployable site.</description>
       <pubDate>2026-04-14</pubDate>
     </item>
     <item>
       <title>Data, Interface, Infrastructure</title>
-      <link>https://camilodelvasto.github.io/moui-grove/architecture/data-isolation/</link>
+      <link>https://www.moui.io/architecture/data-isolation/</link>
       <description>The three layers must be separable. Your data outlasts any interface.</description>
       <pubDate>2026-04-13</pubDate>
     </item>
     <item>
       <title>Joy Without Extraction</title>
-      <link>https://camilodelvasto.github.io/moui-grove/on-joy/</link>
+      <link>https://www.moui.io/on-joy/</link>
       <description>Technology should produce joy, not compulsion.</description>
       <pubDate>2026-04-12</pubDate>
     </item>

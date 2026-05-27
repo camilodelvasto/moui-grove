@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="grove-base-path" content="/moui-grove">
+    <meta name="grove-base-path" content="">
     <title>Local-First, or: How I Learned to Stop Browsing and Love the Machine</title>
-    <link rel="icon" href="/moui-grove/theme/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/moui-grove/theme/favicon.ico" sizes="32x32">
-    <link rel="apple-touch-icon" href="/moui-grove/theme/apple-touch-icon.png">
+    <link rel="icon" href="/theme/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/theme/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/theme/apple-touch-icon.png">
     <meta property="og:title" content="Local-First, or: How I Learned to Stop Browsing and Love the Machine">
     <meta property="og:description" content="Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?">
-    <meta property="og:image" content="https://camilodelvasto.github.io/moui-grove/assets/QWOP_screenshot.jpg">
-    <meta property="og:url" content="https://camilodelvasto.github.io/moui-grove/insights/personal-computing-love-the-machine/">
+    <meta property="og:image" content="https://www.moui.io/assets/QWOP_screenshot.jpg">
+    <meta property="og:url" content="https://www.moui.io/insights/personal-computing-love-the-machine/">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary">
-    <link rel="alternate" type="application/rss+xml" title="Moui Grove" href="https://camilodelvasto.github.io/moui-grove/feed.xml">
+    <link rel="alternate" type="application/rss+xml" title="Moui Grove" href="https://www.moui.io/feed.xml">
     <style id="grove-tokens">
 :root {
   --palette-primary: #ff1055;
@@ -247,10 +247,10 @@
 }
 
     </style>
-    <link rel="stylesheet" href="/moui-grove/style.css">
-    <link rel="stylesheet" href="/moui-grove/elements.css">
-    <link rel="stylesheet" href="/moui-grove/transitions.css">
-    <link rel="stylesheet" href="/moui-grove/syntax.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/elements.css">
+    <link rel="stylesheet" href="/transitions.css">
+    <link rel="stylesheet" href="/syntax.css">
     <script>
       (function() {
         var stored = localStorage.getItem('grove-theme');
@@ -262,9 +262,9 @@
 <body data-layout="index">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header" role="banner">
-    <a href="/moui-grove/" class="site-title"><img src="/moui-grove/assets/moui-fire-logo.webp" alt="Moui Grove" class="site-logo" width="400" height="126"></a>
+    <a href="/" class="site-title"><img src="/assets/moui-fire-logo.webp" alt="Moui Grove" class="site-logo" width="400" height="126"></a>
     <div class="header-actions">
-        <a href="/moui-grove/archive/" class="btn btn-ghost btn-sm" aria-label="Archive">Archive</a>
+        <a href="/archive/" class="btn btn-ghost btn-sm" aria-label="Archive">Archive</a>
         <button class="btn btn-accent btn-sm" data-action="open-search" data-interaction="press" aria-label="Search" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
             <span class="btn-label">Search</span>
@@ -283,9 +283,9 @@
 <p>A few years afterwards, we bought a more capable machine, and I started coding out of necessity. I was using the now-extinct-but-absolutely-fantastic Flash to animate a movie, but just moving things around in frames didn't make sense anymore. I wanted some interaction, and I started coding on Actionscript (a javascript-inspired scripting language), and I built what I call &quot;games&quot;, but were in reality just a few interactive prototypes testing the limits of coding without StackOverflow, at a time when I didn't have training on programming concepts or enough use cases/motivation/incentives to build. It was fun to draw some objects and animate them with code, and people loved it so much that they started using it for everything, which made it insecure. Flash was banned after a while by all browsers and <em>we moved on</em>.</p>
 <figure>
   <picture>
-    <source type="image/webp" srcset="/moui-grove/assets/QWOP_screenshot-480w.webp 480w" sizes="(max-width: 600px) 100vw, 600px">
-    <source type="image/jpeg" srcset="/moui-grove/assets/QWOP_screenshot-480w.jpg 480w" sizes="(max-width: 600px) 100vw, 600px">
-    <img src="/moui-grove/assets/QWOP_screenshot.jpg" alt="A serious game developed in Flash — By Bennett Foddy - The uploader on Wikimedia Commons received this from the author/copyright holder., CC0, https://commons.wikimedia.org/w/index.php?curid=65720108" loading="eager">
+    <source type="image/webp" srcset="/assets/QWOP_screenshot-480w.webp 480w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/jpeg" srcset="/assets/QWOP_screenshot-480w.jpg 480w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/assets/QWOP_screenshot.jpg" alt="A serious game developed in Flash — By Bennett Foddy - The uploader on Wikimedia Commons received this from the author/copyright holder., CC0, https://commons.wikimedia.org/w/index.php?curid=65720108" loading="eager">
   </picture>
   <figcaption>A serious game developed in Flash — By Bennett Foddy - The uploader on Wikimedia Commons received this from the author/copyright holder., CC0, https://commons.wikimedia.org/w/index.php?curid=65720108</figcaption>
 </figure>
@@ -306,9 +306,9 @@
 <p>Let's make it easy, and let's make it simple. Clutterfree, local-first apps that use minimal energy because AI can (and arguably should) be opt-in, default to local models, default to tiny models, default to offline, which leads to <strong>private work that's highly satisfying because it's truly yours</strong>.</p>
 <figure>
   <picture>
-    <source type="image/webp" srcset="/moui-grove/assets/moui-notes-screenshot-claude-480w.webp 480w, /moui-grove/assets/moui-notes-screenshot-claude-960w.webp 960w, /moui-grove/assets/moui-notes-screenshot-claude-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <source type="image/png" srcset="/moui-grove/assets/moui-notes-screenshot-claude-480w.png 480w, /moui-grove/assets/moui-notes-screenshot-claude-960w.png 960w, /moui-grove/assets/moui-notes-screenshot-claude-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <img src="/moui-grove/assets/moui-notes-screenshot-claude.png" alt="A screenshot of our very own app in action while we were crafting this post, with a bit of local, opt-in AI to help with research" loading="lazy">
+    <source type="image/webp" srcset="/assets/moui-notes-screenshot-claude-480w.webp 480w, /assets/moui-notes-screenshot-claude-960w.webp 960w, /assets/moui-notes-screenshot-claude-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/assets/moui-notes-screenshot-claude-480w.png 480w, /assets/moui-notes-screenshot-claude-960w.png 960w, /assets/moui-notes-screenshot-claude-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/assets/moui-notes-screenshot-claude.png" alt="A screenshot of our very own app in action while we were crafting this post, with a bit of local, opt-in AI to help with research" loading="lazy">
   </picture>
   <figcaption>A screenshot of our very own app in action while we were crafting this post, with a bit of local, opt-in AI to help with research</figcaption>
 </figure>
@@ -323,7 +323,7 @@
     <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
         <span>Moui Grove</span>
-        <a href="https://camilodelvasto.github.io/moui-grove/feed.xml">RSS</a>
+        <a href="https://www.moui.io/feed.xml">RSS</a>
         <button class="btn btn-ghost btn-sm btn-icon btn-theme" data-action="toggle-theme" data-interaction="press" aria-label="Toggle theme" type="button">
             <span class="btn-state-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
             <span class="btn-state-dark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
@@ -331,9 +331,9 @@
         <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Clear site data" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
         </button>
-        <span class="build-id">d24934658165</span>
+        <span class="build-id">b33b88fcc189</span>
     </div>
 </footer>
-    <script type="module" src="/moui-grove/app.js"></script>
+    <script type="module" src="/app.js"></script>
 </body>
 </html>

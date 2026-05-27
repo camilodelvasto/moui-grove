@@ -11,9 +11,9 @@
 <p>This is not a theoretical risk.</p>
 <figure>
   <picture>
-    <source type="image/webp" srcset="/moui-grove/assets/dw-digital-dilemma-480w.webp 480w, /moui-grove/assets/dw-digital-dilemma-960w.webp 960w, /moui-grove/assets/dw-digital-dilemma-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <source type="image/png" srcset="/moui-grove/assets/dw-digital-dilemma-480w.png 480w, /moui-grove/assets/dw-digital-dilemma-960w.png 960w, /moui-grove/assets/dw-digital-dilemma-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <img src="/moui-grove/assets/dw-digital-dilemma.png" alt="Deutsche Welle, March 2026 — Germany's digital dependency on US infrastructure is now a political vulnerability." loading="eager">
+    <source type="image/webp" srcset="/assets/dw-digital-dilemma-480w.webp 480w, /assets/dw-digital-dilemma-960w.webp 960w, /assets/dw-digital-dilemma-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/assets/dw-digital-dilemma-480w.png 480w, /assets/dw-digital-dilemma-960w.png 960w, /assets/dw-digital-dilemma-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/assets/dw-digital-dilemma.png" alt="Deutsche Welle, March 2026 — Germany's digital dependency on US infrastructure is now a political vulnerability." loading="eager">
   </picture>
   <figcaption>Deutsche Welle, March 2026 — Germany's digital dependency on US infrastructure is now a political vulnerability.</figcaption>
 </figure>

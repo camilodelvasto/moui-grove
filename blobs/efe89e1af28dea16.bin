@@ -14,9 +14,9 @@
 <p>So for years the playbook was simple: lock people in with a really nice offer, a too-good-to-be-true kind of deal, the kind of deal that <em>you know it's hiding something</em>:</p>
 <figure>
   <picture>
-    <source type="image/webp" srcset="/moui-grove/assets/google-ad-no-ads-480w.webp 480w, /moui-grove/assets/google-ad-no-ads-960w.webp 960w" sizes="(max-width: 600px) 100vw, 600px">
-    <source type="image/png" srcset="/moui-grove/assets/google-ad-no-ads-480w.png 480w, /moui-grove/assets/google-ad-no-ads-960w.png 960w" sizes="(max-width: 600px) 100vw, 600px">
-    <img src="/moui-grove/assets/google-ad-no-ads.png" alt="Google ad on newspaper, taken from X" loading="eager">
+    <source type="image/webp" srcset="/assets/google-ad-no-ads-480w.webp 480w, /assets/google-ad-no-ads-960w.webp 960w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/assets/google-ad-no-ads-480w.png 480w, /assets/google-ad-no-ads-960w.png 960w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/assets/google-ad-no-ads.png" alt="Google ad on newspaper, taken from X" loading="eager">
   </picture>
   <figcaption>Google ad on newspaper, taken from X</figcaption>
 </figure>

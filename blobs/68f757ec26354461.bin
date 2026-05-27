@@ -10,9 +10,9 @@
 <p>A few years afterwards, we bought a more capable machine, and I started coding out of necessity. I was using the now-extinct-but-absolutely-fantastic Flash to animate a movie, but just moving things around in frames didn't make sense anymore. I wanted some interaction, and I started coding on Actionscript (a javascript-inspired scripting language), and I built what I call &quot;games&quot;, but were in reality just a few interactive prototypes testing the limits of coding without StackOverflow, at a time when I didn't have training on programming concepts or enough use cases/motivation/incentives to build. It was fun to draw some objects and animate them with code, and people loved it so much that they started using it for everything, which made it insecure. Flash was banned after a while by all browsers and <em>we moved on</em>.</p>
 <figure>
   <picture>
-    <source type="image/webp" srcset="/moui-grove/assets/QWOP_screenshot-480w.webp 480w" sizes="(max-width: 600px) 100vw, 600px">
-    <source type="image/jpeg" srcset="/moui-grove/assets/QWOP_screenshot-480w.jpg 480w" sizes="(max-width: 600px) 100vw, 600px">
-    <img src="/moui-grove/assets/QWOP_screenshot.jpg" alt="A serious game developed in Flash — By Bennett Foddy - The uploader on Wikimedia Commons received this from the author/copyright holder., CC0, https://commons.wikimedia.org/w/index.php?curid=65720108" loading="eager">
+    <source type="image/webp" srcset="/assets/QWOP_screenshot-480w.webp 480w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/jpeg" srcset="/assets/QWOP_screenshot-480w.jpg 480w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/assets/QWOP_screenshot.jpg" alt="A serious game developed in Flash — By Bennett Foddy - The uploader on Wikimedia Commons received this from the author/copyright holder., CC0, https://commons.wikimedia.org/w/index.php?curid=65720108" loading="eager">
   </picture>
   <figcaption>A serious game developed in Flash — By Bennett Foddy - The uploader on Wikimedia Commons received this from the author/copyright holder., CC0, https://commons.wikimedia.org/w/index.php?curid=65720108</figcaption>
 </figure>
@@ -33,9 +33,9 @@
 <p>Let's make it easy, and let's make it simple. Clutterfree, local-first apps that use minimal energy because AI can (and arguably should) be opt-in, default to local models, default to tiny models, default to offline, which leads to <strong>private work that's highly satisfying because it's truly yours</strong>.</p>
 <figure>
   <picture>
-    <source type="image/webp" srcset="/moui-grove/assets/moui-notes-screenshot-claude-480w.webp 480w, /moui-grove/assets/moui-notes-screenshot-claude-960w.webp 960w, /moui-grove/assets/moui-notes-screenshot-claude-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <source type="image/png" srcset="/moui-grove/assets/moui-notes-screenshot-claude-480w.png 480w, /moui-grove/assets/moui-notes-screenshot-claude-960w.png 960w, /moui-grove/assets/moui-notes-screenshot-claude-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <img src="/moui-grove/assets/moui-notes-screenshot-claude.png" alt="A screenshot of our very own app in action while we were crafting this post, with a bit of local, opt-in AI to help with research" loading="lazy">
+    <source type="image/webp" srcset="/assets/moui-notes-screenshot-claude-480w.webp 480w, /assets/moui-notes-screenshot-claude-960w.webp 960w, /assets/moui-notes-screenshot-claude-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/assets/moui-notes-screenshot-claude-480w.png 480w, /assets/moui-notes-screenshot-claude-960w.png 960w, /assets/moui-notes-screenshot-claude-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/assets/moui-notes-screenshot-claude.png" alt="A screenshot of our very own app in action while we were crafting this post, with a bit of local, opt-in AI to help with research" loading="lazy">
   </picture>
   <figcaption>A screenshot of our very own app in action while we were crafting this post, with a bit of local, opt-in AI to help with research</figcaption>
 </figure>

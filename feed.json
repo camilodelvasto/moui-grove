@@ -1,78 +1,78 @@
 {
   "version": "https://jsonfeed.org/version/1.1",
   "title": "Moui Grove",
-  "home_page_url": "https://camilodelvasto.github.io/moui-grove",
-  "feed_url": "https://camilodelvasto.github.io/moui-grove/feed.json",
+  "home_page_url": "https://www.moui.io",
+  "feed_url": "https://www.moui.io/feed.json",
   "description": "A test grove for manual verification.",
   "language": "en",
   "items": [
     {
       "id": "insights/personal-computing-love-the-machine",
       "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
-      "url": "https://camilodelvasto.github.io/moui-grove/insights/personal-computing-love-the-machine/",
+      "url": "https://www.moui.io/insights/personal-computing-love-the-machine/",
       "summary": "Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?",
       "date_published": "2026-05-04"
     },
     {
       "id": "manifesto",
       "title": "Manifesto",
-      "url": "https://camilodelvasto.github.io/moui-grove/manifesto/",
+      "url": "https://www.moui.io/manifesto/",
       "summary": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
       "date_published": "2026-05-03"
     },
     {
       "id": "privacy/fingerprinting-analogy-supermarket",
       "title": "I too, was fingerprinting everyone",
-      "url": "https://camilodelvasto.github.io/moui-grove/privacy/fingerprinting-analogy-supermarket/",
+      "url": "https://www.moui.io/privacy/fingerprinting-analogy-supermarket/",
       "summary": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
       "date_published": "2026-05-19"
     },
     {
       "id": "school/why-you-need-to-learn-to-code",
       "title": "Why You Need To Learn to Code",
-      "url": "https://camilodelvasto.github.io/moui-grove/school/why-you-need-to-learn-to-code/",
+      "url": "https://www.moui.io/school/why-you-need-to-learn-to-code/",
       "summary": "AI is useful and all, but is the output really yours?",
       "date_published": "2026-04-23"
     },
     {
       "id": "insights/coding-out-of-first-principles",
       "title": "Building Out Of First Principles",
-      "url": "https://camilodelvasto.github.io/moui-grove/insights/coding-out-of-first-principles/",
+      "url": "https://www.moui.io/insights/coding-out-of-first-principles/",
       "summary": "How first principles can shape a new wave of creations",
       "date_published": "2026-04-22"
     },
     {
       "id": "cloud-act",
       "title": "The US CLOUD Act and the Illusion of Data Sovereignty",
-      "url": "https://camilodelvasto.github.io/moui-grove/cloud-act/",
+      "url": "https://www.moui.io/cloud-act/",
       "summary": "Your data is on US servers, under US law. The CLOUD Act makes this explicit. The question is what you do about it.",
       "date_published": "2026-04-17"
     },
     {
       "id": "architecture/contracts-not-code",
       "title": "Contracts, not code",
-      "url": "https://camilodelvasto.github.io/moui-grove/contracts-not-code/",
+      "url": "https://www.moui.io/contracts-not-code/",
       "summary": "Most systems drift. A declarative core holds because the shape of the code is the enforcement.",
       "date_published": "2026-04-16"
     },
     {
       "id": "welcome",
       "title": "Welcome to Grove",
-      "url": "https://camilodelvasto.github.io/moui-grove/welcome/",
+      "url": "https://www.moui.io/welcome/",
       "summary": "Grove organizes your writing into a navigable, deployable site.",
       "date_published": "2026-04-14"
     },
     {
       "id": "architecture/data-isolation",
       "title": "Data, Interface, Infrastructure",
-      "url": "https://camilodelvasto.github.io/moui-grove/architecture/data-isolation/",
+      "url": "https://www.moui.io/architecture/data-isolation/",
       "summary": "The three layers must be separable. Your data outlasts any interface.",
       "date_published": "2026-04-13"
     },
     {
       "id": "on-joy",
       "title": "Joy Without Extraction",
-      "url": "https://camilodelvasto.github.io/moui-grove/on-joy/",
+      "url": "https://www.moui.io/on-joy/",
       "summary": "Technology should produce joy, not compulsion.",
       "date_published": "2026-04-12"
     }
