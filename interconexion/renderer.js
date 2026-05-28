@@ -1,7 +1,7 @@
 // renderer.js — slide dispatch, reveal animation, edge-strip navigation, effect dispatch
 
-import { renderCover, renderStatement, renderFull, renderSplit, renderSplitStack, renderGrid, applyResolvedEffects } from './layouts.js?v=1779983429';
-import { resolveBackground, resolveColor, extractThemeParts, resolveReveal, resolveEffects, relativeLuminance } from './theme.js?v=1779983429';
+import { renderCover, renderStatement, renderFull, renderSplit, renderSplitStack, renderGrid, applyResolvedEffects } from './layouts.js?v=1779983570';
+import { resolveBackground, resolveColor, extractThemeParts, resolveReveal, resolveEffects, relativeLuminance } from './theme.js?v=1779983570';
 
 const LAYOUTS = { cover: renderCover, statement: renderStatement, full: renderFull, bleed: renderFull, split: renderSplit, 'split-stack': renderSplitStack, grid: renderGrid };
 

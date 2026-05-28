@@ -5,7 +5,7 @@
 // Called BEFORE the renderer touches the content — the browser never sees
 // .enc paths, only blob URLs.
 
-import { b64ToBytes, deriveKey } from './decrypt-runtime.js?v=1779983429';
+import { b64ToBytes, deriveKey } from './decrypt-runtime.js?v=1779983570';
 
 const _EXT_TO_MIME = {
   '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
