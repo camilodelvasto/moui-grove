@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Privacy by architecture: deny network at the browser layer -->
+  <!-- Note: frame-ancestors only works as HTTP header, not meta tag — set in server.py -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self'; img-src 'self'; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; base-uri 'none'">
+  <title>Semillas de interconexion</title>
+  
+  <link rel="icon" href="./theme/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="./theme/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="./theme/apple-touch-icon.png">
+  <link rel="preload" href="./fonts/inter/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'inter'; src: url('./fonts/inter/Inter-Variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+    @font-face { font-family: 'fraunces'; src: url('./fonts/fraunces/Fraunces-Variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+    @font-face { font-family: 'jetbrains-mono'; src: url('./fonts/jetbrains-mono/JetBrainsMono-Variable.woff2') format('woff2'); font-weight: 100 800; font-display: swap; }
+    @font-face { font-family: 'montserrat'; src: url('./fonts/montserrat/Montserrat-Variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+    @font-face { font-family: 'raleway'; src: url('./fonts/raleway/Raleway-Variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+    @font-face { font-family: 'lato'; src: url('./fonts/lato/Lato-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'lato'; src: url('./fonts/lato/Lato-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+  </style>
+  <link rel="stylesheet" href="./style.css?v=1779983429">
+  <script src="./vendor/markdown-it.min.js?v=1779983429"></script>
+</head>
+<body data-shape="deck">
+  <div id="app">
+    <div class="viewport">
+      <div class="slide" style="display:flex;justify-content:center;align-items:center;">
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./app.js?v=1779983429"></script>
+</body>
+</html>

@@ -1,0 +1,597 @@
+/* Deck core styles — theme-agnostic layout, reveal, effects, navigation */
+
+/* === Reset & base === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body, inter), system-ui, sans-serif;
+  font-size: var(--font-base, 1rem);
+  font-weight: var(--weight-body, 400);
+  line-height: var(--leading-body, 1.6);
+  color: var(--color-text-resolved, #0f0f13);
+  background: var(--color-bg-resolved, #ffffff);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Viewport & slide frame === */
+.viewport {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+.viewport.scrollable-active { overflow-y: auto; }
+
+.slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 1.5rem 1.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide.scrollable { height: auto; min-height: 100%; overflow: visible; }
+.slide.flush { padding-left: 0; padding-right: 0; }
+.slide.slide-bleed { padding: 0; }
+.slide.slide-split { padding: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.slide.slide-split-stack { padding: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+/* === Layout: cover (structural only) === */
+.layout-cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 40px;
+  position: relative;
+}
+
+.slide[data-align="center"] .layout-cover { align-items: center; text-align: center; }
+.slide[data-align="right"] .layout-cover { align-items: flex-end; text-align: right; }
+.slide[data-valign="top"] .layout-cover { justify-content: flex-start; padding-bottom: 0; }
+.slide[data-valign="middle"] .layout-cover { justify-content: center; padding-bottom: 0; }
+
+/* === Layout: statement (structural only) === */
+.layout-statement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* === Layout: full === */
+.layout-full {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  container-type: inline-size;
+  container-name: region;
+}
+
+.slide[data-align="center"] .layout-full { align-items: center; text-align: center; }
+
+/* === Layout: split (mobile-first: natural stacking, no fixed heights) === */
+.layout-split {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.layout-split .split-header {
+  padding: 4rem 1.5rem 0;
+  width: 100%;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: var(--space-md, 2rem) 1.5rem;
+  position: relative;
+  container-type: inline-size;
+  container-name: region;
+}
+
+/* First panel in a split (when no split-header precedes it) needs
+   top clearance for the hamburger overlay on mobile. */
+.layout-split > .panel:first-child {
+  padding-top: 4rem;
+}
+
+.panel.scrollable { overflow-y: auto; }
+
+/* === Layout: split-stack (mobile-first: natural stacking) === */
+.layout-split-stack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.layout-split-stack .split-stack-header {
+  padding: 4rem 1.5rem 0;
+  width: 100%;
+}
+
+.layout-split-stack > .panel:first-child {
+  padding-top: 4rem;
+}
+
+/* Panel-stacked zeroes its own padding — children handle their own */
+.panel-stacked { padding: 0; }
+
+/* === Divider elements — positioned by the renderer === */
+.divider { pointer-events: none; flex-shrink: 0; }
+.divider-h { width: 100%; }
+.divider-v { display: none; }
+
+/* Stacked panels: divider between panels on mobile (horizontal) */
+.stacked-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-md, 2rem) 1.5rem;
+  container-type: inline-size;
+  container-name: region;
+}
+
+.stacked-panel.scrollable { overflow-y: auto; }
+
+/* === Layout: grid === */
+.layout-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm, 1rem);
+  width: 100%;
+  height: 100%;
+}
+
+.grid-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-sm, 1rem);
+  overflow: hidden;
+  container-type: inline-size;
+  container-name: region;
+}
+
+.grid-cell.scrollable { overflow-y: auto; }
+
+/* === Media === */
+.slide-media { margin-top: 1em; }
+.slide-media img { max-width: 100%; height: auto; border-radius: 4px; }
+/* Mobile default: square aspect for artifacts in split panels */
+.artifact-iframe {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  aspect-ratio: 1;
+  border: 0;
+  display: block;
+}
+
+/* Full-layout artifacts fill available slide space on mobile */
+.layout-full .slide-media-artifact .artifact-iframe {
+  aspect-ratio: auto;
+  height: 100%;
+}
+
+.slide-media-artifact {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+}
+.csv-table { font-family: var(--font-mono, jetbrains-mono), monospace; font-size: 0.85em; }
+
+.inline-media { margin: 1em 0; }
+.inline-media.align-center { text-align: center; }
+.inline-media.align-left { text-align: left; }
+.inline-media.align-right { text-align: right; }
+.inline-media img { max-width: 100%; height: auto; }
+
+/* === Reveal system === */
+[data-stagger] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: ease-in-out;
+}
+
+.slide[data-reveal-type="fade"] [data-stagger] {
+  transform: none;
+}
+
+.slide[data-reveal-type="slide"] [data-stagger] {
+  transform: translateX(2%);
+}
+
+.slide[data-reveal-type="rise"] [data-stagger] {
+  transform: translateY(12px);
+}
+
+.slide [data-stagger].visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-stagger] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* === Effects === */
+[data-effect~="shimmer"] {
+  background: linear-gradient(
+    90deg,
+    currentColor 0%,
+    currentColor 35%,
+    var(--effect-shimmer-stripe, currentColor) 50%,
+    currentColor 65%,
+    currentColor 100%
+  );
+  background-size: 400% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 0.15em;
+  animation-name: shimmer-sweep;
+  animation-duration: var(--effect-shimmer-duration, 5s);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-iteration-count: var(--effect-shimmer-iterations, 1);
+  animation-fill-mode: var(--effect-shimmer-fill, forwards);
+}
+
+@keyframes shimmer-sweep {
+  from { background-position: 100% 0; }
+  to   { background-position: 0% 0; }
+}
+
+[data-effect~="glow"] { position: relative; }
+
+[data-effect~="glow"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--effect-glow-radius, 120px);
+  height: var(--effect-glow-radius, 120px);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--effect-glow-color, var(--color-label-resolved, #06b6d4)), transparent 70%);
+  opacity: var(--effect-glow-opacity, 0.3);
+  border-radius: 50%;
+  z-index: -1;
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: var(--effect-glow-opacity, 0.3); transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: calc(var(--effect-glow-opacity, 0.3) * 0.6); transform: translate(-50%, -50%) scale(1.1); }
+}
+
+[data-effect~="underline"] {
+  position: relative;
+  padding-bottom: 16px;
+}
+
+[data-effect~="underline"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: var(--effect-underline-width, 60px);
+  height: var(--effect-underline-height, 3px);
+  background: linear-gradient(
+    90deg,
+    var(--effect-underline-color-0, var(--color-label-resolved, #E91E90)),
+    var(--effect-underline-color-1, var(--palette-muted, #999))
+  );
+  border-radius: 2px;
+}
+
+.slide[data-effect~="stripe"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--effect-stripe-height, 0);
+  background: linear-gradient(
+    90deg,
+    var(--effect-stripe-color-0, transparent),
+    var(--effect-stripe-color-1, transparent)
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-effect~="shimmer"] {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: currentColor;
+  }
+  [data-effect~="glow"]::before { animation: none; }
+}
+
+/* === Slide counter === */
+.slide-counter {
+  position: fixed;
+  bottom: 1rem;
+  right: 1.5rem;
+  font-size: 0.75rem;
+  opacity: 0.4;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* === Hamburger === */
+.hamburger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 80;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: #999;
+  transition: color 0.2s;
+}
+
+.hamburger:hover { color: #333; }
+
+.hamburger svg {
+  width: 22px;
+  height: 16px;
+  display: block;
+}
+
+/* === Fullscreen toggle === */
+.fullscreen-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 80;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: #999;
+  transition: color 0.2s;
+}
+
+.fullscreen-toggle:hover { color: #333; }
+
+.fullscreen-toggle svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* === Sidebar === */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  max-width: 80vw;
+  background: var(--color-bg-resolved, #ffffff);
+  color: var(--color-text-resolved, #0f0f13);
+  box-shadow: 2px 0 12px rgba(0,0,0,0.15);
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.sidebar.open { transform: translateX(0); }
+
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.sidebar-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar-search {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  outline: none;
+  font-family: inherit;
+}
+
+.sidebar-search:focus { border-color: var(--palette-accent, #0066cc); }
+
+.sidebar-list {
+  list-style: none;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar-list li {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.sidebar-list li:hover,
+.sidebar-list li.active { background: rgba(0,0,0,0.06); }
+
+.sidebar-list li.current { font-weight: 600; }
+
+.sidebar-list .slide-num {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  min-width: 1.5em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* === Desktop breakpoint === */
+@media (min-width: 768px) {
+  .slide { padding: var(--slide-padding, 4rem 6rem); }
+
+  .panel {
+    flex: 1;
+    padding: var(--slide-padding, 4rem 6rem);
+    overflow-y: auto;
+  }
+  .grid-cell { padding: var(--space-md, 2rem); }
+
+  .slide.slide-split { overflow: hidden; }
+  .slide.slide-split-stack { overflow: hidden; }
+
+  .layout-split {
+    display: grid;
+    grid-template-columns: var(--split-left, 1fr) var(--split-right, 1fr);
+    grid-template-rows: 1fr;
+    height: 100%;
+    position: relative;
+  }
+
+  .layout-split.has-header {
+    grid-template-rows: auto 1fr;
+  }
+
+  .layout-split.has-header > .split-header {
+    grid-column: 1 / -1;
+    padding: var(--slide-padding, 4rem 6rem);
+    padding-bottom: 0;
+  }
+
+  .layout-split.has-header > .panel-left { grid-row: 2; grid-column: 1; }
+  .layout-split.has-header > .panel-right { grid-row: 2; grid-column: 2; }
+
+  /* --- split-stack desktop --- */
+  .layout-split-stack {
+    display: grid;
+    grid-template-columns: var(--split-left, 1fr) var(--split-right, 1fr);
+    grid-template-rows: 1fr;
+    height: 100%;
+    position: relative;
+  }
+
+  .layout-split-stack.has-header {
+    grid-template-rows: auto 1fr;
+  }
+
+  .layout-split-stack.has-header > .split-stack-header {
+    grid-column: 1 / -1;
+    padding: var(--slide-padding, 4rem 6rem);
+    padding-bottom: 0;
+  }
+
+  .layout-split-stack.has-header > .panel-left { grid-row: 2; grid-column: 1; }
+  .layout-split-stack.has-header > .panel-right { grid-row: 2; grid-column: 2; }
+
+  .layout-split-stack > .panel-left { grid-column: 1; }
+  .layout-split-stack > .panel-right { grid-column: 2; }
+
+  .layout-split-stack > .panel {
+    padding: var(--slide-padding, 4rem 6rem);
+    overflow-y: auto;
+  }
+
+  .layout-split-stack > .panel.panel-stacked {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(var(--stack-count, 2), 1fr);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .panel-stacked .stacked-panel {
+    padding: var(--space-md, 2rem) var(--space-lg, 4rem);
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .panel-stacked .stacked-panel.scrollable { overflow-y: auto; }
+
+  /* --- Divider desktop positioning --- */
+  .divider-v {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  .divider-h {
+    flex-shrink: 0;
+  }
+
+  .artifact-iframe {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .slide-media-artifact {
+    height: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .layout-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns, 3), 1fr);
+  }
+
+  .grid-cell .heading {
+    font-size: calc(var(--font-base, 1rem) * 1.15);
+  }
+
+  .grid-cell .body {
+    font-size: calc(var(--font-base, 1rem) * 0.9);
+  }
+}
+
+/* === Tablet override — tighter padding, no artifact clipping === */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .slide { padding: var(--slide-padding, 3rem); }
+  .panel { padding: var(--slide-padding, 3rem); }
+  .layout-split.has-header > .split-header { padding: 3rem; padding-bottom: 0; }
+  .artifact-iframe { width: 100%; height: 100%; }
+  .layout-split-stack.has-header > .split-stack-header { padding: 3rem; padding-bottom: 0; }
+  .layout-split-stack > .panel { padding: 3rem; }
+  .panel-stacked .stacked-panel { padding: var(--space-sm, 1rem) var(--space-md, 2rem); }
+}

@@ -1,0 +1,7 @@
+@font-face { font-family: fraunces; src: url('./fraunces/Fraunces-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: inter; src: url('./inter/Inter-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: jetbrains-mono; src: url('./jetbrains-mono/JetBrainsMono-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: lato; src: url('./lato/Lato-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: lato; src: url('./lato/Lato-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: montserrat; src: url('./montserrat/Montserrat-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: raleway; src: url('./raleway/Raleway-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }

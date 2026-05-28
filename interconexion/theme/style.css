@@ -1,0 +1,301 @@
+/* Pitch theme — 006 treatment, scoped to [data-theme="pitch"] */
+
+/* === Typography (006 values) ===
+   Text colors use `inherit` or `color-mix` with currentColor so elements
+   adapt automatically when a slide sets color: light on a dark background.
+   Accent colors (teal, coral) and border decorations stay fixed. */
+
+[data-theme="pitch"] .heading {
+  font-family: var(--font-heading, montserrat), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: calc(var(--font-base, 1rem) * 3.5);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  color: inherit;
+}
+
+[data-theme="pitch"] .subheading {
+  font-family: var(--font-heading, montserrat), system-ui, sans-serif;
+  font-size: calc(var(--font-base, 1rem) * 1.5);
+  font-weight: 400;
+  max-width: 800px;
+  margin-bottom: 2rem;
+  color: color-mix(in srgb, currentColor 65%, transparent);
+}
+
+[data-theme="pitch"] .label {
+  font-family: var(--font-heading, montserrat), system-ui, sans-serif;
+  font-size: var(--font-base, 1rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-label-resolved, var(--palette-accent, #06b6d4));
+  margin-bottom: 1.5rem;
+}
+
+[data-theme="pitch"] .body {
+  font-family: var(--font-body, montserrat), system-ui, sans-serif;
+  font-size: calc(var(--font-base, 1rem) * 1.125);
+  line-height: var(--leading-body, 1.8);
+  color: color-mix(in srgb, currentColor 75%, transparent);
+  max-width: 700px;
+  margin-bottom: 2rem;
+}
+
+[data-theme="pitch"] .body p { margin-bottom: 1rem; }
+[data-theme="pitch"] .body p:last-child { margin-bottom: 0; }
+[data-theme="pitch"] .body strong { font-weight: 700; color: inherit; }
+
+[data-theme="pitch"] .body code {
+  font-family: var(--font-mono, jetbrains-mono), monospace;
+  font-size: 0.9em;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+}
+
+[data-theme="pitch"] .quote {
+  font-family: var(--font-heading, montserrat), system-ui, sans-serif;
+  font-style: italic;
+  font-size: calc(var(--font-base, 1rem) * 1.25);
+  border-left: 3px solid var(--palette-accent, #06b6d4);
+  padding-left: 1em;
+  margin: 1.5em 0;
+  color: color-mix(in srgb, currentColor 85%, transparent);
+}
+
+[data-theme="pitch"] .attribution {
+  font-size: 0.875rem;
+  color: color-mix(in srgb, currentColor 50%, transparent);
+}
+
+[data-theme="pitch"] .caption {
+  font-size: 0.875rem;
+  color: color-mix(in srgb, currentColor 60%, transparent);
+  margin-top: 0.5em;
+}
+
+/* === Tables === */
+[data-theme="pitch"] .body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+  margin: 1.5em 0;
+}
+
+[data-theme="pitch"] .body th {
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75em 1em;
+  border-bottom: 2px solid var(--palette-accent, #06b6d4);
+  color: inherit;
+}
+
+[data-theme="pitch"] .body td {
+  padding: 0.6em 1em;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+  color: color-mix(in srgb, currentColor 85%, transparent);
+}
+
+[data-theme="pitch"] .body tr:last-child td {
+  border-bottom: none;
+}
+
+/* === Blockquotes === */
+[data-theme="pitch"] .body blockquote {
+  font-style: italic;
+  font-size: calc(var(--font-base, 1rem) * 1.125);
+  border-left: 3px solid var(--palette-accent, #06b6d4);
+  padding-left: 1.25em;
+  margin: 1.5em 0;
+  color: color-mix(in srgb, currentColor 80%, transparent);
+}
+
+/* === Lists (006 bullet style) === */
+[data-theme="pitch"] .body ul {
+  list-style: none;
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+[data-theme="pitch"] .body ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+[data-theme="pitch"] .body ul li {
+  position: relative;
+  padding-left: 0;
+  font-size: calc(var(--font-base, 1rem) * 1.125);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+[data-theme="pitch"] .body ul li::before {
+  content: '';
+  position: absolute;
+  left: -1.25rem;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--palette-accent, #06b6d4);
+}
+
+/* === Element sizes — statement wrapper (size on parent) + per-element === */
+
+[data-theme="pitch"] .size-lg .heading,
+[data-theme="pitch"] .heading.size-lg { font-size: calc(var(--font-base, 1rem) * var(--scale-lg, 1.25) * 2); }
+
+[data-theme="pitch"] .size-xl .heading,
+[data-theme="pitch"] .heading.size-xl { font-size: calc(var(--font-base, 1rem) * var(--scale-xl, 1.5) * 2); }
+
+[data-theme="pitch"] .size-xxl .heading,
+[data-theme="pitch"] .heading.size-xxl { font-size: calc(var(--font-base, 1rem) * var(--scale-xxl, 2) * 1.75); }
+
+[data-theme="pitch"] .size-display .heading,
+[data-theme="pitch"] .heading.size-display {
+  font-size: calc(var(--font-base, 1rem) * var(--scale-display, 3.5) * 1.15);
+  max-width: 1000px;
+  letter-spacing: -0.035em;
+}
+
+[data-theme="pitch"] .body.size-lg { font-size: calc(var(--font-base, 1rem) * var(--scale-lg, 1.25)); }
+[data-theme="pitch"] .body.size-xl { font-size: calc(var(--font-base, 1rem) * var(--scale-xl, 1.5)); }
+[data-theme="pitch"] .body.size-xxl { font-size: calc(var(--font-base, 1rem) * var(--scale-xxl, 2)); }
+[data-theme="pitch"] .body.size-display { font-size: calc(var(--font-base, 1rem) * var(--scale-display, 3.5) * 0.65); }
+
+/* === Cover layout === */
+[data-theme="pitch"] .layout-cover .heading {
+  font-size: calc(var(--font-base, 1rem) * 3.5 * 1.1);
+  margin-bottom: 0.5rem;
+}
+
+[data-theme="pitch"] .layout-cover .subheading {
+  font-size: calc(var(--font-base, 1rem) * 1.5);
+  font-weight: 400;
+  color: color-mix(in srgb, currentColor 65%, transparent);
+  margin-bottom: 0;
+}
+
+[data-theme="pitch"] .cover-meta {
+  display: flex;
+  gap: 24px;
+  font-size: 0.875rem;
+  color: color-mix(in srgb, currentColor 50%, transparent);
+  font-weight: 400;
+  margin-top: 1.5rem;
+}
+
+[data-theme="pitch"] .layout-cover .slide-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
+[data-theme="pitch"] .layout-cover .slide-media img {
+  max-height: inherit;
+  width: auto;
+}
+
+/* === Mobile === */
+@media (max-width: 600px) {
+  [data-theme="pitch"] .heading { font-size: calc(var(--font-base, 1rem) * 2); }
+  [data-theme="pitch"] .subheading { font-size: calc(var(--font-base, 1rem) * 1.125); }
+  [data-theme="pitch"] .body { font-size: var(--font-base, 1rem); line-height: var(--leading-body, 1.7); }
+  [data-theme="pitch"] .size-lg .heading,
+  [data-theme="pitch"] .heading.size-lg { font-size: calc(var(--font-base, 1rem) * 1.75); }
+  [data-theme="pitch"] .size-xl .heading,
+  [data-theme="pitch"] .heading.size-xl { font-size: calc(var(--font-base, 1rem) * 2); }
+  [data-theme="pitch"] .size-xxl .heading,
+  [data-theme="pitch"] .heading.size-xxl { font-size: calc(var(--font-base, 1rem) * 2.25); }
+  [data-theme="pitch"] .size-display .heading,
+  [data-theme="pitch"] .heading.size-display { font-size: calc(var(--font-base, 1rem) * 2.5); }
+  [data-theme="pitch"] .layout-cover .heading { font-size: calc(var(--font-base, 1rem) * 2.25); }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  [data-theme="pitch"] .heading { font-size: calc(var(--font-base, 1rem) * 2.5); }
+  [data-theme="pitch"] .size-display .heading,
+  [data-theme="pitch"] .heading.size-display { font-size: calc(var(--font-base, 1rem) * 2.75); }
+  [data-theme="pitch"] .layout-cover .heading { font-size: calc(var(--font-base, 1rem) * 3); }
+}
+
+/* === Desktop === */
+@media (min-width: 901px) {
+  [data-theme="pitch"] .heading { font-size: calc(var(--font-base, 1rem) * 3.5); }
+  [data-theme="pitch"] .subheading { font-size: calc(var(--font-base, 1rem) * 1.5); }
+  [data-theme="pitch"] .grid-cell .heading { font-size: calc(var(--font-base, 1rem) * 1.6); margin-bottom: 0.35em; }
+  [data-theme="pitch"] .grid-cell .body { font-size: calc(var(--font-base, 1rem) * 0.95); }
+  [data-theme="pitch"] .grid-cell .label { margin-bottom: 0.25em; }
+}
+
+/* === Divider rhythm — inset to match the theme's spacing === */
+[data-theme="pitch"] .panel .divider-v {
+  top: 2rem;
+  bottom: 2rem;
+}
+
+/* === article-image — edge-to-edge image with source + caption meta row === */
+[data-theme="pitch"] .layout-full > .slide-media {
+  margin: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+[data-theme="pitch"] .layout-full > .slide-media img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+[data-theme="pitch"] .layout-full > .label {
+  order: 2;
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  color: color-mix(in srgb, currentColor 55%, transparent);
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+}
+
+[data-theme="pitch"] .layout-full > .slide-media figcaption {
+  font-size: 0.875rem;
+  color: color-mix(in srgb, currentColor 70%, transparent);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* === manifesto — scrolling full layout with h3 section titles === */
+[data-theme="pitch"] .layout-full.scrollable .body h3 {
+  font-family: var(--font-heading, montserrat), system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--palette-accent);
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="pitch"] .layout-full.scrollable .body h3:first-child {
+  margin-top: 0;
+}
+
+[data-theme="pitch"] .layout-full.scrollable .body p {
+  margin-bottom: 1rem;
+}
