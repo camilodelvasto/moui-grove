@@ -1,9 +1,9 @@
 // app.js — boot, navigation, sidebar, SSE live reload
 
-import { renderSlide } from './renderer.js?v=1779983570';
-import { applyCSSVariables } from './theme.js?v=1779983570';
-import { mountWhiteboard, unmountWhiteboard, setWhiteboardSlide } from './whiteboard.js?v=1779983570';
-import { parseHash, buildHash } from './hash-params.js?v=1779983570';
+import { renderSlide } from './renderer.js?v=1779983983';
+import { applyCSSVariables } from './theme.js?v=1779983983';
+import { mountWhiteboard, unmountWhiteboard, setWhiteboardSlide } from './whiteboard.js?v=1779983983';
+import { parseHash, buildHash } from './hash-params.js?v=1779983983';
 
 function base64urlDecode(str) {
   let b64 = str.replace(/-/g, '+').replace(/_/g, '/');
@@ -52,8 +52,8 @@ async function loadData() {
 // Decryption
 // ---------------------------------------------------------------------------
 
-import { decryptContent } from './decrypt-runtime.js?v=1779983570';
-import { resolveEncryptedMedia } from './asset-decrypt.js?v=1779983570';
+import { decryptContent } from './decrypt-runtime.js?v=1779983983';
+import { resolveEncryptedMedia } from './asset-decrypt.js?v=1779983983';
 
 function promptAndDecrypt(envelope, title) {
   return new Promise((resolve) => {
@@ -634,7 +634,7 @@ async function boot() {
         }
       } else {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js?v=1779983570');
+          navigator.serviceWorker.register('./sw.js?v=1779983983');
         });
       }
     }

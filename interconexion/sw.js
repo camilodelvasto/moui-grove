@@ -9,7 +9,7 @@
  * this file runs.
  */
 
-const BUILD_VERSION = '8b1589d6e1dc';
+const BUILD_VERSION = 'f6ec274e3768';
 const LOCAL_FIRST = false;
 const CACHE_NAME = `deck-static-${BUILD_VERSION}`;
 const CACHE_META = 'deck-meta';

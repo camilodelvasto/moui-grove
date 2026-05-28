@@ -1,8 +1,8 @@
 // layouts.js — five layout render functions for the moui deck renderer
 // Each function takes (slide, themeData) and returns a DocumentFragment.
 
-import { resolveColor, resolveBackground, resolvePadding, extractThemeParts, serializeThemeVars, resolveEffects, resolveToken, resolveDividerCSS } from './theme.js?v=1779983570';
-import { renderMarkdown } from './markdown.js?v=1779983570';
+import { resolveColor, resolveBackground, resolvePadding, extractThemeParts, serializeThemeVars, resolveEffects, resolveToken, resolveDividerCSS } from './theme.js?v=1779983983';
+import { renderMarkdown } from './markdown.js?v=1779983983';
 
 // ---------------------------------------------------------------------------
 // DOM primitives
