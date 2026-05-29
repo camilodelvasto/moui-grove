@@ -14,6 +14,13 @@
     "publish_date": "2026-05-03"
   },
   {
+    "title": "Reimagining Sheets",
+    "url_path": "/reimagining-sheets/",
+    "content_path": "reimagining-sheets",
+    "excerpt": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
+    "publish_date": "2026-05-28"
+  },
+  {
     "title": "I too, was fingerprinting everyone",
     "url_path": "/privacy/fingerprinting-analogy-supermarket/",
     "content_path": "privacy/fingerprinting-analogy-supermarket",

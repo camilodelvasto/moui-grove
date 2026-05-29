@@ -9,7 +9,7 @@
  * this file runs.
  */
 
-const BUILD_VERSION = 'b33b88fcc189';
+const BUILD_VERSION = '311c3e6bf416';
 const CACHE_STATIC = `grove-static-${BUILD_VERSION}`;
 const CACHE_PAGES = `grove-pages-${BUILD_VERSION}`;
 const CACHE_BLOBS = `grove-blobs-${BUILD_VERSION}`;
@@ -32,7 +32,7 @@ const STATIC_ASSETS = [
 ];
 
 // Pages enumerable at build time — network-first, serve cached if offline.
-const OWNED_PAGES = ["/", "/architecture/data-isolation/", "/archive/", "/cloud-act/", "/contracts-not-code/", "/insights/coding-out-of-first-principles/", "/insights/personal-computing-love-the-machine/", "/manifesto/", "/on-joy/", "/privacy/fingerprinting-analogy-supermarket/", "/school/why-you-need-to-learn-to-code/", "/welcome/"];
+const OWNED_PAGES = ["/", "/architecture/data-isolation/", "/archive/", "/cloud-act/", "/contracts-not-code/", "/insights/coding-out-of-first-principles/", "/insights/personal-computing-love-the-machine/", "/manifesto/", "/on-joy/", "/privacy/fingerprinting-analogy-supermarket/", "/reimagining-sheets/", "/school/why-you-need-to-learn-to-code/", "/welcome/"];
 
 // SPA entry points with client-side routing — grove is multi-page, not SPA.
 const OWNED_SPA_ROOTS = [];
@@ -45,7 +45,7 @@ const OWNED_ASSETS = ["/assets/Piwik_screenshot_german.png", "/assets/Piwik_scre
 
 // Sibling shape paths on the same domain — never intercept these.
 // Build-injected from infrastructure/targets/ scan.
-const SIBLING_PATHS = ["/karaoke/", "/pitch/", "/staging/", "/sx/"];
+const SIBLING_PATHS = ["/interconexion/", "/karaoke/", "/pitch/", "/staging/", "/sx/"];
 
 // --- Computed sets for O(1) lookup in fetch handler ---
 const _STATIC_SET = new Set(STATIC_ASSETS);

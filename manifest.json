@@ -1,6 +1,6 @@
 {
-  "version": "b33b88fcc189",
-  "build_date": "2026-05-27T05:33:47Z",
+  "version": "311c3e6bf416",
+  "build_date": "2026-05-29T20:48:16Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -41,6 +41,25 @@
         "title": "Manifesto",
         "description": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
         "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/reimagining-sheets/",
+      "blob": "26f20f0dd0094849.bin",
+      "hash": "26f20f0dd0094849",
+      "priority": 1,
+      "type": "post",
+      "title": "Reimagining Sheets",
+      "excerpt": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
+      "date": "2026-05-28",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Reimagining Sheets",
+        "description": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
+        "image": "assets/screenshot-tui-suchprotokoll.png"
       },
       "layout": "article",
       "theme": ""
@@ -87,7 +106,7 @@
       "route": "/insights/coding-out-of-first-principles/",
       "blob": "efe89e1af28dea16.bin",
       "hash": "efe89e1af28dea16",
-      "priority": 1,
+      "priority": 2,
       "type": "post",
       "title": "Building Out Of First Principles",
       "excerpt": "How first principles can shape a new wave of creations",
@@ -214,8 +233,8 @@
     },
     {
       "route": "/",
-      "blob": "f0d048f6cc25ed21.bin",
-      "hash": "f0d048f6cc25ed21",
+      "blob": "151be3cfbf2fc24e.bin",
+      "hash": "151be3cfbf2fc24e",
       "priority": 0,
       "type": "index",
       "title": "Moui Grove",
@@ -224,8 +243,8 @@
     },
     {
       "route": "/archive/",
-      "blob": "912ba7100d2f0978.bin",
-      "hash": "912ba7100d2f0978",
+      "blob": "9631a2dfbff49f23.bin",
+      "hash": "9631a2dfbff49f23",
       "priority": 0,
       "type": "archive",
       "title": "Archive — Moui Grove",

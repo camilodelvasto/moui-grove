@@ -21,6 +21,13 @@
       "date_published": "2026-05-03"
     },
     {
+      "id": "reimagining-sheets",
+      "title": "Reimagining Sheets",
+      "url": "https://www.moui.io/reimagining-sheets/",
+      "summary": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
+      "date_published": "2026-05-28"
+    },
+    {
       "id": "privacy/fingerprinting-analogy-supermarket",
       "title": "I too, was fingerprinting everyone",
       "url": "https://www.moui.io/privacy/fingerprinting-analogy-supermarket/",
