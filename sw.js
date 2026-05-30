@@ -9,7 +9,7 @@
  * this file runs.
  */
 
-const BUILD_VERSION = '028f25a78c1d';
+const BUILD_VERSION = 'c9878325e115';
 const CACHE_STATIC = `grove-static-${BUILD_VERSION}`;
 const CACHE_PAGES = `grove-pages-${BUILD_VERSION}`;
 const CACHE_BLOBS = `grove-blobs-${BUILD_VERSION}`;
