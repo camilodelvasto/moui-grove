@@ -6,7 +6,7 @@
         </div>
     </header>
     <div class="post-body">
-        <p>Two weeks ago, as I sat down to start my daily search for an apartment in Berlin (which still feels like a major challenge), I felt the need for a system to track all the applications. <strong>My go-to for the past decade was to use Google Sheets</strong>, so I started creating the file and the columns, and entered manually the features of each property. Naturally, only one row in I realized that this was the type of task that an LLM could do so much better, because it's pretty tedious to go to the exposé and manually copy the features of each property into the sheet.</p>
+        <p>Two weeks ago, as I sat down to start my daily search for an apartment in Berlin (which still feels like a major challenge), I felt the need for a system to track all the applications. <strong>My go-to for the past decade was to use Google Sheets</strong>, so I started creating the file and the columns, with the goal of manually entering the features of each property. Naturally, only one row in I realized that this was the type of task that an LLM could do so much better, because it's pretty tedious to go to the exposé and manually copy the features of each property into the sheet.</p>
 <figure>
   <picture>
     <source type="image/webp" srcset="/assets/suchprotokoll-screehnshot-google-spreadsheets-480w.webp 480w, /assets/suchprotokoll-screehnshot-google-spreadsheets-960w.webp 960w, /assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
@@ -108,13 +108,16 @@
 <h2>Tradeoffs</h2>
 <p>This system requires comfort with the command line. It's not a hosted product you sign into. You run the server, you own the data. That's a responsibility, but it's also the point.</p>
 <p>Local LLMs struggle with translation — we had to use Claude for certain tasks where accuracy mattered. Scraping is ethically and technically messy, so we avoid it: we solve captchas ourselves when needed and paste URLs manually.</p>
-<p>The biggest gap right now is <strong>device portability</strong>. I can't render this on my phone, so I write notes and dump them later. Git gives me replication across any machine that has it, but the phone is out of bounds for the moment. A future iteration will need a sync layer — being fully decentralized has real limits when half your life happens on a device that can't run a local server.</p>
-<h2>Where we're headded</h2>
-<p>We don't need a platform to build a personal tool that's better than what platforms offer. A schema, a pipeline, a renderer, and a few hundred lines of config gave me something more robust than Google Sheets, although more rough... more private than Notion, if not that easy to configure. And, it gave something truly more controllable than any automation stack. It runs on my machine, and it just works.</p>
+<p>The biggest gap right now is <strong>device portability</strong>. I can't render this on my phone, so I write notes and dump them later. Git gives me replication across any machine that has it, but the phone is out of bounds for the moment. A future iteration will need a sync layer — being fully decentralized has real limits when half your life happens on a device that can't run a local server easily.</p>
+<h2>The future is here (almost).</h2>
+<p>So where are we headed? I believe this is the future of personal computing. It's really personal: some declarations that are easy to understand, some prompts, and we have a working flow that works without any costly subscription, or without giving away our data. It's also built on principles that make it non ephemeral: we can swap the LLM once local models are on par with frontier ones for the current task, and we can continue evolving the renderer and the pipeline engine to satisfy our needss if we are a bit more technical.</p>
+<blockquote>
+<p>In the end, it's like we are finally realizing that <em>our personal computers can be used for computing!</em></p>
+</blockquote>
 <p>This prototype is part of <a href="https://codeberg.org/nicemouse/moui">moui</a>, a broader project exploring what personal computing looks like when data, interfaces, and infrastructure are separate layers you can swap independently. Sheets is one of four <em>shapes</em> in the workspace — the others handle presentations, blog posts, and websites, all from the same CLI, the same principles.</p>
 <hr />
 <p>The code <em>will be</em> published under AGPL-3.0 at some point. Hopefully the next month.</p>
 
     </div>
 </article>
-    <script type="application/json" id="toc-data">[{"id": "what-s-out-there", "text": "What's out there", "level": 2}, {"id": "a-declarative-file-based-ai-ready-spreadsheet", "text": "A declarative, file-based, AI-ready spreadsheet", "level": 2}, {"id": "how-it-works", "text": "How it works", "level": 2}, {"id": "what-makes-this-different", "text": "What makes this different", "level": 2}, {"id": "tradeoffs", "text": "Tradeoffs", "level": 2}, {"id": "where-we-re-headded", "text": "Where we're headded", "level": 2}]</script>
+    <script type="application/json" id="toc-data">[{"id": "what-s-out-there", "text": "What's out there", "level": 2}, {"id": "a-declarative-file-based-ai-ready-spreadsheet", "text": "A declarative, file-based, AI-ready spreadsheet", "level": 2}, {"id": "how-it-works", "text": "How it works", "level": 2}, {"id": "what-makes-this-different", "text": "What makes this different", "level": 2}, {"id": "tradeoffs", "text": "Tradeoffs", "level": 2}, {"id": "the-future-is-here-almost", "text": "The future is here (almost).", "level": 2}]</script>
