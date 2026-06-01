@@ -1,15 +1,5 @@
 <div class="feed-grid">
-        <article class="card" data-stagger style="--stagger-index: 0">
-    <img class="card-thumbnail" src="/assets/QWOP_screenshot.jpg" alt="" loading="lazy">
-    <div class="card-body">
-        <a href="/insights/personal-computing-love-the-machine/" class="card-link">
-            <time datetime="2026-05-04">04.05.2026</time>
-            <h2 class="card-title">Local-First, or: How I Learned to Stop Browsing and Love the Machine</h2>
-            <p class="card-excerpt">Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?</p>
-        </a>
-    </div>
-</article>
-        <article class="card" data-stagger style="--stagger-index: 1; --color-card-bg-resolved: linear-gradient(135deg, #ff1055,rgb(139, 13, 242)); --color-text-resolved: #ffffff; --color-text-secondary-resolved: #ffffff; --color-accent-resolved: #ffffff">
+        <article class="card" data-stagger style="--stagger-index: 0; --color-card-bg-resolved: linear-gradient(135deg, #ff1055,rgb(139, 13, 242)); --color-text-resolved: #ffffff; --color-text-secondary-resolved: #ffffff; --color-accent-resolved: #ffffff">
     <div class="card-body">
         <a href="/manifesto/" class="card-link">
             <time datetime="2026-05-03">03.05.2026</time>
@@ -18,7 +8,7 @@
         </a>
     </div>
 </article>
-        <article class="card" data-stagger style="--stagger-index: 2">
+        <article class="card" data-stagger style="--stagger-index: 1">
     <img class="card-thumbnail" src="/assets/screenshot-tui-suchprotokoll.png" alt="" loading="lazy">
     <div class="card-body">
         <a href="/reimagining-sheets/" class="card-link">
@@ -28,13 +18,23 @@
         </a>
     </div>
 </article>
-        <article class="card" data-stagger style="--stagger-index: 3">
+        <article class="card" data-stagger style="--stagger-index: 2">
     <img class="card-thumbnail" src="/assets/Piwik_screenshot_german.png" alt="" loading="lazy">
     <div class="card-body">
         <a href="/privacy/fingerprinting-analogy-supermarket/" class="card-link">
             <time datetime="2026-05-19">19.05.2026</time>
             <h2 class="card-title">I too, was fingerprinting everyone</h2>
             <p class="card-excerpt">There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?</p>
+        </a>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 3">
+    <img class="card-thumbnail" src="/assets/QWOP_screenshot.jpg" alt="" loading="lazy">
+    <div class="card-body">
+        <a href="/insights/personal-computing-love-the-machine/" class="card-link">
+            <time datetime="2026-05-04">04.05.2026</time>
+            <h2 class="card-title">Local-First, or: How I Learned to Stop Browsing and Love the Machine</h2>
+            <p class="card-excerpt">Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?</p>
         </a>
     </div>
 </article>

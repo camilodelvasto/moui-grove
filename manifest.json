@@ -1,31 +1,12 @@
 {
-  "version": "c702e5aff108",
-  "build_date": "2026-06-01T07:28:37Z",
+  "version": "cb7530072756",
+  "build_date": "2026-06-01T07:29:44Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
     "priority_count": 5
   },
   "entries": [
-    {
-      "route": "/insights/personal-computing-love-the-machine/",
-      "blob": "68f757ec26354461.bin",
-      "hash": "68f757ec26354461",
-      "priority": 1,
-      "type": "post",
-      "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
-      "excerpt": "Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?",
-      "date": "2026-05-04",
-      "section": "",
-      "tags": [],
-      "og": {
-        "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
-        "description": "Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?",
-        "image": "assets/QWOP_screenshot.jpg"
-      },
-      "layout": "article",
-      "theme": ""
-    },
     {
       "route": "/manifesto/",
       "blob": "923bad4eb385ffba.bin",
@@ -79,6 +60,25 @@
         "title": "I too, was fingerprinting everyone",
         "description": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
         "image": "assets/Piwik_screenshot_german.png"
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/insights/personal-computing-love-the-machine/",
+      "blob": "68f757ec26354461.bin",
+      "hash": "68f757ec26354461",
+      "priority": 1,
+      "type": "post",
+      "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
+      "excerpt": "Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?",
+      "date": "2026-05-04",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
+        "description": "Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?",
+        "image": "assets/QWOP_screenshot.jpg"
       },
       "layout": "article",
       "theme": ""
@@ -233,8 +233,8 @@
     },
     {
       "route": "/",
-      "blob": "151be3cfbf2fc24e.bin",
-      "hash": "151be3cfbf2fc24e",
+      "blob": "8a20520dfb5a9b71.bin",
+      "hash": "8a20520dfb5a9b71",
       "priority": 0,
       "type": "index",
       "title": "Moui Grove",
@@ -243,22 +243,12 @@
     },
     {
       "route": "/archive/",
-      "blob": "9631a2dfbff49f23.bin",
-      "hash": "9631a2dfbff49f23",
+      "blob": "10e31116a7b4b9a2.bin",
+      "hash": "10e31116a7b4b9a2",
       "priority": 0,
       "type": "archive",
       "title": "Archive — Moui Grove",
       "layout": "archive",
-      "theme": ""
-    },
-    {
-      "route": "/insights/",
-      "blob": "01043caf732cf472.bin",
-      "hash": "01043caf732cf472",
-      "priority": 1,
-      "type": "section_index",
-      "title": "Insights",
-      "layout": "index",
       "theme": ""
     },
     {
@@ -268,6 +258,16 @@
       "priority": 1,
       "type": "section_index",
       "title": "Privacy",
+      "layout": "index",
+      "theme": ""
+    },
+    {
+      "route": "/insights/",
+      "blob": "01043caf732cf472.bin",
+      "hash": "01043caf732cf472",
+      "priority": 1,
+      "type": "section_index",
+      "title": "Insights",
       "layout": "index",
       "theme": ""
     },

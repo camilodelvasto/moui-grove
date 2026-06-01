@@ -7,13 +7,6 @@
   "language": "en",
   "items": [
     {
-      "id": "insights/personal-computing-love-the-machine",
-      "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
-      "url": "https://www.moui.io/insights/personal-computing-love-the-machine/",
-      "summary": "Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?",
-      "date_published": "2026-05-04"
-    },
-    {
       "id": "manifesto",
       "title": "Manifesto",
       "url": "https://www.moui.io/manifesto/",
@@ -33,6 +26,13 @@
       "url": "https://www.moui.io/privacy/fingerprinting-analogy-supermarket/",
       "summary": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
       "date_published": "2026-05-19"
+    },
+    {
+      "id": "insights/personal-computing-love-the-machine",
+      "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
+      "url": "https://www.moui.io/insights/personal-computing-love-the-machine/",
+      "summary": "Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?",
+      "date_published": "2026-05-04"
     },
     {
       "id": "school/why-you-need-to-learn-to-code",
