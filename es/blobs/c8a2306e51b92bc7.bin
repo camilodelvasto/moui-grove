@@ -1,0 +1,24 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Bienvenido a Grove</h1>
+            <time datetime="2026-04-14">14.04.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>Grove toma tus posts hoja y los ensambla en un sitio. La estructura viene de tu jerarquía de carpetas. Las colecciones te permiten curar secuencias. El pipeline de build genera HTML estático que funciona sin JavaScript.</p>
+<h2>Lo que obtienes</h2>
+<ul>
+<li>URLs reales derivadas de tu árbol de contenido</li>
+<li>Feeds RSS (XML y JSON)</li>
+<li>Etiquetas Open Graph en cada página</li>
+<li>Búsqueda del lado del cliente respaldada por IndexedDB</li>
+<li>Modo oscuro sin flash</li>
+<li>Soporte offline vía service worker</li>
+</ul>
+<h2>Próximos pasos</h2>
+<p>Escribe un post, haz build, y míralo renderizado.</p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "lo-que-obtienes", "text": "Lo que obtienes", "level": 2}, {"id": "pr-ximos-pasos", "text": "Pr\u00f3ximos pasos", "level": 2}]</script>

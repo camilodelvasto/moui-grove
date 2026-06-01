@@ -1,0 +1,21 @@
+<div class="feed-grid">
+        <article class="card" data-stagger style="--stagger-index: 0">
+    <img class="card-thumbnail" src="/es/assets/QWOP_screenshot.jpg" alt="" loading="lazy">
+    <div class="card-body">
+        <a href="/es/insights/personal-computing-love-the-machine/" class="card-link">
+            <time datetime="2026-05-04">04.05.2026</time>
+            <h2 class="card-title">Local-First, o: Cómo aprendí a dejar de navegar y amar la máquina</h2>
+            <p class="card-excerpt">Hubo un tiempo en que teníamos un computador personal, y era bastante capaz estando desconectado. ¿Qué pasó? Y más importante: ¿podemos recuperar eso?</p>
+        </a>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 1">
+    <div class="card-body">
+        <a href="/es/insights/coding-out-of-first-principles/" class="card-link">
+            <time datetime="2026-04-22">22.04.2026</time>
+            <h2 class="card-title">Construir Desde Primeros Principios</h2>
+            <p class="card-excerpt">Cómo los primeros principios pueden dar forma a una nueva ola de creaciones</p>
+        </a>
+    </div>
+</article>
+        </div>

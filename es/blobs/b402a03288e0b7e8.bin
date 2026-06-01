@@ -1,0 +1,38 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Manifiesto</h1>
+            <time datetime="2026-05-03">03.05.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>En algún momento, sin mucha ceremonia, el software dejó de ser una herramienta y se convirtió en el entorno. Los datos, la lógica y la infraestructura se enredaron en plataformas, y las plataformas en hábitos, y los hábitos en dependencias que apenas notamos acumularse — hasta que el software en tu teléfono estaba diseñado alrededor de los incentivos de alguien más, tus datos vivían en la infraestructura de alguien más, y los términos de ese arreglo cambiaban sin preguntar. No perdimos agencia en un solo momento. La fuimos cediendo, lentamente, a cambio de conveniencia, y para cuando el costo se hizo visible, ya se había normalizado.</p>
+<p>Este es el momento de construir un sistema que le devuelva el poder a las personas — porque el peso de ceder agencia a cambio de mejoras incrementales ya no es soportable, y encontrar una salida se siente fuera de alcance dentro de los sistemas que existen. Este es el momento de construir algo que nos pertenezca.</p>
+<hr />
+<h2>1. Tus datos deben ser tuyos para mover, verificar y proteger</h2>
+<p>Un contacto, una nota, un historial médico, una foto — cada uno es un pedazo de memoria con un dueño, y ninguno debería pertenecer a la aplicación que lo creó o a la plataforma que ofreció guardarlo. Debería moverse contigo, legible por cualquier sistema que autorices, llevando una firma verificable para que sepas que no fue alterado en el camino. Nada de esto es una idea nueva, solo una que nunca ha sido tratada como algo que los usuarios merecen por defecto.</p>
+<hr />
+<h2>2. Privacidad por arquitectura, no por política</h2>
+<p>&quot;No podemos ver tus datos&quot; y &quot;prometemos no mirar&quot; son afirmaciones distintas. Una es estructural. La otra es un compromiso que puede cambiar con el liderazgo, la política o una orden judicial — y en un mundo donde los datos pueden usarse para modelar comportamiento, predecir decisiones e influir resultados antes de que los hayas tomado, la diferencia entre esas dos afirmaciones ya no es abstracta. Un sistema que nunca recibe tus datos no puede exponerlos, venderlos, perfilarte con ellos, ni ser obligado a entregarlos.</p>
+<hr />
+<h2>3. Datos, interfaz e infraestructura deben ser separables</h2>
+<p>Cuando tus datos viven dentro de una aplicación, la aplicación es dueña de la relación — decide cómo se ven tus cosas, qué puedes hacer con ellas, y si puedes irte. Así ha funcionado la mayoría del software, y ha sido así durante suficiente tiempo como para sentirse normal. Pero es una decisión, no una restricción. Cuando las tres capas están débilmente acopladas, cada una puede seguir su propio camino: reemplazas una interfaz cuando aparece una mejor, cambias la infraestructura cuando la tecnología avanza, y tus datos sobreviven a ambas — porque nunca fueron realmente de la aplicación. Construir con esa separación en mente es como le devuelves el control a la persona que el software debía servir.</p>
+<hr />
+<h2>4. Local primero, red cuando sea necesario</h2>
+<p>¿Cuánto vale un teléfono sin conexión de datos? Hoy, casi nada — y eso no es un accidente, es el modelo. Cada interacción que pasa por la red tiene un costo oculto: el viaje de ida y vuelta al servidor, el handshake de autenticación, la infraestructura que mantiene todo vivo, la batería drenada, el plan de datos consumido. Multiplicado por todo lo que haces, todo el día, en un dispositivo lo suficientemente potente como para haber hecho la mayoría localmente en milisegundos, ese costo deja de ser invisible y empieza a ser una decisión de diseño que alguien tomó por ti. La red es real y necesaria — para almacenamiento que sobrevive fallas de hardware, para inferencia demasiado pesada para correr localmente, para las cosas que un solo dispositivo genuinamente no puede hacer solo — pero esos casos son más estrechos de lo que el modelo actual sugiere, y la diferencia entre usar la red donde se gana su lugar y usarla por defecto es la diferencia entre una herramienta que te sirve y una que silenciosamente te cobra.</p>
+<hr />
+<h2>5. Inteligencia al servicio de la agencia</h2>
+<p>La inteligencia es lo que hace que local-first sea genuinamente poderoso y no meramente offline: un dispositivo que tiene tus datos, entiende tu intención, enruta tus solicitudes y actúa en tu nombre, sin enviar todo a un modelo entrenado con la agenda de alguien más. Abrazamos la inteligencia por completo — modelos locales para lo que el dispositivo puede manejar, infraestructura que respeta la privacidad para lo que no — porque cada decisión sobre cómo funciona vuelve a la misma pregunta: ¿esto te da más agencia, o menos?</p>
+<hr />
+<h2>6. Gozo sin extracción</h2>
+<p>La tecnología debería producir gozo, no la necesidad compulsiva de seguir usándola, no el miedo de fondo a ser vigilado o escuchado, no la ansiedad creciente de un sistema del que no puedes salir. El gozo es lo que pasa cuando una herramienta se gana tu confianza — cuando hace lo que pediste, se quita del camino cuando no pediste nada, y nunca te hace preguntarte qué está haciendo contigo cuando no estás mirando.</p>
+<hr />
+<h2>7. Diseñar para el futuro</h2>
+<p>La mejor infraestructura desaparece en el mundo — carga peso durante décadas sin pedir atención, porque fue diseñada con la precisión suficiente para que no quedara nada que mejorar. En contraste, la mayoría del software se construye de una manera que expira por diseño, que necesita ser reemplazado no porque el problema cambió sino porque el negocio lo requirió, y el costo de eso se acumula en todas partes: en energía desperdiciada, en hardware descartado, en usuarios atrapados en soluciones que no funcionan porque el precio de cambiar es demasiado alto para soportar.</p>
+<blockquote>
+<p>El futuro está delante de nosotros. Caminamos hacia él de espaldas, sin saber qué nos espera. No podemos ver lo que viene, pero podemos mirar al pasado con los ojos bien abiertos, buscando pistas sobre cómo diseñar sistemas que dañen menos y cuiden más.</p>
+</blockquote>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "1-tus-datos-deben-ser-tuyos-para-mover-verificar-y-proteger", "text": "1. Tus datos deben ser tuyos para mover, verificar y proteger", "level": 2}, {"id": "2-privacidad-por-arquitectura-no-por-pol-tica", "text": "2. Privacidad por arquitectura, no por pol\u00edtica", "level": 2}, {"id": "3-datos-interfaz-e-infraestructura-deben-ser-separables", "text": "3. Datos, interfaz e infraestructura deben ser separables", "level": 2}, {"id": "4-local-primero-red-cuando-sea-necesario", "text": "4. Local primero, red cuando sea necesario", "level": 2}, {"id": "5-inteligencia-al-servicio-de-la-agencia", "text": "5. Inteligencia al servicio de la agencia", "level": 2}, {"id": "6-gozo-sin-extracci-n", "text": "6. Gozo sin extracci\u00f3n", "level": 2}, {"id": "7-dise-ar-para-el-futuro", "text": "7. Dise\u00f1ar para el futuro", "level": 2}]</script>

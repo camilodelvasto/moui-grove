@@ -1,0 +1,21 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Datos, interfaz, infraestructura</h1>
+            <time datetime="2026-04-13">13.04.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>Cuando tus datos viven dentro de una aplicación, la aplicación es dueña de la relación. Ella decide cómo se ven tus cosas, qué puedes hacer con ellas, y si puedes irte.</p>
+<h2>La separación</h2>
+<p>Tres capas, débilmente acopladas:</p>
+<ol>
+<li><strong>Datos</strong> — tuyos para mover, verificar, proteger</li>
+<li><strong>Interfaz</strong> — reemplazable cuando aparezca una mejor</li>
+<li><strong>Infraestructura</strong> — intercambiable cuando la tecnología avance</li>
+</ol>
+<p>Tus datos sobreviven tanto a la interfaz como a la infraestructura, porque nunca fueron de la aplicación.</p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "la-separaci-n", "text": "La separaci\u00f3n", "level": 2}]</script>

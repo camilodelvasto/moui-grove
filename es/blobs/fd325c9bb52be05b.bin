@@ -1,0 +1,11 @@
+<div class="feed-grid">
+        <article class="card" data-stagger style="--stagger-index: 0">
+    <div class="card-body">
+        <a href="/es/school/why-you-need-to-learn-to-code/" class="card-link">
+            <time datetime="2026-04-23">23.04.2026</time>
+            <h2 class="card-title">Por Qué Necesitas Aprender a Programar</h2>
+            <p class="card-excerpt">La IA es útil y todo, pero ¿el resultado es realmente tuyo?</p>
+        </a>
+    </div>
+</article>
+        </div>

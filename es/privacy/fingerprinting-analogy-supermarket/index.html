@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="grove-base-path" content="/es">
+    <title>Yo también le hacía fingerprinting a todo el mundo</title>
+    <link rel="icon" href="/es/theme/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/es/theme/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/es/theme/apple-touch-icon.png">
+    <meta property="og:title" content="Yo también le hacía fingerprinting a todo el mundo">
+    <meta property="og:description" content="Hubo un tiempo en que rastrear visitantes de un sitio web era la norma. ¿Tal vez es hora de cambiar eso?">
+    <meta property="og:image" content="https://www.moui.io/es/assets/Piwik_screenshot_german.png">
+    <meta property="og:url" content="https://www.moui.io/es/privacy/fingerprinting-analogy-supermarket/">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary">
+    <link rel="alternate" type="application/rss+xml" title="Moui Grove" href="https://www.moui.io/es/feed.xml">
+    <style id="grove-tokens">
+:root {
+  --palette-primary: #ff1055;
+  --palette-primary-dark: #d40d47;
+  --palette-secondary: #E5F20D;
+  --palette-secondary-dark: #c9d300;
+  --palette-near-black: #0a0a0a;
+  --palette-dark-gray: #3a3a3a;
+  --palette-white: #ffffff;
+  --palette-warm-white: #faf9f7;
+  --palette-code-bg: #f5f4f0;
+  --palette-gray-100: #f3f3f1;
+  --palette-gray-200: #e2e2de;
+  --palette-gray-300: #c8c8c2;
+  --palette-gray-400: #8a8a82;
+  --palette-gray-600: #52524c;
+  --palette-gray-800: #1c1c18;
+  --palette-black: #0f0f0c;
+  --palette-banner-info-bg: #e8f4fd;
+  --palette-banner-info-text: #1a5276;
+  --palette-banner-info-border: #aed6f1;
+  --palette-banner-warning-bg: #fef9e7;
+  --palette-banner-warning-text: #7d6608;
+  --palette-banner-warning-border: #f9e79f;
+  --palette-banner-error-bg: #fdedec;
+  --palette-banner-error-text: #922b21;
+  --palette-banner-error-border: #f5b7b1;
+  --palette-banner-success-bg: #eafaf1;
+  --palette-banner-success-text: #1e8449;
+  --palette-banner-success-border: #a9dfbf;
+  --color-bg: warm-white;
+  --color-surface: gray-100;
+  --color-code-bg: code-bg;
+  --color-text: gray-800;
+  --color-text-secondary: gray-600;
+  --color-accent: primary;
+  --color-accent-hover: primary-dark;
+  --color-border: gray-200;
+  --color-card-bg: white;
+  --color-btn-primary: near-black;
+  --color-btn-primary-hover: dark-gray;
+  --color-btn-primary-text: white;
+  --color-gradient-start: primary;
+  --color-gradient-end: secondary;
+  --color-banner-info-bg: banner-info-bg;
+  --color-banner-info-text: banner-info-text;
+  --color-banner-info-border: banner-info-border;
+  --color-banner-warning-bg: banner-warning-bg;
+  --color-banner-warning-text: banner-warning-text;
+  --color-banner-warning-border: banner-warning-border;
+  --color-banner-error-bg: banner-error-bg;
+  --color-banner-error-text: banner-error-text;
+  --color-banner-error-border: banner-error-border;
+  --color-banner-success-bg: banner-success-bg;
+  --color-banner-success-text: banner-success-text;
+  --color-banner-success-border: banner-success-border;
+  --font-body: eb-garamond, 'EB Garamond', 'Garamond', Georgia, serif;
+  --font-header: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-display: lora, 'Lora', Georgia, serif;
+  --font-ui: lato, 'Lato', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --font-base: 17px;
+  --line-height: 1.75;
+  --weight-body: 400;
+  --weight-heading: 700;
+  --leading-body: 1.75;
+  --leading-heading: 1.15;
+  --logo-width: 120px;
+  --scale-sm: 0.875;
+  --scale-md: 1;
+  --scale-lg: 1.3;
+  --scale-xl: 1.6;
+  --scale-xxl: 1.8;
+  --scale-display: 3;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2rem;
+  --space-content-width: 780px;
+  --space-card-padding: 1rem;
+  --space-card-radius: 6px;
+  --space-card-image-height: 180px;
+  --color-tag-bg: gray-100;
+  --color-tag-text: gray-600;
+  --color-bg-resolved: #faf9f7;
+  --color-surface-resolved: #f3f3f1;
+  --color-code-bg-resolved: #f5f4f0;
+  --color-text-resolved: #1c1c18;
+  --color-text-secondary-resolved: #52524c;
+  --color-accent-resolved: #ff1055;
+  --color-accent-hover-resolved: #d40d47;
+  --color-border-resolved: #e2e2de;
+  --color-card-bg-resolved: #ffffff;
+  --color-btn-primary-resolved: #0a0a0a;
+  --color-btn-primary-hover-resolved: #3a3a3a;
+  --color-btn-primary-text-resolved: #ffffff;
+  --color-gradient-start-resolved: #ff1055;
+  --color-gradient-end-resolved: #E5F20D;
+  --color-banner-info-bg-resolved: #e8f4fd;
+  --color-banner-info-text-resolved: #1a5276;
+  --color-banner-info-border-resolved: #aed6f1;
+  --color-banner-warning-bg-resolved: #fef9e7;
+  --color-banner-warning-text-resolved: #7d6608;
+  --color-banner-warning-border-resolved: #f9e79f;
+  --color-banner-error-bg-resolved: #fdedec;
+  --color-banner-error-text-resolved: #922b21;
+  --color-banner-error-border-resolved: #f5b7b1;
+  --color-banner-success-bg-resolved: #eafaf1;
+  --color-banner-success-text-resolved: #1e8449;
+  --color-banner-success-border-resolved: #a9dfbf;
+  --color-tag-bg-resolved: #f3f3f1;
+  --color-tag-text-resolved: #52524c;
+}
+
+:root[data-theme="dark"] {
+  --palette-primary: #ff3a70;
+  --palette-primary-dark: #ff1055;
+  --palette-secondary: #E5F20D;
+  --palette-secondary-dark: #c9d300;
+  --palette-near-black: #101010;
+  --palette-dark-gray: #474646;
+  --palette-white: #ffffff;
+  --palette-warm-white: #1a1a1a;
+  --palette-code-bg: #242429;
+  --palette-gray-100: #1a1a22;
+  --palette-gray-200: #2a2a35;
+  --palette-gray-300: #3a3a48;
+  --palette-gray-400: #666680;
+  --palette-gray-600: #999999;
+  --palette-gray-800: #e0e0e0;
+  --palette-black: #0f172a;
+  --palette-banner-info-bg: #162a3f;
+  --palette-banner-info-text: #8ec5ff;
+  --palette-banner-info-border: #2e4a6a;
+  --palette-banner-warning-bg: #3a3215;
+  --palette-banner-warning-text: #f0d570;
+  --palette-banner-warning-border: #6a5a20;
+  --palette-banner-error-bg: #3a1f1f;
+  --palette-banner-error-text: #f5a29a;
+  --palette-banner-error-border: #6e3838;
+  --palette-banner-success-bg: #18362a;
+  --palette-banner-success-text: #8fd9b0;
+  --palette-banner-success-border: #2f5a43;
+  --color-bg: warm-white;
+  --color-surface: gray-100;
+  --color-code-bg: code-bg;
+  --color-text: gray-800;
+  --color-text-secondary: gray-600;
+  --color-accent: primary;
+  --color-accent-hover: primary-dark;
+  --color-border: gray-200;
+  --color-card-bg: gray-300;
+  --color-btn-primary: white;
+  --color-btn-primary-hover: gray-600;
+  --color-btn-primary-text: near-black;
+  --color-gradient-start: primary;
+  --color-gradient-end: secondary;
+  --color-banner-info-bg: banner-info-bg;
+  --color-banner-info-text: banner-info-text;
+  --color-banner-info-border: banner-info-border;
+  --color-banner-warning-bg: banner-warning-bg;
+  --color-banner-warning-text: banner-warning-text;
+  --color-banner-warning-border: banner-warning-border;
+  --color-banner-error-bg: banner-error-bg;
+  --color-banner-error-text: banner-error-text;
+  --color-banner-error-border: banner-error-border;
+  --color-banner-success-bg: banner-success-bg;
+  --color-banner-success-text: banner-success-text;
+  --color-banner-success-border: banner-success-border;
+  --font-body: eb-garamond, 'EB Garamond', 'Garamond', Georgia, serif;
+  --font-header: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-display: lora, 'Lora', Georgia, serif;
+  --font-ui: lato, 'Lato', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --font-base: 17px;
+  --line-height: 1.75;
+  --weight-body: 400;
+  --weight-heading: 700;
+  --leading-body: 1.75;
+  --leading-heading: 1.15;
+  --logo-width: 120px;
+  --scale-sm: 0.875;
+  --scale-md: 1;
+  --scale-lg: 1.3;
+  --scale-xl: 1.6;
+  --scale-xxl: 1.8;
+  --scale-display: 3;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2rem;
+  --space-content-width: 780px;
+  --space-card-padding: 1rem;
+  --space-card-radius: 6px;
+  --space-card-image-height: 180px;
+  --color-tag-bg: gray-400;
+  --color-tag-text: gray-800;
+  --color-bg-resolved: #1a1a1a;
+  --color-surface-resolved: #1a1a22;
+  --color-code-bg-resolved: #242429;
+  --color-text-resolved: #e0e0e0;
+  --color-text-secondary-resolved: #999999;
+  --color-accent-resolved: #ff3a70;
+  --color-accent-hover-resolved: #ff1055;
+  --color-border-resolved: #2a2a35;
+  --color-card-bg-resolved: #3a3a48;
+  --color-btn-primary-resolved: #ffffff;
+  --color-btn-primary-hover-resolved: #999999;
+  --color-btn-primary-text-resolved: #101010;
+  --color-gradient-start-resolved: #ff3a70;
+  --color-gradient-end-resolved: #E5F20D;
+  --color-banner-info-bg-resolved: #162a3f;
+  --color-banner-info-text-resolved: #8ec5ff;
+  --color-banner-info-border-resolved: #2e4a6a;
+  --color-banner-warning-bg-resolved: #3a3215;
+  --color-banner-warning-text-resolved: #f0d570;
+  --color-banner-warning-border-resolved: #6a5a20;
+  --color-banner-error-bg-resolved: #3a1f1f;
+  --color-banner-error-text-resolved: #f5a29a;
+  --color-banner-error-border-resolved: #6e3838;
+  --color-banner-success-bg-resolved: #18362a;
+  --color-banner-success-text-resolved: #8fd9b0;
+  --color-banner-success-border-resolved: #2f5a43;
+  --color-tag-bg-resolved: #666680;
+  --color-tag-text-resolved: #e0e0e0;
+}
+
+    </style>
+    <link rel="stylesheet" href="/es/style.css">
+    <link rel="stylesheet" href="/es/elements.css">
+    <link rel="stylesheet" href="/es/transitions.css">
+    <link rel="stylesheet" href="/es/syntax.css">
+    <script>
+      (function() {
+        var stored = localStorage.getItem('grove-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+</head>
+<body data-layout="index">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" role="banner">
+    <a href="/es/" class="site-title"><img src="/es/assets/moui-fire-logo.webp" alt="Moui Grove" class="site-logo" width="400" height="126"></a>
+    <div class="header-actions">
+        <a href="/es/archive/" class="btn btn-ghost btn-sm" aria-label="Archive">Archive</a>
+        <button class="btn btn-accent btn-sm" data-action="open-search" data-interaction="press" aria-label="Search" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+            <span class="btn-label">Search</span>
+        </button>
+    </div>
+</header>
+    <main id="main"><article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Yo también le hacía fingerprinting a todo el mundo</h1>
+            <time datetime="2026-05-19">19.05.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>Y paré en el momento en que me di cuenta de que era espeluznante.</p>
+<p>Hay una librería que se llama <strong>fingerprint.js</strong> que hace un truco ingenioso: produce un identificador único basado en las características que los navegadores le filtran a la aplicación javascript, como sistema operativo, proveedor del navegador, tamaño de pantalla, idiomas, y otros elementos.</p>
+<p>Claro, también puedes establecer cookies desde el servidor, y hacer <em>otros tipos de identificación</em>, pero este post es sobre el acto mismo de identificar a un usuario. Tomemos el caso de un sitio web: un acto muy simple, que la mayoría considera inofensivo, usualmente justificado con el &quot;necesitamos conocer a los visitantes que tenemos para optimizar su experiencia&quot; puede rápidamente convertirse en un &quot;observemos lo que todos hacen en el sitio web para entender su comportamiento y, en última instancia, influenciarlo&quot;.</p>
+<hr />
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/Piwik_screenshot_german-480w.webp 480w, /es/assets/Piwik_screenshot_german-960w.webp 960w, /es/assets/Piwik_screenshot_german-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/Piwik_screenshot_german-480w.png 480w, /es/assets/Piwik_screenshot_german-960w.png 960w, /es/assets/Piwik_screenshot_german-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/Piwik_screenshot_german.png" alt="Analíticas web: ¿otra forma de fingerprinting? — Matomo Developer Team, CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0, via Wikimedia Commons" loading="eager">
+  </picture>
+  <figcaption>Analíticas web: ¿otra forma de fingerprinting? — Matomo Developer Team, CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0, via Wikimedia Commons</figcaption>
+</figure>
+<p>Mira, la cosa es muy fácil: insertas una librería y listo. Google Analytics hasta lo hace gratis.</p>
+<p>De alguna manera esa era la práctica: simplemente instala un pixel o cualquier tracker, y vas a saber de dónde viene tu tráfico, quiénes son, para que puedas optimizar.</p>
+<h2>Suena bastante inocente, pero ¿es realmente inofensivo?</h2>
+<p>Hace unos días estaba pensando que rastrear visitantes con el objetivo de &quot;mejorar la experiencia&quot; es más o menos como <strong>tener un supermercado y luego vigilar a cada comprador en cada pasillo</strong>. ¿Esa señora de allá? Acaba de mirar las verduras. No estaba realmente interesada en los fideos. ¿El tipo de allá? Se está tardando siglos en decidir qué cereal comprar.</p>
+<p>Y luego sería como mágicamente reorganizar todo para que la próxima vez que vengan, hayamos diseñado una experiencia personalizada para que compren más. No lo que quieren, o lo que razonablemente necesitan, <em>simplemente más</em>.</p>
+<h2>Los sitios web no son realmente diferentes</h2>
+<p>Ahora, las analíticas web son una categoría diferente, podrías decir. Es como medir el resultado de tus campañas, ¿de qué otra forma vas a saber si lo que hiciste está funcionando? El tema es que la gente no quiere ser rastreada. Puedes pedir su consentimiento y puede que te lo den por conveniencia, pero <em>no quieren ser rastreados y lo sabes</em>. <strong>¿Tú quieres ser rastreado?</strong></p>
+<blockquote>
+<p>El solo acto de observar el comportamiento de alguien se siente un poco espeluznante.</p>
+</blockquote>
+<h2>No se trata solo de cookies</h2>
+<p>Se trata de <em>el acto de ser espeluznante</em>. Especialmente cuando te das cuenta de que <em>esas cookies ni siquiera son nuestras para empezar</em>. Entonces, siguiendo la analogía del supermercado, estarías dando información sobre esos compradores a alguien más, para que sepan aún más sobre tus compradores que tú mismo.</p>
+<p>Creo que es hora de empezar a <em>des-rastrear</em> a la gente. Creo que si mi modelo de negocio requiere que observe a la gente de cerca y ajuste cosas aquí y allá para mejorar mi embudo de conversión unos cuantos puntos porcentuales, tal vez mi product-market fit es forzado.</p>
+<p><strong>Des-rastreemos a la gente, dejémoslos venir y sorprendernos, y dejémoslos venir y comprar lo que quieran.</strong></p>
+<h6>Notas</h6>
+<p><em>Sobre las cookies: esencialmente estás despachando el código de vigilancia de alguien más en tu dominio, y eres responsable de eso.</em></p>
+<p><em>Este sitio web no usa ninguna tecnología de rastreo: ni de terceros, ni propietarias, nada. Confiamos en que te guste el contenido y ya.</em></p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/cookie-bot-screenshot-480w.webp 480w, /es/assets/cookie-bot-screenshot-960w.webp 960w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/cookie-bot-screenshot-480w.png 480w, /es/assets/cookie-bot-screenshot-960w.png 960w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/cookie-bot-screenshot.png" alt="Un gestor de cookies popular, que hace realmente difícil para los usuarios decir no al rastreo" loading="lazy">
+  </picture>
+  <figcaption>Un gestor de cookies popular, que hace realmente difícil para los usuarios decir no al rastreo</figcaption>
+</figure>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "suena-bastante-inocente-pero-es-realmente-inofensivo", "text": "Suena bastante inocente, pero \u00bfes realmente inofensivo?", "level": 2}, {"id": "los-sitios-web-no-son-realmente-diferentes", "text": "Los sitios web no son realmente diferentes", "level": 2}, {"id": "no-se-trata-solo-de-cookies", "text": "No se trata solo de cookies", "level": 2}, {"id": "notas", "text": "Notas", "level": 6}]</script></main>
+    <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+        <span>Moui Grove</span>
+        <a href="https://www.moui.io/es/feed.xml">RSS</a>
+        <button class="btn btn-ghost btn-sm btn-icon btn-theme" data-action="toggle-theme" data-interaction="press" aria-label="Toggle theme" type="button">
+            <span class="btn-state-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+            <span class="btn-state-dark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+        </button>
+        <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Clear site data" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
+        </button>
+        <span class="build-id">c575dd22331c</span>
+    </div>
+</footer>
+    <script type="module" src="/es/app.js"></script>
+</body>
+</html>

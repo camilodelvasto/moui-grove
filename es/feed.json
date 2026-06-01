@@ -1,0 +1,87 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Moui Grove",
+  "home_page_url": "https://www.moui.io/es",
+  "feed_url": "https://www.moui.io/es/feed.json",
+  "description": "Un grove de prueba para verificación manual.",
+  "language": "es",
+  "items": [
+    {
+      "id": "manifesto",
+      "title": "Manifiesto",
+      "url": "https://www.moui.io/es/manifesto/",
+      "summary": "El futuro está detrás de nosotros. El desarrollo local-first, privacy-first, user-first empieza aquí.",
+      "date_published": "2026-05-03"
+    },
+    {
+      "id": "reimagining-sheets",
+      "title": "Reimaginando las hojas de cálculo",
+      "url": "https://www.moui.io/es/reimagining-sheets/",
+      "summary": "¿Podemos crear algo que construya sobre las ideas comunes de hojas de cálculo pero que deje a los LLMs hacer lo suyo siendo privado y declarativo para usos más avanzados?",
+      "date_published": "2026-05-28"
+    },
+    {
+      "id": "privacy/fingerprinting-analogy-supermarket",
+      "title": "Yo también le hacía fingerprinting a todo el mundo",
+      "url": "https://www.moui.io/es/privacy/fingerprinting-analogy-supermarket/",
+      "summary": "Hubo un tiempo en que rastrear visitantes de un sitio web era la norma. ¿Tal vez es hora de cambiar eso?",
+      "date_published": "2026-05-19"
+    },
+    {
+      "id": "insights/personal-computing-love-the-machine",
+      "title": "Local-First, o: Cómo aprendí a dejar de navegar y amar la máquina",
+      "url": "https://www.moui.io/es/insights/personal-computing-love-the-machine/",
+      "summary": "Hubo un tiempo en que teníamos un computador personal, y era bastante capaz estando desconectado. ¿Qué pasó? Y más importante: ¿podemos recuperar eso?",
+      "date_published": "2026-05-04"
+    },
+    {
+      "id": "school/why-you-need-to-learn-to-code",
+      "title": "Por Qué Necesitas Aprender a Programar",
+      "url": "https://www.moui.io/es/school/why-you-need-to-learn-to-code/",
+      "summary": "La IA es útil y todo, pero ¿el resultado es realmente tuyo?",
+      "date_published": "2026-04-23"
+    },
+    {
+      "id": "insights/coding-out-of-first-principles",
+      "title": "Construir Desde Primeros Principios",
+      "url": "https://www.moui.io/es/insights/coding-out-of-first-principles/",
+      "summary": "Cómo los primeros principios pueden dar forma a una nueva ola de creaciones",
+      "date_published": "2026-04-22"
+    },
+    {
+      "id": "cloud-act",
+      "title": "La CLOUD Act de EE.UU. y la ilusión de la soberanía de datos",
+      "url": "https://www.moui.io/es/cloud-act/",
+      "summary": "Tus datos están en servidores estadounidenses, bajo ley estadounidense. La CLOUD Act lo hace explícito. La pregunta es qué haces al respecto.",
+      "date_published": "2026-04-17"
+    },
+    {
+      "id": "architecture/contracts-not-code",
+      "title": "Contratos, no código",
+      "url": "https://www.moui.io/es/contracts-not-code/",
+      "summary": "La mayoría de los sistemas se desvían. Un núcleo declarativo se sostiene porque la forma del código es lo que lo hace cumplir.",
+      "date_published": "2026-04-16"
+    },
+    {
+      "id": "welcome",
+      "title": "Bienvenido a Grove",
+      "url": "https://www.moui.io/es/welcome/",
+      "summary": "Grove organiza lo que escribes en un sitio navegable y desplegable.",
+      "date_published": "2026-04-14"
+    },
+    {
+      "id": "architecture/data-isolation",
+      "title": "Datos, interfaz, infraestructura",
+      "url": "https://www.moui.io/es/architecture/data-isolation/",
+      "summary": "Las tres capas deben ser separables. Tus datos sobreviven a cualquier interfaz.",
+      "date_published": "2026-04-13"
+    },
+    {
+      "id": "on-joy",
+      "title": "Alegría sin extracción",
+      "url": "https://www.moui.io/es/on-joy/",
+      "summary": "La tecnología debería producir alegría, no compulsión.",
+      "date_published": "2026-04-12"
+    }
+  ]
+}

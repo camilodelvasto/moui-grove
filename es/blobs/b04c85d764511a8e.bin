@@ -1,0 +1,22 @@
+<div class="feed-grid">
+        <article class="card" data-stagger style="--stagger-index: 0">
+    <div class="card-body">
+        <a href="/es/contracts-not-code/" class="card-link">
+            <time datetime="2026-04-16">16.04.2026</time>
+            <h2 class="card-title">Contratos, no código</h2>
+            <p class="card-excerpt">La mayoría de los sistemas se desvían. Un núcleo declarativo se sostiene porque la forma del código es lo que lo hace cumplir.</p>
+        </a>
+        <div class="card-tags"><span class="card-tag">architecture</span><span class="card-tag">contracts</span></div>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 1">
+    <div class="card-body">
+        <a href="/es/architecture/data-isolation/" class="card-link">
+            <time datetime="2026-04-13">13.04.2026</time>
+            <h2 class="card-title">Datos, interfaz, infraestructura</h2>
+            <p class="card-excerpt">Las tres capas deben ser separables. Tus datos sobreviven a cualquier interfaz.</p>
+        </a>
+        <div class="card-tags"><span class="card-tag">architecture</span><span class="card-tag">manifesto</span></div>
+    </div>
+</article>
+        </div>

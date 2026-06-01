@@ -1,0 +1,46 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Por Qué Necesitas Aprender a Programar</h1>
+            <time datetime="2026-04-23">23.04.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>Usas la IA para trabajar y sacas algo de ella, pero sabes que hay mucho más allá afuera que de alguna manera no estás aprovechando.</p>
+<p>Has visto videos, y cursos, pero de alguna manera sientes que algo falta, que te podrías estar quedando atrás.</p>
+<p>En el fondo sabes que el momento se acerca para enfrentar una verdad dura: que solo puedes aprender haciendo, y entre más rápido enfrentes esa verdad, mejor.</p>
+<hr />
+<p>Así que aclaremos algo: aprender a usar la IA para tu flujo de trabajo NO es cuestión de herramientas o trucos. Las herramientas están bien, pero en su mayoría son <em>wrappers</em> alrededor del modelo, y están siendo rápidamente absorbidas por <em>El Modelo</em>. Así que no quieres gastar tiempo aprendiendo herramientas o trucos.
+Estamos entrando en una era en la que las cosas se vuelven obsoletas en minutos.</p>
+<p>Así que es hora de hacer las cosas diferente.</p>
+<p>Necesitas los fundamentos. Necesitas llenar el vacío de conocimiento que te está frenando para hacer un uso eficiente y seguro de la IA. De ser alguien que <em>usa</em> una herramienta a <strong>alguien que desarrolla productos para su propio uso</strong>. Porque si <em>solo</em> estás usando herramientas, eres como todos los demás. Todos tienen acceso a las mismas herramientas. Pero tú quieres más, no eres como todos los demás.</p>
+<hr />
+<p>Déjame darte un ejemplo. Esto es Claude Cowork:</p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/claude-code-1-480w.webp 480w, /es/assets/claude-code-1-960w.webp 960w, /es/assets/claude-code-1-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/claude-code-1-480w.png 480w, /es/assets/claude-code-1-960w.png 960w, /es/assets/claude-code-1-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/claude-code-1.png" alt="Claude Cowork: puede hacer muchas cosas" loading="eager">
+  </picture>
+  <figcaption>Claude Cowork: puede hacer muchas cosas</figcaption>
+</figure>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/claude-code-2-480w.webp 480w, /es/assets/claude-code-2-960w.webp 960w, /es/assets/claude-code-2-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/claude-code-2-480w.png 480w, /es/assets/claude-code-2-960w.png 960w, /es/assets/claude-code-2-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/claude-code-2.png" alt="Pero usa Claude Code en el fondo" loading="lazy">
+  </picture>
+  <figcaption>Pero usa Claude Code en el fondo</figcaption>
+</figure>
+<p>Es extremadamente poderoso, y como <strong>herramienta agéntica</strong>, puede hacer cosas en segundo plano, lo cual es genial. Pero, ¿a qué costo?</p>
+<p>Para empezar, la suscripción cuesta dinero, y usa muchos tokens (como monedas de IA) para hacerlo. Pero lo más problemático es que puedes usarlo durante años y después de todo ese tiempo, todavía no has construido nada que sea realmente tuyo.</p>
+<blockquote>
+<p>Puedes construir dashboards, aplicaciones vibe-coded, y después de mil iteraciones, siguen sin ser realmente tuyas.</p>
+</blockquote>
+<p>Para que algo sea verdaderamente tuyo, necesitas <em>saber cómo funciona</em>, <em>dónde está almacenado</em>, <em>qué tan seguro es</em>, y <strong>cómo puedes mejorarlo con el tiempo</strong>.</p>
+<h3>No quieres construir lo mismo una y otra vez</h3>
+<p>Por eso necesitas aprender los fundamentos. Para que puedas construir tu propio pequeño arsenal de herramientas que llevas contigo y mejoras con el tiempo. Hoy puedes usar Claude, y mañana otra cosa. No quieres depender de ninguna tecnología, quieres ser dueño de tus cosas.</p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "no-quieres-construir-lo-mismo-una-y-otra-vez", "text": "No quieres construir lo mismo una y otra vez", "level": 3}]</script>

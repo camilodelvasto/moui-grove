@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Moui Grove</title>
+    <link>https://www.moui.io/es</link>
+    <description>Un grove de prueba para verificación manual.</description>
+    <language>es</language>
+    <item>
+      <title>Manifiesto</title>
+      <link>https://www.moui.io/es/manifesto/</link>
+      <description>El futuro está detrás de nosotros. El desarrollo local-first, privacy-first, user-first empieza aquí.</description>
+      <pubDate>2026-05-03</pubDate>
+    </item>
+    <item>
+      <title>Reimaginando las hojas de cálculo</title>
+      <link>https://www.moui.io/es/reimagining-sheets/</link>
+      <description>¿Podemos crear algo que construya sobre las ideas comunes de hojas de cálculo pero que deje a los LLMs hacer lo suyo siendo privado y declarativo para usos más avanzados?</description>
+      <pubDate>2026-05-28</pubDate>
+    </item>
+    <item>
+      <title>Yo también le hacía fingerprinting a todo el mundo</title>
+      <link>https://www.moui.io/es/privacy/fingerprinting-analogy-supermarket/</link>
+      <description>Hubo un tiempo en que rastrear visitantes de un sitio web era la norma. ¿Tal vez es hora de cambiar eso?</description>
+      <pubDate>2026-05-19</pubDate>
+    </item>
+    <item>
+      <title>Local-First, o: Cómo aprendí a dejar de navegar y amar la máquina</title>
+      <link>https://www.moui.io/es/insights/personal-computing-love-the-machine/</link>
+      <description>Hubo un tiempo en que teníamos un computador personal, y era bastante capaz estando desconectado. ¿Qué pasó? Y más importante: ¿podemos recuperar eso?</description>
+      <pubDate>2026-05-04</pubDate>
+    </item>
+    <item>
+      <title>Por Qué Necesitas Aprender a Programar</title>
+      <link>https://www.moui.io/es/school/why-you-need-to-learn-to-code/</link>
+      <description>La IA es útil y todo, pero ¿el resultado es realmente tuyo?</description>
+      <pubDate>2026-04-23</pubDate>
+    </item>
+    <item>
+      <title>Construir Desde Primeros Principios</title>
+      <link>https://www.moui.io/es/insights/coding-out-of-first-principles/</link>
+      <description>Cómo los primeros principios pueden dar forma a una nueva ola de creaciones</description>
+      <pubDate>2026-04-22</pubDate>
+    </item>
+    <item>
+      <title>La CLOUD Act de EE.UU. y la ilusión de la soberanía de datos</title>
+      <link>https://www.moui.io/es/cloud-act/</link>
+      <description>Tus datos están en servidores estadounidenses, bajo ley estadounidense. La CLOUD Act lo hace explícito. La pregunta es qué haces al respecto.</description>
+      <pubDate>2026-04-17</pubDate>
+    </item>
+    <item>
+      <title>Contratos, no código</title>
+      <link>https://www.moui.io/es/contracts-not-code/</link>
+      <description>La mayoría de los sistemas se desvían. Un núcleo declarativo se sostiene porque la forma del código es lo que lo hace cumplir.</description>
+      <pubDate>2026-04-16</pubDate>
+    </item>
+    <item>
+      <title>Bienvenido a Grove</title>
+      <link>https://www.moui.io/es/welcome/</link>
+      <description>Grove organiza lo que escribes en un sitio navegable y desplegable.</description>
+      <pubDate>2026-04-14</pubDate>
+    </item>
+    <item>
+      <title>Datos, interfaz, infraestructura</title>
+      <link>https://www.moui.io/es/architecture/data-isolation/</link>
+      <description>Las tres capas deben ser separables. Tus datos sobreviven a cualquier interfaz.</description>
+      <pubDate>2026-04-13</pubDate>
+    </item>
+    <item>
+      <title>Alegría sin extracción</title>
+      <link>https://www.moui.io/es/on-joy/</link>
+      <description>La tecnología debería producir alegría, no compulsión.</description>
+      <pubDate>2026-04-12</pubDate>
+    </item>
+  </channel>
+</rss>

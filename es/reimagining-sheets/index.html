@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="grove-base-path" content="/es">
+    <title>Reimaginando las hojas de cálculo</title>
+    <link rel="icon" href="/es/theme/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/es/theme/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/es/theme/apple-touch-icon.png">
+    <meta property="og:title" content="Reimaginando las hojas de cálculo">
+    <meta property="og:description" content="¿Podemos crear algo que construya sobre las ideas comunes de hojas de cálculo pero que deje a los LLMs hacer lo suyo siendo privado y declarativo para usos más avanzados?">
+    <meta property="og:image" content="https://www.moui.io/es/assets/screenshot-tui-suchprotokoll.png">
+    <meta property="og:url" content="https://www.moui.io/es/reimagining-sheets/">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary">
+    <link rel="alternate" type="application/rss+xml" title="Moui Grove" href="https://www.moui.io/es/feed.xml">
+    <style id="grove-tokens">
+:root {
+  --palette-primary: #ff1055;
+  --palette-primary-dark: #d40d47;
+  --palette-secondary: #E5F20D;
+  --palette-secondary-dark: #c9d300;
+  --palette-near-black: #0a0a0a;
+  --palette-dark-gray: #3a3a3a;
+  --palette-white: #ffffff;
+  --palette-warm-white: #faf9f7;
+  --palette-code-bg: #f5f4f0;
+  --palette-gray-100: #f3f3f1;
+  --palette-gray-200: #e2e2de;
+  --palette-gray-300: #c8c8c2;
+  --palette-gray-400: #8a8a82;
+  --palette-gray-600: #52524c;
+  --palette-gray-800: #1c1c18;
+  --palette-black: #0f0f0c;
+  --palette-banner-info-bg: #e8f4fd;
+  --palette-banner-info-text: #1a5276;
+  --palette-banner-info-border: #aed6f1;
+  --palette-banner-warning-bg: #fef9e7;
+  --palette-banner-warning-text: #7d6608;
+  --palette-banner-warning-border: #f9e79f;
+  --palette-banner-error-bg: #fdedec;
+  --palette-banner-error-text: #922b21;
+  --palette-banner-error-border: #f5b7b1;
+  --palette-banner-success-bg: #eafaf1;
+  --palette-banner-success-text: #1e8449;
+  --palette-banner-success-border: #a9dfbf;
+  --color-bg: warm-white;
+  --color-surface: gray-100;
+  --color-code-bg: code-bg;
+  --color-text: gray-800;
+  --color-text-secondary: gray-600;
+  --color-accent: primary;
+  --color-accent-hover: primary-dark;
+  --color-border: gray-200;
+  --color-card-bg: white;
+  --color-btn-primary: near-black;
+  --color-btn-primary-hover: dark-gray;
+  --color-btn-primary-text: white;
+  --color-gradient-start: primary;
+  --color-gradient-end: secondary;
+  --color-banner-info-bg: banner-info-bg;
+  --color-banner-info-text: banner-info-text;
+  --color-banner-info-border: banner-info-border;
+  --color-banner-warning-bg: banner-warning-bg;
+  --color-banner-warning-text: banner-warning-text;
+  --color-banner-warning-border: banner-warning-border;
+  --color-banner-error-bg: banner-error-bg;
+  --color-banner-error-text: banner-error-text;
+  --color-banner-error-border: banner-error-border;
+  --color-banner-success-bg: banner-success-bg;
+  --color-banner-success-text: banner-success-text;
+  --color-banner-success-border: banner-success-border;
+  --font-body: eb-garamond, 'EB Garamond', 'Garamond', Georgia, serif;
+  --font-header: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-display: lora, 'Lora', Georgia, serif;
+  --font-ui: lato, 'Lato', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --font-base: 17px;
+  --line-height: 1.75;
+  --weight-body: 400;
+  --weight-heading: 700;
+  --leading-body: 1.75;
+  --leading-heading: 1.15;
+  --logo-width: 120px;
+  --scale-sm: 0.875;
+  --scale-md: 1;
+  --scale-lg: 1.3;
+  --scale-xl: 1.6;
+  --scale-xxl: 1.8;
+  --scale-display: 3;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2rem;
+  --space-content-width: 780px;
+  --space-card-padding: 1rem;
+  --space-card-radius: 6px;
+  --space-card-image-height: 180px;
+  --color-tag-bg: gray-100;
+  --color-tag-text: gray-600;
+  --color-bg-resolved: #faf9f7;
+  --color-surface-resolved: #f3f3f1;
+  --color-code-bg-resolved: #f5f4f0;
+  --color-text-resolved: #1c1c18;
+  --color-text-secondary-resolved: #52524c;
+  --color-accent-resolved: #ff1055;
+  --color-accent-hover-resolved: #d40d47;
+  --color-border-resolved: #e2e2de;
+  --color-card-bg-resolved: #ffffff;
+  --color-btn-primary-resolved: #0a0a0a;
+  --color-btn-primary-hover-resolved: #3a3a3a;
+  --color-btn-primary-text-resolved: #ffffff;
+  --color-gradient-start-resolved: #ff1055;
+  --color-gradient-end-resolved: #E5F20D;
+  --color-banner-info-bg-resolved: #e8f4fd;
+  --color-banner-info-text-resolved: #1a5276;
+  --color-banner-info-border-resolved: #aed6f1;
+  --color-banner-warning-bg-resolved: #fef9e7;
+  --color-banner-warning-text-resolved: #7d6608;
+  --color-banner-warning-border-resolved: #f9e79f;
+  --color-banner-error-bg-resolved: #fdedec;
+  --color-banner-error-text-resolved: #922b21;
+  --color-banner-error-border-resolved: #f5b7b1;
+  --color-banner-success-bg-resolved: #eafaf1;
+  --color-banner-success-text-resolved: #1e8449;
+  --color-banner-success-border-resolved: #a9dfbf;
+  --color-tag-bg-resolved: #f3f3f1;
+  --color-tag-text-resolved: #52524c;
+}
+
+:root[data-theme="dark"] {
+  --palette-primary: #ff3a70;
+  --palette-primary-dark: #ff1055;
+  --palette-secondary: #E5F20D;
+  --palette-secondary-dark: #c9d300;
+  --palette-near-black: #101010;
+  --palette-dark-gray: #474646;
+  --palette-white: #ffffff;
+  --palette-warm-white: #1a1a1a;
+  --palette-code-bg: #242429;
+  --palette-gray-100: #1a1a22;
+  --palette-gray-200: #2a2a35;
+  --palette-gray-300: #3a3a48;
+  --palette-gray-400: #666680;
+  --palette-gray-600: #999999;
+  --palette-gray-800: #e0e0e0;
+  --palette-black: #0f172a;
+  --palette-banner-info-bg: #162a3f;
+  --palette-banner-info-text: #8ec5ff;
+  --palette-banner-info-border: #2e4a6a;
+  --palette-banner-warning-bg: #3a3215;
+  --palette-banner-warning-text: #f0d570;
+  --palette-banner-warning-border: #6a5a20;
+  --palette-banner-error-bg: #3a1f1f;
+  --palette-banner-error-text: #f5a29a;
+  --palette-banner-error-border: #6e3838;
+  --palette-banner-success-bg: #18362a;
+  --palette-banner-success-text: #8fd9b0;
+  --palette-banner-success-border: #2f5a43;
+  --color-bg: warm-white;
+  --color-surface: gray-100;
+  --color-code-bg: code-bg;
+  --color-text: gray-800;
+  --color-text-secondary: gray-600;
+  --color-accent: primary;
+  --color-accent-hover: primary-dark;
+  --color-border: gray-200;
+  --color-card-bg: gray-300;
+  --color-btn-primary: white;
+  --color-btn-primary-hover: gray-600;
+  --color-btn-primary-text: near-black;
+  --color-gradient-start: primary;
+  --color-gradient-end: secondary;
+  --color-banner-info-bg: banner-info-bg;
+  --color-banner-info-text: banner-info-text;
+  --color-banner-info-border: banner-info-border;
+  --color-banner-warning-bg: banner-warning-bg;
+  --color-banner-warning-text: banner-warning-text;
+  --color-banner-warning-border: banner-warning-border;
+  --color-banner-error-bg: banner-error-bg;
+  --color-banner-error-text: banner-error-text;
+  --color-banner-error-border: banner-error-border;
+  --color-banner-success-bg: banner-success-bg;
+  --color-banner-success-text: banner-success-text;
+  --color-banner-success-border: banner-success-border;
+  --font-body: eb-garamond, 'EB Garamond', 'Garamond', Georgia, serif;
+  --font-header: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-display: lora, 'Lora', Georgia, serif;
+  --font-ui: lato, 'Lato', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --font-base: 17px;
+  --line-height: 1.75;
+  --weight-body: 400;
+  --weight-heading: 700;
+  --leading-body: 1.75;
+  --leading-heading: 1.15;
+  --logo-width: 120px;
+  --scale-sm: 0.875;
+  --scale-md: 1;
+  --scale-lg: 1.3;
+  --scale-xl: 1.6;
+  --scale-xxl: 1.8;
+  --scale-display: 3;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2rem;
+  --space-content-width: 780px;
+  --space-card-padding: 1rem;
+  --space-card-radius: 6px;
+  --space-card-image-height: 180px;
+  --color-tag-bg: gray-400;
+  --color-tag-text: gray-800;
+  --color-bg-resolved: #1a1a1a;
+  --color-surface-resolved: #1a1a22;
+  --color-code-bg-resolved: #242429;
+  --color-text-resolved: #e0e0e0;
+  --color-text-secondary-resolved: #999999;
+  --color-accent-resolved: #ff3a70;
+  --color-accent-hover-resolved: #ff1055;
+  --color-border-resolved: #2a2a35;
+  --color-card-bg-resolved: #3a3a48;
+  --color-btn-primary-resolved: #ffffff;
+  --color-btn-primary-hover-resolved: #999999;
+  --color-btn-primary-text-resolved: #101010;
+  --color-gradient-start-resolved: #ff3a70;
+  --color-gradient-end-resolved: #E5F20D;
+  --color-banner-info-bg-resolved: #162a3f;
+  --color-banner-info-text-resolved: #8ec5ff;
+  --color-banner-info-border-resolved: #2e4a6a;
+  --color-banner-warning-bg-resolved: #3a3215;
+  --color-banner-warning-text-resolved: #f0d570;
+  --color-banner-warning-border-resolved: #6a5a20;
+  --color-banner-error-bg-resolved: #3a1f1f;
+  --color-banner-error-text-resolved: #f5a29a;
+  --color-banner-error-border-resolved: #6e3838;
+  --color-banner-success-bg-resolved: #18362a;
+  --color-banner-success-text-resolved: #8fd9b0;
+  --color-banner-success-border-resolved: #2f5a43;
+  --color-tag-bg-resolved: #666680;
+  --color-tag-text-resolved: #e0e0e0;
+}
+
+    </style>
+    <link rel="stylesheet" href="/es/style.css">
+    <link rel="stylesheet" href="/es/elements.css">
+    <link rel="stylesheet" href="/es/transitions.css">
+    <link rel="stylesheet" href="/es/syntax.css">
+    <script>
+      (function() {
+        var stored = localStorage.getItem('grove-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+</head>
+<body data-layout="index">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" role="banner">
+    <a href="/es/" class="site-title"><img src="/es/assets/moui-fire-logo.webp" alt="Moui Grove" class="site-logo" width="400" height="126"></a>
+    <div class="header-actions">
+        <a href="/es/archive/" class="btn btn-ghost btn-sm" aria-label="Archive">Archive</a>
+        <button class="btn btn-accent btn-sm" data-action="open-search" data-interaction="press" aria-label="Search" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+            <span class="btn-label">Search</span>
+        </button>
+    </div>
+</header>
+    <main id="main"><article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Reimaginando las hojas de cálculo</h1>
+            <time datetime="2026-05-28">28.05.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>Hace dos semanas, al sentarme a empezar mi búsqueda diaria de apartamento en Berlín (que todavía se siente como un reto mayor), sentí la necesidad de un sistema para rastrear todas las solicitudes. <strong>Mi recurso de la última década era usar Google Sheets</strong>, así que empecé a crear el archivo y las columnas, con el objetivo de ingresar manualmente las características de cada propiedad. Naturalmente, con apenas una fila me di cuenta de que este era el tipo de tarea que un LLM podía hacer mucho mejor, porque es bastante tedioso ir al exposé y copiar manualmente las características de cada propiedad en la hoja.</p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/suchprotokoll-screehnshot-google-spreadsheets-480w.webp 480w, /es/assets/suchprotokoll-screehnshot-google-spreadsheets-960w.webp 960w, /es/assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/suchprotokoll-screehnshot-google-spreadsheets-480w.png 480w, /es/assets/suchprotokoll-screehnshot-google-spreadsheets-960w.png 960w, /es/assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/suchprotokoll-screehnshot-google-spreadsheets.png" alt="Hacer esto manualmente se siente verdaderamente lento comparado con lo que esperamos de los sistemas en 2026" loading="eager">
+  </picture>
+  <figcaption>Hacer esto manualmente se siente verdaderamente lento comparado con lo que esperamos de los sistemas en 2026</figcaption>
+</figure>
+<p>Pero la extracción fue solo el comienzo. También necesitaba un sistema de registro — un historial de acciones: envié una solicitud en esta fecha, recibí una invitación a una visita en esa fecha, envié los documentos de solicitud al día siguiente. No hay una forma natural de hacer eso en hojas de cálculo. Claro, puedes crear una nueva hoja y enlazarlas, pero se vuelve un desorden rápido. Y las hojas de cálculo son frágiles: los valores se borran accidentalmente, las fórmulas se rompen silenciosamente. Quería algo <strong>lo suficientemente robusto como para sostenerse en un tribunal si fuera necesario</strong>, con un historial completo de acciones y mensajes.</p>
+<h2>Lo que hay afuera</h2>
+<p>Miré las opciones habituales:</p>
+<table>
+<thead>
+<tr>
+<th>Enfoque</th>
+<th>Extracción automática</th>
+<th>Registro de actividad</th>
+<th>Enums</th>
+<th>Complejidad de setup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Sheets manual</td>
+<td>No</td>
+<td>No (necesita hoja aparte)</td>
+<td>Sí (Data Validation)</td>
+<td>Muy baja</td>
+</tr>
+<tr>
+<td>Google Sheets + IA integrada</td>
+<td>Parcial (fórmulas, fill, chat lateral)</td>
+<td>No</td>
+<td>Sí (Data Validation)</td>
+<td>Muy baja</td>
+</tr>
+<tr>
+<td>Notion</td>
+<td>Parcial (bloques IA; mayormente manual)</td>
+<td>Incómodo (relaciones, timeline)</td>
+<td>Sí (select, status)</td>
+<td>Baja</td>
+</tr>
+<tr>
+<td>n8n solo</td>
+<td>Sí</td>
+<td>Via tabla de log separada</td>
+<td>Via sheets</td>
+<td>Media</td>
+</tr>
+<tr>
+<td>OpenClaw + n8n</td>
+<td>Sí (disparado por lenguaje natural)</td>
+<td>Sí (memoria persistente + logs)</td>
+<td>Via sheets</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>Claude Cowork / Projects</td>
+<td>Via chat (no estructurado)</td>
+<td>Solo conversación</td>
+<td>Sin schema nativo</td>
+<td>Baja</td>
+</tr>
+</tbody>
+</table>
+<p>La gente hace esto para búsqueda de apartamentos, solicitudes de empleo, y más. Pero todo el stack involucra demasiados actores y demasiados procesadores de datos. Las opciones asistidas por IA son o mínimas (un chat lateral que sugiere fórmulas) o masivamente despilfarradoras — sistemas agénticos que capturan pantalla de tu navegador, transfieren la imagen, encuentran el botón, hacen clic, vuelven a buscar, vuelven a capturar. Cantidades <em>demenciales</em> de recursos para que podamos ahorrarnos unos minutos.</p>
+<p>Fui en una dirección diferente.</p>
+<h2>Una hoja de cálculo declarativa, basada en archivos, lista para IA</h2>
+<p>Todo el sistema son cinco subsistemas, todos declarativos, para que un humano o un agente de IA pueda ajustarlo rápidamente:</p>
+<ul>
+<li><strong>Almacenamiento</strong>: archivos de texto en disco que reconstruyen una base de datos local según sea necesario. Git rastrea cada operación, así que el historial siempre está ahí y es verificable.</li>
+<li><strong>Configuración</strong>: el <em>schema</em> (la forma de los datos) más los flujos y prompts. Para este caso de uso, declaré que un LLM debía tomar un listado de propiedad y poblar las columnas que definí.</li>
+<li><strong>Motor</strong>: una aplicación Python mínima que lee la configuración y gestiona operaciones. Vigila carpetas por cambios y reacciona — produciendo solicitudes al LLM, llamando a la API interna para actualizar valores.</li>
+<li><strong>Infraestructura</strong>: backends de LLM intercambiables. Modelos locales vía Ollama, agentes locales como Claude Code, o APIs externas. Cambia uno por otro sin cambiar nada más.</li>
+<li><strong>Renderer</strong>: una aplicación web para navegar, actualizar valores, y disparar flujos. Como todo es declarativo, nuevos mapas de teclado pueden producir acciones — agregar un log, ver un registro, obtener detalles — con una sola tecla.</li>
+</ul>
+<p>Es efectivamente una <strong>aplicación de hoja de cálculo basada en archivos con un pipeline dirigido por eventos</strong>. Obtienes algoritmos determinísticos para el trabajo que es determinístico, y el poder de los LLMs para traducción, inferencia, y señalamiento — cada uno haciendo aquello en lo que realmente es bueno.</p>
+<h2>Cómo funciona</h2>
+<p>Una nueva propiedad se crea desde un atajo de teclado (<code>f</code>, de <em>fetch</em>). Esto dispara una cadena de efectos: se crea un log, un navegador se abre en la URL del listado, el contenido se captura, se llama a un LLM para parsearlo, se escribe un nuevo archivo de log con los datos estructurados. El renderer web recibe un mensaje del servidor local y actualiza la vista. Todo el flujo toma segundos.</p>
+<blockquote>
+<p>The actual chain is: f key → modal → POST /api/ingest → file lands in inbox/ → watchdog fires → preprocessor launches Playwright browser → extracts text/JSON-LD → renders prompt template → calls LLM backend → POSTs structured result to /api/entries → appends to ops.jsonl + updates SQLite → SSE broadcast → web renderer refreshes.</p>
+</blockquote>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/screenshot-tui-suchprotokoll-480w.webp 480w, /es/assets/screenshot-tui-suchprotokoll-960w.webp 960w, /es/assets/screenshot-tui-suchprotokoll-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/screenshot-tui-suchprotokoll-480w.png 480w, /es/assets/screenshot-tui-suchprotokoll-960w.png 960w, /es/assets/screenshot-tui-suchprotokoll-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/screenshot-tui-suchprotokoll.png" alt="La interfaz de texto también se comporta de manera idéntica, solo que en la terminal: dos renderers que operan sobre los mismos datos, mostrando efectivamente cómo las interfaces son efímeras" loading="lazy">
+  </picture>
+  <figcaption>La interfaz de texto también se comporta de manera idéntica, solo que en la terminal: dos renderers que operan sobre los mismos datos, mostrando efectivamente cómo las interfaces son efímeras</figcaption>
+</figure>
+<h2>Qué lo hace diferente</h2>
+<p><strong>Declarativo, no procedural.</strong> El schema, los flujos, los prompts, los mapas de teclado — todo declarado en archivos de configuración. Sin cambios de código para agregar un nuevo flujo de trabajo. Crea un nuevo prompt, conéctalo en la configuración, está en vivo.</p>
+<p><strong>Dirigido por eventos.</strong> Cada acción produce una entrada de log. Los logs reconstruyen la base de datos. La base de datos <em>nunca</em> es la fuente de verdad — los archivos lo son. Borra la base de datos, reconstrúyela desde los logs. Múdate a una nueva máquina, clona el repo, reconstruye.</p>
+<p><strong>Datos multidimensionales.</strong> El formato subyacente es JSON, no una grilla plana. Un registro puede tener acciones anidadas, timestamps, cambios de estado. Exporta a CSV o XLSX cuando necesites una vista plana.</p>
+<p><strong>La API protege el sistema.</strong> El LLM no tiene acceso a datos privados. Solo parsea información que se le da y actualiza registros a través de una API tipada que hace cumplir el schema. El espacio de acción del agente está limitado por el contrato, no por la confianza.</p>
+<p><strong>Múltiples interfaces casi gratis.</strong> Obtuvimos una interfaz de texto (TUI) con casi cero trabajo extra. El renderer web es más rápido para uso diario, pero la TUI es sorprendentemente divertida y funciona por SSH.</p>
+<p><strong>Sin plataforma de automatización necesaria.</strong> Se pueden crear múltiples flujos con configuración mínima. Esto no es posible con ninguna aplicación de hoja de cálculo, y las plataformas de automatización son demasiado engorrosas para algo que es fundamentalmente determinístico.</p>
+<h2>Compromisos</h2>
+<p>Este sistema requiere comodidad con la línea de comandos. No es un producto alojado al que te registras, ni una aplicación instalable que descargas y configuras, al menos no todavía.</p>
+<p>Por otro lado, los LLMs locales tienen dificultades con la traducción — tuvimos que usar Claude para ciertas tareas donde la precisión importaba. El scraping es ética y técnicamente complicado, así que lo evitamos: resolvemos captchas nosotros mismos cuando es necesario y pegamos URLs manualmente.</p>
+<p>La brecha más grande ahora mismo es la <strong>portabilidad de dispositivo</strong>. No puedo renderizar esto en mi teléfono, así que escribo notas y las vuelco después. Git me da replicación en cualquier máquina que lo tenga, pero el teléfono está fuera de alcance por el momento. Una iteración futura necesitará una capa de sincronización — ser completamente descentralizado tiene límites reales cuando la mitad de tu vida sucede en un dispositivo que no puede correr un servidor local fácilmente.</p>
+<h2>El futuro está aquí (casi).</h2>
+<p>¿Hacia dónde vamos? Creo que este es el futuro de la computación personal. Es realmente personal: algunas declaraciones fáciles de entender, algunos prompts, y tenemos un flujo funcional que funciona sin ninguna suscripción costosa, o sin regalar nuestros datos. También está construido sobre principios que lo hacen no efímero: podemos cambiar el LLM una vez que los modelos locales estén a la par con los de frontera para la tarea actual, y podemos seguir evolucionando el renderer y el pipeline para lograr flujos más sofisticados, sin convertirlo en una aplicación compleja y rígida.</p>
+<blockquote>
+<p>Al final, es como si finalmente nos estuviéramos dando cuenta de que <em>nuestros computadores personales pueden usarse para computar!</em></p>
+</blockquote>
+<h6>Notas</h6>
+<ul>
+<li>
+<p>Este prototipo es parte de <strong>moui</strong>, un proyecto más amplio que explora cómo se ve la computación personal cuando los datos, las interfaces y la infraestructura son capas separadas que puedes intercambiar independientemente. Sheets es una de cuatro <em>shapes</em> en el workspace — las otras manejan presentaciones, posts de blog, y sitios web, todo desde el mismo CLI, los mismos principios.</p>
+</li>
+<li>
+<p>El código <em>será</em> publicado bajo AGPL-3.0 en algún momento. Con suerte el próximo mes.</p>
+</li>
+</ul>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "lo-que-hay-afuera", "text": "Lo que hay afuera", "level": 2}, {"id": "una-hoja-de-c-lculo-declarativa-basada-en-archivos-lista-para-ia", "text": "Una hoja de c\u00e1lculo declarativa, basada en archivos, lista para IA", "level": 2}, {"id": "c-mo-funciona", "text": "C\u00f3mo funciona", "level": 2}, {"id": "qu-lo-hace-diferente", "text": "Qu\u00e9 lo hace diferente", "level": 2}, {"id": "compromisos", "text": "Compromisos", "level": 2}, {"id": "el-futuro-est-aqu-casi", "text": "El futuro est\u00e1 aqu\u00ed (casi).", "level": 2}, {"id": "notas", "text": "Notas", "level": 6}]</script></main>
+    <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+        <span>Moui Grove</span>
+        <a href="https://www.moui.io/es/feed.xml">RSS</a>
+        <button class="btn btn-ghost btn-sm btn-icon btn-theme" data-action="toggle-theme" data-interaction="press" aria-label="Toggle theme" type="button">
+            <span class="btn-state-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+            <span class="btn-state-dark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+        </button>
+        <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Clear site data" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
+        </button>
+        <span class="build-id">c575dd22331c</span>
+    </div>
+</footer>
+    <script type="module" src="/es/app.js"></script>
+</body>
+</html>

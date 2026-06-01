@@ -1,0 +1,49 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Local-First, o: Cómo aprendí a dejar de navegar y amar la máquina</h1>
+            <time datetime="2026-05-04">04.05.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>Todavía recuerdo el día en que tuvimos nuestro primer computador. Era un Intel 486 con muy poca RAM, creo que eran 4MB. Mi papá trabajaba en el escritorio todas las noches al volver de la universidad, preparando clases, documentos, y enredándose con programas extraños para hacer cosas simples. Yo me sentaba junto a su escritorio y pasaba horas mirándolo, aprendiendo los comandos, jugando con la terminal, aunque nunca hicimos nada remotamente sofisticado. Él siempre iba a contracorriente en todo, así que en vez de usar Microsoft Word, se fue por la ruta de WordPerfect y LaTEX, y predicaba frecuentemente sobre <em>lo difícil que era todo con Microsoft Word</em>. Curiosamente, la gente alrededor no parecía preocuparse mucho, haciendo uno que otro rodeo para lograr cosas con Word. Se acostumbraron a la interfaz con sus caprichos y condiciones, se acostumbraron a aceptar las cosas como eran, a simplemente ceder y hacer el trabajo.</p>
+<p>Unos años después, compramos una máquina más capaz, y empecé a programar por necesidad. Estaba usando el ahora extinto pero absolutamente fantástico Flash para animar una película, pero simplemente mover cosas entre frames ya no tenía sentido. Quería interacción, y empecé a programar en Actionscript (un lenguaje de scripting inspirado en javascript), y construí lo que llamo &quot;juegos&quot;, pero en realidad eran solo unos cuantos prototipos interactivos probando los límites de programar sin StackOverflow, en una época en la que no tenía formación en conceptos de programación ni suficientes casos de uso/motivación/incentivos para construir. Era divertido dibujar objetos y animarlos con código, y a la gente le encantó tanto que empezaron a usarlo para todo, lo cual lo hizo inseguro. Flash fue prohibido eventualmente por todos los navegadores y <em>seguimos adelante</em>.</p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/QWOP_screenshot-480w.webp 480w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/jpeg" srcset="/es/assets/QWOP_screenshot-480w.jpg 480w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/QWOP_screenshot.jpg" alt="Un juego serio desarrollado en Flash — Por Bennett Foddy - El usuario que lo subió a Wikimedia Commons lo recibió del autor/titular de derechos., CC0, https://commons.wikimedia.org/w/index.php?curid=65720108" loading="eager">
+  </picture>
+  <figcaption>Un juego serio desarrollado en Flash — Por Bennett Foddy - El usuario que lo subió a Wikimedia Commons lo recibió del autor/titular de derechos., CC0, https://commons.wikimedia.org/w/index.php?curid=65720108</figcaption>
+</figure>
+<p>Seguimos adelante. <strong>Curiosamente, nos hemos alejado de algunas de las cosas más interesantes en tecnología: el hardware, la computación local</strong>... aplicaciones que funcionan sin las molestias del navegador: contraseñas infinitas, mecanismos de gestión de cookies que hemos aprendido a aceptar, y que ni siquiera necesitan Internet. El mundo digital se volvió centrado en el navegador: tus documentos, hojas de cálculo, diseño, creación musical; casi todo empezó a ocurrir en un contexto de navegador. Y así nuestros computadores se convirtieron en simples clientes, como los llamamos los desarrolladores. En algún momento movimos todo a la nube, ignorando lo que un computador personal realmente significaba. Como si olvidáramos que literalmente contenía la palabra <em>computación</em>. No era solo un navegador, y definitivamente era más que un teclado con pantalla que necesita un plan de datos para funcionar.</p>
+<p>Crear cosas usando un computador personal era tan divertido, que con los años seguí recordando la sensación con un poco de nostalgia. Hace dos meses, como resultado de todas las discusiones sobre privacidad de datos, ciberseguridad, resiliencia digital, et al. que estaba teniendo con gente, una idea empezó a crecer en mí:</p>
+<blockquote>
+<p>Nuestras máquinas son mucho más capaces que el computador que envió gente a la luna, y sin embargo solo las usamos para acceder a un navegador.</p>
+</blockquote>
+<p>Millones de veces más poderosas. Así que decidí hacer algo al respecto, alguien tenía que hacerlo, aunque fuera en forma de pequeños prototipos. Muy parecido a mi padre, me metí en la madriguera del conejo, tomando un camino posiblemente contrario pero casi inevitable de desarrollo local-first basado en principios: <strong>nace un nuevo tipo de computación personal; solo que esta vez, está disponible para todos</strong>. Un destello de claridad me movió hacia construir desde Primeros Principios, lo cual fue una experiencia bastante entrañable, yo tratando de descubrir <em>de qué se trataban esos primeros principios</em>, encontrándolos olvidados y enterrados en el pasado.</p>
+<blockquote>
+<p>Hubo una vez en que teníamos un computador personal. Y este computador era bastante capaz, y lo usábamos para crear juegos tontos y podíamos trabajar estando desconectados.</p>
+</blockquote>
+<p>No existía el concepto de estar desconectado; al contrario, uno se &quot;conectaba&quot; brevemente para hacer algunas cosas; el ruido y los pitidos del módem conectándonos a velocidades extremadamente lentas, accediendo de manera poco confiable a otro mundo. Un mundo en el que ahora vivimos constantemente, del que ni siquiera podemos escapar. Pero ¿alguien me puede explicar qué pasó realmente aquí? Intercambiamos el poder del computador personal por... ¿qué exactamente?</p>
+<h3>La privacidad de datos importa ahora más que nunca</h3>
+<p>Sin embargo, la mayoría de las <em>soluciones</em> que tendemos a ver en este espacio en realidad agregan más capas, en vez de quitar. Entonces, para combatir el abuso con cookies, creamos leyes como GDPR, y apareció una nueva oportunidad de mercado para apps que gestionan cookies, para apps que gestionan acciones de descarte de cookies, y para abogados especialmente. Mientras que los usuarios no estamos realmente mejor después de todo el intercambio. Un engrosamiento que solo empeora cuantas más capas le agregamos.</p>
+<h3>La solución es bastante simple, y no se trata de agregar gestores de cookies encima de la pobre experiencia que creamos.</h3>
+<p>Se trata realmente de quitar capas. Quitemos el desorden. Quitemos la masa de cuentas, inicios de sesión, métricas, cookies, y términos y condiciones que regulan el uso de mis datos. Cuando quitas la sobrecarga, la experiencia de la computación personal se vuelve bastante simple, más segura, más <em>resiliente y más autodeterminada</em>. Se vuelve más divertida. Lo cual es gracioso porque eso es exactamente lo que teníamos hace 20 años.</p>
+<p>Hagámoslo fácil, y hagámoslo simple. Apps local-first sin desorden que usan energía mínima porque la IA puede (y posiblemente debería) ser opcional, que usen por defecto modelos locales, modelos pequeños, que funcionen sin conexión, lo cual lleva a <strong>trabajo privado que es altamente satisfactorio porque es verdaderamente tuyo</strong>.</p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/moui-notes-screenshot-claude-480w.webp 480w, /es/assets/moui-notes-screenshot-claude-960w.webp 960w, /es/assets/moui-notes-screenshot-claude-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/moui-notes-screenshot-claude-480w.png 480w, /es/assets/moui-notes-screenshot-claude-960w.png 960w, /es/assets/moui-notes-screenshot-claude-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/moui-notes-screenshot-claude.png" alt="Una captura de pantalla de nuestra propia app en acción mientras escribíamos este post, con un poco de IA local y opcional para ayudar con la investigación" loading="lazy">
+  </picture>
+  <figcaption>Una captura de pantalla de nuestra propia app en acción mientras escribíamos este post, con un poco de IA local y opcional para ayudar con la investigación</figcaption>
+</figure>
+<hr />
+<h6>Algunas notas</h6>
+<p><em>4MB de RAM puede no significar mucho para la gente hoy en día, así que pongámoslo en contexto. Mi teléfono actual, que salió al mercado hace dos años, tiene 12GB de RAM a bordo, lo cual es <strong>tres mil veces la cantidad de memoria de nuestro primer computador</strong>. Y sin embargo la mayor parte del tiempo se usa para renderizar páginas web. Ahí lo dejo.</em></p>
+<p><em>Gracias a @jpawlyn por la revisión exhaustiva, pero sobre todo por la paciencia.</em></p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "la-privacidad-de-datos-importa-ahora-m-s-que-nunca", "text": "La privacidad de datos importa ahora m\u00e1s que nunca", "level": 3}, {"id": "la-soluci-n-es-bastante-simple-y-no-se-trata-de-agregar-gestores-de-cookies-encima-de-la-pobre-experiencia-que-creamos", "text": "La soluci\u00f3n es bastante simple, y no se trata de agregar gestores de cookies encima de la pobre experiencia que creamos.", "level": 3}, {"id": "algunas-notas", "text": "Algunas notas", "level": 6}]</script>

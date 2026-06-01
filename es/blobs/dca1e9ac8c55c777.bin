@@ -1,0 +1,46 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>La CLOUD Act de EE.UU. y la ilusión de la soberanía de datos</h1>
+            <time datetime="2026-04-17">17.04.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>La Clarifying Lawful Overseas Use of Data Act — la CLOUD Act — se convirtió en ley en 2018. Hace algo simple: le da a las fuerzas del orden estadounidenses la autoridad legal para obligar a cualquier empresa tecnológica con sede en EE.UU. a entregar datos almacenados en sus servidores, sin importar en qué parte del mundo estén ubicados físicamente esos servidores.</p>
+<p>Si tu organización usa Google Workspace, Microsoft 365, AWS, o cualquier proveedor de nube con sede en EE.UU., la CLOUD Act aplica a tus datos. No importa que tu oficina esté en Berlín, que tus servidores estén en Fráncfort, o que tu contrato especifique residencia de datos en la UE. La jurisdicción legal sigue a la empresa, no al centro de datos.</p>
+<p>Esto no es un riesgo teórico.</p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/dw-digital-dilemma-480w.webp 480w, /es/assets/dw-digital-dilemma-960w.webp 960w, /es/assets/dw-digital-dilemma-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/dw-digital-dilemma-480w.png 480w, /es/assets/dw-digital-dilemma-960w.png 960w, /es/assets/dw-digital-dilemma-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/dw-digital-dilemma.png" alt="Deutsche Welle, marzo 2026 — La dependencia digital de Alemania de la infraestructura estadounidense es ahora una vulnerabilidad política." loading="eager">
+  </picture>
+  <figcaption>Deutsche Welle, marzo 2026 — La dependencia digital de Alemania de la infraestructura estadounidense es ahora una vulnerabilidad política.</figcaption>
+</figure>
+<h2>Qué dice realmente la CLOUD Act</h2>
+<p>Antes de 2018, las fuerzas del orden estadounidenses necesitaban un Mutual Legal Assistance Treaty (MLAT) para solicitar datos almacenados fuera de EE.UU. El proceso era lento, involucraba gobiernos extranjeros y tenía supervisión. La CLOUD Act lo eludió por completo. Un tribunal estadounidense ahora puede emitir una orden directamente a Microsoft, Google o Amazon, y la empresa debe cumplir — incluso si los datos están almacenados en Irlanda, Alemania o Singapur.</p>
+<p>La justificación fue la eficiencia: las investigaciones penales se retrasaban por el proceso MLAT. La consecuencia es que cada byte de datos almacenado por un proveedor estadounidense está al alcance de las autoridades estadounidenses, sin notificación al titular de los datos ni a su gobierno.</p>
+<h2>Por qué esto importa para las organizaciones</h2>
+<p>Para la mayoría de usuarios consumidores, esto es ruido de fondo. Para organizaciones que manejan datos sensibles — documentos legales, registros de beneficiarios, investigación médica, testimonios de derechos humanos, datos financieros — es una realidad operativa con consecuencias concretas:</p>
+<ul>
+<li>
+<p><strong>Conflicto con GDPR.</strong> La CLOUD Act crea un conflicto directo con el Reglamento General de Protección de Datos de la UE. Una organización no puede cumplir simultáneamente con una orden judicial estadounidense que exige datos y una regulación europea que prohíbe la transferencia de esos datos sin salvaguardas adecuadas. No hay resolución para este conflicto. Es estructural.</p>
+</li>
+<li>
+<p><strong>No hay puerto seguro.</strong> El EU-US Privacy Shield fue invalidado por la sentencia Schrems II en 2020. Su reemplazo, el EU-US Data Privacy Framework, enfrenta los mismos desafíos legales. Las organizaciones que dependen de &quot;decisiones de adecuación&quot; están construyendo sobre arena.</p>
+</li>
+<li>
+<p><strong>La IA lo empeora.</strong> Cada documento que subes a un servicio de IA alojado en EE.UU. — ChatGPT, Gemini, Copilot, NotebookLM — se procesa en infraestructura estadounidense por una empresa estadounidense. La CLOUD Act aplica. Para organizaciones que no pueden arriesgarse a la exposición de datos, esto significa que las herramientas más poderosas disponibles están fuera de alcance.</p>
+</li>
+</ul>
+<h2>El problema estructural</h2>
+<p>La CLOUD Act no es la enfermedad. Es un síntoma de una realidad estructural más profunda: cuando tus datos viven en la infraestructura de otro, no los controlas. Alquilas acceso a ellos. Los términos de ese acceso los establece el proveedor y el gobierno del proveedor, no tú.</p>
+<p>Esto no se resuelve cambiando de Google a Microsoft, o de AWS a Azure. La jurisdicción sigue a la empresa. Se resuelve cambiando dónde viven los datos y dónde se procesan. La arquitectura local-first — donde los datos permanecen en hardware que tú posees, donde el cómputo ocurre en tu dispositivo, donde la red es opcional y cifrada — no es una preferencia filosófica. Es la única arquitectura que hace la soberanía de datos real en vez de contractual.</p>
+<p>Las organizaciones que más necesitan esto son exactamente las menos atendidas por el mercado actual: ONGs que manejan datos de beneficiarios, instituciones de investigación que trabajan con sujetos humanos, equipos legales que gestionan comunicaciones privilegiadas, organizaciones de la sociedad civil que operan en entornos políticamente disputados. Estos no son casos marginales. Son las organizaciones que hacen el trabajo más trascendente.</p>
+<h2>Qué viene después</h2>
+<p>El entorno regulatorio se está endureciendo. La EU AI Act exige a las organizaciones saber dónde los sistemas de IA procesan sus datos. Los gobiernos europeos están empezando a exigir infraestructura de nube soberana para la administración pública. La agencia federal alemana ZenDiS está trabajando activamente en alternativas a las dependencias de software estadounidense.</p>
+<p>La pregunta no es si el cambio va a ocurrir. Es si las alternativas estarán listas cuando las organizaciones las necesiten. El mercado actual ofrece una falsa elección: capacidad o soberanía. IA en la nube o nada de IA. El trabajo que estamos haciendo es demostrar que este es un falso dilema — que la inteligencia puede correr en infraestructura que tú posees.</p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "qu-dice-realmente-la-cloud-act", "text": "Qu\u00e9 dice realmente la CLOUD Act", "level": 2}, {"id": "por-qu-esto-importa-para-las-organizaciones", "text": "Por qu\u00e9 esto importa para las organizaciones", "level": 2}, {"id": "el-problema-estructural", "text": "El problema estructural", "level": 2}, {"id": "qu-viene-despu-s", "text": "Qu\u00e9 viene despu\u00e9s", "level": 2}]</script>

@@ -1,0 +1,129 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Reimaginando las hojas de cálculo</h1>
+            <time datetime="2026-05-28">28.05.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>Hace dos semanas, al sentarme a empezar mi búsqueda diaria de apartamento en Berlín (que todavía se siente como un reto mayor), sentí la necesidad de un sistema para rastrear todas las solicitudes. <strong>Mi recurso de la última década era usar Google Sheets</strong>, así que empecé a crear el archivo y las columnas, con el objetivo de ingresar manualmente las características de cada propiedad. Naturalmente, con apenas una fila me di cuenta de que este era el tipo de tarea que un LLM podía hacer mucho mejor, porque es bastante tedioso ir al exposé y copiar manualmente las características de cada propiedad en la hoja.</p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/suchprotokoll-screehnshot-google-spreadsheets-480w.webp 480w, /es/assets/suchprotokoll-screehnshot-google-spreadsheets-960w.webp 960w, /es/assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/suchprotokoll-screehnshot-google-spreadsheets-480w.png 480w, /es/assets/suchprotokoll-screehnshot-google-spreadsheets-960w.png 960w, /es/assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/suchprotokoll-screehnshot-google-spreadsheets.png" alt="Hacer esto manualmente se siente verdaderamente lento comparado con lo que esperamos de los sistemas en 2026" loading="eager">
+  </picture>
+  <figcaption>Hacer esto manualmente se siente verdaderamente lento comparado con lo que esperamos de los sistemas en 2026</figcaption>
+</figure>
+<p>Pero la extracción fue solo el comienzo. También necesitaba un sistema de registro — un historial de acciones: envié una solicitud en esta fecha, recibí una invitación a una visita en esa fecha, envié los documentos de solicitud al día siguiente. No hay una forma natural de hacer eso en hojas de cálculo. Claro, puedes crear una nueva hoja y enlazarlas, pero se vuelve un desorden rápido. Y las hojas de cálculo son frágiles: los valores se borran accidentalmente, las fórmulas se rompen silenciosamente. Quería algo <strong>lo suficientemente robusto como para sostenerse en un tribunal si fuera necesario</strong>, con un historial completo de acciones y mensajes.</p>
+<h2>Lo que hay afuera</h2>
+<p>Miré las opciones habituales:</p>
+<table>
+<thead>
+<tr>
+<th>Enfoque</th>
+<th>Extracción automática</th>
+<th>Registro de actividad</th>
+<th>Enums</th>
+<th>Complejidad de setup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Sheets manual</td>
+<td>No</td>
+<td>No (necesita hoja aparte)</td>
+<td>Sí (Data Validation)</td>
+<td>Muy baja</td>
+</tr>
+<tr>
+<td>Google Sheets + IA integrada</td>
+<td>Parcial (fórmulas, fill, chat lateral)</td>
+<td>No</td>
+<td>Sí (Data Validation)</td>
+<td>Muy baja</td>
+</tr>
+<tr>
+<td>Notion</td>
+<td>Parcial (bloques IA; mayormente manual)</td>
+<td>Incómodo (relaciones, timeline)</td>
+<td>Sí (select, status)</td>
+<td>Baja</td>
+</tr>
+<tr>
+<td>n8n solo</td>
+<td>Sí</td>
+<td>Via tabla de log separada</td>
+<td>Via sheets</td>
+<td>Media</td>
+</tr>
+<tr>
+<td>OpenClaw + n8n</td>
+<td>Sí (disparado por lenguaje natural)</td>
+<td>Sí (memoria persistente + logs)</td>
+<td>Via sheets</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>Claude Cowork / Projects</td>
+<td>Via chat (no estructurado)</td>
+<td>Solo conversación</td>
+<td>Sin schema nativo</td>
+<td>Baja</td>
+</tr>
+</tbody>
+</table>
+<p>La gente hace esto para búsqueda de apartamentos, solicitudes de empleo, y más. Pero todo el stack involucra demasiados actores y demasiados procesadores de datos. Las opciones asistidas por IA son o mínimas (un chat lateral que sugiere fórmulas) o masivamente despilfarradoras — sistemas agénticos que capturan pantalla de tu navegador, transfieren la imagen, encuentran el botón, hacen clic, vuelven a buscar, vuelven a capturar. Cantidades <em>demenciales</em> de recursos para que podamos ahorrarnos unos minutos.</p>
+<p>Fui en una dirección diferente.</p>
+<h2>Una hoja de cálculo declarativa, basada en archivos, lista para IA</h2>
+<p>Todo el sistema son cinco subsistemas, todos declarativos, para que un humano o un agente de IA pueda ajustarlo rápidamente:</p>
+<ul>
+<li><strong>Almacenamiento</strong>: archivos de texto en disco que reconstruyen una base de datos local según sea necesario. Git rastrea cada operación, así que el historial siempre está ahí y es verificable.</li>
+<li><strong>Configuración</strong>: el <em>schema</em> (la forma de los datos) más los flujos y prompts. Para este caso de uso, declaré que un LLM debía tomar un listado de propiedad y poblar las columnas que definí.</li>
+<li><strong>Motor</strong>: una aplicación Python mínima que lee la configuración y gestiona operaciones. Vigila carpetas por cambios y reacciona — produciendo solicitudes al LLM, llamando a la API interna para actualizar valores.</li>
+<li><strong>Infraestructura</strong>: backends de LLM intercambiables. Modelos locales vía Ollama, agentes locales como Claude Code, o APIs externas. Cambia uno por otro sin cambiar nada más.</li>
+<li><strong>Renderer</strong>: una aplicación web para navegar, actualizar valores, y disparar flujos. Como todo es declarativo, nuevos mapas de teclado pueden producir acciones — agregar un log, ver un registro, obtener detalles — con una sola tecla.</li>
+</ul>
+<p>Es efectivamente una <strong>aplicación de hoja de cálculo basada en archivos con un pipeline dirigido por eventos</strong>. Obtienes algoritmos determinísticos para el trabajo que es determinístico, y el poder de los LLMs para traducción, inferencia, y señalamiento — cada uno haciendo aquello en lo que realmente es bueno.</p>
+<h2>Cómo funciona</h2>
+<p>Una nueva propiedad se crea desde un atajo de teclado (<code>f</code>, de <em>fetch</em>). Esto dispara una cadena de efectos: se crea un log, un navegador se abre en la URL del listado, el contenido se captura, se llama a un LLM para parsearlo, se escribe un nuevo archivo de log con los datos estructurados. El renderer web recibe un mensaje del servidor local y actualiza la vista. Todo el flujo toma segundos.</p>
+<blockquote>
+<p>The actual chain is: f key → modal → POST /api/ingest → file lands in inbox/ → watchdog fires → preprocessor launches Playwright browser → extracts text/JSON-LD → renders prompt template → calls LLM backend → POSTs structured result to /api/entries → appends to ops.jsonl + updates SQLite → SSE broadcast → web renderer refreshes.</p>
+</blockquote>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/screenshot-tui-suchprotokoll-480w.webp 480w, /es/assets/screenshot-tui-suchprotokoll-960w.webp 960w, /es/assets/screenshot-tui-suchprotokoll-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/screenshot-tui-suchprotokoll-480w.png 480w, /es/assets/screenshot-tui-suchprotokoll-960w.png 960w, /es/assets/screenshot-tui-suchprotokoll-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/screenshot-tui-suchprotokoll.png" alt="La interfaz de texto también se comporta de manera idéntica, solo que en la terminal: dos renderers que operan sobre los mismos datos, mostrando efectivamente cómo las interfaces son efímeras" loading="lazy">
+  </picture>
+  <figcaption>La interfaz de texto también se comporta de manera idéntica, solo que en la terminal: dos renderers que operan sobre los mismos datos, mostrando efectivamente cómo las interfaces son efímeras</figcaption>
+</figure>
+<h2>Qué lo hace diferente</h2>
+<p><strong>Declarativo, no procedural.</strong> El schema, los flujos, los prompts, los mapas de teclado — todo declarado en archivos de configuración. Sin cambios de código para agregar un nuevo flujo de trabajo. Crea un nuevo prompt, conéctalo en la configuración, está en vivo.</p>
+<p><strong>Dirigido por eventos.</strong> Cada acción produce una entrada de log. Los logs reconstruyen la base de datos. La base de datos <em>nunca</em> es la fuente de verdad — los archivos lo son. Borra la base de datos, reconstrúyela desde los logs. Múdate a una nueva máquina, clona el repo, reconstruye.</p>
+<p><strong>Datos multidimensionales.</strong> El formato subyacente es JSON, no una grilla plana. Un registro puede tener acciones anidadas, timestamps, cambios de estado. Exporta a CSV o XLSX cuando necesites una vista plana.</p>
+<p><strong>La API protege el sistema.</strong> El LLM no tiene acceso a datos privados. Solo parsea información que se le da y actualiza registros a través de una API tipada que hace cumplir el schema. El espacio de acción del agente está limitado por el contrato, no por la confianza.</p>
+<p><strong>Múltiples interfaces casi gratis.</strong> Obtuvimos una interfaz de texto (TUI) con casi cero trabajo extra. El renderer web es más rápido para uso diario, pero la TUI es sorprendentemente divertida y funciona por SSH.</p>
+<p><strong>Sin plataforma de automatización necesaria.</strong> Se pueden crear múltiples flujos con configuración mínima. Esto no es posible con ninguna aplicación de hoja de cálculo, y las plataformas de automatización son demasiado engorrosas para algo que es fundamentalmente determinístico.</p>
+<h2>Compromisos</h2>
+<p>Este sistema requiere comodidad con la línea de comandos. No es un producto alojado al que te registras, ni una aplicación instalable que descargas y configuras, al menos no todavía.</p>
+<p>Por otro lado, los LLMs locales tienen dificultades con la traducción — tuvimos que usar Claude para ciertas tareas donde la precisión importaba. El scraping es ética y técnicamente complicado, así que lo evitamos: resolvemos captchas nosotros mismos cuando es necesario y pegamos URLs manualmente.</p>
+<p>La brecha más grande ahora mismo es la <strong>portabilidad de dispositivo</strong>. No puedo renderizar esto en mi teléfono, así que escribo notas y las vuelco después. Git me da replicación en cualquier máquina que lo tenga, pero el teléfono está fuera de alcance por el momento. Una iteración futura necesitará una capa de sincronización — ser completamente descentralizado tiene límites reales cuando la mitad de tu vida sucede en un dispositivo que no puede correr un servidor local fácilmente.</p>
+<h2>El futuro está aquí (casi).</h2>
+<p>¿Hacia dónde vamos? Creo que este es el futuro de la computación personal. Es realmente personal: algunas declaraciones fáciles de entender, algunos prompts, y tenemos un flujo funcional que funciona sin ninguna suscripción costosa, o sin regalar nuestros datos. También está construido sobre principios que lo hacen no efímero: podemos cambiar el LLM una vez que los modelos locales estén a la par con los de frontera para la tarea actual, y podemos seguir evolucionando el renderer y el pipeline para lograr flujos más sofisticados, sin convertirlo en una aplicación compleja y rígida.</p>
+<blockquote>
+<p>Al final, es como si finalmente nos estuviéramos dando cuenta de que <em>nuestros computadores personales pueden usarse para computar!</em></p>
+</blockquote>
+<h6>Notas</h6>
+<ul>
+<li>
+<p>Este prototipo es parte de <strong>moui</strong>, un proyecto más amplio que explora cómo se ve la computación personal cuando los datos, las interfaces y la infraestructura son capas separadas que puedes intercambiar independientemente. Sheets es una de cuatro <em>shapes</em> en el workspace — las otras manejan presentaciones, posts de blog, y sitios web, todo desde el mismo CLI, los mismos principios.</p>
+</li>
+<li>
+<p>El código <em>será</em> publicado bajo AGPL-3.0 en algún momento. Con suerte el próximo mes.</p>
+</li>
+</ul>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "lo-que-hay-afuera", "text": "Lo que hay afuera", "level": 2}, {"id": "una-hoja-de-c-lculo-declarativa-basada-en-archivos-lista-para-ia", "text": "Una hoja de c\u00e1lculo declarativa, basada en archivos, lista para IA", "level": 2}, {"id": "c-mo-funciona", "text": "C\u00f3mo funciona", "level": 2}, {"id": "qu-lo-hace-diferente", "text": "Qu\u00e9 lo hace diferente", "level": 2}, {"id": "compromisos", "text": "Compromisos", "level": 2}, {"id": "el-futuro-est-aqu-casi", "text": "El futuro est\u00e1 aqu\u00ed (casi).", "level": 2}, {"id": "notas", "text": "Notas", "level": 6}]</script>

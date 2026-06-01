@@ -1,0 +1,45 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Construir Desde Primeros Principios</h1>
+            <time datetime="2026-04-22">22.04.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>El problema de hacer las cosas <em>de la manera habitual</em> es que <em>la manera habitual generalmente implica encerrar a la gente para asegurar ARR</em>. Entonces, ¿de qué estamos hablando?</p>
+<ul>
+<li>ARR: ingresos recurrentes anuales, o cuánto dinero la gente te está dando regularmente, bajo contrato.</li>
+<li>Vendor lock-in: el mecanismo con el que encierras a los usuarios en tu ecosistema. El precio que pagas (solo que es diferido, una vez que ya estás invertido).</li>
+</ul>
+<p>Así que durante años la jugada fue simple: encerrar a la gente con una oferta realmente buena, un trato demasiado-bueno-para-ser-verdad, el tipo de trato del que <em>sabes que está escondiendo algo</em>:</p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/google-ad-no-ads-480w.webp 480w, /es/assets/google-ad-no-ads-960w.webp 960w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/google-ad-no-ads-480w.png 480w, /es/assets/google-ad-no-ads-960w.png 960w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/google-ad-no-ads.png" alt="Anuncio de Google en un periódico, tomado de X" loading="eager">
+  </picture>
+  <figcaption>Anuncio de Google en un periódico, tomado de X</figcaption>
+</figure>
+<p>Y entonces un día, quizás lentamente, o más bien rápidamente, alguien cambia las condiciones. El servicio, que antes era querido por su interfaz limpia y su enfoque sin anuncios ni desorden, se llena de anuncios, se llena de desorden.</p>
+<p>Ese es el momento en que consideras dejarlo. El problema es que dejarlo es bastante difícil ahora que lo has adoptado.</p>
+<hr />
+<p>Hace unas semanas, la expresión &quot;Primeros Principios&quot; llegó a mi vocabulario. Todavía no estoy seguro de cómo me llegó, pero fue fuerte y claro. Empecé a buscarlos en múltiples lugares, y cuando pensaba en la privacidad de datos, todo lo que veía era GDPR, y procesos, y reglas. Y cookies: <strong>sobre todo, veía banners de cookies por todas partes</strong>. Llevamos viendo banners de cookies desde hace unos años, lo cual siempre me pareció bastante malo en términos de experiencia de usuario, pero ahora que estoy pensando en problemas de privacidad de datos, todo me huele mal. Los banners de cookies son posiblemente un parche, una curita sobre algo que está fundamentalmente roto y sangrando.</p>
+<p>El problema es que una vez que empiezas a cuestionar suposiciones, llegas a algo bastante fundamental: que <strong>los datos que no están almacenados en tus dispositivos físicos no son realmente tuyos</strong>. Incluso podríamos argumentar que un sistema operativo que no es completamente open source y auditable también opera como una capa que puede literalmente limitar dicha propiedad. Pero no vamos ahí todavía, concentrémonos en lo que nos ocupa.</p>
+<p>Entonces, ¿cuáles son esos primeros principios aplicados al desarrollo de software? Lo primero que me viene a la mente es SOLID. Y AGILE. Y MVC. Y otros... pero curiosamente, ninguno habla del modelo de propiedad de datos.</p>
+<h2>El modelo de propiedad de datos</h2>
+<p>Este es probablemente un tema para otro momento, pero una breve explicación es simple: los proveedores de servicios, también conocidos como servicios SaaS/Cloud, mezclan el alojamiento de tus datos de aplicación con la interfaz que habilita el servicio. La mayoría de las aplicaciones son, en esencia, una operación de base de datos de cierta escala, pero los medios para lograrlo difieren. Así que si tomas una aplicación famosa para crear diseños, al final lo que estás haciendo es modificar código que produce el diseño. Alojar esos datos y servirte con la capacidad de crear esos diseños es algo que tradicionalmente ha sido parte de lo que llamamos &quot;el servicio&quot; en la declaración &quot;Software como Servicio&quot;. Sin embargo, alojar unos pocos bytes aquí y allá no requiere casi infraestructura, pero no tienes otra opción: tienes que crear una cuenta, rentar una aplicación (usualmente por puesto) y vivir con las consecuencias de no poder dejar ese servicio sin llevarte los datos contigo.</p>
+<p>Es cierto, todavía puedes exportar y todo eso, pero en esencia, tus datos no valen nada sin la interfaz. Adquirimos el servicio porque queríamos la interfaz, pero nos quedamos por el lock-in de datos. Otros servicios podrían darnos mejores interfaces, pero la mudanza es lo suficientemente difícil como para que nos quedemos ahí a pesar de la relación (a veces) abusiva.</p>
+<p>¿Cómo podemos reclamar nuestra agencia en estos asuntos? Necesitamos ser dueños de nuestros datos. No solo en el sentido legal, sino especialmente, en el sentido físico. <strong>Ser dueños como en poseer, como en decidir qué hacer con esos datos: qué es privado, dónde está alojado, dónde está desplegado, quién tiene acceso</strong>. Paremos ahí porque este no es un post político. Este post era sobre programar desde primeros principios.</p>
+<p>Así que el rant tiene que terminar en algún momento. Y los principios necesitan ser expuestos, porque ofrecen posibilidades, y desafíos. Construimos desde primeros principios porque nos dan nuevas perspectivas, y proveen orientación para esos momentos en que estamos perdidos y no tenemos ni idea de cómo resolver los distintos problemas que surgen.</p>
+<h3>Una pista sobre los principios</h3>
+<p>Esos principios son en realidad bastante simples:</p>
+<blockquote>
+<p>Datos, interfaces e infraestructura como preocupaciones separadas</p>
+</blockquote>
+<p>Las interfaces son por lo que la gente vino. El almacenamiento de datos es por lo que la gente paga. Mientras esos dos estén entrelazados, la gente no podrá irse, no tendrá libertad plena. Pero creemos que las interfaces pueden evolucionar independientemente, especialmente en estos tiempos de desarrollo asistido por IA. Pero es exactamente porque estamos viviendo estos tiempos con vidas impregnadas de IA que tenemos que ser dueños de nuestros datos de nuevo, como era el caso no hace mucho tiempo.</p>
+<p>Sé dueño de tus datos, y todo lo demás emergerá de ahí.</p>
+<p><em>Para más sobre nuestros principios, echa un vistazo a <a href="/manifesto">nuestro manifiesto</a></em></p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "el-modelo-de-propiedad-de-datos", "text": "El modelo de propiedad de datos", "level": 2}, {"id": "una-pista-sobre-los-principios", "text": "Una pista sobre los principios", "level": 3}]</script>

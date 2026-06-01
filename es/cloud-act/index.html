@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="grove-base-path" content="/es">
+    <title>La CLOUD Act de EE.UU. y la ilusión de la soberanía de datos</title>
+    <link rel="icon" href="/es/theme/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/es/theme/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/es/theme/apple-touch-icon.png">
+    <meta property="og:title" content="La CLOUD Act de EE.UU. y la ilusión de la soberanía de datos">
+    <meta property="og:description" content="Tus datos están en servidores estadounidenses, bajo ley estadounidense. La CLOUD Act lo hace explícito. La pregunta es qué haces al respecto.">
+    <meta property="og:image" content="https://www.moui.io/es/assets/dw-digital-dilemma.png">
+    <meta property="og:url" content="https://www.moui.io/es/cloud-act/">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary">
+    <link rel="alternate" type="application/rss+xml" title="Moui Grove" href="https://www.moui.io/es/feed.xml">
+    <style id="grove-tokens">
+:root {
+  --palette-primary: #ff1055;
+  --palette-primary-dark: #d40d47;
+  --palette-secondary: #E5F20D;
+  --palette-secondary-dark: #c9d300;
+  --palette-near-black: #0a0a0a;
+  --palette-dark-gray: #3a3a3a;
+  --palette-white: #ffffff;
+  --palette-warm-white: #faf9f7;
+  --palette-code-bg: #f5f4f0;
+  --palette-gray-100: #f3f3f1;
+  --palette-gray-200: #e2e2de;
+  --palette-gray-300: #c8c8c2;
+  --palette-gray-400: #8a8a82;
+  --palette-gray-600: #52524c;
+  --palette-gray-800: #1c1c18;
+  --palette-black: #0f0f0c;
+  --palette-banner-info-bg: #e8f4fd;
+  --palette-banner-info-text: #1a5276;
+  --palette-banner-info-border: #aed6f1;
+  --palette-banner-warning-bg: #fef9e7;
+  --palette-banner-warning-text: #7d6608;
+  --palette-banner-warning-border: #f9e79f;
+  --palette-banner-error-bg: #fdedec;
+  --palette-banner-error-text: #922b21;
+  --palette-banner-error-border: #f5b7b1;
+  --palette-banner-success-bg: #eafaf1;
+  --palette-banner-success-text: #1e8449;
+  --palette-banner-success-border: #a9dfbf;
+  --color-bg: warm-white;
+  --color-surface: gray-100;
+  --color-code-bg: code-bg;
+  --color-text: gray-800;
+  --color-text-secondary: gray-600;
+  --color-accent: primary;
+  --color-accent-hover: primary-dark;
+  --color-border: gray-200;
+  --color-card-bg: white;
+  --color-btn-primary: near-black;
+  --color-btn-primary-hover: dark-gray;
+  --color-btn-primary-text: white;
+  --color-gradient-start: primary;
+  --color-gradient-end: secondary;
+  --color-banner-info-bg: banner-info-bg;
+  --color-banner-info-text: banner-info-text;
+  --color-banner-info-border: banner-info-border;
+  --color-banner-warning-bg: banner-warning-bg;
+  --color-banner-warning-text: banner-warning-text;
+  --color-banner-warning-border: banner-warning-border;
+  --color-banner-error-bg: banner-error-bg;
+  --color-banner-error-text: banner-error-text;
+  --color-banner-error-border: banner-error-border;
+  --color-banner-success-bg: banner-success-bg;
+  --color-banner-success-text: banner-success-text;
+  --color-banner-success-border: banner-success-border;
+  --font-body: eb-garamond, 'EB Garamond', 'Garamond', Georgia, serif;
+  --font-header: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-display: lora, 'Lora', Georgia, serif;
+  --font-ui: lato, 'Lato', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --font-base: 17px;
+  --line-height: 1.75;
+  --weight-body: 400;
+  --weight-heading: 700;
+  --leading-body: 1.75;
+  --leading-heading: 1.15;
+  --logo-width: 120px;
+  --scale-sm: 0.875;
+  --scale-md: 1;
+  --scale-lg: 1.3;
+  --scale-xl: 1.6;
+  --scale-xxl: 1.8;
+  --scale-display: 3;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2rem;
+  --space-content-width: 780px;
+  --space-card-padding: 1rem;
+  --space-card-radius: 6px;
+  --space-card-image-height: 180px;
+  --color-tag-bg: gray-100;
+  --color-tag-text: gray-600;
+  --color-bg-resolved: #faf9f7;
+  --color-surface-resolved: #f3f3f1;
+  --color-code-bg-resolved: #f5f4f0;
+  --color-text-resolved: #1c1c18;
+  --color-text-secondary-resolved: #52524c;
+  --color-accent-resolved: #ff1055;
+  --color-accent-hover-resolved: #d40d47;
+  --color-border-resolved: #e2e2de;
+  --color-card-bg-resolved: #ffffff;
+  --color-btn-primary-resolved: #0a0a0a;
+  --color-btn-primary-hover-resolved: #3a3a3a;
+  --color-btn-primary-text-resolved: #ffffff;
+  --color-gradient-start-resolved: #ff1055;
+  --color-gradient-end-resolved: #E5F20D;
+  --color-banner-info-bg-resolved: #e8f4fd;
+  --color-banner-info-text-resolved: #1a5276;
+  --color-banner-info-border-resolved: #aed6f1;
+  --color-banner-warning-bg-resolved: #fef9e7;
+  --color-banner-warning-text-resolved: #7d6608;
+  --color-banner-warning-border-resolved: #f9e79f;
+  --color-banner-error-bg-resolved: #fdedec;
+  --color-banner-error-text-resolved: #922b21;
+  --color-banner-error-border-resolved: #f5b7b1;
+  --color-banner-success-bg-resolved: #eafaf1;
+  --color-banner-success-text-resolved: #1e8449;
+  --color-banner-success-border-resolved: #a9dfbf;
+  --color-tag-bg-resolved: #f3f3f1;
+  --color-tag-text-resolved: #52524c;
+}
+
+:root[data-theme="dark"] {
+  --palette-primary: #ff3a70;
+  --palette-primary-dark: #ff1055;
+  --palette-secondary: #E5F20D;
+  --palette-secondary-dark: #c9d300;
+  --palette-near-black: #101010;
+  --palette-dark-gray: #474646;
+  --palette-white: #ffffff;
+  --palette-warm-white: #1a1a1a;
+  --palette-code-bg: #242429;
+  --palette-gray-100: #1a1a22;
+  --palette-gray-200: #2a2a35;
+  --palette-gray-300: #3a3a48;
+  --palette-gray-400: #666680;
+  --palette-gray-600: #999999;
+  --palette-gray-800: #e0e0e0;
+  --palette-black: #0f172a;
+  --palette-banner-info-bg: #162a3f;
+  --palette-banner-info-text: #8ec5ff;
+  --palette-banner-info-border: #2e4a6a;
+  --palette-banner-warning-bg: #3a3215;
+  --palette-banner-warning-text: #f0d570;
+  --palette-banner-warning-border: #6a5a20;
+  --palette-banner-error-bg: #3a1f1f;
+  --palette-banner-error-text: #f5a29a;
+  --palette-banner-error-border: #6e3838;
+  --palette-banner-success-bg: #18362a;
+  --palette-banner-success-text: #8fd9b0;
+  --palette-banner-success-border: #2f5a43;
+  --color-bg: warm-white;
+  --color-surface: gray-100;
+  --color-code-bg: code-bg;
+  --color-text: gray-800;
+  --color-text-secondary: gray-600;
+  --color-accent: primary;
+  --color-accent-hover: primary-dark;
+  --color-border: gray-200;
+  --color-card-bg: gray-300;
+  --color-btn-primary: white;
+  --color-btn-primary-hover: gray-600;
+  --color-btn-primary-text: near-black;
+  --color-gradient-start: primary;
+  --color-gradient-end: secondary;
+  --color-banner-info-bg: banner-info-bg;
+  --color-banner-info-text: banner-info-text;
+  --color-banner-info-border: banner-info-border;
+  --color-banner-warning-bg: banner-warning-bg;
+  --color-banner-warning-text: banner-warning-text;
+  --color-banner-warning-border: banner-warning-border;
+  --color-banner-error-bg: banner-error-bg;
+  --color-banner-error-text: banner-error-text;
+  --color-banner-error-border: banner-error-border;
+  --color-banner-success-bg: banner-success-bg;
+  --color-banner-success-text: banner-success-text;
+  --color-banner-success-border: banner-success-border;
+  --font-body: eb-garamond, 'EB Garamond', 'Garamond', Georgia, serif;
+  --font-header: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-display: lora, 'Lora', Georgia, serif;
+  --font-ui: lato, 'Lato', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --font-base: 17px;
+  --line-height: 1.75;
+  --weight-body: 400;
+  --weight-heading: 700;
+  --leading-body: 1.75;
+  --leading-heading: 1.15;
+  --logo-width: 120px;
+  --scale-sm: 0.875;
+  --scale-md: 1;
+  --scale-lg: 1.3;
+  --scale-xl: 1.6;
+  --scale-xxl: 1.8;
+  --scale-display: 3;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2rem;
+  --space-content-width: 780px;
+  --space-card-padding: 1rem;
+  --space-card-radius: 6px;
+  --space-card-image-height: 180px;
+  --color-tag-bg: gray-400;
+  --color-tag-text: gray-800;
+  --color-bg-resolved: #1a1a1a;
+  --color-surface-resolved: #1a1a22;
+  --color-code-bg-resolved: #242429;
+  --color-text-resolved: #e0e0e0;
+  --color-text-secondary-resolved: #999999;
+  --color-accent-resolved: #ff3a70;
+  --color-accent-hover-resolved: #ff1055;
+  --color-border-resolved: #2a2a35;
+  --color-card-bg-resolved: #3a3a48;
+  --color-btn-primary-resolved: #ffffff;
+  --color-btn-primary-hover-resolved: #999999;
+  --color-btn-primary-text-resolved: #101010;
+  --color-gradient-start-resolved: #ff3a70;
+  --color-gradient-end-resolved: #E5F20D;
+  --color-banner-info-bg-resolved: #162a3f;
+  --color-banner-info-text-resolved: #8ec5ff;
+  --color-banner-info-border-resolved: #2e4a6a;
+  --color-banner-warning-bg-resolved: #3a3215;
+  --color-banner-warning-text-resolved: #f0d570;
+  --color-banner-warning-border-resolved: #6a5a20;
+  --color-banner-error-bg-resolved: #3a1f1f;
+  --color-banner-error-text-resolved: #f5a29a;
+  --color-banner-error-border-resolved: #6e3838;
+  --color-banner-success-bg-resolved: #18362a;
+  --color-banner-success-text-resolved: #8fd9b0;
+  --color-banner-success-border-resolved: #2f5a43;
+  --color-tag-bg-resolved: #666680;
+  --color-tag-text-resolved: #e0e0e0;
+}
+
+    </style>
+    <link rel="stylesheet" href="/es/style.css">
+    <link rel="stylesheet" href="/es/elements.css">
+    <link rel="stylesheet" href="/es/transitions.css">
+    <link rel="stylesheet" href="/es/syntax.css">
+    <script>
+      (function() {
+        var stored = localStorage.getItem('grove-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+</head>
+<body data-layout="index">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" role="banner">
+    <a href="/es/" class="site-title"><img src="/es/assets/moui-fire-logo.webp" alt="Moui Grove" class="site-logo" width="400" height="126"></a>
+    <div class="header-actions">
+        <a href="/es/archive/" class="btn btn-ghost btn-sm" aria-label="Archive">Archive</a>
+        <button class="btn btn-accent btn-sm" data-action="open-search" data-interaction="press" aria-label="Search" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+            <span class="btn-label">Search</span>
+        </button>
+    </div>
+</header>
+    <main id="main"><article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>La CLOUD Act de EE.UU. y la ilusión de la soberanía de datos</h1>
+            <time datetime="2026-04-17">17.04.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>La Clarifying Lawful Overseas Use of Data Act — la CLOUD Act — se convirtió en ley en 2018. Hace algo simple: le da a las fuerzas del orden estadounidenses la autoridad legal para obligar a cualquier empresa tecnológica con sede en EE.UU. a entregar datos almacenados en sus servidores, sin importar en qué parte del mundo estén ubicados físicamente esos servidores.</p>
+<p>Si tu organización usa Google Workspace, Microsoft 365, AWS, o cualquier proveedor de nube con sede en EE.UU., la CLOUD Act aplica a tus datos. No importa que tu oficina esté en Berlín, que tus servidores estén en Fráncfort, o que tu contrato especifique residencia de datos en la UE. La jurisdicción legal sigue a la empresa, no al centro de datos.</p>
+<p>Esto no es un riesgo teórico.</p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/dw-digital-dilemma-480w.webp 480w, /es/assets/dw-digital-dilemma-960w.webp 960w, /es/assets/dw-digital-dilemma-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/dw-digital-dilemma-480w.png 480w, /es/assets/dw-digital-dilemma-960w.png 960w, /es/assets/dw-digital-dilemma-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/dw-digital-dilemma.png" alt="Deutsche Welle, marzo 2026 — La dependencia digital de Alemania de la infraestructura estadounidense es ahora una vulnerabilidad política." loading="eager">
+  </picture>
+  <figcaption>Deutsche Welle, marzo 2026 — La dependencia digital de Alemania de la infraestructura estadounidense es ahora una vulnerabilidad política.</figcaption>
+</figure>
+<h2>Qué dice realmente la CLOUD Act</h2>
+<p>Antes de 2018, las fuerzas del orden estadounidenses necesitaban un Mutual Legal Assistance Treaty (MLAT) para solicitar datos almacenados fuera de EE.UU. El proceso era lento, involucraba gobiernos extranjeros y tenía supervisión. La CLOUD Act lo eludió por completo. Un tribunal estadounidense ahora puede emitir una orden directamente a Microsoft, Google o Amazon, y la empresa debe cumplir — incluso si los datos están almacenados en Irlanda, Alemania o Singapur.</p>
+<p>La justificación fue la eficiencia: las investigaciones penales se retrasaban por el proceso MLAT. La consecuencia es que cada byte de datos almacenado por un proveedor estadounidense está al alcance de las autoridades estadounidenses, sin notificación al titular de los datos ni a su gobierno.</p>
+<h2>Por qué esto importa para las organizaciones</h2>
+<p>Para la mayoría de usuarios consumidores, esto es ruido de fondo. Para organizaciones que manejan datos sensibles — documentos legales, registros de beneficiarios, investigación médica, testimonios de derechos humanos, datos financieros — es una realidad operativa con consecuencias concretas:</p>
+<ul>
+<li>
+<p><strong>Conflicto con GDPR.</strong> La CLOUD Act crea un conflicto directo con el Reglamento General de Protección de Datos de la UE. Una organización no puede cumplir simultáneamente con una orden judicial estadounidense que exige datos y una regulación europea que prohíbe la transferencia de esos datos sin salvaguardas adecuadas. No hay resolución para este conflicto. Es estructural.</p>
+</li>
+<li>
+<p><strong>No hay puerto seguro.</strong> El EU-US Privacy Shield fue invalidado por la sentencia Schrems II en 2020. Su reemplazo, el EU-US Data Privacy Framework, enfrenta los mismos desafíos legales. Las organizaciones que dependen de &quot;decisiones de adecuación&quot; están construyendo sobre arena.</p>
+</li>
+<li>
+<p><strong>La IA lo empeora.</strong> Cada documento que subes a un servicio de IA alojado en EE.UU. — ChatGPT, Gemini, Copilot, NotebookLM — se procesa en infraestructura estadounidense por una empresa estadounidense. La CLOUD Act aplica. Para organizaciones que no pueden arriesgarse a la exposición de datos, esto significa que las herramientas más poderosas disponibles están fuera de alcance.</p>
+</li>
+</ul>
+<h2>El problema estructural</h2>
+<p>La CLOUD Act no es la enfermedad. Es un síntoma de una realidad estructural más profunda: cuando tus datos viven en la infraestructura de otro, no los controlas. Alquilas acceso a ellos. Los términos de ese acceso los establece el proveedor y el gobierno del proveedor, no tú.</p>
+<p>Esto no se resuelve cambiando de Google a Microsoft, o de AWS a Azure. La jurisdicción sigue a la empresa. Se resuelve cambiando dónde viven los datos y dónde se procesan. La arquitectura local-first — donde los datos permanecen en hardware que tú posees, donde el cómputo ocurre en tu dispositivo, donde la red es opcional y cifrada — no es una preferencia filosófica. Es la única arquitectura que hace la soberanía de datos real en vez de contractual.</p>
+<p>Las organizaciones que más necesitan esto son exactamente las menos atendidas por el mercado actual: ONGs que manejan datos de beneficiarios, instituciones de investigación que trabajan con sujetos humanos, equipos legales que gestionan comunicaciones privilegiadas, organizaciones de la sociedad civil que operan en entornos políticamente disputados. Estos no son casos marginales. Son las organizaciones que hacen el trabajo más trascendente.</p>
+<h2>Qué viene después</h2>
+<p>El entorno regulatorio se está endureciendo. La EU AI Act exige a las organizaciones saber dónde los sistemas de IA procesan sus datos. Los gobiernos europeos están empezando a exigir infraestructura de nube soberana para la administración pública. La agencia federal alemana ZenDiS está trabajando activamente en alternativas a las dependencias de software estadounidense.</p>
+<p>La pregunta no es si el cambio va a ocurrir. Es si las alternativas estarán listas cuando las organizaciones las necesiten. El mercado actual ofrece una falsa elección: capacidad o soberanía. IA en la nube o nada de IA. El trabajo que estamos haciendo es demostrar que este es un falso dilema — que la inteligencia puede correr en infraestructura que tú posees.</p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "qu-dice-realmente-la-cloud-act", "text": "Qu\u00e9 dice realmente la CLOUD Act", "level": 2}, {"id": "por-qu-esto-importa-para-las-organizaciones", "text": "Por qu\u00e9 esto importa para las organizaciones", "level": 2}, {"id": "el-problema-estructural", "text": "El problema estructural", "level": 2}, {"id": "qu-viene-despu-s", "text": "Qu\u00e9 viene despu\u00e9s", "level": 2}]</script></main>
+    <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+        <span>Moui Grove</span>
+        <a href="https://www.moui.io/es/feed.xml">RSS</a>
+        <button class="btn btn-ghost btn-sm btn-icon btn-theme" data-action="toggle-theme" data-interaction="press" aria-label="Toggle theme" type="button">
+            <span class="btn-state-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+            <span class="btn-state-dark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+        </button>
+        <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Clear site data" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
+        </button>
+        <span class="build-id">c575dd22331c</span>
+    </div>
+</footer>
+    <script type="module" src="/es/app.js"></script>
+</body>
+</html>

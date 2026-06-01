@@ -1,0 +1,49 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Yo también le hacía fingerprinting a todo el mundo</h1>
+            <time datetime="2026-05-19">19.05.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>Y paré en el momento en que me di cuenta de que era espeluznante.</p>
+<p>Hay una librería que se llama <strong>fingerprint.js</strong> que hace un truco ingenioso: produce un identificador único basado en las características que los navegadores le filtran a la aplicación javascript, como sistema operativo, proveedor del navegador, tamaño de pantalla, idiomas, y otros elementos.</p>
+<p>Claro, también puedes establecer cookies desde el servidor, y hacer <em>otros tipos de identificación</em>, pero este post es sobre el acto mismo de identificar a un usuario. Tomemos el caso de un sitio web: un acto muy simple, que la mayoría considera inofensivo, usualmente justificado con el &quot;necesitamos conocer a los visitantes que tenemos para optimizar su experiencia&quot; puede rápidamente convertirse en un &quot;observemos lo que todos hacen en el sitio web para entender su comportamiento y, en última instancia, influenciarlo&quot;.</p>
+<hr />
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/Piwik_screenshot_german-480w.webp 480w, /es/assets/Piwik_screenshot_german-960w.webp 960w, /es/assets/Piwik_screenshot_german-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/Piwik_screenshot_german-480w.png 480w, /es/assets/Piwik_screenshot_german-960w.png 960w, /es/assets/Piwik_screenshot_german-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/Piwik_screenshot_german.png" alt="Analíticas web: ¿otra forma de fingerprinting? — Matomo Developer Team, CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0, via Wikimedia Commons" loading="eager">
+  </picture>
+  <figcaption>Analíticas web: ¿otra forma de fingerprinting? — Matomo Developer Team, CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0, via Wikimedia Commons</figcaption>
+</figure>
+<p>Mira, la cosa es muy fácil: insertas una librería y listo. Google Analytics hasta lo hace gratis.</p>
+<p>De alguna manera esa era la práctica: simplemente instala un pixel o cualquier tracker, y vas a saber de dónde viene tu tráfico, quiénes son, para que puedas optimizar.</p>
+<h2>Suena bastante inocente, pero ¿es realmente inofensivo?</h2>
+<p>Hace unos días estaba pensando que rastrear visitantes con el objetivo de &quot;mejorar la experiencia&quot; es más o menos como <strong>tener un supermercado y luego vigilar a cada comprador en cada pasillo</strong>. ¿Esa señora de allá? Acaba de mirar las verduras. No estaba realmente interesada en los fideos. ¿El tipo de allá? Se está tardando siglos en decidir qué cereal comprar.</p>
+<p>Y luego sería como mágicamente reorganizar todo para que la próxima vez que vengan, hayamos diseñado una experiencia personalizada para que compren más. No lo que quieren, o lo que razonablemente necesitan, <em>simplemente más</em>.</p>
+<h2>Los sitios web no son realmente diferentes</h2>
+<p>Ahora, las analíticas web son una categoría diferente, podrías decir. Es como medir el resultado de tus campañas, ¿de qué otra forma vas a saber si lo que hiciste está funcionando? El tema es que la gente no quiere ser rastreada. Puedes pedir su consentimiento y puede que te lo den por conveniencia, pero <em>no quieren ser rastreados y lo sabes</em>. <strong>¿Tú quieres ser rastreado?</strong></p>
+<blockquote>
+<p>El solo acto de observar el comportamiento de alguien se siente un poco espeluznante.</p>
+</blockquote>
+<h2>No se trata solo de cookies</h2>
+<p>Se trata de <em>el acto de ser espeluznante</em>. Especialmente cuando te das cuenta de que <em>esas cookies ni siquiera son nuestras para empezar</em>. Entonces, siguiendo la analogía del supermercado, estarías dando información sobre esos compradores a alguien más, para que sepan aún más sobre tus compradores que tú mismo.</p>
+<p>Creo que es hora de empezar a <em>des-rastrear</em> a la gente. Creo que si mi modelo de negocio requiere que observe a la gente de cerca y ajuste cosas aquí y allá para mejorar mi embudo de conversión unos cuantos puntos porcentuales, tal vez mi product-market fit es forzado.</p>
+<p><strong>Des-rastreemos a la gente, dejémoslos venir y sorprendernos, y dejémoslos venir y comprar lo que quieran.</strong></p>
+<h6>Notas</h6>
+<p><em>Sobre las cookies: esencialmente estás despachando el código de vigilancia de alguien más en tu dominio, y eres responsable de eso.</em></p>
+<p><em>Este sitio web no usa ninguna tecnología de rastreo: ni de terceros, ni propietarias, nada. Confiamos en que te guste el contenido y ya.</em></p>
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/es/assets/cookie-bot-screenshot-480w.webp 480w, /es/assets/cookie-bot-screenshot-960w.webp 960w" sizes="(max-width: 600px) 100vw, 600px">
+    <source type="image/png" srcset="/es/assets/cookie-bot-screenshot-480w.png 480w, /es/assets/cookie-bot-screenshot-960w.png 960w" sizes="(max-width: 600px) 100vw, 600px">
+    <img src="/es/assets/cookie-bot-screenshot.png" alt="Un gestor de cookies popular, que hace realmente difícil para los usuarios decir no al rastreo" loading="lazy">
+  </picture>
+  <figcaption>Un gestor de cookies popular, que hace realmente difícil para los usuarios decir no al rastreo</figcaption>
+</figure>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "suena-bastante-inocente-pero-es-realmente-inofensivo", "text": "Suena bastante inocente, pero \u00bfes realmente inofensivo?", "level": 2}, {"id": "los-sitios-web-no-son-realmente-diferentes", "text": "Los sitios web no son realmente diferentes", "level": 2}, {"id": "no-se-trata-solo-de-cookies", "text": "No se trata solo de cookies", "level": 2}, {"id": "notas", "text": "Notas", "level": 6}]</script>

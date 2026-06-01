@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="grove-base-path" content="/es">
+    <title>Contratos, no código</title>
+    <link rel="icon" href="/es/theme/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/es/theme/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/es/theme/apple-touch-icon.png">
+    <meta property="og:title" content="Contratos, no código">
+    <meta property="og:description" content="La mayoría de los sistemas se desvían. Un núcleo declarativo se sostiene porque la forma del código es lo que lo hace cumplir.">
+    <meta property="og:url" content="https://www.moui.io/es/contracts-not-code/">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary">
+    <link rel="alternate" type="application/rss+xml" title="Moui Grove" href="https://www.moui.io/es/feed.xml">
+    <style id="grove-tokens">
+:root {
+  --palette-primary: #ff1055;
+  --palette-primary-dark: #d40d47;
+  --palette-secondary: #E5F20D;
+  --palette-secondary-dark: #c9d300;
+  --palette-near-black: #0a0a0a;
+  --palette-dark-gray: #3a3a3a;
+  --palette-white: #ffffff;
+  --palette-warm-white: #faf9f7;
+  --palette-code-bg: #f5f4f0;
+  --palette-gray-100: #f3f3f1;
+  --palette-gray-200: #e2e2de;
+  --palette-gray-300: #c8c8c2;
+  --palette-gray-400: #8a8a82;
+  --palette-gray-600: #52524c;
+  --palette-gray-800: #1c1c18;
+  --palette-black: #0f0f0c;
+  --palette-banner-info-bg: #e8f4fd;
+  --palette-banner-info-text: #1a5276;
+  --palette-banner-info-border: #aed6f1;
+  --palette-banner-warning-bg: #fef9e7;
+  --palette-banner-warning-text: #7d6608;
+  --palette-banner-warning-border: #f9e79f;
+  --palette-banner-error-bg: #fdedec;
+  --palette-banner-error-text: #922b21;
+  --palette-banner-error-border: #f5b7b1;
+  --palette-banner-success-bg: #eafaf1;
+  --palette-banner-success-text: #1e8449;
+  --palette-banner-success-border: #a9dfbf;
+  --color-bg: warm-white;
+  --color-surface: gray-100;
+  --color-code-bg: code-bg;
+  --color-text: gray-800;
+  --color-text-secondary: gray-600;
+  --color-accent: primary;
+  --color-accent-hover: primary-dark;
+  --color-border: gray-200;
+  --color-card-bg: white;
+  --color-btn-primary: near-black;
+  --color-btn-primary-hover: dark-gray;
+  --color-btn-primary-text: white;
+  --color-gradient-start: primary;
+  --color-gradient-end: secondary;
+  --color-banner-info-bg: banner-info-bg;
+  --color-banner-info-text: banner-info-text;
+  --color-banner-info-border: banner-info-border;
+  --color-banner-warning-bg: banner-warning-bg;
+  --color-banner-warning-text: banner-warning-text;
+  --color-banner-warning-border: banner-warning-border;
+  --color-banner-error-bg: banner-error-bg;
+  --color-banner-error-text: banner-error-text;
+  --color-banner-error-border: banner-error-border;
+  --color-banner-success-bg: banner-success-bg;
+  --color-banner-success-text: banner-success-text;
+  --color-banner-success-border: banner-success-border;
+  --font-body: eb-garamond, 'EB Garamond', 'Garamond', Georgia, serif;
+  --font-header: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-display: lora, 'Lora', Georgia, serif;
+  --font-ui: lato, 'Lato', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --font-base: 17px;
+  --line-height: 1.75;
+  --weight-body: 400;
+  --weight-heading: 700;
+  --leading-body: 1.75;
+  --leading-heading: 1.15;
+  --logo-width: 120px;
+  --scale-sm: 0.875;
+  --scale-md: 1;
+  --scale-lg: 1.3;
+  --scale-xl: 1.6;
+  --scale-xxl: 1.8;
+  --scale-display: 3;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2rem;
+  --space-content-width: 780px;
+  --space-card-padding: 1rem;
+  --space-card-radius: 6px;
+  --space-card-image-height: 180px;
+  --color-tag-bg: gray-100;
+  --color-tag-text: gray-600;
+  --color-bg-resolved: #faf9f7;
+  --color-surface-resolved: #f3f3f1;
+  --color-code-bg-resolved: #f5f4f0;
+  --color-text-resolved: #1c1c18;
+  --color-text-secondary-resolved: #52524c;
+  --color-accent-resolved: #ff1055;
+  --color-accent-hover-resolved: #d40d47;
+  --color-border-resolved: #e2e2de;
+  --color-card-bg-resolved: #ffffff;
+  --color-btn-primary-resolved: #0a0a0a;
+  --color-btn-primary-hover-resolved: #3a3a3a;
+  --color-btn-primary-text-resolved: #ffffff;
+  --color-gradient-start-resolved: #ff1055;
+  --color-gradient-end-resolved: #E5F20D;
+  --color-banner-info-bg-resolved: #e8f4fd;
+  --color-banner-info-text-resolved: #1a5276;
+  --color-banner-info-border-resolved: #aed6f1;
+  --color-banner-warning-bg-resolved: #fef9e7;
+  --color-banner-warning-text-resolved: #7d6608;
+  --color-banner-warning-border-resolved: #f9e79f;
+  --color-banner-error-bg-resolved: #fdedec;
+  --color-banner-error-text-resolved: #922b21;
+  --color-banner-error-border-resolved: #f5b7b1;
+  --color-banner-success-bg-resolved: #eafaf1;
+  --color-banner-success-text-resolved: #1e8449;
+  --color-banner-success-border-resolved: #a9dfbf;
+  --color-tag-bg-resolved: #f3f3f1;
+  --color-tag-text-resolved: #52524c;
+}
+
+:root[data-theme="dark"] {
+  --palette-primary: #ff3a70;
+  --palette-primary-dark: #ff1055;
+  --palette-secondary: #E5F20D;
+  --palette-secondary-dark: #c9d300;
+  --palette-near-black: #101010;
+  --palette-dark-gray: #474646;
+  --palette-white: #ffffff;
+  --palette-warm-white: #1a1a1a;
+  --palette-code-bg: #242429;
+  --palette-gray-100: #1a1a22;
+  --palette-gray-200: #2a2a35;
+  --palette-gray-300: #3a3a48;
+  --palette-gray-400: #666680;
+  --palette-gray-600: #999999;
+  --palette-gray-800: #e0e0e0;
+  --palette-black: #0f172a;
+  --palette-banner-info-bg: #162a3f;
+  --palette-banner-info-text: #8ec5ff;
+  --palette-banner-info-border: #2e4a6a;
+  --palette-banner-warning-bg: #3a3215;
+  --palette-banner-warning-text: #f0d570;
+  --palette-banner-warning-border: #6a5a20;
+  --palette-banner-error-bg: #3a1f1f;
+  --palette-banner-error-text: #f5a29a;
+  --palette-banner-error-border: #6e3838;
+  --palette-banner-success-bg: #18362a;
+  --palette-banner-success-text: #8fd9b0;
+  --palette-banner-success-border: #2f5a43;
+  --color-bg: warm-white;
+  --color-surface: gray-100;
+  --color-code-bg: code-bg;
+  --color-text: gray-800;
+  --color-text-secondary: gray-600;
+  --color-accent: primary;
+  --color-accent-hover: primary-dark;
+  --color-border: gray-200;
+  --color-card-bg: gray-300;
+  --color-btn-primary: white;
+  --color-btn-primary-hover: gray-600;
+  --color-btn-primary-text: near-black;
+  --color-gradient-start: primary;
+  --color-gradient-end: secondary;
+  --color-banner-info-bg: banner-info-bg;
+  --color-banner-info-text: banner-info-text;
+  --color-banner-info-border: banner-info-border;
+  --color-banner-warning-bg: banner-warning-bg;
+  --color-banner-warning-text: banner-warning-text;
+  --color-banner-warning-border: banner-warning-border;
+  --color-banner-error-bg: banner-error-bg;
+  --color-banner-error-text: banner-error-text;
+  --color-banner-error-border: banner-error-border;
+  --color-banner-success-bg: banner-success-bg;
+  --color-banner-success-text: banner-success-text;
+  --color-banner-success-border: banner-success-border;
+  --font-body: eb-garamond, 'EB Garamond', 'Garamond', Georgia, serif;
+  --font-header: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-display: lora, 'Lora', Georgia, serif;
+  --font-ui: lato, 'Lato', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --font-base: 17px;
+  --line-height: 1.75;
+  --weight-body: 400;
+  --weight-heading: 700;
+  --leading-body: 1.75;
+  --leading-heading: 1.15;
+  --logo-width: 120px;
+  --scale-sm: 0.875;
+  --scale-md: 1;
+  --scale-lg: 1.3;
+  --scale-xl: 1.6;
+  --scale-xxl: 1.8;
+  --scale-display: 3;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2rem;
+  --space-content-width: 780px;
+  --space-card-padding: 1rem;
+  --space-card-radius: 6px;
+  --space-card-image-height: 180px;
+  --color-tag-bg: gray-400;
+  --color-tag-text: gray-800;
+  --color-bg-resolved: #1a1a1a;
+  --color-surface-resolved: #1a1a22;
+  --color-code-bg-resolved: #242429;
+  --color-text-resolved: #e0e0e0;
+  --color-text-secondary-resolved: #999999;
+  --color-accent-resolved: #ff3a70;
+  --color-accent-hover-resolved: #ff1055;
+  --color-border-resolved: #2a2a35;
+  --color-card-bg-resolved: #3a3a48;
+  --color-btn-primary-resolved: #ffffff;
+  --color-btn-primary-hover-resolved: #999999;
+  --color-btn-primary-text-resolved: #101010;
+  --color-gradient-start-resolved: #ff3a70;
+  --color-gradient-end-resolved: #E5F20D;
+  --color-banner-info-bg-resolved: #162a3f;
+  --color-banner-info-text-resolved: #8ec5ff;
+  --color-banner-info-border-resolved: #2e4a6a;
+  --color-banner-warning-bg-resolved: #3a3215;
+  --color-banner-warning-text-resolved: #f0d570;
+  --color-banner-warning-border-resolved: #6a5a20;
+  --color-banner-error-bg-resolved: #3a1f1f;
+  --color-banner-error-text-resolved: #f5a29a;
+  --color-banner-error-border-resolved: #6e3838;
+  --color-banner-success-bg-resolved: #18362a;
+  --color-banner-success-text-resolved: #8fd9b0;
+  --color-banner-success-border-resolved: #2f5a43;
+  --color-tag-bg-resolved: #666680;
+  --color-tag-text-resolved: #e0e0e0;
+}
+
+    </style>
+    <link rel="stylesheet" href="/es/style.css">
+    <link rel="stylesheet" href="/es/elements.css">
+    <link rel="stylesheet" href="/es/transitions.css">
+    <link rel="stylesheet" href="/es/syntax.css">
+    <script>
+      (function() {
+        var stored = localStorage.getItem('grove-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+</head>
+<body data-layout="index">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" role="banner">
+    <a href="/es/" class="site-title"><img src="/es/assets/moui-fire-logo.webp" alt="Moui Grove" class="site-logo" width="400" height="126"></a>
+    <div class="header-actions">
+        <a href="/es/archive/" class="btn btn-ghost btn-sm" aria-label="Archive">Archive</a>
+        <button class="btn btn-accent btn-sm" data-action="open-search" data-interaction="press" aria-label="Search" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+            <span class="btn-label">Search</span>
+        </button>
+    </div>
+</header>
+    <main id="main"><article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Contratos, no código</h1>
+            <time datetime="2026-04-16">16.04.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>La mayoría de los sistemas se desvían. Las reglas se infiltran en los command handlers. Un fuzzy matcher escrito para un comando se convierte en un bloque de lógica que nadie más puede usar. Las reglas de negocio y la fontanería se vuelven indistinguibles.</p>
+<p>La alternativa es más vieja que el código: <strong>declarar lo que existe, dejar que el sistema lea la declaración.</strong></p>
+<h2>Las cuatro partes</h2>
+<p>Un núcleo declarativo tiene cuatro partes móviles:</p>
+<ol>
+<li><strong>Un registry</strong> — YAML o JSON. Lista lo que existe.</li>
+<li><strong>Un resolver</strong> — empareja la entrada con una entrada del registry.</li>
+<li><strong>Un handler</strong> — hace el trabajo que la entrada describe.</li>
+<li><strong>Un router</strong> — canaliza la entrada a través del resolver hacia el handler.</li>
+</ol>
+<p>Nada de lógica de negocio en el router. Nada de lógica de emparejamiento en el handler. Cada parte tiene un solo trabajo.</p>
+<figure class="arch-diagram">
+<svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Input flows through the router to the resolver, which reads the registry, then dispatches to the handler.">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: var(--color-accent-resolved)"/></marker>
+</defs>
+<g font-family="inherit" text-anchor="middle" style="fill: var(--color-text-resolved)">
+<rect x="290" y="10" width="120" height="40" rx="6" style="fill: var(--color-bg-resolved); stroke: var(--color-accent-resolved); stroke-dasharray: 3,3"/>
+<text x="350" y="35" font-size="13" style="fill: var(--color-accent-resolved)">Registry (YAML)</text>
+<rect x="20" y="90" width="120" height="60" rx="6" style="fill: var(--color-surface-resolved); stroke: var(--color-border-resolved)"/>
+<text x="80" y="125" font-size="14" font-weight="600">Input</text>
+<rect x="180" y="90" width="120" height="60" rx="6" style="fill: var(--color-surface-resolved); stroke: var(--color-border-resolved)"/>
+<text x="240" y="118" font-size="14" font-weight="600">Router</text>
+<text x="240" y="138" font-size="11" style="fill: var(--color-text-secondary-resolved)">the pipe</text>
+<rect x="340" y="90" width="120" height="60" rx="6" style="fill: var(--color-surface-resolved); stroke: var(--color-border-resolved)"/>
+<text x="400" y="118" font-size="14" font-weight="600">Resolver</text>
+<text x="400" y="138" font-size="11" style="fill: var(--color-text-secondary-resolved)">matcher</text>
+<rect x="500" y="90" width="120" height="60" rx="6" style="fill: var(--color-surface-resolved); stroke: var(--color-border-resolved)"/>
+<text x="560" y="118" font-size="14" font-weight="600">Handler</text>
+<text x="560" y="138" font-size="11" style="fill: var(--color-text-secondary-resolved)">does work</text>
+<line x1="145" y1="120" x2="175" y2="120" style="stroke: var(--color-accent-resolved); stroke-width: 1.5" marker-end="url(#arrow)"/>
+<line x1="305" y1="120" x2="335" y2="120" style="stroke: var(--color-accent-resolved); stroke-width: 1.5" marker-end="url(#arrow)"/>
+<line x1="465" y1="120" x2="495" y2="120" style="stroke: var(--color-accent-resolved); stroke-width: 1.5" marker-end="url(#arrow)"/>
+<line x1="350" y1="50" x2="400" y2="90" style="stroke: var(--color-accent-resolved); stroke-dasharray: 3,3"/>
+<text x="350" y="195" font-size="12" style="fill: var(--color-text-secondary-resolved)">The contract stays. The implementation swaps.</text>
+</g>
+</svg>
+<figcaption>Cuatro partes, un contrato. Cada una se puede reemplazar sin tocar las demás.</figcaption>
+</figure>
+<h2>Un registry</h2>
+<p>Un registry es solo datos. Lista comandos y los patrones que los emparejan.</p>
+<pre class="highlight" data-lang="yaml"><code class="language-yaml"><span class="nt">commands</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note.create</span>
+<span class="w">    </span><span class="nt">patterns</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;new</span><span class="nv"> </span><span class="s">note&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;create</span><span class="nv"> </span><span class="s">note&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;jot&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">handler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">notes.create</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note.search</span>
+<span class="w">    </span><span class="nt">patterns</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;find</span><span class="nv"> </span><span class="s">note&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;search</span><span class="nv"> </span><span class="s">notes&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">handler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">notes.search</span></code></pre>
+<p>Agregar un comando significa agregar una entrada. Nada más cambia.</p>
+<h2>Un resolver</h2>
+<p>El resolver no sabe qué significan los comandos. Sabe cómo emparejar entrada contra patrones.</p>
+<pre class="highlight" data-lang="python"><code class="language-python"><span class="k">def</span><span class="w"> </span><span class="nf">resolve</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the matching registry entry. Raise if nothing matches.&quot;&quot;&quot;</span>
+    <span class="n">lowered</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">registry</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;patterns&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">lowered</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">entry</span>
+    <span class="k">raise</span> <span class="n">NoMatch</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></code></pre>
+<p>Cámbialo por fuzzy matching, una red neuronal pequeña, un LLM diminuto en el dispositivo. El contrato se mantiene: <strong>entrada adentro, entrada del registry afuera.</strong></p>
+<blockquote>
+<p>Un fuzzy matcher no es código dentro de un command handler.
+Es una capacidad con una interfaz definida que el sistema usa a través de un contrato.</p>
+</blockquote>
+<h2>Un handler</h2>
+<p>El handler no sabe cómo se hizo el emparejamiento. Recibe un contexto y hace el trabajo.</p>
+<pre class="highlight" data-lang="python"><code class="language-python"><span class="k">def</span><span class="w"> </span><span class="nf">notes_create</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Result</span><span class="p">:</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="n">context</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">]</span>
+    <span class="n">note</span> <span class="o">=</span> <span class="n">Note</span><span class="o">.</span><span class="n">from_text</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+    <span class="n">note</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">Result</span><span class="o">.</span><span class="n">ok</span><span class="p">(</span><span class="n">note</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></code></pre>
+<p>Los handlers nunca se referencian entre sí. Solo tocan el contexto que reciben.</p>
+<h2>Un router</h2>
+<p>El router es la tubería. Tres líneas.</p>
+<pre class="highlight" data-lang="python"><code class="language-python"><span class="k">def</span><span class="w"> </span><span class="nf">route</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Result</span><span class="p">:</span>
+    <span class="n">entry</span> <span class="o">=</span> <span class="n">resolve</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">registry</span><span class="p">)</span>
+    <span class="n">handler</span> <span class="o">=</span> <span class="n">handlers</span><span class="p">[</span><span class="n">entry</span><span class="p">[</span><span class="s2">&quot;handler&quot;</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">handler</span><span class="p">(</span><span class="n">context_for</span><span class="p">(</span><span class="n">text</span><span class="p">))</span></code></pre>
+<p>Nada de condicionales por nombre de comando. Nada de casos especiales. Si pertenece al router, aplica a cada comando.</p>
+<h2>Por qué esto se sostiene</h2>
+<p>La forma del código es lo que lo hace cumplir.</p>
+<ul>
+<li>No puedes agregar un comando sin agregar una entrada al registry.</li>
+<li>No puedes cambiar el emparejamiento sin cambiar el resolver.</li>
+<li>No puedes acoplar handlers porque los handlers solo reciben contexto.</li>
+</ul>
+<p>Cada pieza es reemplazable. El router se mantiene estúpido. El emparejamiento vive en el resolver. El trabajo vive en el handler. Contratos en cada costura.</p>
+<p>Ese es todo el truco.</p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "las-cuatro-partes", "text": "Las cuatro partes", "level": 2}, {"id": "un-registry", "text": "Un registry", "level": 2}, {"id": "un-resolver", "text": "Un resolver", "level": 2}, {"id": "un-handler", "text": "Un handler", "level": 2}, {"id": "un-router", "text": "Un router", "level": 2}, {"id": "por-qu-esto-se-sostiene", "text": "Por qu\u00e9 esto se sostiene", "level": 2}]</script></main>
+    <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+        <span>Moui Grove</span>
+        <a href="https://www.moui.io/es/feed.xml">RSS</a>
+        <button class="btn btn-ghost btn-sm btn-icon btn-theme" data-action="toggle-theme" data-interaction="press" aria-label="Toggle theme" type="button">
+            <span class="btn-state-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+            <span class="btn-state-dark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+        </button>
+        <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Clear site data" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
+        </button>
+        <span class="build-id">c575dd22331c</span>
+    </div>
+</footer>
+    <script type="module" src="/es/app.js"></script>
+</body>
+</html>

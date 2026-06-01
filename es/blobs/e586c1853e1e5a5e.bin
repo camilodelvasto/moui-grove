@@ -1,0 +1,12 @@
+<div class="feed-grid">
+        <article class="card" data-stagger style="--stagger-index: 0">
+    <img class="card-thumbnail" src="/es/assets/Piwik_screenshot_german.png" alt="" loading="lazy">
+    <div class="card-body">
+        <a href="/es/privacy/fingerprinting-analogy-supermarket/" class="card-link">
+            <time datetime="2026-05-19">19.05.2026</time>
+            <h2 class="card-title">Yo también le hacía fingerprinting a todo el mundo</h2>
+            <p class="card-excerpt">Hubo un tiempo en que rastrear visitantes de un sitio web era la norma. ¿Tal vez es hora de cambiar eso?</p>
+        </a>
+    </div>
+</article>
+        </div>

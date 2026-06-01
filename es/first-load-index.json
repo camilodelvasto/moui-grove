@@ -1,0 +1,99 @@
+[
+  {
+    "title": "Manifiesto",
+    "url_path": "/es/manifesto/",
+    "content_path": "manifesto",
+    "excerpt": "El futuro está detrás de nosotros. El desarrollo local-first, privacy-first, user-first empieza aquí.",
+    "publish_date": "2026-05-03"
+  },
+  {
+    "title": "Reimaginando las hojas de cálculo",
+    "url_path": "/es/reimagining-sheets/",
+    "content_path": "reimagining-sheets",
+    "excerpt": "¿Podemos crear algo que construya sobre las ideas comunes de hojas de cálculo pero que deje a los LLMs hacer lo suyo siendo privado y declarativo para usos más avanzados?",
+    "publish_date": "2026-05-28"
+  },
+  {
+    "title": "Yo también le hacía fingerprinting a todo el mundo",
+    "url_path": "/es/privacy/fingerprinting-analogy-supermarket/",
+    "content_path": "privacy/fingerprinting-analogy-supermarket",
+    "excerpt": "Hubo un tiempo en que rastrear visitantes de un sitio web era la norma. ¿Tal vez es hora de cambiar eso?",
+    "publish_date": "2026-05-19"
+  },
+  {
+    "title": "Local-First, o: Cómo aprendí a dejar de navegar y amar la máquina",
+    "url_path": "/es/insights/personal-computing-love-the-machine/",
+    "content_path": "insights/personal-computing-love-the-machine",
+    "excerpt": "Hubo un tiempo en que teníamos un computador personal, y era bastante capaz estando desconectado. ¿Qué pasó? Y más importante: ¿podemos recuperar eso?",
+    "publish_date": "2026-05-04"
+  },
+  {
+    "title": "Por Qué Necesitas Aprender a Programar",
+    "url_path": "/es/school/why-you-need-to-learn-to-code/",
+    "content_path": "school/why-you-need-to-learn-to-code",
+    "excerpt": "La IA es útil y todo, pero ¿el resultado es realmente tuyo?",
+    "publish_date": "2026-04-23"
+  },
+  {
+    "title": "Construir Desde Primeros Principios",
+    "url_path": "/es/insights/coding-out-of-first-principles/",
+    "content_path": "insights/coding-out-of-first-principles",
+    "excerpt": "Cómo los primeros principios pueden dar forma a una nueva ola de creaciones",
+    "publish_date": "2026-04-22"
+  },
+  {
+    "title": "La CLOUD Act de EE.UU. y la ilusión de la soberanía de datos",
+    "url_path": "/es/cloud-act/",
+    "content_path": "cloud-act",
+    "excerpt": "Tus datos están en servidores estadounidenses, bajo ley estadounidense. La CLOUD Act lo hace explícito. La pregunta es qué haces al respecto.",
+    "publish_date": "2026-04-17",
+    "tags": [
+      "soberanía",
+      "política",
+      "privacidad"
+    ]
+  },
+  {
+    "title": "Contratos, no código",
+    "url_path": "/es/contracts-not-code/",
+    "content_path": "architecture/contracts-not-code",
+    "excerpt": "La mayoría de los sistemas se desvían. Un núcleo declarativo se sostiene porque la forma del código es lo que lo hace cumplir.",
+    "publish_date": "2026-04-16",
+    "tags": [
+      "architecture",
+      "contracts"
+    ]
+  },
+  {
+    "title": "Bienvenido a Grove",
+    "url_path": "/es/welcome/",
+    "content_path": "welcome",
+    "excerpt": "Grove organiza lo que escribes en un sitio navegable y desplegable.",
+    "publish_date": "2026-04-14",
+    "tags": [
+      "grove",
+      "getting-started"
+    ]
+  },
+  {
+    "title": "Datos, interfaz, infraestructura",
+    "url_path": "/es/architecture/data-isolation/",
+    "content_path": "architecture/data-isolation",
+    "excerpt": "Las tres capas deben ser separables. Tus datos sobreviven a cualquier interfaz.",
+    "publish_date": "2026-04-13",
+    "tags": [
+      "architecture",
+      "manifesto"
+    ]
+  },
+  {
+    "title": "Alegría sin extracción",
+    "url_path": "/es/on-joy/",
+    "content_path": "on-joy",
+    "excerpt": "La tecnología debería producir alegría, no compulsión.",
+    "publish_date": "2026-04-12",
+    "tags": [
+      "philosophy"
+    ]
+  }
+]

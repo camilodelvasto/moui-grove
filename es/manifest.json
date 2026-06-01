@@ -1,0 +1,675 @@
+{
+  "version": "c575dd22331c",
+  "build_date": "2026-06-01T15:52:06Z",
+  "encrypted": false,
+  "loading": {
+    "strategy": "progressive",
+    "priority_count": 5
+  },
+  "entries": [
+    {
+      "route": "/manifesto/",
+      "blob": "b402a03288e0b7e8.bin",
+      "hash": "b402a03288e0b7e8",
+      "priority": 1,
+      "type": "post",
+      "title": "Manifiesto",
+      "excerpt": "El futuro está detrás de nosotros. El desarrollo local-first, privacy-first, user-first empieza aquí.",
+      "date": "2026-05-03",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Manifiesto",
+        "description": "El futuro está detrás de nosotros. El desarrollo local-first, privacy-first, user-first empieza aquí.",
+        "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/reimagining-sheets/",
+      "blob": "e64f9fa9b5056e22.bin",
+      "hash": "e64f9fa9b5056e22",
+      "priority": 1,
+      "type": "post",
+      "title": "Reimaginando las hojas de cálculo",
+      "excerpt": "¿Podemos crear algo que construya sobre las ideas comunes de hojas de cálculo pero que deje a los LLMs hacer lo suyo siendo privado y declarativo para usos más avanzados?",
+      "date": "2026-05-28",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Reimaginando las hojas de cálculo",
+        "description": "¿Podemos crear algo que construya sobre las ideas comunes de hojas de cálculo pero que deje a los LLMs hacer lo suyo siendo privado y declarativo para usos más avanzados?",
+        "image": "assets/screenshot-tui-suchprotokoll.png"
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/privacy/fingerprinting-analogy-supermarket/",
+      "blob": "ee37c57b947455dc.bin",
+      "hash": "ee37c57b947455dc",
+      "priority": 1,
+      "type": "post",
+      "title": "Yo también le hacía fingerprinting a todo el mundo",
+      "excerpt": "Hubo un tiempo en que rastrear visitantes de un sitio web era la norma. ¿Tal vez es hora de cambiar eso?",
+      "date": "2026-05-19",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Yo también le hacía fingerprinting a todo el mundo",
+        "description": "Hubo un tiempo en que rastrear visitantes de un sitio web era la norma. ¿Tal vez es hora de cambiar eso?",
+        "image": "assets/Piwik_screenshot_german.png"
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/insights/personal-computing-love-the-machine/",
+      "blob": "6dbdac582cb69c8c.bin",
+      "hash": "6dbdac582cb69c8c",
+      "priority": 1,
+      "type": "post",
+      "title": "Local-First, o: Cómo aprendí a dejar de navegar y amar la máquina",
+      "excerpt": "Hubo un tiempo en que teníamos un computador personal, y era bastante capaz estando desconectado. ¿Qué pasó? Y más importante: ¿podemos recuperar eso?",
+      "date": "2026-05-04",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Local-First, o: Cómo aprendí a dejar de navegar y amar la máquina",
+        "description": "Hubo un tiempo en que teníamos un computador personal, y era bastante capaz estando desconectado. ¿Qué pasó? Y más importante: ¿podemos recuperar eso?",
+        "image": "assets/QWOP_screenshot.jpg"
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/school/why-you-need-to-learn-to-code/",
+      "blob": "9be7bf7b7e4ea7ec.bin",
+      "hash": "9be7bf7b7e4ea7ec",
+      "priority": 1,
+      "type": "post",
+      "title": "Por Qué Necesitas Aprender a Programar",
+      "excerpt": "La IA es útil y todo, pero ¿el resultado es realmente tuyo?",
+      "date": "2026-04-23",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Por Qué Necesitas Aprender a Programar",
+        "description": "La IA es útil y todo, pero ¿el resultado es realmente tuyo?",
+        "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/insights/coding-out-of-first-principles/",
+      "blob": "cc026f77f64276fd.bin",
+      "hash": "cc026f77f64276fd",
+      "priority": 2,
+      "type": "post",
+      "title": "Construir Desde Primeros Principios",
+      "excerpt": "Cómo los primeros principios pueden dar forma a una nueva ola de creaciones",
+      "date": "2026-04-22",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Construir Desde Primeros Principios",
+        "description": "Cómo los primeros principios pueden dar forma a una nueva ola de creaciones",
+        "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/cloud-act/",
+      "blob": "dca1e9ac8c55c777.bin",
+      "hash": "dca1e9ac8c55c777",
+      "priority": 2,
+      "type": "post",
+      "title": "La CLOUD Act de EE.UU. y la ilusión de la soberanía de datos",
+      "excerpt": "Tus datos están en servidores estadounidenses, bajo ley estadounidense. La CLOUD Act lo hace explícito. La pregunta es qué haces al respecto.",
+      "date": "2026-04-17",
+      "section": "",
+      "tags": [
+        "soberanía",
+        "política",
+        "privacidad"
+      ],
+      "og": {
+        "title": "La CLOUD Act de EE.UU. y la ilusión de la soberanía de datos",
+        "description": "Tus datos están en servidores estadounidenses, bajo ley estadounidense. La CLOUD Act lo hace explícito. La pregunta es qué haces al respecto.",
+        "image": "assets/dw-digital-dilemma.png"
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/contracts-not-code/",
+      "blob": "5c5117255570693a.bin",
+      "hash": "5c5117255570693a",
+      "priority": 2,
+      "type": "post",
+      "title": "Contratos, no código",
+      "excerpt": "La mayoría de los sistemas se desvían. Un núcleo declarativo se sostiene porque la forma del código es lo que lo hace cumplir.",
+      "date": "2026-04-16",
+      "section": "",
+      "tags": [
+        "architecture",
+        "contracts"
+      ],
+      "og": {
+        "title": "Contratos, no código",
+        "description": "La mayoría de los sistemas se desvían. Un núcleo declarativo se sostiene porque la forma del código es lo que lo hace cumplir.",
+        "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/welcome/",
+      "blob": "c8a2306e51b92bc7.bin",
+      "hash": "c8a2306e51b92bc7",
+      "priority": 2,
+      "type": "post",
+      "title": "Bienvenido a Grove",
+      "excerpt": "Grove organiza lo que escribes en un sitio navegable y desplegable.",
+      "date": "2026-04-14",
+      "section": "",
+      "tags": [
+        "grove",
+        "getting-started"
+      ],
+      "og": {
+        "title": "Bienvenido a Grove",
+        "description": "Grove organiza lo que escribes en un sitio navegable y desplegable.",
+        "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/architecture/data-isolation/",
+      "blob": "aad37dffe5be26ef.bin",
+      "hash": "aad37dffe5be26ef",
+      "priority": 2,
+      "type": "post",
+      "title": "Datos, interfaz, infraestructura",
+      "excerpt": "Las tres capas deben ser separables. Tus datos sobreviven a cualquier interfaz.",
+      "date": "2026-04-13",
+      "section": "",
+      "tags": [
+        "architecture",
+        "manifesto"
+      ],
+      "og": {
+        "title": "Datos, interfaz, infraestructura",
+        "description": "Las tres capas deben ser separables. Tus datos sobreviven a cualquier interfaz.",
+        "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/on-joy/",
+      "blob": "a74a0d99e5ff4c4a.bin",
+      "hash": "a74a0d99e5ff4c4a",
+      "priority": 2,
+      "type": "post",
+      "title": "Alegría sin extracción",
+      "excerpt": "La tecnología debería producir alegría, no compulsión.",
+      "date": "2026-04-12",
+      "section": "",
+      "tags": [
+        "philosophy"
+      ],
+      "og": {
+        "title": "Alegría sin extracción",
+        "description": "La tecnología debería producir alegría, no compulsión.",
+        "image": ""
+      },
+      "layout": "quote",
+      "theme": ""
+    },
+    {
+      "route": "/",
+      "blob": "cca4708640a9d69f.bin",
+      "hash": "cca4708640a9d69f",
+      "priority": 0,
+      "type": "index",
+      "title": "Moui Grove",
+      "layout": "index",
+      "theme": ""
+    },
+    {
+      "route": "/archive/",
+      "blob": "4d9cb4365210d903.bin",
+      "hash": "4d9cb4365210d903",
+      "priority": 0,
+      "type": "archive",
+      "title": "Archive — Moui Grove",
+      "layout": "archive",
+      "theme": ""
+    },
+    {
+      "route": "/privacy/",
+      "blob": "e586c1853e1e5a5e.bin",
+      "hash": "e586c1853e1e5a5e",
+      "priority": 1,
+      "type": "section_index",
+      "title": "Privacy",
+      "layout": "index",
+      "theme": ""
+    },
+    {
+      "route": "/insights/",
+      "blob": "e0d0587c2ca7db16.bin",
+      "hash": "e0d0587c2ca7db16",
+      "priority": 1,
+      "type": "section_index",
+      "title": "Insights",
+      "layout": "index",
+      "theme": ""
+    },
+    {
+      "route": "/school/",
+      "blob": "fd325c9bb52be05b.bin",
+      "hash": "fd325c9bb52be05b",
+      "priority": 1,
+      "type": "section_index",
+      "title": "School",
+      "layout": "index",
+      "theme": ""
+    },
+    {
+      "route": "/architecture/",
+      "blob": "b04c85d764511a8e.bin",
+      "hash": "b04c85d764511a8e",
+      "priority": 1,
+      "type": "section_index",
+      "title": "Architecture",
+      "layout": "index",
+      "theme": ""
+    }
+  ],
+  "assets": [
+    {
+      "path": "assets/Piwik_screenshot_german.png",
+      "mime": "image/png",
+      "width": 1904,
+      "height": 977
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/QWOP_screenshot.jpg",
+      "mime": "image/jpeg",
+      "width": 800,
+      "height": 500
+    },
+    {
+      "path": "assets/QWOP_screenshot-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/QWOP_screenshot-480w.jpg",
+      "mime": "image/jpeg",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-1.png",
+      "mime": "image/png",
+      "width": 1660,
+      "height": 950
+    },
+    {
+      "path": "assets/claude-code-1-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-1-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-1-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/claude-code-1-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/claude-code-1-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/claude-code-1-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/claude-code-2.png",
+      "mime": "image/png",
+      "width": 1606,
+      "height": 918
+    },
+    {
+      "path": "assets/claude-code-2-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-2-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-2-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/claude-code-2-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/claude-code-2-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/claude-code-2-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/cookie-bot-screenshot.png",
+      "mime": "image/png",
+      "width": 992,
+      "height": 1392
+    },
+    {
+      "path": "assets/cookie-bot-screenshot-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/cookie-bot-screenshot-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/cookie-bot-screenshot-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/cookie-bot-screenshot-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/dw-digital-dilemma.png",
+      "mime": "image/png",
+      "width": 2860,
+      "height": 1428
+    },
+    {
+      "path": "assets/dw-digital-dilemma-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/dw-digital-dilemma-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/dw-digital-dilemma-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/dw-digital-dilemma-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/dw-digital-dilemma-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/dw-digital-dilemma-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/google-ad-no-ads.png",
+      "mime": "image/png",
+      "width": 1008,
+      "height": 1140
+    },
+    {
+      "path": "assets/google-ad-no-ads-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/google-ad-no-ads-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/google-ad-no-ads-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/google-ad-no-ads-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/latin-women-singing.jpg",
+      "mime": "image/jpeg",
+      "width": 6000,
+      "height": 4000
+    },
+    {
+      "path": "assets/latin-women-singing-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/latin-women-singing-480w.jpg",
+      "mime": "image/jpeg",
+      "width": 480
+    },
+    {
+      "path": "assets/latin-women-singing-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/latin-women-singing-960w.jpg",
+      "mime": "image/jpeg",
+      "width": 960
+    },
+    {
+      "path": "assets/latin-women-singing-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/latin-women-singing-1440w.jpg",
+      "mime": "image/jpeg",
+      "width": 1440
+    },
+    {
+      "path": "assets/moui-fire-logo.webp",
+      "mime": "image/webp",
+      "width": 400,
+      "height": 126
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude.png",
+      "mime": "image/png",
+      "width": 2880,
+      "height": 1800
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/og.png",
+      "mime": "image/png",
+      "width": 500,
+      "height": 158
+    },
+    {
+      "path": "assets/og-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/og-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll.png",
+      "mime": "image/png",
+      "width": 2878,
+      "height": 1668
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets.png",
+      "mime": "image/png",
+      "width": 2442,
+      "height": 624
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    }
+  ]
+}
