@@ -1,20 +1,20 @@
 <div class="feed-grid">
-        <article class="card" data-stagger style="--stagger-index: 0">
+        <article class="card" data-stagger style="--stagger-index: 0; --color-card-bg-resolved: linear-gradient(135deg, #ff1055,rgb(139, 13, 242)); --color-text-resolved: #ffffff; --color-text-secondary-resolved: #ffffff; --color-accent-resolved: #ffffff">
+    <div class="card-body">
+        <a href="/manifesto/" class="card-link">
+            <time datetime="2026-05-03">03.05.2026</time>
+            <h2 class="card-title">Manifesto</h2>
+            <p class="card-excerpt">The future is behind us. Local-first, privacy-first, user-first development starts here.</p>
+        </a>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 1">
     <img class="card-thumbnail" src="/assets/screenshot-tui-suchprotokoll.png" alt="" loading="lazy">
     <div class="card-body">
         <a href="/reimagining-sheets/" class="card-link">
             <time datetime="2026-05-28">28.05.2026</time>
             <h2 class="card-title">Reimagining Sheets</h2>
             <p class="card-excerpt">Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?</p>
-        </a>
-    </div>
-</article>
-        <article class="card" data-stagger style="--stagger-index: 1; --color-card-bg-resolved: linear-gradient(135deg, #ff1055,rgb(139, 13, 242)); --color-text-resolved: #ffffff; --color-text-secondary-resolved: #ffffff; --color-accent-resolved: #ffffff">
-    <div class="card-body">
-        <a href="/manifesto/" class="card-link">
-            <time datetime="2026-05-03">03.05.2026</time>
-            <h2 class="card-title">Manifesto</h2>
-            <p class="card-excerpt">The future is behind us. Local-first, privacy-first, user-first development starts here.</p>
         </a>
     </div>
 </article>

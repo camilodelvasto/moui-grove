@@ -1,31 +1,12 @@
 {
-  "version": "017fe77c4073",
-  "build_date": "2026-06-01T07:32:14Z",
+  "version": "7d947f4530cb",
+  "build_date": "2026-06-01T15:54:42Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
     "priority_count": 5
   },
   "entries": [
-    {
-      "route": "/reimagining-sheets/",
-      "blob": "015fbf33fb784fde.bin",
-      "hash": "015fbf33fb784fde",
-      "priority": 1,
-      "type": "post",
-      "title": "Reimagining Sheets",
-      "excerpt": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
-      "date": "2026-05-28",
-      "section": "",
-      "tags": [],
-      "og": {
-        "title": "Reimagining Sheets",
-        "description": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
-        "image": "assets/screenshot-tui-suchprotokoll.png"
-      },
-      "layout": "article",
-      "theme": ""
-    },
     {
       "route": "/manifesto/",
       "blob": "923bad4eb385ffba.bin",
@@ -41,6 +22,25 @@
         "title": "Manifesto",
         "description": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
         "image": ""
+      },
+      "layout": "article",
+      "theme": ""
+    },
+    {
+      "route": "/reimagining-sheets/",
+      "blob": "5917a3d4c6e75344.bin",
+      "hash": "5917a3d4c6e75344",
+      "priority": 1,
+      "type": "post",
+      "title": "Reimagining Sheets",
+      "excerpt": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
+      "date": "2026-05-28",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Reimagining Sheets",
+        "description": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
+        "image": "assets/screenshot-tui-suchprotokoll.png"
       },
       "layout": "article",
       "theme": ""
@@ -233,8 +233,8 @@
     },
     {
       "route": "/",
-      "blob": "5de57b40499d861f.bin",
-      "hash": "5de57b40499d861f",
+      "blob": "8a20520dfb5a9b71.bin",
+      "hash": "8a20520dfb5a9b71",
       "priority": 0,
       "type": "index",
       "title": "Moui Grove",
@@ -243,8 +243,8 @@
     },
     {
       "route": "/archive/",
-      "blob": "8bf7a42dd780708d.bin",
-      "hash": "8bf7a42dd780708d",
+      "blob": "10e31116a7b4b9a2.bin",
+      "hash": "10e31116a7b4b9a2",
       "priority": 0,
       "type": "archive",
       "title": "Archive — Moui Grove",
