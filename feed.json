@@ -7,18 +7,18 @@
   "language": "en",
   "items": [
     {
-      "id": "manifesto",
-      "title": "Manifesto",
-      "url": "https://www.moui.io/manifesto/",
-      "summary": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
-      "date_published": "2026-05-03"
-    },
-    {
       "id": "reimagining-sheets",
       "title": "Reimagining Sheets",
       "url": "https://www.moui.io/reimagining-sheets/",
       "summary": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
       "date_published": "2026-05-28"
+    },
+    {
+      "id": "manifesto",
+      "title": "Manifesto",
+      "url": "https://www.moui.io/manifesto/",
+      "summary": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
+      "date_published": "2026-05-03"
     },
     {
       "id": "privacy/fingerprinting-analogy-supermarket",

@@ -2,8 +2,8 @@
         <section>
             <h2>2026</h2>
             <ul>
-            <li><time datetime="2026-05-03">03.05.2026</time> <a href="/manifesto/">Manifesto</a></li>
             <li><time datetime="2026-05-28">28.05.2026</time> <a href="/reimagining-sheets/">Reimagining Sheets</a></li>
+            <li><time datetime="2026-05-03">03.05.2026</time> <a href="/manifesto/">Manifesto</a></li>
             <li><time datetime="2026-05-19">19.05.2026</time> <a href="/privacy/fingerprinting-analogy-supermarket/">I too, was fingerprinting everyone</a></li>
             <li><time datetime="2026-05-04">04.05.2026</time> <a href="/insights/personal-computing-love-the-machine/">Local-First, or: How I Learned to Stop Browsing and Love the Machine</a></li>
             <li><time datetime="2026-04-23">23.04.2026</time> <a href="/school/why-you-need-to-learn-to-code/">Why You Need To Learn to Code</a></li>
