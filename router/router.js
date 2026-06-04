@@ -40,6 +40,7 @@ export function createRouter({ strategy, loadPage, basePath, onBeforeNavigate })
       const anchor = e.target.closest('a[href]');
       if (!anchor) return;
       if (anchor.target === '_blank') return;
+      if (anchor.hasAttribute('data-external')) return;
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
       const href = anchor.getAttribute('href');
