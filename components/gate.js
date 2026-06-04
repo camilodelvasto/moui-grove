@@ -12,7 +12,7 @@ import { initBundleTransport, bundleTransport, setBundleMnemonic } from '../bund
 import { registerTransport } from '../transport.js';
 import { createInput } from '../elements/input.js';
 import { createButton } from '../elements/button.js';
-import { strings } from '../app.js';
+import { strings } from '../strings.js';
 import { getBasePath } from '../base-path.js';
 
 const SESSION_KEY = 'grove-mnemonic';

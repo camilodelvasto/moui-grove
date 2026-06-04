@@ -1,5 +1,5 @@
 /**Sidebar component — TOC for single views, filters for index views.*/
-import { strings } from '../app.js';
+import { strings } from '../strings.js';
 
 export function init() {
   const layout = document.body.getAttribute('data-layout');

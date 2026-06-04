@@ -37,6 +37,7 @@ shell-tauri
 shell-web
 sitemap.xml
 store.js
+strings.js
 style.css
 sw.js
 syntax.css
