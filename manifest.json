@@ -1,6 +1,6 @@
 {
-  "version": "7d947f4530cb",
-  "build_date": "2026-06-01T15:54:42Z",
+  "version": "0b670b8e93a9",
+  "build_date": "2026-06-04T14:18:54Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -28,8 +28,8 @@
     },
     {
       "route": "/reimagining-sheets/",
-      "blob": "5917a3d4c6e75344.bin",
-      "hash": "5917a3d4c6e75344",
+      "blob": "015fbf33fb784fde.bin",
+      "hash": "015fbf33fb784fde",
       "priority": 1,
       "type": "post",
       "title": "Reimagining Sheets",

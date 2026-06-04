@@ -1,4 +1,5 @@
 /**Sidebar component — TOC for single views, filters for index views.*/
+import { strings } from '../app.js';
 
 export function init() {
   const layout = document.body.getAttribute('data-layout');
@@ -25,7 +26,7 @@ function _initTocSidebar() {
     sidebar.hidden = true;
     const toggle = document.createElement('button');
     toggle.className = 'toc-toggle';
-    toggle.textContent = 'Table of Contents';
+    toggle.textContent = strings.toc || 'Table of Contents';
     toggle.setAttribute('aria-expanded', 'false');
     toggle.type = 'button';
     toggle.addEventListener('click', () => {
