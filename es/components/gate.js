@@ -12,6 +12,7 @@ import { initBundleTransport, bundleTransport, setBundleMnemonic } from '../bund
 import { registerTransport } from '../transport.js';
 import { createInput } from '../elements/input.js';
 import { createButton } from '../elements/button.js';
+import { strings } from '../app.js';
 import { getBasePath } from '../base-path.js';
 
 const SESSION_KEY = 'grove-mnemonic';
@@ -119,7 +120,7 @@ function _renderGate(container, envelope, onUnlock) {
   heading.textContent = siteTitle;
 
   const subtitle = document.createElement('p');
-  subtitle.textContent = 'This site is private. Enter the access code to continue.';
+  subtitle.textContent = strings.gate_subtitle || 'This site is private. Enter the access code to continue.';
   subtitle.className = 'gate-subtitle';
 
   const form = document.createElement('form');
@@ -127,7 +128,7 @@ function _renderGate(container, envelope, onUnlock) {
   form.className = 'gate-form';
 
   const inputGroup = createInput({
-    label: 'Access code',
+    label: strings.gate_label || 'Access code',
     type: 'password',
     name: 'mnemonic',
     required: true,
@@ -141,7 +142,7 @@ function _renderGate(container, envelope, onUnlock) {
   error.setAttribute('role', 'status');
   form.appendChild(error);
 
-  const btn = createButton({ label: 'Unlock', type: 'submit' });
+  const btn = createButton({ label: strings.gate_submit || 'Unlock', type: 'submit' });
   form.appendChild(btn);
 
   container.appendChild(heading);
@@ -161,7 +162,7 @@ function _renderGate(container, envelope, onUnlock) {
       _activate(decrypted, mnemonic, onUnlock);
     } catch (err) {
       console.error('Gate decrypt failed:', err);
-      error.textContent = 'Wrong access code — try again.';
+      error.textContent = strings.gate_error || 'Wrong access code — try again.';
       error.classList.add('gate-error--visible');
       input.value = '';
       input.focus();

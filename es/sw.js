@@ -9,7 +9,7 @@
  * this file runs.
  */
 
-const BUILD_VERSION = 'c575dd22331c';
+const BUILD_VERSION = '24e03745a3f4';
 const CACHE_STATIC = `grove-static-${BUILD_VERSION}`;
 const CACHE_PAGES = `grove-pages-${BUILD_VERSION}`;
 const CACHE_BLOBS = `grove-blobs-${BUILD_VERSION}`;
@@ -45,7 +45,7 @@ const OWNED_ASSETS = ["/assets/Piwik_screenshot_german.png", "/assets/Piwik_scre
 
 // Sibling shape paths on the same domain — never intercept these.
 // Build-injected from infrastructure/targets/ scan.
-const SIBLING_PATHS = ["/", "/karaoke/", "/pitch/", "/staging/", "/sx/"];
+const SIBLING_PATHS = ["/", "/interconexion/", "/karaoke/", "/pitch/", "/staging/", "/sx/"];
 
 // --- Computed sets for O(1) lookup in fetch handler ---
 const _STATIC_SET = new Set(STATIC_ASSETS);

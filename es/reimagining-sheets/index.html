@@ -264,10 +264,11 @@
     <header class="site-header" role="banner">
     <a href="/es/" class="site-title"><img src="/es/assets/moui-fire-logo.webp" alt="Moui Grove" class="site-logo" width="400" height="126"></a>
     <div class="header-actions">
-        <a href="/es/archive/" class="btn btn-ghost btn-sm" aria-label="Archive">Archive</a>
-        <button class="btn btn-accent btn-sm" data-action="open-search" data-interaction="press" aria-label="Search" type="button">
+        <a href="/" class="btn btn-secondary btn-sm">EN</a>
+        <a href="/es/archive/" class="btn btn-ghost btn-sm" aria-label="Archivo">Archivo</a>
+        <button class="btn btn-accent btn-sm" data-action="open-search" data-interaction="press" aria-label="Buscar" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
-            <span class="btn-label">Search</span>
+            <span class="btn-label">Buscar</span>
         </button>
     </div>
 </header>
@@ -291,7 +292,7 @@
 <p>Pero la extracción fue solo el comienzo. También necesitaba un sistema de registro — un historial de acciones: envié una solicitud en esta fecha, recibí una invitación a una visita en esa fecha, envié los documentos de solicitud al día siguiente. No hay una forma natural de hacer eso en hojas de cálculo. Claro, puedes crear una nueva hoja y enlazarlas, pero se vuelve un desorden rápido. Y las hojas de cálculo son frágiles: los valores se borran accidentalmente, las fórmulas se rompen silenciosamente. Quería algo <strong>lo suficientemente robusto como para sostenerse en un tribunal si fuera necesario</strong>, con un historial completo de acciones y mensajes.</p>
 <h2>Lo que hay afuera</h2>
 <p>Miré las opciones habituales:</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>Enfoque</th>
@@ -346,6 +347,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>La gente hace esto para búsqueda de apartamentos, solicitudes de empleo, y más. Pero todo el stack involucra demasiados actores y demasiados procesadores de datos. Las opciones asistidas por IA son o mínimas (un chat lateral que sugiere fórmulas) o masivamente despilfarradoras — sistemas agénticos que capturan pantalla de tu navegador, transfieren la imagen, encuentran el botón, hacen clic, vuelven a buscar, vuelven a capturar. Cantidades <em>demenciales</em> de recursos para que podamos ahorrarnos unos minutos.</p>
 <p>Fui en una dirección diferente.</p>
 <h2>Una hoja de cálculo declarativa, basada en archivos, lista para IA</h2>
@@ -404,14 +406,14 @@
     <div class="footer-inner">
         <span>Moui Grove</span>
         <a href="https://www.moui.io/es/feed.xml">RSS</a>
-        <button class="btn btn-ghost btn-sm btn-icon btn-theme" data-action="toggle-theme" data-interaction="press" aria-label="Toggle theme" type="button">
+        <button class="btn btn-ghost btn-sm btn-icon btn-theme" data-action="toggle-theme" data-interaction="press" aria-label="Cambiar tema" type="button">
             <span class="btn-state-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
             <span class="btn-state-dark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
         </button>
-        <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Clear site data" type="button">
+        <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Borrar datos del sitio" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
         </button>
-        <span class="build-id">c575dd22331c</span>
+        <span class="build-id">24e03745a3f4</span>
     </div>
 </footer>
     <script type="module" src="/es/app.js"></script>

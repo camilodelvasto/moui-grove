@@ -18,7 +18,7 @@
 <p>Pero la extracción fue solo el comienzo. También necesitaba un sistema de registro — un historial de acciones: envié una solicitud en esta fecha, recibí una invitación a una visita en esa fecha, envié los documentos de solicitud al día siguiente. No hay una forma natural de hacer eso en hojas de cálculo. Claro, puedes crear una nueva hoja y enlazarlas, pero se vuelve un desorden rápido. Y las hojas de cálculo son frágiles: los valores se borran accidentalmente, las fórmulas se rompen silenciosamente. Quería algo <strong>lo suficientemente robusto como para sostenerse en un tribunal si fuera necesario</strong>, con un historial completo de acciones y mensajes.</p>
 <h2>Lo que hay afuera</h2>
 <p>Miré las opciones habituales:</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>Enfoque</th>
@@ -73,6 +73,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>La gente hace esto para búsqueda de apartamentos, solicitudes de empleo, y más. Pero todo el stack involucra demasiados actores y demasiados procesadores de datos. Las opciones asistidas por IA son o mínimas (un chat lateral que sugiere fórmulas) o masivamente despilfarradoras — sistemas agénticos que capturan pantalla de tu navegador, transfieren la imagen, encuentran el botón, hacen clic, vuelven a buscar, vuelven a capturar. Cantidades <em>demenciales</em> de recursos para que podamos ahorrarnos unos minutos.</p>
 <p>Fui en una dirección diferente.</p>
 <h2>Una hoja de cálculo declarativa, basada en archivos, lista para IA</h2>

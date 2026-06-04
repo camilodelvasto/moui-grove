@@ -27,6 +27,15 @@ import { createPushStateStrategy } from './router/strategies/pushstate.js';
 import { createHashStrategy } from './router/strategies/hash.js';
 import { registerNavigation, start as startNavigation, navigate, currentRoute } from './navigation.js';
 
+// --- System strings (injected as JSON by build) ---
+
+function _loadStrings() {
+  const el = document.getElementById('strings-data');
+  if (!el) return {};
+  return JSON.parse(el.textContent);
+}
+export const strings = _loadStrings();
+
 // --- Transport registration ---
 
 async function _registerShell() {
@@ -125,9 +134,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   } catch (err) {
     console.error('[grove] Bootstrap failed:', err);
+    const errTitle = strings.load_error_title || 'Unable to load';
+    const errBody = strings.load_error_body || 'The grove could not be loaded. Check your connection and reload.';
     document.getElementById('main').innerHTML =
-      '<div class="grove-error"><h1>Unable to load</h1>' +
-      '<p>The grove could not be loaded. Check your connection and reload.</p></div>';
+      `<div class="grove-error"><h1>${errTitle}</h1><p>${errBody}</p></div>`;
   }
 });
 

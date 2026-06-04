@@ -16,6 +16,7 @@
 import { getIndex } from '../transport.js';
 import { navigate, buildHref } from '../navigation.js';
 import { getBasePath } from '../base-path.js';
+import { strings } from '../app.js';
 
 /** Normalize url_path to a route by stripping basePath if present. */
 function _toRoute(urlPath) {
@@ -55,15 +56,15 @@ function open() {
 
   overlay = document.createElement('dialog');
   overlay.className = 'search-overlay';
-  overlay.setAttribute('aria-label', 'Search');
+  overlay.setAttribute('aria-label', strings.search_aria || 'Search');
 
   const panel = document.createElement('div');
   panel.className = 'search-panel';
 
   const input = document.createElement('input');
   input.type = 'search';
-  input.placeholder = 'Search posts...';
-  input.setAttribute('aria-label', 'Search posts');
+  input.placeholder = strings.search_placeholder || 'Search posts...';
+  input.setAttribute('aria-label', strings.search_input_aria || 'Search posts');
   input.setAttribute('role', 'combobox');
   input.setAttribute('aria-expanded', 'true');
   input.setAttribute('aria-controls', LIST_ID);
@@ -192,7 +193,7 @@ function _search(query, container) {
 
   if (matches.length === 0) {
     const empty = document.createElement('p');
-    empty.textContent = 'No results found.';
+    empty.textContent = strings.search_no_results || 'No results found.';
     container.appendChild(empty);
   }
 }

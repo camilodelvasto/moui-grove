@@ -1,6 +1,6 @@
 {
-  "version": "c575dd22331c",
-  "build_date": "2026-06-01T15:52:06Z",
+  "version": "24e03745a3f4",
+  "build_date": "2026-06-04T14:19:47Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -28,8 +28,8 @@
     },
     {
       "route": "/reimagining-sheets/",
-      "blob": "e64f9fa9b5056e22.bin",
-      "hash": "e64f9fa9b5056e22",
+      "blob": "4e6af8fd54ee4342.bin",
+      "hash": "4e6af8fd54ee4342",
       "priority": 1,
       "type": "post",
       "title": "Reimaginando las hojas de cálculo",
