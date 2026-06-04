@@ -27,14 +27,7 @@ import { createPushStateStrategy } from './router/strategies/pushstate.js';
 import { createHashStrategy } from './router/strategies/hash.js';
 import { registerNavigation, start as startNavigation, navigate, currentRoute } from './navigation.js';
 
-// --- System strings (injected as JSON by build) ---
-
-function _loadStrings() {
-  const el = document.getElementById('strings-data');
-  if (!el) return {};
-  return JSON.parse(el.textContent);
-}
-export const strings = _loadStrings();
+import { strings } from './strings.js';
 
 // --- Transport registration ---
 

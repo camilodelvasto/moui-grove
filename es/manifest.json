@@ -1,6 +1,6 @@
 {
-  "version": "24e03745a3f4",
-  "build_date": "2026-06-04T14:19:47Z",
+  "version": "f75e97dd172f",
+  "build_date": "2026-06-04T16:51:45Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -243,8 +243,8 @@
     },
     {
       "route": "/archive/",
-      "blob": "4d9cb4365210d903.bin",
-      "hash": "4d9cb4365210d903",
+      "blob": "54bd75cf92866e68.bin",
+      "hash": "54bd75cf92866e68",
       "priority": 0,
       "type": "archive",
       "title": "Archive — Moui Grove",

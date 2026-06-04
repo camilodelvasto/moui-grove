@@ -16,7 +16,7 @@
 import { getIndex } from '../transport.js';
 import { navigate, buildHref } from '../navigation.js';
 import { getBasePath } from '../base-path.js';
-import { strings } from '../app.js';
+import { strings } from '../strings.js';
 
 /** Normalize url_path to a route by stripping basePath if present. */
 function _toRoute(urlPath) {
