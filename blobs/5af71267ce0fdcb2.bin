@@ -31,6 +31,7 @@
 </figure>
 <p>The first link takes me to a paid app, and the second one is broken. Nothing wrong with paid apps, but not knowing if what I was seeing was the result of a paid campaign or simply the summary of what I was anyway going to find below scared me.</p>
 <p>For this specific thing I was looking for, I knew it could be done differently, so I <em>politely</em> declined what Google was <em>kindly</em> offering.</p>
+<hr />
 <h2>Embracing DuckDuckGo or maybe not?</h2>
 <p>So I wented to DuckDuckGo. A for-profit that sells itself as user-centric, and it provided a different result, also using AI, also linking to a very old, unmaintained package that was probably deprecated (the #2 in Google's AI overview).</p>
 <figure>
@@ -53,6 +54,7 @@
 <pre><code>brew install syntax-highlight
 </code></pre>
 <p>(and then open the app at least once for highlighting to take effect)</p>
+<hr />
 <h2>The monopoly of knowledge</h2>
 <p>We have arrived in an era in which knowledge does not belong to everybody. It never has, of course, but these times are worse than ever as the tools we have are not only giving us bad choices: they are depriving us of them. They are void of transparency, and they are not even linking back to the original creators so they at least get an incentive to keep producing content.</p>
 <p>And this is only the beginning (or the end?).</p>
