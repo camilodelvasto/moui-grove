@@ -1,6 +1,6 @@
 {
-  "version": "01554e7b2ba2",
-  "build_date": "2026-06-11T17:08:22Z",
+  "version": "e76c9b720926",
+  "build_date": "2026-06-11T17:37:19Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -47,8 +47,8 @@
     },
     {
       "route": "/insights/google-search-end-of-choice/",
-      "blob": "9796bbd006602a0b.bin",
-      "hash": "9796bbd006602a0b",
+      "blob": "a954e7895ef6b52e.bin",
+      "hash": "a954e7895ef6b52e",
       "priority": 1,
       "type": "post",
       "title": "Google Search and the end Of Choice (and why DuckduckGo is not the answer)",
