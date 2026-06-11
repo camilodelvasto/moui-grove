@@ -218,6 +218,33 @@
       }
     ]
   },
+  "assets/duckduckgo.png": {
+    "source_hash": "8cc5d9111072",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/duckduckgo.png",
+      "width": 650,
+      "height": 218,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/duckduckgo-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/duckduckgo-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
   "assets/dw-digital-dilemma.png": {
     "source_hash": "001d193cd566",
     "post_slugs": [
@@ -304,6 +331,45 @@
       },
       {
         "path": "assets/google-ad-no-ads-960w.png",
+        "width": 960,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
+  "assets/google-ai-overview.png": {
+    "source_hash": "dd8e68b45efa",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/google-ai-overview.png",
+      "width": 1340,
+      "height": 908,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/google-ai-overview-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/google-ai-overview-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/google-ai-overview-960w.webp",
+        "width": 960,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/google-ai-overview-960w.png",
         "width": 960,
         "format": "png",
         "encrypted": false
@@ -550,6 +616,45 @@
       {
         "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.png",
         "width": 1440,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
+  "assets/yaml-preview-mac.png": {
+    "source_hash": "327b42f63d86",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/yaml-preview-mac.png",
+      "width": 1232,
+      "height": 1058,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/yaml-preview-mac-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/yaml-preview-mac-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      },
+      {
+        "path": "assets/yaml-preview-mac-960w.webp",
+        "width": 960,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/yaml-preview-mac-960w.png",
+        "width": 960,
         "format": "png",
         "encrypted": false
       }

@@ -6,16 +6,22 @@
     <description>A test grove for manual verification.</description>
     <language>en</language>
     <item>
+      <title>Reimagining Sheets</title>
+      <link>https://www.moui.io/reimagining-sheets/</link>
+      <description>Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?</description>
+      <pubDate>2026-05-28</pubDate>
+    </item>
+    <item>
       <title>Manifesto</title>
       <link>https://www.moui.io/manifesto/</link>
       <description>The future is behind us. Local-first, privacy-first, user-first development starts here.</description>
       <pubDate>2026-05-03</pubDate>
     </item>
     <item>
-      <title>Reimagining Sheets</title>
-      <link>https://www.moui.io/reimagining-sheets/</link>
-      <description>Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?</description>
-      <pubDate>2026-05-28</pubDate>
+      <title>Google Search and the end Of Choice (and why DuckduckGo is not the answer)</title>
+      <link>https://www.moui.io/insights/google-search-end-of-choice/</link>
+      <description>Google Search became Google Overview with AI and now we have no transparency on what's an ad, what not. Even worse, the results are declining in quality. What do we do?</description>
+      <pubDate>2026-06-11</pubDate>
     </item>
     <item>
       <title>I too, was fingerprinting everyone</title>

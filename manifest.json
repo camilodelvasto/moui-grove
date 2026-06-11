@@ -1,12 +1,31 @@
 {
-  "version": "5c1db03391fd",
-  "build_date": "2026-06-04T16:56:44Z",
+  "version": "01554e7b2ba2",
+  "build_date": "2026-06-11T17:08:22Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
     "priority_count": 5
   },
   "entries": [
+    {
+      "route": "/reimagining-sheets/",
+      "blob": "015fbf33fb784fde.bin",
+      "hash": "015fbf33fb784fde",
+      "priority": 1,
+      "type": "post",
+      "title": "Reimagining Sheets",
+      "excerpt": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
+      "date": "2026-05-28",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Reimagining Sheets",
+        "description": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
+        "image": "assets/screenshot-tui-suchprotokoll.png"
+      },
+      "layout": "article",
+      "theme": ""
+    },
     {
       "route": "/manifesto/",
       "blob": "923bad4eb385ffba.bin",
@@ -27,20 +46,20 @@
       "theme": ""
     },
     {
-      "route": "/reimagining-sheets/",
-      "blob": "015fbf33fb784fde.bin",
-      "hash": "015fbf33fb784fde",
+      "route": "/insights/google-search-end-of-choice/",
+      "blob": "9796bbd006602a0b.bin",
+      "hash": "9796bbd006602a0b",
       "priority": 1,
       "type": "post",
-      "title": "Reimagining Sheets",
-      "excerpt": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
-      "date": "2026-05-28",
+      "title": "Google Search and the end Of Choice (and why DuckduckGo is not the answer)",
+      "excerpt": "Google Search became Google Overview with AI and now we have no transparency on what's an ad, what not. Even worse, the results are declining in quality. What do we do?",
+      "date": "2026-06-11",
       "section": "",
       "tags": [],
       "og": {
-        "title": "Reimagining Sheets",
-        "description": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
-        "image": "assets/screenshot-tui-suchprotokoll.png"
+        "title": "Google Search and the end Of Choice (and why DuckduckGo is not the answer)",
+        "description": "Google Search became Google Overview with AI and now we have no transparency on what's an ad, what not. Even worse, the results are declining in quality. What do we do?",
+        "image": "assets/google-ai-overview.png"
       },
       "layout": "article",
       "theme": ""
@@ -87,7 +106,7 @@
       "route": "/school/why-you-need-to-learn-to-code/",
       "blob": "11452fb03b1f3fb0.bin",
       "hash": "11452fb03b1f3fb0",
-      "priority": 1,
+      "priority": 2,
       "type": "post",
       "title": "Why You Need To Learn to Code",
       "excerpt": "AI is useful and all, but is the output really yours?",
@@ -233,8 +252,8 @@
     },
     {
       "route": "/",
-      "blob": "8a20520dfb5a9b71.bin",
-      "hash": "8a20520dfb5a9b71",
+      "blob": "2a53783af7cc5cc6.bin",
+      "hash": "2a53783af7cc5cc6",
       "priority": 0,
       "type": "index",
       "title": "Moui Grove",
@@ -243,12 +262,22 @@
     },
     {
       "route": "/archive/",
-      "blob": "10e31116a7b4b9a2.bin",
-      "hash": "10e31116a7b4b9a2",
+      "blob": "6779b15dcb289579.bin",
+      "hash": "6779b15dcb289579",
       "priority": 0,
       "type": "archive",
       "title": "Archive — Moui Grove",
       "layout": "archive",
+      "theme": ""
+    },
+    {
+      "route": "/insights/",
+      "blob": "c6aa1f39fe908864.bin",
+      "hash": "c6aa1f39fe908864",
+      "priority": 1,
+      "type": "section_index",
+      "title": "Insights",
+      "layout": "index",
       "theme": ""
     },
     {
@@ -258,16 +287,6 @@
       "priority": 1,
       "type": "section_index",
       "title": "Privacy",
-      "layout": "index",
-      "theme": ""
-    },
-    {
-      "route": "/insights/",
-      "blob": "01043caf732cf472.bin",
-      "hash": "01043caf732cf472",
-      "priority": 1,
-      "type": "section_index",
-      "title": "Insights",
       "layout": "index",
       "theme": ""
     },
@@ -444,6 +463,22 @@
       "width": 960
     },
     {
+      "path": "assets/duckduckgo.png",
+      "mime": "image/png",
+      "width": 650,
+      "height": 218
+    },
+    {
+      "path": "assets/duckduckgo-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/duckduckgo-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
       "path": "assets/dw-digital-dilemma.png",
       "mime": "image/png",
       "width": 2860,
@@ -502,6 +537,32 @@
     },
     {
       "path": "assets/google-ad-no-ads-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/google-ai-overview.png",
+      "mime": "image/png",
+      "width": 1340,
+      "height": 908
+    },
+    {
+      "path": "assets/google-ai-overview-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/google-ai-overview-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/google-ai-overview-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/google-ai-overview-960w.png",
       "mime": "image/png",
       "width": 960
     },
@@ -670,6 +731,32 @@
       "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.png",
       "mime": "image/png",
       "width": 1440
+    },
+    {
+      "path": "assets/yaml-preview-mac.png",
+      "mime": "image/png",
+      "width": 1232,
+      "height": 1058
+    },
+    {
+      "path": "assets/yaml-preview-mac-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/yaml-preview-mac-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/yaml-preview-mac-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/yaml-preview-mac-960w.png",
+      "mime": "image/png",
+      "width": 960
     }
   ]
 }

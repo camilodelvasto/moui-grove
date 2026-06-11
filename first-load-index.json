@@ -1,5 +1,12 @@
 [
   {
+    "title": "Reimagining Sheets",
+    "url_path": "/reimagining-sheets/",
+    "content_path": "reimagining-sheets",
+    "excerpt": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
+    "publish_date": "2026-05-28"
+  },
+  {
     "title": "Manifesto",
     "url_path": "/manifesto/",
     "content_path": "manifesto",
@@ -7,11 +14,11 @@
     "publish_date": "2026-05-03"
   },
   {
-    "title": "Reimagining Sheets",
-    "url_path": "/reimagining-sheets/",
-    "content_path": "reimagining-sheets",
-    "excerpt": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
-    "publish_date": "2026-05-28"
+    "title": "Google Search and the end Of Choice (and why DuckduckGo is not the answer)",
+    "url_path": "/insights/google-search-end-of-choice/",
+    "content_path": "insights/google-search-end-of-choice",
+    "excerpt": "Google Search became Google Overview with AI and now we have no transparency on what's an ad, what not. Even worse, the results are declining in quality. What do we do?",
+    "publish_date": "2026-06-11"
   },
   {
     "title": "I too, was fingerprinting everyone",

@@ -1,14 +1,5 @@
 <div class="feed-grid">
-        <article class="card" data-stagger style="--stagger-index: 0; --color-card-bg-resolved: linear-gradient(135deg, #ff1055,rgb(139, 13, 242)); --color-text-resolved: #ffffff; --color-text-secondary-resolved: #ffffff; --color-accent-resolved: #ffffff">
-    <div class="card-body">
-        <a href="/manifesto/" class="card-link">
-            <time datetime="2026-05-03">03.05.2026</time>
-            <h2 class="card-title">Manifesto</h2>
-            <p class="card-excerpt">The future is behind us. Local-first, privacy-first, user-first development starts here.</p>
-        </a>
-    </div>
-</article>
-        <article class="card" data-stagger style="--stagger-index: 1">
+        <article class="card" data-stagger style="--stagger-index: 0">
     <img class="card-thumbnail" src="/assets/screenshot-tui-suchprotokoll.png" alt="" loading="lazy">
     <div class="card-body">
         <a href="/reimagining-sheets/" class="card-link">
@@ -18,7 +9,26 @@
         </a>
     </div>
 </article>
+        <article class="card" data-stagger style="--stagger-index: 1; --color-card-bg-resolved: linear-gradient(135deg, #ff1055,rgb(139, 13, 242)); --color-text-resolved: #ffffff; --color-text-secondary-resolved: #ffffff; --color-accent-resolved: #ffffff">
+    <div class="card-body">
+        <a href="/manifesto/" class="card-link">
+            <time datetime="2026-05-03">03.05.2026</time>
+            <h2 class="card-title">Manifesto</h2>
+            <p class="card-excerpt">The future is behind us. Local-first, privacy-first, user-first development starts here.</p>
+        </a>
+    </div>
+</article>
         <article class="card" data-stagger style="--stagger-index: 2">
+    <img class="card-thumbnail" src="/assets/google-ai-overview.png" alt="" loading="lazy">
+    <div class="card-body">
+        <a href="/insights/google-search-end-of-choice/" class="card-link">
+            <time datetime="2026-06-11">11.06.2026</time>
+            <h2 class="card-title">Google Search and the end Of Choice (and why DuckduckGo is not the answer)</h2>
+            <p class="card-excerpt">Google Search became Google Overview with AI and now we have no transparency on what's an ad, what not. Even worse, the results are declining in quality. What do we do?</p>
+        </a>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 3">
     <img class="card-thumbnail" src="/assets/Piwik_screenshot_german.png" alt="" loading="lazy">
     <div class="card-body">
         <a href="/privacy/fingerprinting-analogy-supermarket/" class="card-link">
@@ -28,7 +38,7 @@
         </a>
     </div>
 </article>
-        <article class="card" data-stagger style="--stagger-index: 3">
+        <article class="card" data-stagger style="--stagger-index: 4">
     <img class="card-thumbnail" src="/assets/QWOP_screenshot.jpg" alt="" loading="lazy">
     <div class="card-body">
         <a href="/insights/personal-computing-love-the-machine/" class="card-link">
@@ -38,7 +48,7 @@
         </a>
     </div>
 </article>
-        <article class="card" data-stagger style="--stagger-index: 4">
+        <article class="card" data-stagger style="--stagger-index: 5">
     <div class="card-body">
         <a href="/school/why-you-need-to-learn-to-code/" class="card-link">
             <time datetime="2026-04-23">23.04.2026</time>
@@ -47,7 +57,7 @@
         </a>
     </div>
 </article>
-        <article class="card" data-stagger style="--stagger-index: 5">
+        <article class="card" data-stagger style="--stagger-index: 6">
     <div class="card-body">
         <a href="/insights/coding-out-of-first-principles/" class="card-link">
             <time datetime="2026-04-22">22.04.2026</time>
@@ -56,7 +66,7 @@
         </a>
     </div>
 </article>
-        <article class="card" data-stagger style="--stagger-index: 6">
+        <article class="card" data-stagger style="--stagger-index: 7">
     <div class="card-body">
         <a href="/cloud-act/" class="card-link">
             <time datetime="2026-04-17">17.04.2026</time>
@@ -66,7 +76,7 @@
         <div class="card-tags"><span class="card-tag">sovereignty</span><span class="card-tag">policy</span><span class="card-tag">privacy</span></div>
     </div>
 </article>
-        <article class="card" data-stagger style="--stagger-index: 7">
+        <article class="card" data-stagger style="--stagger-index: 8">
     <div class="card-body">
         <a href="/contracts-not-code/" class="card-link">
             <time datetime="2026-04-16">16.04.2026</time>
