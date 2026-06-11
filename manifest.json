@@ -1,6 +1,6 @@
 {
-  "version": "d839bca16ed1",
-  "build_date": "2026-06-11T17:39:25Z",
+  "version": "70081c9bf2d6",
+  "build_date": "2026-06-11T17:44:10Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -47,17 +47,17 @@
     },
     {
       "route": "/insights/google-search-end-of-choice/",
-      "blob": "5af71267ce0fdcb2.bin",
-      "hash": "5af71267ce0fdcb2",
+      "blob": "a56390954fa394c5.bin",
+      "hash": "a56390954fa394c5",
       "priority": 1,
       "type": "post",
-      "title": "Google Search and the end Of Choice (and why DuckduckGo is not the answer)",
+      "title": "Google Search and the end Of Choice (and why DuckDuckGo is not the answer)",
       "excerpt": "Google Search became Google Overview with AI and now we have no transparency on what's an ad, what not. Even worse, the results are declining in quality. What do we do?",
       "date": "2026-06-11",
       "section": "",
       "tags": [],
       "og": {
-        "title": "Google Search and the end Of Choice (and why DuckduckGo is not the answer)",
+        "title": "Google Search and the end Of Choice (and why DuckDuckGo is not the answer)",
         "description": "Google Search became Google Overview with AI and now we have no transparency on what's an ad, what not. Even worse, the results are declining in quality. What do we do?",
         "image": "assets/google-ai-overview.png"
       },
@@ -252,8 +252,8 @@
     },
     {
       "route": "/",
-      "blob": "2a53783af7cc5cc6.bin",
-      "hash": "2a53783af7cc5cc6",
+      "blob": "7a7faa7cb7537796.bin",
+      "hash": "7a7faa7cb7537796",
       "priority": 0,
       "type": "index",
       "title": "Moui Grove",
@@ -262,8 +262,8 @@
     },
     {
       "route": "/archive/",
-      "blob": "6779b15dcb289579.bin",
-      "hash": "6779b15dcb289579",
+      "blob": "803555b9fdc76698.bin",
+      "hash": "803555b9fdc76698",
       "priority": 0,
       "type": "archive",
       "title": "Archive — Moui Grove",
@@ -272,8 +272,8 @@
     },
     {
       "route": "/insights/",
-      "blob": "c6aa1f39fe908864.bin",
-      "hash": "c6aa1f39fe908864",
+      "blob": "e5cc36a7129d20d7.bin",
+      "hash": "e5cc36a7129d20d7",
       "priority": 1,
       "type": "section_index",
       "title": "Insights",
