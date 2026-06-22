@@ -1,6 +1,6 @@
 {
-  "version": "70081c9bf2d6",
-  "build_date": "2026-06-11T17:44:10Z",
+  "version": "c9ae182592cb",
+  "build_date": "2026-06-22T07:17:46Z",
   "encrypted": false,
   "loading": {
     "strategy": "progressive",
@@ -24,6 +24,7 @@
         "image": "assets/screenshot-tui-suchprotokoll.png"
       },
       "layout": "article",
+      "width": "content",
       "theme": ""
     },
     {
@@ -43,6 +44,7 @@
         "image": ""
       },
       "layout": "article",
+      "width": "content",
       "theme": ""
     },
     {
@@ -62,6 +64,7 @@
         "image": "assets/google-ai-overview.png"
       },
       "layout": "article",
+      "width": "content",
       "theme": ""
     },
     {
@@ -81,6 +84,7 @@
         "image": "assets/Piwik_screenshot_german.png"
       },
       "layout": "article",
+      "width": "content",
       "theme": ""
     },
     {
@@ -100,6 +104,7 @@
         "image": "assets/QWOP_screenshot.jpg"
       },
       "layout": "article",
+      "width": "content",
       "theme": ""
     },
     {
@@ -119,6 +124,7 @@
         "image": ""
       },
       "layout": "article",
+      "width": "content",
       "theme": ""
     },
     {
@@ -138,6 +144,7 @@
         "image": ""
       },
       "layout": "article",
+      "width": "content",
       "theme": ""
     },
     {
@@ -161,6 +168,7 @@
         "image": "assets/dw-digital-dilemma.png"
       },
       "layout": "article",
+      "width": "content",
       "theme": ""
     },
     {
@@ -183,6 +191,7 @@
         "image": ""
       },
       "layout": "article",
+      "width": "content",
       "theme": ""
     },
     {
@@ -205,6 +214,7 @@
         "image": ""
       },
       "layout": "article",
+      "width": "content",
       "theme": ""
     },
     {
@@ -227,6 +237,7 @@
         "image": ""
       },
       "layout": "article",
+      "width": "content",
       "theme": ""
     },
     {
@@ -248,6 +259,7 @@
         "image": ""
       },
       "layout": "quote",
+      "width": "content",
       "theme": ""
     },
     {
@@ -258,6 +270,7 @@
       "type": "index",
       "title": "Moui Grove",
       "layout": "index",
+      "width": "content",
       "theme": ""
     },
     {
@@ -268,6 +281,7 @@
       "type": "archive",
       "title": "Archive — Moui Grove",
       "layout": "archive",
+      "width": "content",
       "theme": ""
     },
     {
@@ -278,6 +292,7 @@
       "type": "section_index",
       "title": "Insights",
       "layout": "index",
+      "width": "content",
       "theme": ""
     },
     {
@@ -288,6 +303,7 @@
       "type": "section_index",
       "title": "Privacy",
       "layout": "index",
+      "width": "content",
       "theme": ""
     },
     {
@@ -298,6 +314,7 @@
       "type": "section_index",
       "title": "School",
       "layout": "index",
+      "width": "content",
       "theme": ""
     },
     {
@@ -308,6 +325,7 @@
       "type": "section_index",
       "title": "Architecture",
       "layout": "index",
+      "width": "content",
       "theme": ""
     }
   ],

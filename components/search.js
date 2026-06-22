@@ -1,15 +1,17 @@
-/**Search overlay — queries search index, renders results.
+/**Search palette — queries the search index, renders results.
  *
- * Dismissal is declarative: the overlay is a native `<dialog>` opened with
- * `showModal()`, so the platform provides Escape-to-close, the modal focus
- * trap, and an `inert` backdrop for free. No custom Escape handler.
+ * Search is a command palette: an input with a live results list and keyboard
+ * navigation. It owns ALL of that behavior. The dialog chrome (the `<dialog>`,
+ * backdrop, focus trap, Escape-to-close, focus-restore) is NOT search's — it
+ * comes from the behavior-free modal shell (`modal.js`). Search builds its
+ * palette node and hands it to `modal.open(node, { onClose })`.
  *
  * Keyboard contract (driven by aria-activedescendant):
  *   ArrowDown / ArrowUp → move the active option; input keeps focus so typing
  *                         never breaks. Active option is identified by
  *                         input[aria-activedescendant], not by real focus.
  *   Enter               → navigate to the active option's href.
- *   Escape              → native dialog cancel → close.
+ *   Escape              → native dialog cancel → close (provided by the shell).
  *
  * CSS can style the current item with `.search-result[aria-selected="true"]`.
  */
@@ -17,6 +19,8 @@ import { getIndex } from '../transport.js';
 import { navigate, buildHref } from '../navigation.js';
 import { getBasePath } from '../base-path.js';
 import { strings } from '../strings.js';
+import { open as openModal } from './modal.js';
+import { nextIndex } from './search-nav.js';
 
 /** Normalize url_path to a route by stripping basePath if present. */
 function _toRoute(urlPath) {
@@ -32,7 +36,7 @@ function _toRoute(urlPath) {
 const LIST_ID = 'search-results-list';
 const OPTION_ID_PREFIX = 'search-option-';
 
-let overlay = null;
+let closeModal = null;
 let searchIndex = null;
 let activeIndex = -1;
 let currentOptions = [];
@@ -52,14 +56,17 @@ export function init() {
 }
 
 function open() {
-  if (overlay) { overlay.close(); return; }
+  if (closeModal) { closeModal(); return; }
 
-  overlay = document.createElement('dialog');
-  overlay.className = 'search-overlay';
-  overlay.setAttribute('aria-label', strings.search_aria || 'Search');
-
-  const panel = document.createElement('div');
-  panel.className = 'search-panel';
+  // Search builds ONLY its palette node — the input + results list and all of
+  // its own behavior. The dialog, backdrop, focus trap, Escape, and focus
+  // restore come from the modal shell. The shell's panel is the search-aria'd
+  // region; we keep the search-* classes on our own nodes for the styling
+  // already in core/style.css.
+  const palette = document.createElement('div');
+  palette.className = 'search-palette';
+  palette.setAttribute('role', 'group');
+  palette.setAttribute('aria-label', strings.search_aria || 'Search');
 
   const input = document.createElement('input');
   input.type = 'search';
@@ -78,30 +85,22 @@ function open() {
   results.setAttribute('role', 'listbox');
   results.setAttribute('aria-live', 'polite');
 
-  panel.appendChild(input);
-  panel.appendChild(results);
-  overlay.appendChild(panel);
-  document.body.appendChild(overlay);
+  palette.appendChild(input);
+  palette.appendChild(results);
 
   input.addEventListener('input', () => _search(input.value, results));
   input.addEventListener('keydown', _handleKeydown);
 
-  // Backdrop click → close. Native dialog fires click with target === dialog
-  // when the click lands on the backdrop area outside the content.
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) overlay.close();
-  });
+  // Hand the palette to the shell. It mounts the chrome, traps focus, wires
+  // Escape + backdrop, and restores focus to the trigger on close. onClose is
+  // the single search-state reset.
+  closeModal = openModal(palette, { onClose: _onClose });
 
-  // Native Escape + dialog.close() both fire 'close'. Single cleanup path.
-  overlay.addEventListener('close', _cleanup);
-
-  overlay.showModal();
   _loadIndex();
 }
 
-function _cleanup() {
-  if (overlay) overlay.remove();
-  overlay = null;
+function _onClose() {
+  closeModal = null;
   activeIndex = -1;
   currentOptions = [];
   currentInput = null;
@@ -117,15 +116,15 @@ function _handleKeydown(e) {
 
   if (e.key === 'ArrowDown') {
     e.preventDefault();
-    _setActive((activeIndex + 1) % currentOptions.length, { scroll: true });
+    _setActive(nextIndex(activeIndex, currentOptions.length, 'down'), { scroll: true });
   } else if (e.key === 'ArrowUp') {
     e.preventDefault();
-    _setActive(activeIndex <= 0 ? currentOptions.length - 1 : activeIndex - 1, { scroll: true });
+    _setActive(nextIndex(activeIndex, currentOptions.length, 'up'), { scroll: true });
   } else if (e.key === 'Enter') {
     if (activeIndex < 0) return;
     e.preventDefault();
     const route = currentOptions[activeIndex].dataset.route;
-    overlay.close();
+    closeModal();
     navigate(route);
   }
 }
@@ -184,7 +183,7 @@ function _search(query, container) {
     // on mobile Safari).
     item.addEventListener('click', () => {
       const route = item.dataset.route;
-      overlay.close();
+      closeModal();
       navigate(route);
     });
     container.appendChild(item);

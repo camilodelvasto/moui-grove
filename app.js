@@ -18,6 +18,7 @@ import { init as initMarkdown } from './markdown.js';
 import { init as initSearch } from './components/search.js';
 import { init as initSidebar } from './components/sidebar.js';
 import { init as initInteractions } from './interactions.js';
+import { init as initChat } from './components/chat.js';
 import { init as initGate } from './components/gate.js';
 import { prefetchEncryptedAssets } from './asset-decrypt.js';
 import { init as initIndexer } from './indexer.js';
@@ -159,6 +160,9 @@ function _initNavigation(mode, basePath, manifest, getEntryFn) {
       if (entry) {
         if (entry.title) document.title = entry.title;
         if (entry.layout) document.body.dataset.layout = entry.layout;
+        // width is orthogonal to layout; always set (default content) so a prior
+        // page's `full` can't carry over to a content page.
+        document.body.dataset.width = entry.width || 'content';
       }
     } : undefined,
   });
@@ -287,6 +291,7 @@ function _initSubsystems() {
   initSearch();
   initSidebar();
   initInteractions();
+  initChat();
 
   const themeToggle = document.querySelector('[data-action="toggle-theme"]');
   if (themeToggle) {

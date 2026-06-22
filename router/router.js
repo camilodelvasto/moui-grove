@@ -26,6 +26,15 @@ export function createRouter({ strategy, loadPage, basePath, onBeforeNavigate })
       return;
     }
 
+    // A transport may carry the target route's layout/width with the content (the dev
+    // transport does, since dev has no manifest for onBeforeNavigate). Apply BEFORE the
+    // swap so the layout CSS is correct as the new content lands. Prod's loadPage returns
+    // only html — onBeforeNavigate already set these from the manifest — so this is a no-op.
+    if (result.layout) {
+      document.body.dataset.layout = result.layout;
+      document.body.dataset.width = result.width || 'content';
+    }
+
     if (document.startViewTransition) {
       document.startViewTransition(() => { main.innerHTML = result.html; });
     } else {

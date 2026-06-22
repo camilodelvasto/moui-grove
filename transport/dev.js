@@ -24,7 +24,9 @@ export const devTransport = {
     const res = await fetch('/_dev/content?route=' + encodeURIComponent(path));
     if (!res.ok) return null;
     const data = await res.json();
-    return { html: data.html };
+    // layout/width travel with the fragment so the router can set body data-layout on
+    // navigation — dev has no manifest, so onBeforeNavigate can't (see router._swap).
+    return { html: data.html, layout: data.layout, width: data.width };
   },
 
   async fetchFeed() {
