@@ -9,7 +9,7 @@
  * this file runs.
  */
 
-const BUILD_VERSION = 'c9ae182592cb';
+const BUILD_VERSION = '5fcfb622bfa1';
 const CACHE_STATIC = `grove-static-${BUILD_VERSION}`;
 const CACHE_PAGES = `grove-pages-${BUILD_VERSION}`;
 const CACHE_BLOBS = `grove-blobs-${BUILD_VERSION}`;
@@ -32,7 +32,7 @@ const STATIC_ASSETS = [
 ];
 
 // Pages enumerable at build time — network-first, serve cached if offline.
-const OWNED_PAGES = ["/", "/architecture/data-isolation/", "/archive/", "/cloud-act/", "/contracts-not-code/", "/insights/coding-out-of-first-principles/", "/insights/google-search-end-of-choice/", "/insights/personal-computing-love-the-machine/", "/manifesto/", "/on-joy/", "/privacy/fingerprinting-analogy-supermarket/", "/reimagining-sheets/", "/school/why-you-need-to-learn-to-code/", "/welcome/"];
+const OWNED_PAGES = ["/", "/architecture/", "/architecture/data-isolation/", "/archive/", "/cloud-act/", "/contracts-not-code/", "/ghost/", "/insights/", "/insights/coding-out-of-first-principles/", "/insights/google-search-end-of-choice/", "/insights/personal-computing-love-the-machine/", "/manifesto/", "/on-joy/", "/privacy/", "/privacy/fingerprinting-analogy-supermarket/", "/reimagining-sheets/", "/school/", "/school/why-you-need-to-learn-to-code/", "/welcome/"];
 
 // SPA entry points with client-side routing — grove is multi-page, not SPA.
 const OWNED_SPA_ROOTS = [];

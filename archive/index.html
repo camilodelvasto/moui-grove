@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="grove-base-path" content="">
-    <title>The US CLOUD Act and the Illusion of Data Sovereignty</title>
+    <title>Archive — Moui Grove</title>
     <link rel="icon" href="/theme/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/theme/favicon.ico" sizes="32x32">
     <link rel="apple-touch-icon" href="/theme/apple-touch-icon.png">
-    <meta property="og:title" content="The US CLOUD Act and the Illusion of Data Sovereignty">
-    <meta property="og:description" content="Your data is on US servers, under US law. The CLOUD Act makes this explicit.">
-    <meta property="og:image" content="https://www.moui.io/assets/dw-digital-dilemma.png">
-    <meta property="og:url" content="https://www.moui.io/cloud-act/">
-    <meta property="og:type" content="article">
+    <meta property="og:title" content="Moui Grove">
+    <meta property="og:description" content="A test grove.">
+    <meta property="og:image" content="https://www.moui.io/assets/og.png">
+    <meta property="og:url" content="https://www.moui.io/archive/">
+    <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary">
     <link rel="alternate" type="application/rss+xml" title="Moui Grove" href="https://www.moui.io/feed.xml">
     <style id="grove-tokens">
@@ -293,7 +293,7 @@
       })();
     </script>
 </head>
-<body data-layout="article" data-width="content">
+<body data-layout="archive" data-width="content">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header" role="banner">
     <a href="/" class="site-title"><img src="/assets/moui-fire-logo.webp" alt="Moui Grove" class="site-logo" width="400" height="126"></a>
@@ -308,51 +308,24 @@
     </div>
 </header>
     <main id="main">
-        <article class="article-layout">
-    <header class="post-hero">
-        <div class="post-hero-inner">
-            <h1>The US CLOUD Act and the Illusion of Data Sovereignty</h1>
-            <time datetime="2026-04-17">17.04.2026</time>
-        </div>
-    </header>
-    <div class="post-body">
-        <p>The Clarifying Lawful Overseas Use of Data Act — the CLOUD Act — was signed into law in 2018. It does something simple: it gives US law enforcement the legal authority to compel any US-based technology company to hand over data stored on its servers, regardless of where in the world those servers are physically located.</p>
-<p>If your organization uses Google Workspace, Microsoft 365, AWS, or any US-headquartered cloud provider, the CLOUD Act applies to your data. It does not matter that your office is in Berlin, that your servers are in Frankfurt, or that your contract specifies EU data residency. The legal jurisdiction follows the company, not the data center.</p>
-<p>This is not a theoretical risk.</p>
-<figure>
-  <picture>
-    <source type="image/webp" srcset="/assets/dw-digital-dilemma-480w.webp 480w, /assets/dw-digital-dilemma-960w.webp 960w, /assets/dw-digital-dilemma-1440w.webp 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <source type="image/png" srcset="/assets/dw-digital-dilemma-480w.png 480w, /assets/dw-digital-dilemma-960w.png 960w, /assets/dw-digital-dilemma-1440w.png 1440w" sizes="(max-width: 600px) 100vw, 600px">
-    <img src="/assets/dw-digital-dilemma.png" alt="Deutsche Welle, March 2026 — Germany's digital dependency on US infrastructure is now a political vulnerability." loading="eager">
-  </picture>
-  <figcaption>Deutsche Welle, March 2026 — Germany's digital dependency on US infrastructure is now a political vulnerability.</figcaption>
-</figure>
-<h2>What the CLOUD Act actually says</h2>
-<p>Before 2018, US law enforcement needed a Mutual Legal Assistance Treaty (MLAT) to request data stored outside the US. The process was slow, involved foreign governments, and had oversight. The CLOUD Act bypassed this entirely. A US court can now issue a warrant directly to Microsoft, Google, or Amazon, and the company must comply — even if the data is stored in Ireland, Germany, or Singapore.</p>
-<p>The justification was efficiency: criminal investigations were being delayed by the MLAT process. The consequence is that every byte of data stored by a US provider is within reach of US authorities, with no notification to the data subject or their government.</p>
-<h2>Why this matters for organizations</h2>
-<p>For most consumer users, this is background noise. For organizations handling sensitive data — legal documents, beneficiary records, medical research, human rights testimony, financial data — it is an operational reality with concrete consequences:</p>
-<ul>
-<li>
-<p><strong>GDPR conflict.</strong> The CLOUD Act creates a direct conflict with the EU's General Data Protection Regulation. An organization cannot simultaneously comply with a US warrant demanding data and an EU regulation prohibiting the transfer of that data without adequate safeguards. There is no resolution to this conflict. It is structural.</p>
-</li>
-<li>
-<p><strong>No safe harbor.</strong> The EU-US Privacy Shield was invalidated by the Schrems II ruling in 2020. Its replacement, the EU-US Data Privacy Framework, faces the same legal challenges. Organizations relying on &quot;adequacy decisions&quot; are building on sand.</p>
-</li>
-<li>
-<p><strong>AI makes it worse.</strong> Every document you upload to a US-hosted AI service — ChatGPT, Gemini, Copilot, NotebookLM — is processed on US infrastructure by a US company. The CLOUD Act applies. For organizations that cannot risk data exposure, this means the most powerful tools available are off-limits.</p>
-</li>
-</ul>
-<h2>The structural problem</h2>
-<p>The CLOUD Act is not the disease. It is a symptom of a deeper structural reality: when your data lives on someone else's infrastructure, you do not control it. You rent access to it. The terms of that access are set by the provider and the provider's government, not by you.</p>
-<p>This is not solved by switching from Google to Microsoft, or from AWS to Azure. The jurisdiction follows the company. It is solved by changing where the data lives and where it is processed. Local-first architecture — where data stays on hardware you own, where computation happens on your device, where the network is optional and encrypted — is not a philosophical preference. It is the only architecture that makes data sovereignty real rather than contractual.</p>
-<p>The organizations that need this most are exactly the ones least served by the current market: NGOs handling beneficiary data, research institutions working with human subjects, legal teams managing privileged communications, civil society organizations operating in politically contested environments. These are not edge cases. They are the organizations doing the most consequential work.</p>
-<h2>What comes next</h2>
-<p>The regulatory environment is tightening. The EU AI Act requires organizations to know where AI systems process their data. European governments are beginning to mandate sovereign cloud infrastructure for public administration. Germany's federal agency ZenDiS is actively working on alternatives to US-based software dependencies.</p>
-<p>The question is not whether the shift will happen. It is whether the alternatives will be ready when organizations need them. The current market offers a false choice: capability or sovereignty. Cloud AI or no AI. The work we are doing is to prove that this is a false dilemma — that intelligence can run on infrastructure you own.</p>
-
-    </div>
-</article>
+        <h1>Archive</h1>
+        <section>
+            <h2>2026</h2>
+            <ul>
+            <li><time datetime="2026-05-28">28.05.2026</time> <a href="/reimagining-sheets/">Reimagining Sheets</a></li>
+            <li><time datetime="2026-05-03">03.05.2026</time> <a href="/manifesto/">Manifesto</a></li>
+            <li><time datetime="2026-06-11">11.06.2026</time> <a href="/insights/google-search-end-of-choice/">Google Search and the end Of Choice (and why DuckDuckGo is not the answer)</a></li>
+            <li><time datetime="2026-05-19">19.05.2026</time> <a href="/privacy/fingerprinting-analogy-supermarket/">I too, was fingerprinting everyone</a></li>
+            <li><time datetime="2026-05-04">04.05.2026</time> <a href="/insights/personal-computing-love-the-machine/">Local-First, or: How I Learned to Stop Browsing and Love the Machine</a></li>
+            <li><time datetime="2026-04-23">23.04.2026</time> <a href="/school/why-you-need-to-learn-to-code/">Why You Need To Learn to Code</a></li>
+            <li><time datetime="2026-04-22">22.04.2026</time> <a href="/insights/coding-out-of-first-principles/">Building Out Of First Principles</a></li>
+            <li><time datetime="2026-04-17">17.04.2026</time> <a href="/cloud-act/">The US CLOUD Act and the Illusion of Data Sovereignty</a></li>
+            <li><time datetime="2026-04-16">16.04.2026</time> <a href="/contracts-not-code/">Contracts, not code</a></li>
+            <li><time datetime="2026-04-14">14.04.2026</time> <a href="/welcome/">Welcome to Grove</a></li>
+            <li><time datetime="2026-04-13">13.04.2026</time> <a href="/architecture/data-isolation/">Data, Interface, Infrastructure</a></li>
+            <li><time datetime="2026-04-12">12.04.2026</time> <a href="/on-joy/">Joy Without Extraction</a></li>
+            </ul>
+        </section>
     </main>
     <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
@@ -368,7 +341,6 @@
         <span class="build-id">5fcfb622bfa1</span>
     </div>
 </footer>
-    <script type="application/json" id="toc-data">[{"id": "what-the-cloud-act-actually-says", "text": "What the CLOUD Act actually says", "level": 2}, {"id": "why-this-matters-for-organizations", "text": "Why this matters for organizations", "level": 2}, {"id": "the-structural-problem", "text": "The structural problem", "level": 2}, {"id": "what-comes-next", "text": "What comes next", "level": 2}]</script>
     <script type="application/json" id="strings-data">{"search_placeholder": "Search posts...", "search_no_results": "No results found.", "search_aria": "Search", "search_input_aria": "Search posts", "toc": "Table of Contents", "toggle_theme": "Toggle theme", "clear_site": "Clear site data", "reading_progress": "Reading progress", "skip_to_content": "Skip to content", "gate_subtitle": "This site is private. Enter the access code to continue.", "gate_label": "Access code", "gate_submit": "Unlock", "gate_error": "Wrong access code — try again.", "load_error_title": "Unable to load", "load_error_body": "The grove could not be loaded. Check your connection and reload.", "archive_title": "Archive", "chat_input_placeholder": "Give me an idea...", "chat_send": "Write", "chat_working": "Writing...", "chat_sources": "Sources", "chat_error_refused": "The assistant refused this answer (it cited a passage it was not given).", "chat_error_failed": "Could not reach the assistant. Try again.", "chat_sidebar_label": "Drafts", "chat_new": "New draft", "chat_delete": "Delete", "chat_delete_cancel": "Cancel", "chat_delete_confirm": "Delete this draft? This can't be undone."}</script>
     <script type="module" src="/app.js"></script>
 </body>

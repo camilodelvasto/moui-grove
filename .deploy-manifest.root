@@ -1,10 +1,10 @@
 a11y.js
 app.js
 architecture
+archive
 asset-decrypt.js
 assets
 base-path.js
-blobs
 bundle-transport.js
 cloud-act
 components
@@ -17,12 +17,12 @@ feed.json
 feed.xml
 first-load-index.json
 fonts
+ghost
 index.html
 indexer.js
 insights
 interactions.js
 layouts
-manifest.json
 manifesto
 markdown.js
 navigation.js
