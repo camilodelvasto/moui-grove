@@ -121,7 +121,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
       }
     } else {
-      // No manifest → MPA mode. No client routing.
+      // No manifest → MPA mode. No SPA page-loading, but register a lightweight
+      // navigation so route-aware components (chat reads currentRoute()/buildHref())
+      // can mount. navigate() is a full-page load — MPA-correct, no link interception
+      // — so ordinary cross-page navigation stays server-driven. Components that own
+      // their own URL (chat does its own history.pushState for slugs) stay smooth.
+      registerNavigation(_staticNavigation(basePath));
       _initSubsystems();
       _registerSW(basePath);
       _initBackground();
@@ -168,6 +173,27 @@ function _initNavigation(mode, basePath, manifest, getEntryFn) {
   });
 
   registerNavigation(router);
+}
+
+// MPA navigation: no SPA page-loading or link interception. Reads the route from
+// location; navigate() is a full-page load. Enough for route-aware components
+// (e.g. chat) to read currentRoute()/buildHref() and drive their own history.
+function _staticNavigation(basePath) {
+  const withBase = (route) => (route.startsWith('/') ? basePath + route : route);
+  const strip = (p) => {
+    const r = (basePath && p.startsWith(basePath)) ? p.slice(basePath.length) : p;
+    return r || '/';
+  };
+  return {
+    currentRoute: () => strip(window.location.pathname),
+    buildHref: withBase,
+    navigate: (route) => { window.location.assign(withBase(route)); },
+    isInternal: (href) => {
+      try { return new URL(href, window.location.href).origin === window.location.origin; }
+      catch { return false; }
+    },
+    start: () => {},
+  };
 }
 
 // --- Skeleton cards ---
