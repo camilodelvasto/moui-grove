@@ -9,7 +9,7 @@
  * this file runs.
  */
 
-const BUILD_VERSION = '5344264710d2';
+const BUILD_VERSION = 'eba899b480c1';
 const CACHE_STATIC = `grove-static-${BUILD_VERSION}`;
 const CACHE_PAGES = `grove-pages-${BUILD_VERSION}`;
 const CACHE_BLOBS = `grove-blobs-${BUILD_VERSION}`;
@@ -41,7 +41,7 @@ const OWNED_SPA_ROOTS = [];
 const OWNED_DYNAMIC_PATHS = ["/feed.xml", "/feed.json", "/sitemap.xml", "/search-index.json", "/first-load-index.json"];
 
 // Assets intercepted for runtime processing (encrypted image decryption).
-const OWNED_ASSETS = ["/assets/moui-fire-logo.webp", "/assets/og.png", "/assets/og-480w.webp", "/assets/og-480w.png", "/assets/woman-profile-illustration-svg-download-png-6590622.webp"];
+const OWNED_ASSETS = ["/assets/capibara.png", "/assets/capibara-480w.webp", "/assets/capibara-480w.png", "/assets/condor.png", "/assets/condor-480w.webp", "/assets/condor-480w.png", "/assets/jaguar.png", "/assets/jaguar-480w.webp", "/assets/jaguar-480w.png", "/assets/moui-fire-logo.webp", "/assets/og.png", "/assets/og-480w.webp", "/assets/og-480w.png"];
 
 // Sibling shape paths on the same domain — never intercept these.
 // Build-injected from infrastructure/targets/ scan.

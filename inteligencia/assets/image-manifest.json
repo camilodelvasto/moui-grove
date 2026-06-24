@@ -1,4 +1,85 @@
 {
+  "assets/capibara.png": {
+    "source_hash": "3f7cca8fd648",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/capibara.png",
+      "width": 500,
+      "height": 500,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/capibara-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/capibara-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
+  "assets/condor.png": {
+    "source_hash": "3f320adb8d12",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/condor.png",
+      "width": 500,
+      "height": 500,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/condor-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/condor-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
+  "assets/jaguar.png": {
+    "source_hash": "2ab9d30c01d5",
+    "post_slugs": [],
+    "passthrough": false,
+    "encrypted": false,
+    "original": {
+      "path": "assets/jaguar.png",
+      "width": 500,
+      "height": 500,
+      "format": "png",
+      "og_safe": true
+    },
+    "variants": [
+      {
+        "path": "assets/jaguar-480w.webp",
+        "width": 480,
+        "format": "webp",
+        "encrypted": false
+      },
+      {
+        "path": "assets/jaguar-480w.png",
+        "width": 480,
+        "format": "png",
+        "encrypted": false
+      }
+    ]
+  },
   "assets/moui-fire-logo.webp": {
     "source_hash": "212bcc11e9c9",
     "post_slugs": [],
@@ -39,19 +120,5 @@
         "encrypted": false
       }
     ]
-  },
-  "assets/woman-profile-illustration-svg-download-png-6590622.webp": {
-    "source_hash": "9b8cc348da5c",
-    "post_slugs": [],
-    "passthrough": false,
-    "encrypted": false,
-    "original": {
-      "path": "assets/woman-profile-illustration-svg-download-png-6590622.webp",
-      "width": 354,
-      "height": 450,
-      "format": "webp",
-      "og_safe": false
-    },
-    "variants": []
   }
 }
