@@ -4,16 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="grove-base-path" content="/inteligencia">
-    <title>Condiciones de uso</title>
+    <title>Persona flexible</title>
     <link rel="icon" href="/inteligencia/theme/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/inteligencia/theme/favicon.ico" sizes="32x32">
     <link rel="apple-touch-icon" href="/inteligencia/theme/apple-touch-icon.png">
     <meta property="og:title" content="Inteligencia">
     <meta property="og:description" content="Inteligencia narrativa para la red de activistas de Puentes.">
     <meta property="og:image" content="https://www.moui.io/inteligencia/assets/og.png">
-    <meta property="og:url" content="https://www.moui.io/inteligencia/condiciones-de-uso/">
+    <meta property="og:url" content="https://www.moui.io/inteligencia/flexible">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://ask.moui.co; form-action 'self'; frame-src 'none'">
     <link rel="alternate" type="application/rss+xml" title="Inteligencia Narrativa" href="https://www.moui.io/inteligencia/feed.xml">
     <style id="grove-tokens">
 @font-face { font-family: eb-garamond; src: url('/inteligencia/fonts/eb-garamond/EBGaramond-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
@@ -438,56 +439,19 @@
         });
       })();
     </script>
+    <script type="application/json" id="chat-config">{"endpoint": "https://ask.moui.co/api", "grove_key": "/inteligencia", "chats": {"/estratega/": {"ask": "estratega", "persist": "local", "name": "Estratega", "avatar": "/inteligencia/assets/capibara.png", "intro_html": "<p>Soy tu estratega de narrativa. Cuéntame en qué país trabajas y qué objetivo\nbuscas, y construimos la estrategia juntas.</p>\n"}, "/flexible/": {"ask": "flexible", "persist": "local", "name": "Persona flexible", "avatar": "/inteligencia/assets/condor.png", "intro_html": "<p>Soy una persona flexible. Háblame y practica cómo me convences.</p>\n"}, "/audiencias/": {"ask": "audiencias", "persist": "local", "name": "Audiencias", "avatar": "/inteligencia/assets/jaguar.png", "intro_html": "<p>Pregúntame sobre las audiencias —simpatizantes, flexibles, antagonistas— y\nte explico con base en la investigación.</p>\n"}}, "gate": {"scheme": "access-code", "check": "https://ask.moui.co/api/check"}}</script>
+    <script src="/vendor/markdown-it.min.js" defer></script>
 </head>
-<body data-layout="article" data-width="content">
+<body data-layout="app" data-width="full">
     <a class="skip-link" href="#main">Ir al contenido</a>
-    <header class="site-header" role="banner">
-    <a href="/inteligencia/" class="site-title">Inteligencia Narrativa</a>
-    <div class="header-actions">
-        
-    </div>
-</header>
+    
     <main id="main">
-        <article class="article-layout">
-    <header class="post-hero">
-        <div class="post-hero-inner">
-            <h1>Condiciones de uso</h1>
-            <time datetime="2026-06-15">15.06.2026</time>
-        </div>
-    </header>
-    <div class="post-body">
-        <h2>Disclaimer y transparencia</h2>
-<p>Este chatbot responde a partir de un corpus de investigación. Puede equivocarse, citar fuera de contexto o no encontrar algo que sí existe. Trata sus respuestas como un punto de partida, no como una conclusión. Verifica siguiendo las citas.</p>
-<p>No es asesoría legal, médica ni de seguridad. Para decisiones que importan, contrasta con una persona.</p>
-<h2>¿Cómo se usan los datos que la gente ingresa en el chatbot?</h2>
-<ul>
-<li><strong>No guardamos registro de tu actividad.</strong> No archivamos tus preguntas ni las respuestas en el servidor.</li>
-<li><strong>Lo único que medimos es un tope de tokens consumidos</strong>, y solo para controlar el uso del sistema. Nada más.</li>
-<li><strong>Política estricta de cero retención de datos en el servidor.</strong> Lo que escribes se procesa para responderte y no se conserva.</li>
-<li><strong>Tus conversaciones viven en tu navegador.</strong> Si quieres guardarlas, quedan en tu equipo, bajo tu control. Si borras los datos del sitio, desaparecen.</li>
-</ul>
-<h2>Uso justo</h2>
-<p>El sistema es compartido por toda la red. Haz un uso justo: pregunta lo que necesitas, no lo satures por deporte. El tope de tokens existe para que el servicio siga disponible para todos.</p>
-<p>Haz un uso justo del sistema y diviértete.</p>
-
-    </div>
-</article>
+        <div class="app-shell"><nav class="chat-rail" aria-label="Inteligencia Narrativa">
+    <a href="/inteligencia/" class="chat-rail-brand site-title">Inteligencia Narrativa</a>
+    <div class="chat-rail-conversations" data-chat-sidebar-slot></div>
+</nav><div class="app-column"><div data-chat-root data-ask="flexible" data-route="/flexible/"></div></div></div>
     </main>
-    <footer class="site-footer" role="contentinfo">
-    <div class="footer-inner">
-        <span>Inteligencia Narrativa</span>
-        <a href="https://www.moui.io/inteligencia/feed.xml">RSS</a>
-        <button class="btn btn-ghost btn-sm btn-icon btn-theme" data-action="toggle-theme" data-interaction="press" aria-label="Cambiar tema" type="button">
-            <span class="btn-state-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
-            <span class="btn-state-dark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
-        </button>
-        <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Borrar datos del sitio" type="button">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
-        </button>
-        <span class="build-id">a46eed8a19f3</span>
-    </div>
-</footer>
-    <script type="application/json" id="toc-data">[{"id": "disclaimer-y-transparencia", "text": "Disclaimer y transparencia", "level": 2}, {"id": "c-mo-se-usan-los-datos-que-la-gente-ingresa-en-el-chatbot", "text": "\u00bfC\u00f3mo se usan los datos que la gente ingresa en el chatbot?", "level": 2}, {"id": "uso-justo", "text": "Uso justo", "level": 2}]</script>
+    
     <script type="application/json" id="strings-data">{"search_placeholder": "Buscar posts...", "search_no_results": "No se encontraron resultados.", "search_aria": "Buscar", "search_input_aria": "Buscar posts", "toc": "Tabla de contenidos", "toggle_theme": "Cambiar tema", "clear_site": "Borrar datos del sitio", "reading_progress": "Progreso de lectura", "skip_to_content": "Ir al contenido", "gate_subtitle": "Este sitio es privado. Ingresa el código de acceso para continuar.", "gate_label": "Código de acceso", "gate_submit": "Desbloquear", "gate_error": "Código incorrecto — intenta de nuevo.", "load_error_title": "No se pudo cargar", "load_error_body": "El grove no pudo cargarse. Verifica tu conexión y recarga.", "archive_title": "Archivo", "chat_input_placeholder": "Escribe una pregunta...", "chat_send": "Enviar", "chat_working": "Procesando...", "chat_sources": "Fuentes", "chat_error_refused": "El asistente rechazó esta respuesta (citó un pasaje que no se le entregó).", "chat_error_failed": "No se pudo contactar al asistente. Inténtalo de nuevo.", "chat_sidebar_label": "Conversaciones", "chat_new": "Nueva conversación", "chat_delete": "Eliminar", "chat_delete_cancel": "Cancelar", "chat_delete_confirm": "¿Eliminar esta conversación? No se puede deshacer.", "chat_gate_prompt": "Ingresa tu código de acceso para usar el asistente.", "chat_gate_rejected": "Ese código no fue aceptado.", "chat_gate_submit": "Continuar", "chat_offline": "Estás sin conexión.", "chat_over_limit": "Has alcanzado tu límite por el momento.", "chat_revoked": "Este código ya no es válido.", "chat_unavailable": "El asistente no está disponible.", "chat_not_permitted": "Este asistente no está disponible con tu código."}</script>
     <script type="module" src="/inteligencia/app.js"></script>
 </body>
