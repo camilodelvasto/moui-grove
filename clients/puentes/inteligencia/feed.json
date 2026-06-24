@@ -1,0 +1,24 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Inteligencia Narrativa",
+  "home_page_url": "https://camilodelvasto.github.io/moui-grove/clients/puentes/inteligencia",
+  "feed_url": "https://camilodelvasto.github.io/moui-grove/clients/puentes/inteligencia/feed.json",
+  "description": "Inteligencia narrativa para la red de activistas de Puentes.",
+  "language": "es",
+  "items": [
+    {
+      "id": "comienza-aqui",
+      "title": "Comienza aquí: tu paso por la inteligencia narrativa",
+      "url": "https://camilodelvasto.github.io/moui-grove/clients/puentes/inteligencia/comienza-aqui/",
+      "summary": "Qué es este chatbot, qué puedes hacer con él, quién lo hizo y qué contiene el corpus que lo alimenta.",
+      "date_published": "2026-06-15"
+    },
+    {
+      "id": "condiciones-de-uso",
+      "title": "Condiciones de uso",
+      "url": "https://camilodelvasto.github.io/moui-grove/clients/puentes/inteligencia/condiciones-de-uso/",
+      "summary": "Transparencia sobre qué hace el sistema, qué pasa con tus datos y qué esperamos de ti: uso justo y cero retención.",
+      "date_published": "2026-06-15"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Inteligencia Narrativa</title>
+    <link>https://camilodelvasto.github.io/moui-grove/clients/puentes/inteligencia</link>
+    <description>Inteligencia narrativa para la red de activistas de Puentes.</description>
+    <language>es</language>
+    <item>
+      <title>Comienza aquí: tu paso por la inteligencia narrativa</title>
+      <link>https://camilodelvasto.github.io/moui-grove/clients/puentes/inteligencia/comienza-aqui/</link>
+      <description>Qué es este chatbot, qué puedes hacer con él, quién lo hizo y qué contiene el corpus que lo alimenta.</description>
+      <pubDate>2026-06-15</pubDate>
+    </item>
+    <item>
+      <title>Condiciones de uso</title>
+      <link>https://camilodelvasto.github.io/moui-grove/clients/puentes/inteligencia/condiciones-de-uso/</link>
+      <description>Transparencia sobre qué hace el sistema, qué pasa con tus datos y qué esperamos de ti: uso justo y cero retención.</description>
+      <pubDate>2026-06-15</pubDate>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,356 @@
+/* Element library styles — button, input, drawer, slideshow, banner. */
+
+/* === Button === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-base);
+  font-family: var(--font-ui, inherit);
+  font-weight: var(--weight-heading);
+  line-height: 1;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 150ms ease-out;
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.btn-label {
+  transition: visibility 0ms;
+}
+
+.btn-state {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+/* --- Sizes --- */
+.btn-sm {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: calc(var(--font-base) * var(--scale-sm));
+  gap: 0.35em;
+}
+
+.btn-icon {
+  padding: var(--space-xs);
+}
+
+/* --- Variants ---
+ * Flavors are declarative: each variant reads a semantic token from
+ * tokens.yaml. To add a new flavor, expose a token, not a new rule here.
+ *
+ * primary  → near-black on light, white on dark (solid CTA)
+ * accent   → brand color (magenta/pink), used for emphasis
+ * secondary → outlined, neutral
+ * ghost    → text-only
+ */
+.btn-primary {
+  background: var(--color-btn-primary-resolved);
+  color: var(--color-btn-primary-text-resolved);
+  border-color: var(--color-btn-primary-resolved);
+}
+
+.btn-primary:hover {
+  background: var(--color-btn-primary-hover-resolved);
+  border-color: var(--color-btn-primary-hover-resolved);
+}
+
+.btn-accent {
+  background: var(--color-accent-resolved);
+  color: #fff;
+  border-color: var(--color-accent-resolved);
+}
+
+.btn-accent:hover {
+  background: var(--color-accent-hover-resolved);
+  border-color: var(--color-accent-hover-resolved);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text-resolved);
+  border-color: var(--color-border-resolved);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-text-resolved);
+  background: color-mix(in srgb, var(--color-text-resolved) 4%, transparent);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-secondary-resolved);
+  border-color: transparent;
+  opacity: 0.8;
+}
+
+.btn-ghost:hover {
+  opacity: 1;
+  color: var(--color-text-resolved);
+}
+
+/* --- Theme toggle button — icon swaps via [data-theme] --- */
+.btn-theme .btn-state-light,
+.btn-theme .btn-state-dark {
+  display: inline-flex;
+  line-height: 0;
+}
+
+.btn-theme .btn-state-dark,
+[data-theme="dark"] .btn-theme .btn-state-light {
+  display: none;
+}
+
+[data-theme="dark"] .btn-theme .btn-state-dark {
+  display: inline-flex;
+}
+
+/* --- States --- */
+.btn[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn[data-state="loading"] .btn-label {
+  visibility: hidden;
+}
+
+.btn[data-state="loading"] .btn-state::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+}
+
+.btn[data-state="loading"] {
+  pointer-events: none;
+}
+
+.btn[data-state="success"] .btn-label {
+  visibility: hidden;
+}
+
+.btn[data-state="success"] .btn-state::after {
+  content: '\2713';
+  font-size: 1.2em;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --- Focus --- */
+.btn:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--color-bg-resolved),
+    0 0 0 4px var(--color-accent-resolved);
+  outline: none;
+}
+
+/* --- Press feedback (prefers-reduced-motion aware) --- */
+@media (prefers-reduced-motion: no-preference) {
+  .btn[data-interaction="press"]:active {
+    transform: scale(0.97);
+    transition-duration: 100ms;
+  }
+}
+
+/* === Input === */
+.el-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.el-input-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.el-input {
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid var(--color-border-resolved);
+  border-radius: 4px;
+  background: var(--color-bg-resolved);
+  color: var(--color-text-resolved);
+}
+
+.el-input:focus {
+  outline: 2px solid var(--color-accent-resolved);
+  outline-offset: 1px;
+}
+
+.el-input-hint {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary-resolved);
+}
+
+textarea.el-input {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+/* === Drawer === */
+.el-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1100;
+}
+
+.el-drawer-overlay[hidden] { display: none; }
+
+.el-drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: min(90vw, 400px);
+  background: var(--color-bg-resolved);
+  padding: 1.5rem;
+  overflow-y: auto;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+  transition: transform 200ms ease-out;
+}
+
+.el-drawer--right { right: 0; }
+.el-drawer--left { left: 0; }
+
+.el-drawer-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text-secondary-resolved);
+  padding: 0.25rem;
+  line-height: 1;
+}
+
+/* === Banner === */
+.el-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.el-banner--info {
+  background: var(--color-banner-info-bg-resolved);
+  color: var(--color-banner-info-text-resolved);
+  border: 1px solid var(--color-banner-info-border-resolved);
+}
+
+.el-banner--warning {
+  background: var(--color-banner-warning-bg-resolved);
+  color: var(--color-banner-warning-text-resolved);
+  border: 1px solid var(--color-banner-warning-border-resolved);
+}
+
+.el-banner--error {
+  background: var(--color-banner-error-bg-resolved);
+  color: var(--color-banner-error-text-resolved);
+  border: 1px solid var(--color-banner-error-border-resolved);
+}
+
+.el-banner--success {
+  background: var(--color-banner-success-bg-resolved);
+  color: var(--color-banner-success-text-resolved);
+  border: 1px solid var(--color-banner-success-border-resolved);
+}
+
+.el-banner-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.7;
+  padding: 0 0.25rem;
+  line-height: 1;
+}
+
+/* === Slideshow === */
+.el-slideshow {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  margin: 1.5rem 0;
+}
+
+.el-slideshow-viewport {
+  position: relative;
+}
+
+.el-slide {
+  width: 100%;
+}
+
+.el-slide[hidden] { display: none; }
+
+.el-slideshow-controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.el-slideshow-prev,
+.el-slideshow-next {
+  background: var(--color-surface-resolved);
+  border: 1px solid var(--color-border-resolved);
+  border-radius: 4px;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* === Table === */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th, td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border-resolved);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  font-weight: var(--weight-heading);
+  background: var(--color-surface-resolved);
+}
+
+/* === Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  .el-drawer { transition: none; }
+  .btn { transition: none; }
+}

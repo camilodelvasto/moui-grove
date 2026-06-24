@@ -1,0 +1,74 @@
+/* Entrance animations — @starting-style based.
+ * Elements are never statically opacity: 0. The browser handles the "from"
+ * state internally via @starting-style, so there's no flash of invisible
+ * content on any platform. Back/forward navigations skip animations via
+ * the .animate-entrance guard (set in inline <head> script). */
+
+/* === Feed cards === */
+@media (prefers-reduced-motion: no-preference) {
+  html.animate-entrance .card[data-stagger] {
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
+    transition-delay: calc(var(--stagger-index, 0) * 100ms + 50ms);
+
+    @starting-style {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+}
+
+/* === Article content cascade === */
+@media (prefers-reduced-motion: no-preference) {
+  html.animate-entrance .article-layout header {
+    transition: opacity 500ms ease-out, transform 500ms ease-out;
+    transition-delay: 50ms;
+
+    @starting-style {
+      opacity: 0;
+      transform: translateY(3px);
+    }
+  }
+
+  html.animate-entrance .article-layout header h1 {
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
+    transition-delay: 150ms;
+
+    @starting-style {
+      opacity: 0;
+      transform: translateY(9px);
+    }
+  }
+
+  html.animate-entrance .article-layout header time {
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
+    transition-delay: 400ms;
+
+    @starting-style {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+  }
+
+  html.animate-entrance .article-layout .post-body {
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
+    transition-delay: 600ms;
+
+    @starting-style {
+      opacity: 0;
+      transform: translateY(2px);
+    }
+  }
+}
+
+/* === Quote content === */
+@media (prefers-reduced-motion: no-preference) {
+  html.animate-entrance .quote-layout .post-body {
+    transition: opacity 500ms ease-out, transform 500ms ease-out;
+    transition-delay: 50ms;
+
+    @starting-style {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+  }
+}

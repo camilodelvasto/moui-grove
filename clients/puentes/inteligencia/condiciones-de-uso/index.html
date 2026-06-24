@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="grove-base-path" content="/moui-grove/clients/puentes/inteligencia">
+    <title>Condiciones de uso</title>
+    <link rel="icon" href="/moui-grove/clients/puentes/inteligencia/theme/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/moui-grove/clients/puentes/inteligencia/theme/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/moui-grove/clients/puentes/inteligencia/theme/apple-touch-icon.png">
+    <meta property="og:title" content="Inteligencia">
+    <meta property="og:description" content="Inteligencia narrativa para la red de activistas de Puentes.">
+    <meta property="og:image" content="https://camilodelvasto.github.io/moui-grove/clients/puentes/inteligencia/assets/og.png">
+    <meta property="og:url" content="https://camilodelvasto.github.io/moui-grove/clients/puentes/inteligencia/condiciones-de-uso/">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary">
+    <link rel="alternate" type="application/rss+xml" title="Inteligencia Narrativa" href="https://camilodelvasto.github.io/moui-grove/clients/puentes/inteligencia/feed.xml">
+    <style id="grove-tokens">
+@font-face { font-family: eb-garamond; src: url('/moui-grove/clients/puentes/inteligencia/fonts/eb-garamond/EBGaramond-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: eb-garamond; src: url('/moui-grove/clients/puentes/inteligencia/fonts/eb-garamond/EBGaramond-VariableItalic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+@font-face { font-family: lato; src: url('/moui-grove/clients/puentes/inteligencia/fonts/lato/Lato-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: lato; src: url('/moui-grove/clients/puentes/inteligencia/fonts/lato/Lato-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: lora; src: url('/moui-grove/clients/puentes/inteligencia/fonts/lora/Lora-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: lora; src: url('/moui-grove/clients/puentes/inteligencia/fonts/lora/Lora-VariableItalic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+:root {
+  --palette-primary: #16A89E;
+  --palette-primary-dark: #0E837B;
+  --palette-secondary: #F4A24C;
+  --palette-secondary-dark: #DB8A36;
+  --palette-near-black: #232019;
+  --palette-dark-gray: #4A453B;
+  --palette-white: #ffffff;
+  --palette-warm-white: #FBFAF7;
+  --palette-code-bg: #F3F1EB;
+  --palette-gray-100: #F2F1EB;
+  --palette-gray-200: #E7E4DC;
+  --palette-gray-300: #D6D1C6;
+  --palette-gray-400: #A8A293;
+  --palette-gray-600: #6D6759;
+  --palette-gray-800: #2A2620;
+  --palette-black: #16110A;
+  --palette-banner-info-bg: #E6F5F3;
+  --palette-banner-info-text: #0E837B;
+  --palette-banner-info-border: #B6E2DD;
+  --palette-banner-warning-bg: #FDF3E3;
+  --palette-banner-warning-text: #9A6A1C;
+  --palette-banner-warning-border: #F3DCB0;
+  --palette-banner-error-bg: #FCEDEC;
+  --palette-banner-error-text: #A33126;
+  --palette-banner-error-border: #F2C2BC;
+  --palette-banner-success-bg: #E7F6EE;
+  --palette-banner-success-text: #1C7A4B;
+  --palette-banner-success-border: #B6E2C8;
+  --palette-chat-bubble-user: #F0EEE7;
+  --palette-chat-bubble-assistant: #E9E6DD;
+  --color-bg: warm-white;
+  --color-surface: gray-100;
+  --color-code-bg: code-bg;
+  --color-text: gray-800;
+  --color-text-secondary: gray-600;
+  --color-accent: primary;
+  --color-accent-hover: primary-dark;
+  --color-border: gray-200;
+  --color-card-bg: white;
+  --color-btn-primary: primary;
+  --color-btn-primary-hover: primary-dark;
+  --color-btn-primary-text: white;
+  --color-gradient-start: primary;
+  --color-gradient-end: secondary;
+  --color-banner-info-bg: banner-info-bg;
+  --color-banner-info-text: banner-info-text;
+  --color-banner-info-border: banner-info-border;
+  --color-banner-warning-bg: banner-warning-bg;
+  --color-banner-warning-text: banner-warning-text;
+  --color-banner-warning-border: banner-warning-border;
+  --color-banner-error-bg: banner-error-bg;
+  --color-banner-error-text: banner-error-text;
+  --color-banner-error-border: banner-error-border;
+  --color-banner-success-bg: banner-success-bg;
+  --color-banner-success-text: banner-success-text;
+  --color-banner-success-border: banner-success-border;
+  --color-tag-bg: gray-100;
+  --color-tag-text: gray-600;
+  --color-chat-bubble-user: chat-bubble-user;
+  --color-chat-bubble-assistant: chat-bubble-assistant;
+  --font-body: lato, 'Lato', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-heading: 'Avenir Next', 'Avenir', lato, 'Lato', system-ui, sans-serif;
+  --font-header: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-display: 'Avenir Next', 'Avenir', lato, 'Lato', system-ui, sans-serif;
+  --font-ui: lato, 'Lato', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --font-base: 18px;
+  --line-height: 1.7;
+  --weight-body: 400;
+  --weight-heading: 700;
+  --leading-body: 1.7;
+  --leading-heading: 1.18;
+  --logo-width: 120px;
+  --scale-sm: 0.875;
+  --scale-md: 1;
+  --scale-lg: 1.3;
+  --scale-xl: 1.6;
+  --scale-xxl: 2.0;
+  --scale-display: 3.2;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2.5rem;
+  --space-content-width: 760px;
+  --space-card-padding: 1.25rem;
+  --space-card-radius: 14px;
+  --space-card-image-height: 180px;
+  --space-chat-width: 780px;
+  --space-chat-bubble-max: 85%;
+  --space-chat-bubble-radius: 18px;
+  --space-chat-avatar-size: 2.25rem;
+  --color-bg-resolved: #FBFAF7;
+  --color-surface-resolved: #F2F1EB;
+  --color-code-bg-resolved: #F3F1EB;
+  --color-text-resolved: #2A2620;
+  --color-text-secondary-resolved: #6D6759;
+  --color-accent-resolved: #16A89E;
+  --color-accent-hover-resolved: #0E837B;
+  --color-border-resolved: #E7E4DC;
+  --color-card-bg-resolved: #ffffff;
+  --color-btn-primary-resolved: #16A89E;
+  --color-btn-primary-hover-resolved: #0E837B;
+  --color-btn-primary-text-resolved: #ffffff;
+  --color-gradient-start-resolved: #16A89E;
+  --color-gradient-end-resolved: #F4A24C;
+  --color-banner-info-bg-resolved: #E6F5F3;
+  --color-banner-info-text-resolved: #0E837B;
+  --color-banner-info-border-resolved: #B6E2DD;
+  --color-banner-warning-bg-resolved: #FDF3E3;
+  --color-banner-warning-text-resolved: #9A6A1C;
+  --color-banner-warning-border-resolved: #F3DCB0;
+  --color-banner-error-bg-resolved: #FCEDEC;
+  --color-banner-error-text-resolved: #A33126;
+  --color-banner-error-border-resolved: #F2C2BC;
+  --color-banner-success-bg-resolved: #E7F6EE;
+  --color-banner-success-text-resolved: #1C7A4B;
+  --color-banner-success-border-resolved: #B6E2C8;
+  --color-tag-bg-resolved: #F2F1EB;
+  --color-tag-text-resolved: #6D6759;
+  --color-chat-bubble-user-resolved: #F0EEE7;
+  --color-chat-bubble-assistant-resolved: #E9E6DD;
+}
+
+:root[data-theme="dark"] {
+  --palette-primary: #2BC4B8;
+  --palette-primary-dark: #16A89E;
+  --palette-secondary: #F4B266;
+  --palette-secondary-dark: #DB8A36;
+  --palette-near-black: #0B1211;
+  --palette-dark-gray: #46514F;
+  --palette-white: #ffffff;
+  --palette-warm-white: #101817;
+  --palette-code-bg: #16201E;
+  --palette-gray-100: #13201E;
+  --palette-gray-200: #1F2E2B;
+  --palette-gray-300: #2C3D39;
+  --palette-gray-400: #5E726E;
+  --palette-gray-600: #9AA9A6;
+  --palette-gray-800: #E2EAE8;
+  --palette-black: #080D0C;
+  --palette-banner-info-bg: #102A28;
+  --palette-banner-info-text: #7FD8CF;
+  --palette-banner-info-border: #234B47;
+  --palette-banner-warning-bg: #2E2410;
+  --palette-banner-warning-text: #F0C878;
+  --palette-banner-warning-border: #5A471F;
+  --palette-banner-error-bg: #311A17;
+  --palette-banner-error-text: #F0A89E;
+  --palette-banner-error-border: #5E332D;
+  --palette-banner-success-bg: #10301F;
+  --palette-banner-success-text: #86D6A6;
+  --palette-banner-success-border: #27543B;
+  --palette-chat-bubble-user: #1F4842;
+  --palette-chat-bubble-assistant: #233330;
+  --color-bg: warm-white;
+  --color-surface: gray-100;
+  --color-code-bg: code-bg;
+  --color-text: gray-800;
+  --color-text-secondary: gray-600;
+  --color-accent: primary;
+  --color-accent-hover: primary-dark;
+  --color-border: gray-200;
+  --color-card-bg: gray-200;
+  --color-btn-primary: primary;
+  --color-btn-primary-hover: primary-dark;
+  --color-btn-primary-text: near-black;
+  --color-gradient-start: primary;
+  --color-gradient-end: secondary;
+  --color-banner-info-bg: banner-info-bg;
+  --color-banner-info-text: banner-info-text;
+  --color-banner-info-border: banner-info-border;
+  --color-banner-warning-bg: banner-warning-bg;
+  --color-banner-warning-text: banner-warning-text;
+  --color-banner-warning-border: banner-warning-border;
+  --color-banner-error-bg: banner-error-bg;
+  --color-banner-error-text: banner-error-text;
+  --color-banner-error-border: banner-error-border;
+  --color-banner-success-bg: banner-success-bg;
+  --color-banner-success-text: banner-success-text;
+  --color-banner-success-border: banner-success-border;
+  --color-tag-bg: gray-200;
+  --color-tag-text: gray-800;
+  --color-chat-bubble-user: chat-bubble-user;
+  --color-chat-bubble-assistant: chat-bubble-assistant;
+  --font-body: lato, 'Lato', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-heading: 'Avenir Next', 'Avenir', lato, 'Lato', system-ui, sans-serif;
+  --font-header: 'Avenir Next', 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-display: 'Avenir Next', 'Avenir', lato, 'Lato', system-ui, sans-serif;
+  --font-ui: lato, 'Lato', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+  --font-base: 18px;
+  --line-height: 1.7;
+  --weight-body: 400;
+  --weight-heading: 700;
+  --leading-body: 1.7;
+  --leading-heading: 1.18;
+  --logo-width: 120px;
+  --scale-sm: 0.875;
+  --scale-md: 1;
+  --scale-lg: 1.3;
+  --scale-xl: 1.6;
+  --scale-xxl: 2.0;
+  --scale-display: 3.2;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2.5rem;
+  --space-content-width: 760px;
+  --space-card-padding: 1.25rem;
+  --space-card-radius: 14px;
+  --space-card-image-height: 180px;
+  --space-chat-width: 780px;
+  --space-chat-bubble-max: 85%;
+  --space-chat-bubble-radius: 18px;
+  --space-chat-avatar-size: 2.25rem;
+  --color-bg-resolved: #101817;
+  --color-surface-resolved: #13201E;
+  --color-code-bg-resolved: #16201E;
+  --color-text-resolved: #E2EAE8;
+  --color-text-secondary-resolved: #9AA9A6;
+  --color-accent-resolved: #2BC4B8;
+  --color-accent-hover-resolved: #16A89E;
+  --color-border-resolved: #1F2E2B;
+  --color-card-bg-resolved: #1F2E2B;
+  --color-btn-primary-resolved: #2BC4B8;
+  --color-btn-primary-hover-resolved: #16A89E;
+  --color-btn-primary-text-resolved: #0B1211;
+  --color-gradient-start-resolved: #2BC4B8;
+  --color-gradient-end-resolved: #F4B266;
+  --color-banner-info-bg-resolved: #102A28;
+  --color-banner-info-text-resolved: #7FD8CF;
+  --color-banner-info-border-resolved: #234B47;
+  --color-banner-warning-bg-resolved: #2E2410;
+  --color-banner-warning-text-resolved: #F0C878;
+  --color-banner-warning-border-resolved: #5A471F;
+  --color-banner-error-bg-resolved: #311A17;
+  --color-banner-error-text-resolved: #F0A89E;
+  --color-banner-error-border-resolved: #5E332D;
+  --color-banner-success-bg-resolved: #10301F;
+  --color-banner-success-text-resolved: #86D6A6;
+  --color-banner-success-border-resolved: #27543B;
+  --color-tag-bg-resolved: #1F2E2B;
+  --color-tag-text-resolved: #E2EAE8;
+  --color-chat-bubble-user-resolved: #1F4842;
+  --color-chat-bubble-assistant-resolved: #233330;
+}
+
+/* theme structural overrides */
+/* Inteligencia — El Inspiratorio-inspired structural personality.
+   Colours/fonts live in tokens.yaml; this file carries the RULES tokens can't
+   express: pill buttons, tracked-out labels, soft cards, a calm sticky header.
+
+   Runtime data-theme is "light" | "dark" (never "default"), so cross-mode rules
+   are scoped to :root — that also lifts specificity above the shared sheets.
+   Dark-only polish lives in ../dark/style.css. */
+
+/* --- Section labels: small, teal, tracked out — institutional/hopeful --- */
+:root h5,
+:root h6 {
+  color: var(--color-accent-resolved);
+  letter-spacing: 0.16em;
+}
+
+/* --- Headings: confident, slightly tightened --- */
+:root h1,
+:root h2,
+:root h3 {
+  letter-spacing: -0.015em;
+}
+
+/* --- Header: airy, hairline, sticky with a soft frosted backdrop --- */
+:root .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-md);
+  background: color-mix(in srgb, var(--color-bg-resolved) 86%, transparent);
+  backdrop-filter: saturate(1.1) blur(8px);
+  -webkit-backdrop-filter: saturate(1.1) blur(8px);
+  border-bottom: 1px solid var(--color-border-resolved);
+}
+
+:root .site-title {
+  font-family: var(--font-header);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--color-accent-resolved);
+}
+
+/* --- Buttons: teal pills, generous, with a lift on hover --- */
+:root .btn {
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  letter-spacing: 0.02em;
+  padding-inline: var(--space-lg);
+  transition: transform 150ms ease-out, background 150ms ease-out,
+    color 150ms ease-out, box-shadow 150ms ease-out;
+}
+
+:root .btn-accent:hover,
+:root .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--color-accent-resolved) 35%, transparent);
+}
+
+/* --- Links: teal with a quiet, well-spaced underline --- */
+:root a {
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+/* --- Cards: soft, rounded, hairline + a clear lift on hover --- */
+:root .card {
+  border: 1px solid var(--color-border-resolved);
+  box-shadow: 0 1px 2px rgba(16, 40, 38, 0.04);
+}
+
+:root .card:hover {
+  box-shadow: 0 14px 34px rgba(16, 40, 38, 0.12);
+  transform: translateY(-3px);
+}
+
+:root .card-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+/* --- Tags: teal-tinted pills --- */
+:root .card-tag {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-accent-resolved) 12%, transparent);
+  color: var(--color-accent-resolved);
+}
+
+/* --- Post hero: calm, generous breathing room --- */
+:root .post-hero {
+  padding-top: var(--space-xxl);
+}
+
+:root .post-hero h1 {
+  letter-spacing: -0.02em;
+}
+
+/* --- Quotes: teal rule, upright --- */
+:root blockquote {
+  border-left: 3px solid var(--color-accent-resolved);
+  color: var(--color-text-secondary-resolved);
+  font-style: normal;
+}
+/* Inteligencia dark — polish only. Colours come from ../dark/tokens.yaml;
+   these are the dark-mode tweaks to shadows/borders on teal-over-charcoal. */
+
+[data-theme="dark"] .site-header {
+  background: color-mix(in srgb, var(--color-bg-resolved) 78%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--color-border-resolved) 70%, transparent);
+}
+
+[data-theme="dark"] .card {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .card:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] .btn-accent:hover,
+[data-theme="dark"] .btn-primary:hover {
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--color-accent-resolved) 45%, transparent);
+}
+
+    </style>
+    <link rel="stylesheet" href="/moui-grove/clients/puentes/inteligencia/style.css">
+    <link rel="stylesheet" href="/moui-grove/clients/puentes/inteligencia/elements.css">
+    <link rel="stylesheet" href="/moui-grove/clients/puentes/inteligencia/transitions.css">
+    <link rel="stylesheet" href="/moui-grove/clients/puentes/inteligencia/syntax.css">
+    <link rel="modulepreload" href="/moui-grove/clients/puentes/inteligencia/shell-web/transport.js">
+    <link rel="modulepreload" href="/moui-grove/clients/puentes/inteligencia/components/gate.js">
+    <script>
+      (function() {
+        var stored = localStorage.getItem('grove-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        var nav = performance.getEntriesByType('navigation')[0];
+        if (!nav || nav.type !== 'back_forward') {
+          document.documentElement.classList.add('animate-entrance');
+        }
+      })();
+      // Dev self-heal: if a service worker was registered on a previous visit,
+      // its cache-first strategy will pin old CSS/JS forever. On localhost we
+      // unregister it and purge caches, then reload once. Guarded by the
+      // registration check so there's no reload loop after the SW is gone.
+      (function() {
+        if (!(location.hostname === 'localhost' || location.hostname === '127.0.0.1')) return;
+        if (!('serviceWorker' in navigator)) return;
+        navigator.serviceWorker.getRegistrations().then(function(regs) {
+          if (regs.length === 0) return;
+          Promise.all(regs.map(function(r) { return r.unregister(); })).then(function() {
+            if ('caches' in self) {
+              caches.keys().then(function(keys) {
+                Promise.all(keys.map(function(k) { return caches.delete(k); })).then(function() {
+                  location.reload();
+                });
+              });
+            } else {
+              location.reload();
+            }
+          });
+        });
+      })();
+    </script>
+</head>
+<body data-layout="article" data-width="content">
+    <a class="skip-link" href="#main">Ir al contenido</a>
+    <header class="site-header" role="banner">
+    <a href="/moui-grove/clients/puentes/inteligencia/" class="site-title">Inteligencia Narrativa</a>
+    <div class="header-actions">
+        <a href="/chatbot" class="btn btn-accent btn-sm" data-external>Chatbot</a>
+        <a href="/explorar" class="btn btn-accent btn-sm" data-external>Explorar</a>
+        <button class="btn btn-ghost btn-sm" data-action="open-search" data-interaction="press" aria-label="Buscar" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+            <span class="btn-label">Buscar</span>
+        </button>
+    </div>
+</header>
+    <main id="main">
+        <article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Condiciones de uso</h1>
+            <time datetime="2026-06-15">15.06.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <h2>Disclaimer y transparencia</h2>
+<p>Este chatbot responde a partir de un corpus de investigación. Puede equivocarse, citar fuera de contexto o no encontrar algo que sí existe. Trata sus respuestas como un punto de partida, no como una conclusión. Verifica siguiendo las citas.</p>
+<p>No es asesoría legal, médica ni de seguridad. Para decisiones que importan, contrasta con una persona.</p>
+<h2>¿Cómo se usan los datos que la gente ingresa en el chatbot?</h2>
+<ul>
+<li><strong>No guardamos registro de tu actividad.</strong> No archivamos tus preguntas ni las respuestas en el servidor.</li>
+<li><strong>Lo único que medimos es un tope de tokens consumidos</strong>, y solo para controlar el uso del sistema. Nada más.</li>
+<li><strong>Política estricta de cero retención de datos en el servidor.</strong> Lo que escribes se procesa para responderte y no se conserva.</li>
+<li><strong>Tus conversaciones viven en tu navegador.</strong> Si quieres guardarlas, quedan en tu equipo, bajo tu control. Si borras los datos del sitio, desaparecen.</li>
+</ul>
+<h2>Uso justo</h2>
+<p>El sistema es compartido por toda la red. Haz un uso justo: pregunta lo que necesitas, no lo satures por deporte. El tope de tokens existe para que el servicio siga disponible para todos.</p>
+<p>Haz un uso justo del sistema y diviértete.</p>
+
+    </div>
+</article>
+    </main>
+    <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+        <span>Inteligencia Narrativa</span>
+        <a href="https://camilodelvasto.github.io/moui-grove/clients/puentes/inteligencia/feed.xml">RSS</a>
+        <button class="btn btn-ghost btn-sm btn-icon btn-theme" data-action="toggle-theme" data-interaction="press" aria-label="Cambiar tema" type="button">
+            <span class="btn-state-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+            <span class="btn-state-dark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+        </button>
+        <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Borrar datos del sitio" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
+        </button>
+        <span class="build-id">eed760df82ff</span>
+    </div>
+</footer>
+    <script type="application/json" id="toc-data">[{"id": "disclaimer-y-transparencia", "text": "Disclaimer y transparencia", "level": 2}, {"id": "c-mo-se-usan-los-datos-que-la-gente-ingresa-en-el-chatbot", "text": "\u00bfC\u00f3mo se usan los datos que la gente ingresa en el chatbot?", "level": 2}, {"id": "uso-justo", "text": "Uso justo", "level": 2}]</script>
+    <script type="application/json" id="strings-data">{"search_placeholder": "Buscar posts...", "search_no_results": "No se encontraron resultados.", "search_aria": "Buscar", "search_input_aria": "Buscar posts", "toc": "Tabla de contenidos", "toggle_theme": "Cambiar tema", "clear_site": "Borrar datos del sitio", "reading_progress": "Progreso de lectura", "skip_to_content": "Ir al contenido", "gate_subtitle": "Este sitio es privado. Ingresa el código de acceso para continuar.", "gate_label": "Código de acceso", "gate_submit": "Desbloquear", "gate_error": "Código incorrecto — intenta de nuevo.", "load_error_title": "No se pudo cargar", "load_error_body": "El grove no pudo cargarse. Verifica tu conexión y recarga.", "archive_title": "Archivo", "chat_input_placeholder": "Escribe una pregunta...", "chat_send": "Enviar", "chat_working": "Procesando...", "chat_sources": "Fuentes", "chat_error_refused": "El asistente rechazó esta respuesta (citó un pasaje que no se le entregó).", "chat_error_failed": "No se pudo contactar al asistente. Inténtalo de nuevo.", "chat_sidebar_label": "Conversaciones", "chat_new": "Nueva conversación", "chat_delete": "Eliminar", "chat_delete_cancel": "Cancelar", "chat_delete_confirm": "¿Eliminar esta conversación? No se puede deshacer.", "chat_gate_prompt": "Ingresa tu código de acceso para usar el asistente.", "chat_gate_rejected": "Ese código no fue aceptado.", "chat_gate_submit": "Continuar", "chat_offline": "Estás sin conexión.", "chat_over_limit": "Has alcanzado tu límite por el momento.", "chat_revoked": "Este código ya no es válido.", "chat_unavailable": "El asistente no está disponible."}</script>
+    <script type="module" src="/moui-grove/clients/puentes/inteligencia/app.js"></script>
+</body>
+</html>

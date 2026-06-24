@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Comienza aquí: tu paso por la inteligencia narrativa",
+    "url_path": "/moui-grove/clients/puentes/inteligencia/comienza-aqui/",
+    "content_path": "comienza-aqui",
+    "excerpt": "Qué es este chatbot, qué puedes hacer con él, quién lo hizo y qué contiene el corpus que lo alimenta.",
+    "publish_date": "2026-06-15",
+    "tags": [
+      "guía",
+      "chatbot",
+      "corpus",
+      "inteligencia"
+    ]
+  },
+  {
+    "title": "Condiciones de uso",
+    "url_path": "/moui-grove/clients/puentes/inteligencia/condiciones-de-uso/",
+    "content_path": "condiciones-de-uso",
+    "excerpt": "Transparencia sobre qué hace el sistema, qué pasa con tus datos y qué esperamos de ti: uso justo y cero retención.",
+    "publish_date": "2026-06-15",
+    "tags": [
+      "uso",
+      "privacidad",
+      "transparencia"
+    ]
+  }
+]
