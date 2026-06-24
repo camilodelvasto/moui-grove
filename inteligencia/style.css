@@ -1,0 +1,1204 @@
+/* Base reset, typography, layout. Token vars inlined in <style id="grove-tokens">. */
+
+/* === Reset === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body);
+  font-size: var(--font-base);
+  line-height: var(--line-height);
+  color: var(--color-text-resolved);
+  background: var(--color-bg-resolved);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent horizontal scroll from full-bleed pseudo-elements (100vw hero). */
+body { overflow-x: clip; }
+
+/* === Accessibility === */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-accent-resolved);
+  color: #fff;
+  font-weight: var(--weight-heading);
+  text-decoration: none;
+  z-index: 9999;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* === Focus === */
+:focus-visible {
+  outline: 2px solid var(--color-accent-resolved);
+  outline-offset: 2px;
+}
+
+/* === Layout === */
+main {
+  max-width: var(--space-content-width);
+  margin: 0 auto;
+  padding: var(--space-xl);
+}
+
+/* When main contains a feed grid, break out of content-width */
+main:has(.feed-grid) {
+  max-width: 100%;
+}
+
+/* === App-shell layout (layout: app) — full-viewport chat surface ===
+ * Chromeless (no site header/footer); the rail is the chrome. The document
+ * never scrolls — the inner panes own it, so footer-bleed is impossible. */
+body[data-layout="app"] {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+body[data-layout="app"] main {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-width: 100%;
+  margin: 0;              /* base `main` is margin:0 auto; auto margins on a flex
+                            item suppress stretch and shrink it to content — kill
+                            them so the shell spans the full viewport width */
+  padding: 0;
+  overflow: hidden;
+  display: flex;          /* so .app-shell can fill main's height */
+}
+.app-shell {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+/* The feature mount ([data-chat-root]) is a flex item of the column; make it a
+   flex column itself so the chat pane (and its scrolling log) fills the height. */
+body[data-layout="app"] .app-column > [data-chat-root] {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.app-column {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-rail {
+  flex: 0 0 17rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--space-md) var(--space-sm);
+  background: var(--color-surface-resolved);
+  border-right: 1px solid var(--color-border-resolved);
+}
+.chat-rail-brand {
+  display: flex;
+  align-items: center;
+  padding: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  text-decoration: none;
+  font-weight: var(--weight-heading);
+  color: var(--color-text-resolved);
+}
+.chat-rail-conversations {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* Width is a declared, orthogonal page property (data-width on the body), independent of
+   layout/chrome. `full` breaks the content column out; `content` (default) keeps the
+   article column. The page's own content (e.g. the chat's centered column) sets its width. */
+body[data-width="full"] main {
+  max-width: 100%;
+  padding: 0;
+}
+
+/* Programmatic focus (a11y.focusMain) — no visible ring on non-interactive containers. */
+main:focus-visible { outline: none; }
+
+/* === Typography — vertical rhythm ===
+ * Baseline: line-height 1.7 × 16px ≈ 27px. Heading margin-top creates the
+ * pause between a paragraph and the next section; margin-bottom tightens the
+ * heading to its own content. Adjacent siblings (heading + first content)
+ * should feel like one unit; unrelated blocks (paragraph + heading) should
+ * breathe.
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-heading);
+  line-height: var(--leading-heading);
+  color: var(--color-text-resolved);
+}
+
+h1 {
+  font-size: calc(var(--font-base) * var(--scale-xxl));
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: calc(var(--font-base) * var(--scale-xl));
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.005em;
+}
+
+h3 {
+  font-size: calc(var(--font-base) * var(--scale-lg));
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+h4 {
+  font-size: calc(var(--font-base) * 1.1);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xs);
+  font-weight: 600;
+}
+
+h5 {
+  font-size: calc(var(--font-base) * 0.82);
+  margin-top: var(--space-md);
+  margin-bottom: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--color-text-secondary-resolved);
+}
+
+h6 {
+  font-size: calc(var(--font-base) * 0.75);
+  margin-top: var(--space-md);
+  margin-bottom: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--color-text-secondary-resolved);
+}
+
+p { margin-bottom: var(--space-md); }
+
+a {
+  color: var(--color-accent-resolved);
+  transition: color 150ms ease-out, opacity 150ms ease-out;
+}
+a:hover { text-decoration: none; }
+
+/* Lists — reset stripped default padding. Restore and tune indentation. */
+ol, ul {
+  margin: 0 0 var(--space-md);
+  padding-left: 1.75rem;
+}
+
+ol li, ul li {
+  margin-bottom: 0.25rem;
+  padding-left: 0.25rem;
+}
+
+ol li::marker {
+  color: var(--color-text-secondary-resolved);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+ul li::marker {
+  color: var(--color-accent-resolved);
+}
+
+/* Nested lists tighten */
+li > ol, li > ul {
+  margin: 0.25rem 0 0.5rem;
+}
+
+/* Heading immediately followed by list: tighten */
+h2 + ol, h2 + ul,
+h3 + ol, h3 + ul,
+h4 + ol, h4 + ul {
+  margin-top: 0;
+}
+
+/* === Inline + block code === */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--color-code-bg-resolved);
+  padding: 0.12em 0.35em;
+  border-radius: 3px;
+  color: var(--color-text-resolved);
+}
+
+pre {
+  background: var(--color-code-bg-resolved);
+  padding: var(--space-md) var(--space-lg);
+  overflow-x: auto;
+  margin: var(--space-md) 0 var(--space-lg);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* === Blockquote === */
+blockquote {
+  border-left: 3px solid;
+  border-image: linear-gradient(180deg, var(--color-accent-resolved), var(--color-gradient-end-resolved)) 1;
+  padding: 0.25rem 0 0.25rem var(--space-lg);
+  margin: var(--space-lg) 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: calc(var(--font-base) * 1.18);
+  line-height: 1.5;
+  color: var(--color-text-resolved);
+}
+
+blockquote p { margin-bottom: 0.5rem; }
+blockquote p:last-child { margin-bottom: 0; }
+
+/* === Section Divider === */
+hr {
+  border: none;
+  height: 1px;
+  max-width: 200px;
+  margin: var(--space-xxl) auto;
+  background: linear-gradient(90deg, transparent 0%, var(--color-accent-resolved) 50%, transparent 100%);
+}
+
+/* === Feed Grid (masonry via CSS columns) === */
+.feed-grid {
+  columns: 2;
+  column-gap: var(--space-lg);
+}
+
+@media (min-width: 1024px)  { .feed-grid { columns: 3; } }
+@media (min-width: 1280px)  { .feed-grid { columns: 4; } }
+@media (min-width: 1536px)  { .feed-grid { columns: 5; } }
+@media (min-width: 1920px)  { .feed-grid { columns: 7; } }
+
+/* === Card === */
+.card {
+  background: var(--color-card-bg-resolved);
+  border-radius: var(--space-card-radius);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 200ms ease-out, transform 200ms ease-out;
+  break-inside: avoid;
+  margin-bottom: var(--space-lg);
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.card-thumbnail {
+  display: block;
+  width: 100%;
+  height: var(--space-card-image-height);
+  object-fit: cover;
+}
+
+.card-body {
+  padding: var(--space-md) var(--space-card-padding) var(--space-card-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.card-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.card-link:hover .card-title {
+  color: var(--color-accent-resolved);
+}
+
+.card time {
+  font-size: calc(var(--font-base) * 0.8);
+  color: var(--color-text-secondary-resolved);
+}
+
+.card-title {
+  font-size: calc(var(--font-base) * 1.15);
+  font-weight: var(--weight-body);
+  line-height: 1.2;
+  transition: color 150ms ease-out;
+  margin: 0;
+}
+
+.card-excerpt {
+  font-size: calc(var(--font-base) * var(--scale-sm));
+  color: var(--color-text-secondary-resolved);
+  line-height: 1.45;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.card-tag {
+  font-size: calc(var(--font-base) * 0.8);
+  padding: 0.3em 0.75em;
+  border-radius: 8px;
+  background: var(--color-tag-bg-resolved);
+  color: var(--color-tag-text-resolved);
+  text-decoration: none;
+}
+
+/* === Skeleton cards === */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+.card-skeleton {
+  pointer-events: none;
+}
+
+.card-skeleton .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.skeleton-bar {
+  background: var(--color-surface-resolved);
+  border-radius: 3px;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: var(--space-card-image-height);
+  border-radius: 0;
+}
+
+.skeleton-date {
+  height: calc(var(--font-base) * var(--scale-sm));
+  width: 30%;
+}
+
+.skeleton-title {
+  height: calc(var(--font-base) * var(--scale-lg));
+  width: 70%;
+}
+
+.skeleton-excerpt {
+  height: var(--font-base);
+  width: 90%;
+}
+
+.skeleton-short {
+  width: 50%;
+}
+
+.card-skeleton .skeleton-bar {
+  animation: skeleton-pulse 2s ease-in-out infinite;
+  animation-delay: calc(var(--stagger-index) * 150ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-skeleton .skeleton-bar {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* === Post hero === */
+/*
+ * Hero header spans full viewport width via a pseudo-element that breaks out
+ * of main's max-width. The inner content stays aligned to the content column.
+ */
+.article-layout { position: relative; }
+
+/* Pull hero flush against header by eating main's top padding. */
+main:has(.article-layout) { padding-top: 0; }
+
+.post-hero {
+  position: relative;
+  padding: var(--space-xxl) 0 calc(var(--space-xxl) + var(--space-sm));
+  margin: 0 0 var(--space-lg);
+  text-align: center;
+  color: #fff;
+  isolation: isolate;
+  outline: none;
+}
+
+.post-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  background: linear-gradient(
+    135deg,
+    var(--color-gradient-start-resolved) 0%,
+    var(--color-gradient-end-resolved) 100%
+  );
+  z-index: -1;
+}
+
+.post-hero-inner {
+  max-width: var(--space-content-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.post-hero h1 {
+  color: inherit;
+  font-size: calc(var(--font-base) * var(--scale-xxl) * 1.2);
+  margin: 0 0 var(--space-sm);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.post-hero time {
+  display: block;
+  color: inherit;
+  opacity: 0.85;
+  font-size: calc(var(--font-base) * var(--scale-md));
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-body {
+  line-height: var(--line-height);
+}
+
+/* First heading in body has no top margin — the hero already spaced it. */
+.post-body > h1:first-child,
+.post-body > h2:first-child,
+.post-body > h3:first-child {
+  margin-top: 0;
+}
+
+/* === Figure with caption === */
+figure {
+  margin: var(--space-xl) 0;
+  text-align: center;
+}
+
+figure img,
+figure svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+figure.arch-diagram {
+  padding: var(--space-lg);
+  background: var(--color-surface-resolved);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-resolved);
+}
+
+figcaption {
+  margin-top: var(--space-sm);
+  font-size: calc(var(--font-base) * var(--scale-sm));
+  font-style: italic;
+  color: var(--color-text-secondary-resolved);
+}
+
+/* === Figure alignment conventions === */
+figure.align-right {
+  float: right;
+  margin: 0 0 var(--space-md) var(--space-lg);
+  max-width: 50%;
+  text-align: right;
+}
+
+figure.align-left {
+  float: left;
+  margin: 0 var(--space-lg) var(--space-md) 0;
+  max-width: 50%;
+  text-align: left;
+}
+
+figure.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure picture {
+  display: block;
+}
+
+figure picture img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+  figure.align-right,
+  figure.align-left {
+    float: none;
+    max-width: 100%;
+    margin: var(--space-xl) 0;
+    text-align: center;
+  }
+}
+
+/* === Site Header === */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-xl);
+  max-width: 100%;
+  margin: 0 auto;
+  gap: var(--space-md);
+}
+
+.site-title {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-heading);
+  font-size: calc(var(--font-base) * var(--scale-lg));
+  text-decoration: none;
+  color: var(--color-text-resolved);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-logo {
+  width: var(--logo-width, 32px);
+  height: auto;
+  object-fit: contain;
+}
+
+.header-actions {
+  align-items: center;
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* === Site Footer === */
+.site-footer {
+  margin-top: var(--space-xxl);
+  padding: var(--space-lg) var(--space-xl);
+  max-width: var(--space-content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.site-footer::before {
+  content: '';
+  display: block;
+  height: 1px;
+  max-width: 200px;
+  margin: 0 auto var(--space-lg);
+  background: linear-gradient(90deg, transparent 0%, var(--color-accent-resolved) 50%, transparent 100%);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: calc(var(--font-base) * var(--scale-sm));
+  color: var(--color-text-secondary-resolved);
+}
+
+.build-id {
+  margin-left: auto;
+  font-size: 0.65rem;
+  opacity: 0.4;
+  font-family: monospace;
+}
+
+/* === Modal Shell ===
+ * Behavior-free dialog chrome (components/modal.js). A native <dialog> opened
+ * with showModal(): the browser handles Escape, the focus trap, and the top
+ * layer — no z-index needed. Holds no policy: search and delete-confirm both
+ * mount their own body inside .modal-panel. */
+.modal-overlay {
+  padding: 0;
+  border: none;
+  background: transparent;
+  max-width: none;
+  max-height: none;
+  margin: 10vh auto auto;
+}
+
+.modal-overlay::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-panel {
+  background: var(--color-bg-resolved);
+  border-radius: 8px;
+  width: min(90vw, 600px);
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: var(--space-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* === Search Palette ===
+ * Search's own body, mounted inside the modal shell above. */
+.search-palette input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: var(--font-base);
+  border: 1px solid var(--color-border-resolved);
+  border-radius: 4px;
+  font-family: inherit;
+  background: var(--color-surface-resolved);
+  color: var(--color-text-resolved);
+  transition: border-color 150ms ease;
+}
+
+.search-palette input:focus {
+  border-color: var(--color-accent-resolved);
+}
+
+.search-results { margin-top: var(--space-md); color: var(--color-text-secondary-resolved); }
+
+.search-palette input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 4l8 8M12 4l-8 8' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 4l8 8M12 4l-8 8' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.search-result {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--color-border-resolved);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-result[aria-selected="true"] {
+  background: var(--color-accent-resolved);
+  color: #fff;
+}
+
+.search-result[aria-selected="true"] a,
+.search-result[aria-selected="true"] .excerpt {
+  color: #fff;
+}
+
+.search-result a {
+  font-weight: var(--weight-heading);
+  text-decoration: none;
+}
+
+.search-result .excerpt {
+  font-size: calc(var(--font-base) * var(--scale-sm));
+  color: var(--color-text-secondary-resolved);
+  margin-top: var(--space-xs);
+}
+
+/* === Encryption Gate === */
+
+/* Gate layout hides shell chrome until unlocked */
+body[data-layout="gate"] .site-header,
+body[data-layout="gate"] .site-footer,
+body[data-layout="gate"] .skip-link {
+  display: none;
+}
+
+/* App layout suppresses the site header/footer — the rail is the chrome. The static
+   build omits them (chrome=False); the dev app shell always renders them, so hide
+   here for dev/build parity. */
+body[data-layout="app"] .site-header,
+body[data-layout="app"] .site-footer {
+  display: none;
+}
+
+/* === App-shell mobile (mobile-first): the rail is an off-canvas drawer ===
+ * BASE (mobile) is the drawer: the conversation column is full width, the rail is
+ * fixed off-canvas and slides in when .app-shell.is-rail-open, with a backdrop; a
+ * slim top bar carries the hamburger. The @media (min-width: 768px) block below
+ * turns the rail into the static left rail and hides the hamburger/backdrop. */
+body[data-layout="app"] .chat-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 40;
+  width: 17rem;
+  max-width: 82vw;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+}
+body[data-layout="app"] .app-shell.is-rail-open .chat-rail {
+  transform: translateX(0);
+}
+body[data-layout="app"] .app-shell > .chat-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 39;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+body[data-layout="app"] .app-shell.is-rail-open > .chat-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (min-width: 768px) {
+  /* Desktop: the rail is the static left rail; no drawer, no hamburger, no backdrop. */
+  body[data-layout="app"] .chat-rail {
+    position: static;
+    transform: none;
+    max-width: none;
+    z-index: auto;
+  }
+  body[data-layout="app"] .app-shell > .chat-backdrop { display: none; }
+  body[data-layout="app"] .chat-bar { display: none; }
+}
+
+#grove-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+}
+
+.gate-subtitle {
+  color: var(--color-text-secondary-resolved);
+  margin: var(--space-sm) 0 var(--space-lg);
+}
+
+.gate-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 24rem;
+}
+
+.gate-form .el-input-group {
+  margin-bottom: 0;
+}
+
+.gate-error {
+  font-size: calc(var(--font-base) * var(--scale-sm));
+  min-height: 1.2em;
+  text-align: center;
+  margin: 0;
+  visibility: hidden;
+}
+
+.gate-error--visible {
+  visibility: visible;
+  color: var(--color-banner-error-text-resolved, #dc2626);
+}
+
+/* === TOC Sidebar === */
+.toc-sidebar {
+  position: sticky;
+  top: var(--space-xl);
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  font-size: calc(var(--font-base) * var(--scale-sm));
+}
+
+.toc-sidebar ol {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc-sidebar li[data-level="3"] { padding-left: var(--space-md); }
+.toc-sidebar li[data-level="4"] { padding-left: var(--space-xl); }
+.toc-sidebar li[data-level="5"] { padding-left: var(--space-xxl); }
+
+.toc-sidebar a {
+  display: block;
+  padding: var(--space-xs) 0;
+  text-decoration: none;
+  color: var(--color-text-secondary-resolved);
+}
+
+.toc-sidebar a.active {
+  color: var(--color-accent-resolved);
+  font-weight: var(--weight-heading);
+}
+
+/* === Reading Progress === */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent-resolved), var(--color-gradient-end-resolved));
+  z-index: 999;
+  width: 0;
+  transition: width 100ms;
+}
+
+/* === Responsive === */
+@media (max-width: 640px) {
+  .feed-grid { columns: 1; }
+  main { padding: var(--space-md); }
+  .card { margin-bottom: var(--space-md); }
+  .site-header {
+    padding: 0.75rem var(--space-md);
+  }
+  .toc-sidebar { display: none; }
+  .post-hero h1 {
+    font-size: calc(var(--font-base) * var(--scale-xxl));
+  }
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- chat feature (mobile-first) ---
+ * A modern, minimal chatbot in the ChatGPT/Claude register. BASE styles are mobile:
+ * the conversation pane is the full-width primary view with a slim top bar carrying a
+ * hamburger, and the sidebar is an off-canvas LEFT DRAWER over a backdrop scrim. The
+ * @media (min-width: 768px) block turns the drawer into a persistent left rail and the
+ * layout into a flex row, hiding the hamburger and backdrop. Visitor turns are subtle
+ * right-aligned bubbles; the assistant turn has NO bubble (plain full-width prose with
+ * a muted identity above), the modern un-bubbled look. Tokens carry the palette so the
+ * dark theme reskins by overriding the resolved entries. */
+
+/* The conversation pane is a centered reading column, denser than article prose. */
+.chat-pane { max-width: 36rem; margin: 0 auto; padding: 0 var(--space-md); }
+
+/* Slim top bar holding the mobile hamburger above the log. Hidden on desktop. */
+.chat-bar { display: flex; align-items: center; margin-bottom: var(--space-xs); }
+.chat-menu { display: inline-flex; align-items: center; justify-content: center;
+            padding: var(--space-xs); border: none; cursor: pointer;
+            border-radius: var(--space-sm); background: transparent;
+            color: var(--color-text-resolved); }
+.chat-menu:hover { background: color-mix(in srgb, var(--color-text-resolved) 5%, transparent); }
+
+.chat-log { display: flex; flex-direction: column; gap: var(--space-lg);
+            margin: 0 0 var(--space-lg); }
+
+/* Operator intro — the one live-HTML block. Heads the log, reads as muted prose. */
+.chat-intro { color: var(--color-text-secondary-resolved); margin-bottom: var(--space-sm); }
+.chat-intro > :first-child { margin-top: 0; }
+.chat-intro > :last-child { margin-bottom: 0; }
+
+/* Bot identity strip above an assistant turn (and the entry-state header). */
+.chat-identity { display: flex; align-items: center; gap: var(--space-sm);
+            margin-bottom: var(--space-xs); }
+.chat-avatar {
+  width: var(--space-chat-avatar-size);
+  height: var(--space-chat-avatar-size);
+  border-radius: 8px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  background: color-mix(in srgb, var(--color-accent-resolved) 12%, transparent);
+  padding: 3px;
+}
+.chat-avatar-mono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-weight: 600;
+  font-size: calc(var(--font-base) * 0.9);
+  color: var(--color-accent-resolved);
+}
+.chat-identity-name { font-weight: 600;
+            color: var(--color-text-secondary-resolved);
+            font-size: calc(var(--font-base) * 0.72); }
+.chat-identity-header { margin-bottom: var(--space-sm); }
+.chat-identity-header .chat-identity-name { font-size: calc(var(--font-base) * 0.8);
+            color: var(--color-text-resolved); }
+
+.chat-turn p:last-child { margin-bottom: 0; }
+
+/* Visitor: a subtle right-aligned bubble, ~80% width, soft radius, quiet surface. */
+.chat-turn-user { background: var(--color-chat-bubble-user-resolved);
+            align-self: flex-end; max-width: 80%;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--space-chat-bubble-radius);
+            border-bottom-right-radius: var(--space-xs); }
+
+/* Assistant: NO bubble — plain text, left-aligned, full reading width, identity above
+ * and sources beneath (ChatGPT/Claude). No background, no padding box. */
+.chat-turn-assistant { align-self: stretch; max-width: 100%; }
+.chat-turn-assistant .chat-answer {
+  font-family: var(--font-reading);
+  font-size: var(--font-base);
+  line-height: 1.65;
+}
+
+/* States sit INSIDE the conversation as left-aligned notes, not page banners. */
+.chat-turn-pending { align-self: flex-start; background: transparent;
+            color: var(--color-text-secondary-resolved); font-style: italic; }
+.chat-turn-refused, .chat-turn-error { align-self: flex-start;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--space-chat-bubble-radius);
+            background: var(--color-banner-error-bg-resolved);
+            color: var(--color-banner-error-text-resolved);
+            border: 1px solid var(--color-banner-error-border-resolved); }
+
+.chat-sources-label { margin-top: var(--space-sm); font-weight: var(--weight-heading);
+            color: var(--color-text-secondary-resolved);
+            font-size: calc(var(--font-base) * var(--scale-sm)); }
+.chat-sources { margin: var(--space-xs) 0 0; padding-left: var(--space-lg);
+            color: var(--color-text-secondary-resolved);
+            font-size: calc(var(--font-base) * var(--scale-sm)); }
+
+/* Composer: a single rounded container holding the input + a send button (Claude-style),
+ * not a bare field with a floating button. Border lifts to the accent on focus-within. */
+.chat-composer { display: flex; gap: var(--space-xs); align-items: center;
+            max-width: 36rem; margin: 0 auto;
+            padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-md);
+            border: 1px solid var(--color-border-resolved); border-radius: 1.6rem;
+            background: var(--color-bg-resolved); }
+.chat-composer:focus-within { border-color: var(--color-accent-resolved); }
+.chat-input { flex: 1; min-width: 0; padding: var(--space-xs) 0; border: none;
+            background: transparent; color: var(--color-text-resolved); font: inherit; }
+.chat-input:focus { outline: none; }
+.chat-send { display: inline-flex; align-items: center; justify-content: center;
+            flex: 0 0 auto; width: 2rem; height: 2rem; border: none; cursor: pointer;
+            border-radius: 50%;
+            background: var(--color-btn-primary-resolved);
+            color: var(--color-btn-primary-text-resolved); }
+
+/* Secret gate: shown in place of the log+composer until the code is accepted.
+ * Centered column, same max-width as the composer, using only existing tokens. */
+.chat-gate { display: flex; flex-direction: column; align-items: center;
+            justify-content: center; flex: 1; gap: var(--space-md);
+            max-width: 36rem; margin: 0 auto; padding: var(--space-lg) 0; }
+.chat-gate-prompt { margin: 0; text-align: center; color: var(--color-text-resolved); }
+.chat-gate-form { display: flex; flex-direction: column; gap: var(--space-sm);
+            width: 100%; }
+.chat-gate-label { display: flex; flex-direction: column; gap: var(--space-xs);
+            font-size: calc(var(--font-base) * var(--scale-sm));
+            color: var(--color-text-secondary-resolved); }
+.chat-gate-input { padding: var(--space-xs) var(--space-sm);
+            border: 1px solid var(--color-border-resolved);
+            border-radius: var(--space-sm);
+            background: var(--color-bg-resolved); color: var(--color-text-resolved);
+            font: inherit; }
+.chat-gate-input:focus { outline: none; border-color: var(--color-accent-resolved); }
+.chat-gate-submit { display: inline-flex; align-items: center; justify-content: center;
+            padding: var(--space-xs) var(--space-md); border: none; cursor: pointer;
+            border-radius: 1.6rem;
+            background: var(--color-btn-primary-resolved);
+            color: var(--color-btn-primary-text-resolved); font: inherit;
+            font-weight: var(--weight-heading); }
+.chat-gate-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+.chat-gate-error { margin: 0; font-size: calc(var(--font-base) * var(--scale-sm));
+            color: var(--color-text-secondary-resolved);
+            border: 1px solid var(--color-banner-error-border-resolved);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--space-xs); }
+
+/* --- chat sidebar (persist: local) --- */
+/* BASE: off-canvas left drawer over a backdrop scrim. The layout is the positioning
+ * context; .is-drawer-open (toggled in chat.js) slides the drawer in. */
+.chat-layout { position: relative; font-size: calc(var(--font-base) * 0.85); }
+
+.chat-backdrop { position: fixed; inset: 0; z-index: 20; background: rgba(0, 0, 0, 0.4);
+            opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+.chat-layout.is-drawer-open .chat-backdrop { opacity: 1; pointer-events: auto; }
+
+/* The sidebar: a flush-left, light, full-height rail (a drawer on mobile). */
+.chat-sidebar { position: fixed; left: 0; top: 0; z-index: 21; height: 100%;
+            width: 17rem; box-sizing: border-box; padding: var(--space-md) var(--space-sm);
+            display: flex; flex-direction: column; gap: var(--space-xs);
+            background: var(--color-surface-resolved);
+            border-right: 1px solid var(--color-border-resolved);
+            transform: translateX(-100%); transition: transform 0.25s ease; }
+.chat-layout.is-drawer-open .chat-sidebar { transform: translateX(0); }
+
+/* "New chat": a quiet, full-width row with a leading + icon. */
+.chat-sidebar-new { display: flex; align-items: center; gap: var(--space-sm);
+            width: 100%; padding: var(--space-sm); cursor: pointer;
+            border: none; border-radius: var(--space-sm);
+            background: transparent; color: var(--color-text-resolved); font: inherit;
+            font-size: calc(var(--font-base) * 0.8); font-weight: 500; }
+.chat-sidebar-new:hover { background: color-mix(in srgb, var(--color-text-resolved) 5%, transparent); }
+.chat-sidebar-new-icon { display: inline-flex; color: var(--color-text-secondary-resolved); }
+
+/* Section label: tiny, uppercase, muted (Claude's "Starred"/"Products"). */
+.chat-sidebar-label { font-size: calc(var(--font-base) * 0.62);
+            text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600;
+            color: var(--color-text-secondary-resolved);
+            margin: var(--space-lg) var(--space-sm) var(--space-xs); }
+
+.chat-sidebar-list { list-style: none; margin: 0; padding: 0; display: flex;
+            flex-direction: column; gap: 1px; overflow-y: auto; }
+/* Soft tonal overlays derived from the text color — subtle layering, not hard surfaces. */
+.chat-sidebar-item { display: flex; align-items: center; border-radius: var(--space-sm); }
+.chat-sidebar-item:hover { background: color-mix(in srgb, var(--color-text-resolved) 4%, transparent); }
+.chat-sidebar-item-active { background: color-mix(in srgb, var(--color-text-resolved) 8%, transparent); }
+.chat-sidebar-select { flex: 1; min-width: 0; text-align: left; cursor: pointer;
+            padding: var(--space-xs) var(--space-sm); border: none; background: transparent;
+            color: var(--color-text-secondary-resolved); font: inherit;
+            font-size: calc(var(--font-base) * 0.8);
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chat-sidebar-item:hover .chat-sidebar-select { color: var(--color-text-resolved); }
+.chat-sidebar-item-active .chat-sidebar-select { color: var(--color-text-resolved);
+            font-weight: 500; }
+
+/* Delete: a quiet trash icon button. Persistent on mobile; revealed on row hover on
+ * desktop (see media block). Shifts to a danger color on its own hover. */
+.chat-sidebar-delete { display: inline-flex; align-items: center; justify-content: center;
+            flex: 0 0 auto; cursor: pointer; padding: var(--space-xs);
+            margin-right: var(--space-xs); border: none; border-radius: var(--space-sm);
+            background: transparent; color: var(--color-text-secondary-resolved); }
+.chat-sidebar-delete:hover { color: var(--color-banner-error-text-resolved); }
+
+/* DESKTOP: the drawer becomes a persistent left rail and the layout a flex row. */
+@media (min-width: 768px) {
+  .chat-menu, .chat-backdrop, .chat-bar { display: none; }
+
+  /* Full-bleed flex row: a flush-left rail + the conversation filling the rest. */
+  .chat-layout { display: flex; align-items: stretch; min-height: calc(100vh - 5rem); }
+  .chat-layout .chat-pane { flex: 1; min-width: 0; max-width: none;
+            padding: var(--space-lg) var(--space-xl); }
+  /* The conversation stays a centered reading column inside the (wide) pane. */
+  .chat-layout .chat-log, .chat-layout .chat-composer { max-width: 36rem; margin: 0 auto; }
+
+  /* The sidebar keeps its base surface/padding/border — now a static flush-left rail. */
+  .chat-sidebar { position: static; z-index: auto; height: auto; transform: none;
+            width: 17rem; flex: 0 0 17rem; }
+
+  /* Delete hidden until the row is hovered (or the delete itself is focused). */
+  .chat-sidebar-delete { opacity: 0; transition: opacity 0.15s ease; }
+  .chat-sidebar-item:hover .chat-sidebar-delete,
+  .chat-sidebar-delete:focus-visible { opacity: 1; }
+}
+
+/* --- chat delete confirm (mounted in the modal shell) --- */
+.chat-delete-confirm { display: flex; flex-direction: column; gap: var(--space-lg); }
+.chat-delete-confirm-message { margin: 0; }
+.chat-delete-confirm-actions { display: flex; gap: var(--space-sm);
+            justify-content: flex-end; }
+.chat-delete-confirm-cancel { padding: var(--space-sm) var(--space-lg); cursor: pointer;
+            border: 1px solid var(--color-border-resolved); border-radius: var(--space-sm);
+            background: transparent; color: var(--color-text-resolved); font: inherit; }
+.chat-delete-confirm-ok { padding: var(--space-sm) var(--space-lg); border: none;
+            cursor: pointer; border-radius: var(--space-sm);
+            background: var(--color-banner-error-bg-resolved);
+            color: var(--color-banner-error-text-resolved);
+            border: 1px solid var(--color-banner-error-border-resolved); font: inherit; }
+
+/* App-shell: the pane fills the column; only the log scrolls; composer pinned. The
+   pane owns the horizontal gutter so the log AND composer share one inset and never
+   touch the viewport edge on mobile; the top gutter gives the hamburger room. */
+body[data-layout="app"] .chat-pane {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  padding: var(--space-sm) var(--space-md) 0;
+}
+body[data-layout="app"] .chat-log {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  max-width: 48rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-lg) 0;
+}
+body[data-layout="app"] .chat-composer {
+  flex: 0 0 auto;
+  max-width: 48rem;
+  width: 100%;
+  margin: 0 auto var(--space-lg);
+}
+/* Empty state (no turns yet): center the greeting + composer vertically (Claude-style)
+   rather than pinning the composer to the bottom. Uses auto margins (not
+   justify-content) so the mobile top bar / hamburger stays pinned at the top while only
+   the greeting + composer pair centers. Once a turn exists the :has() stops matching and
+   the composer pins to the bottom again. */
+body[data-layout="app"] .chat-pane:not(:has(.chat-turn)) .chat-log {
+  flex: 0 0 auto;
+  margin: auto auto 0;     /* top auto pushes the greeting to vertical center */
+}
+body[data-layout="app"] .chat-pane:not(:has(.chat-turn)) .chat-composer {
+  margin: 0 auto auto;     /* bottom auto completes centering the greeting+composer pair */
+}
+/* The sidebar, when mounted into the rail slot, is a static block (not a drawer). */
+body[data-layout="app"] .chat-rail .chat-sidebar {
+  position: static;
+  width: auto;
+  height: auto;
+  transform: none;
+  border: none;
+  padding: 0;
+  background: transparent;
+}
