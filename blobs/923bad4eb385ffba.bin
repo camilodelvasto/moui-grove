@@ -1,0 +1,38 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Manifesto</h1>
+            <time datetime="2026-05-03">03.05.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>At some point, without much ceremony, software stopped being a tool and became the environment. Data, logic, and infrastructure entangled into platforms, and platforms into habits, and habits into dependencies we barely noticed accumulating — until the software on your phone was designed around someone else's incentives, your data lived in someone else's infrastructure, and the terms of that arrangement changed without asking. We didn't lose agency in a single moment. We traded it away, slowly, for convenience, and by the time the cost became visible, it had already been normalized.</p>
+<p>This is the moment to build a system that gives power back to people — for the weight of trading agency in exchange for incremental improvements is no longer bearable, and finding a way out feels out of reach within the systems that exist. This is the moment to build something that belongs to us.</p>
+<hr />
+<h2>1. Your data should be yours to move, verify, and protect</h2>
+<p>A contact, a note, a health record, a photo — each is a piece of memory with an owner, and none of it should belong to the application that created it or the platform that offered to hold it. It should move with you, readable by any system you authorize, carrying a verifiable signature so you know it hasn't been altered along the way. None of this is a new idea, just one that has never been treated as something users deserve by default.</p>
+<hr />
+<h2>2. Privacy by architecture, not by policy</h2>
+<p>&quot;We can't see your data&quot; and &quot;we promise not to look&quot; are different statements. One is structural. The other is a commitment that can change with leadership, policy, or a court order — and in a world where data can be used to model behavior, predict decisions, and influence outcomes before you've made them, the difference between those two statements is no longer abstract. A system that never receives your data can't expose it, sell it, profile you with it, or be compelled to hand it over.</p>
+<hr />
+<h2>3. Data, interface, and infrastructure should be separable</h2>
+<p>When your data lives inside an application, the application owns the relationship — it decides how your things look, what you can do with them, and whether you can leave. That's how most software has worked, and it's been that way long enough to feel normal. But it's a choice, not a constraint. When the three layers are loosely coupled, each one can follow its own path: you replace an interface when a better one comes along, swap infrastructure when the technology moves, and your data outlasts both — because it was never really the application's to begin with. Building with that separation in mind is how you return control to the person the software was meant to serve.</p>
+<hr />
+<h2>4. Local first, network when necessary</h2>
+<p>What is a phone worth without a data connection? Today, almost nothing — and that's not an accident, it's the model. Every interaction that goes online carries a hidden cost: the round trip to a server, the authentication handshake, the infrastructure keeping all of it alive, the battery drained, the data plan consumed. Multiplied across everything you do, all day, on a device powerful enough to have done most of it locally in milliseconds, that cost stops being invisible and starts being a design choice someone made on your behalf. The network is real and necessary — for storage that survives hardware failure, for inference too heavy to run locally, for the things a single device genuinely can't do alone — but those cases are narrower than the current model suggests, and the difference between using the network where it earns its place and using it by default is the difference between a tool that serves you and one that quietly taxes you.</p>
+<hr />
+<h2>5. Intelligence in service of agency</h2>
+<p>Intelligence is what makes local-first genuinely powerful rather than merely offline: a device that holds your data, understands your intent, routes your requests, and acts on your behalf, without sending everything to a model trained on someone else's agenda. We embrace intelligence fully — local models for what the device can handle, privacy-respecting infrastructure for what it can't — because every decision about how it runs comes back to the same question: does this give you more agency, or less?</p>
+<hr />
+<h2>6. Joy without extraction</h2>
+<p>Technology should produce joy, not the compulsive need to keep using it, not the background fear of being watched or listened to, not the creeping anxiety of a system you can't leave. Joy is what happens when a tool earns your trust — when it does what you asked, stays out of the way when you didn't, and never makes you wonder what it's doing with you when you're not looking.</p>
+<hr />
+<h2>7. Design for the future</h2>
+<p>The best infrastructure disappears into the world — it carries weight for decades without asking for attention, because it was designed precisely enough that there was nothing left to improve. In contrast, most software is built in a way that expires by design, that needs to be replaced not because the problem changed but because the business required it, and the cost of that accumulates everywhere: in wasted energy, in discarded hardware, in users locked into solutions that don't work because the price of changing is too high to bear.</p>
+<blockquote>
+<p>The future is before us. We walk into it backwards, without knowing what awaits us. We cannot see what's coming, but can look at the past with our eyes wide open, looking for clues on how to design systems that harm less and care more.</p>
+</blockquote>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "1-your-data-should-be-yours-to-move-verify-and-protect", "text": "1. Your data should be yours to move, verify, and protect", "level": 2}, {"id": "2-privacy-by-architecture-not-by-policy", "text": "2. Privacy by architecture, not by policy", "level": 2}, {"id": "3-data-interface-and-infrastructure-should-be-separable", "text": "3. Data, interface, and infrastructure should be separable", "level": 2}, {"id": "4-local-first-network-when-necessary", "text": "4. Local first, network when necessary", "level": 2}, {"id": "5-intelligence-in-service-of-agency", "text": "5. Intelligence in service of agency", "level": 2}, {"id": "6-joy-without-extraction", "text": "6. Joy without extraction", "level": 2}, {"id": "7-design-for-the-future", "text": "7. Design for the future", "level": 2}]</script>

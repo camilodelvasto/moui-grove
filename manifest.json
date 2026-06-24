@@ -1,0 +1,780 @@
+{
+  "version": "a37c9c735fdc",
+  "build_date": "2026-06-24T06:58:11Z",
+  "encrypted": false,
+  "loading": {
+    "strategy": "progressive",
+    "priority_count": 5
+  },
+  "entries": [
+    {
+      "route": "/reimagining-sheets/",
+      "blob": "015fbf33fb784fde.bin",
+      "hash": "015fbf33fb784fde",
+      "priority": 1,
+      "type": "post",
+      "title": "Reimagining Sheets",
+      "excerpt": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
+      "date": "2026-05-28",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Reimagining Sheets",
+        "description": "Can we create something that builds upon common spreadsheet ideas but let LLMs also do their LLM thing while being private and declarative for more advanced uses?",
+        "image": "assets/screenshot-tui-suchprotokoll.png"
+      },
+      "layout": "article",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/manifesto/",
+      "blob": "923bad4eb385ffba.bin",
+      "hash": "923bad4eb385ffba",
+      "priority": 1,
+      "type": "post",
+      "title": "Manifesto",
+      "excerpt": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
+      "date": "2026-05-03",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Manifesto",
+        "description": "The future is behind us. Local-first, privacy-first, user-first development starts here.",
+        "image": ""
+      },
+      "layout": "article",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/insights/google-search-end-of-choice/",
+      "blob": "a56390954fa394c5.bin",
+      "hash": "a56390954fa394c5",
+      "priority": 1,
+      "type": "post",
+      "title": "Google Search and the end Of Choice (and why DuckDuckGo is not the answer)",
+      "excerpt": "Google Search became Google Overview with AI and now we have no transparency on what's an ad, what not. Even worse, the results are declining in quality. What do we do?",
+      "date": "2026-06-11",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Google Search and the end Of Choice (and why DuckDuckGo is not the answer)",
+        "description": "Google Search became Google Overview with AI and now we have no transparency on what's an ad, what not. Even worse, the results are declining in quality. What do we do?",
+        "image": "assets/google-ai-overview.png"
+      },
+      "layout": "article",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/privacy/fingerprinting-analogy-supermarket/",
+      "blob": "959705160f878120.bin",
+      "hash": "959705160f878120",
+      "priority": 1,
+      "type": "post",
+      "title": "I too, was fingerprinting everyone",
+      "excerpt": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
+      "date": "2026-05-19",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "I too, was fingerprinting everyone",
+        "description": "There was a time in which tracking website visitors was the norm. Perhaps it is time to change it?",
+        "image": "assets/Piwik_screenshot_german.png"
+      },
+      "layout": "article",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/insights/personal-computing-love-the-machine/",
+      "blob": "68f757ec26354461.bin",
+      "hash": "68f757ec26354461",
+      "priority": 1,
+      "type": "post",
+      "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
+      "excerpt": "Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?",
+      "date": "2026-05-04",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Local-First, or: How I Learned to Stop Browsing and Love the Machine",
+        "description": "Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?",
+        "image": "assets/QWOP_screenshot.jpg"
+      },
+      "layout": "article",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/school/why-you-need-to-learn-to-code/",
+      "blob": "11452fb03b1f3fb0.bin",
+      "hash": "11452fb03b1f3fb0",
+      "priority": 2,
+      "type": "post",
+      "title": "Why You Need To Learn to Code",
+      "excerpt": "AI is useful and all, but is the output really yours?",
+      "date": "2026-04-23",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Why You Need To Learn to Code",
+        "description": "AI is useful and all, but is the output really yours?",
+        "image": ""
+      },
+      "layout": "article",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/insights/coding-out-of-first-principles/",
+      "blob": "efe89e1af28dea16.bin",
+      "hash": "efe89e1af28dea16",
+      "priority": 2,
+      "type": "post",
+      "title": "Building Out Of First Principles",
+      "excerpt": "How first principles can shape a new wave of creations",
+      "date": "2026-04-22",
+      "section": "",
+      "tags": [],
+      "og": {
+        "title": "Building Out Of First Principles",
+        "description": "How first principles can shape a new wave of creations",
+        "image": ""
+      },
+      "layout": "article",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/cloud-act/",
+      "blob": "2fded2188713e510.bin",
+      "hash": "2fded2188713e510",
+      "priority": 2,
+      "type": "post",
+      "title": "The US CLOUD Act and the Illusion of Data Sovereignty",
+      "excerpt": "Your data is on US servers, under US law. The CLOUD Act makes this explicit. The question is what you do about it.",
+      "date": "2026-04-17",
+      "section": "",
+      "tags": [
+        "sovereignty",
+        "policy",
+        "privacy"
+      ],
+      "og": {
+        "title": "The US CLOUD Act and the Illusion of Data Sovereignty",
+        "description": "Your data is on US servers, under US law. The CLOUD Act makes this explicit. The question is what you do about it.",
+        "image": "assets/dw-digital-dilemma.png"
+      },
+      "layout": "article",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/contracts-not-code/",
+      "blob": "6203524e99e02178.bin",
+      "hash": "6203524e99e02178",
+      "priority": 2,
+      "type": "post",
+      "title": "Contracts, not code",
+      "excerpt": "Most systems drift. A declarative core holds because the shape of the code is the enforcement.",
+      "date": "2026-04-16",
+      "section": "",
+      "tags": [
+        "architecture",
+        "contracts"
+      ],
+      "og": {
+        "title": "Contracts, not code",
+        "description": "Most systems drift. A declarative core holds because the shape of the code is the enforcement.",
+        "image": ""
+      },
+      "layout": "article",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/welcome/",
+      "blob": "6b6adce96294e961.bin",
+      "hash": "6b6adce96294e961",
+      "priority": 2,
+      "type": "post",
+      "title": "Welcome to Grove",
+      "excerpt": "Grove organizes your writing into a navigable, deployable site.",
+      "date": "2026-04-14",
+      "section": "",
+      "tags": [
+        "grove",
+        "getting-started"
+      ],
+      "og": {
+        "title": "Welcome to Grove",
+        "description": "Grove organizes your writing into a navigable, deployable site.",
+        "image": ""
+      },
+      "layout": "article",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/architecture/data-isolation/",
+      "blob": "24c3c7f9a50dae54.bin",
+      "hash": "24c3c7f9a50dae54",
+      "priority": 2,
+      "type": "post",
+      "title": "Data, Interface, Infrastructure",
+      "excerpt": "The three layers must be separable. Your data outlasts any interface.",
+      "date": "2026-04-13",
+      "section": "",
+      "tags": [
+        "architecture",
+        "manifesto"
+      ],
+      "og": {
+        "title": "Data, Interface, Infrastructure",
+        "description": "The three layers must be separable. Your data outlasts any interface.",
+        "image": ""
+      },
+      "layout": "article",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/on-joy/",
+      "blob": "afa10e46f31dca14.bin",
+      "hash": "afa10e46f31dca14",
+      "priority": 2,
+      "type": "post",
+      "title": "Joy Without Extraction",
+      "excerpt": "Technology should produce joy, not compulsion.",
+      "date": "2026-04-12",
+      "section": "",
+      "tags": [
+        "philosophy"
+      ],
+      "og": {
+        "title": "Joy Without Extraction",
+        "description": "Technology should produce joy, not compulsion.",
+        "image": ""
+      },
+      "layout": "quote",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/",
+      "blob": "7a7faa7cb7537796.bin",
+      "hash": "7a7faa7cb7537796",
+      "priority": 0,
+      "type": "index",
+      "title": "Moui Grove",
+      "layout": "index",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/archive/",
+      "blob": "803555b9fdc76698.bin",
+      "hash": "803555b9fdc76698",
+      "priority": 0,
+      "type": "archive",
+      "title": "Archive — Moui Grove",
+      "layout": "archive",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/insights/",
+      "blob": "e5cc36a7129d20d7.bin",
+      "hash": "e5cc36a7129d20d7",
+      "priority": 1,
+      "type": "section_index",
+      "title": "Insights",
+      "layout": "index",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/privacy/",
+      "blob": "ed681e822e87e88e.bin",
+      "hash": "ed681e822e87e88e",
+      "priority": 1,
+      "type": "section_index",
+      "title": "Privacy",
+      "layout": "index",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/school/",
+      "blob": "c23663b94ea9d84d.bin",
+      "hash": "c23663b94ea9d84d",
+      "priority": 1,
+      "type": "section_index",
+      "title": "School",
+      "layout": "index",
+      "width": "content",
+      "theme": ""
+    },
+    {
+      "route": "/architecture/",
+      "blob": "bbb04d12a56f89d7.bin",
+      "hash": "bbb04d12a56f89d7",
+      "priority": 1,
+      "type": "section_index",
+      "title": "Architecture",
+      "layout": "index",
+      "width": "content",
+      "theme": ""
+    }
+  ],
+  "assets": [
+    {
+      "path": "assets/Piwik_screenshot_german.png",
+      "mime": "image/png",
+      "width": 1904,
+      "height": 977
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/Piwik_screenshot_german-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/QWOP_screenshot.jpg",
+      "mime": "image/jpeg",
+      "width": 800,
+      "height": 500
+    },
+    {
+      "path": "assets/QWOP_screenshot-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/QWOP_screenshot-480w.jpg",
+      "mime": "image/jpeg",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-1.png",
+      "mime": "image/png",
+      "width": 1660,
+      "height": 950
+    },
+    {
+      "path": "assets/claude-code-1-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-1-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-1-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/claude-code-1-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/claude-code-1-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/claude-code-1-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/claude-code-2.png",
+      "mime": "image/png",
+      "width": 1606,
+      "height": 918
+    },
+    {
+      "path": "assets/claude-code-2-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-2-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/claude-code-2-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/claude-code-2-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/claude-code-2-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/claude-code-2-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/cookie-bot-screenshot.png",
+      "mime": "image/png",
+      "width": 992,
+      "height": 1392
+    },
+    {
+      "path": "assets/cookie-bot-screenshot-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/cookie-bot-screenshot-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/cookie-bot-screenshot-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/cookie-bot-screenshot-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/duckduckgo.png",
+      "mime": "image/png",
+      "width": 650,
+      "height": 218
+    },
+    {
+      "path": "assets/duckduckgo-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/duckduckgo-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/dw-digital-dilemma.png",
+      "mime": "image/png",
+      "width": 2860,
+      "height": 1428
+    },
+    {
+      "path": "assets/dw-digital-dilemma-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/dw-digital-dilemma-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/dw-digital-dilemma-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/dw-digital-dilemma-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/dw-digital-dilemma-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/dw-digital-dilemma-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/google-ad-no-ads.png",
+      "mime": "image/png",
+      "width": 1008,
+      "height": 1140
+    },
+    {
+      "path": "assets/google-ad-no-ads-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/google-ad-no-ads-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/google-ad-no-ads-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/google-ad-no-ads-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/google-ai-overview.png",
+      "mime": "image/png",
+      "width": 1340,
+      "height": 908
+    },
+    {
+      "path": "assets/google-ai-overview-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/google-ai-overview-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/google-ai-overview-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/google-ai-overview-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/latin-women-singing.jpg",
+      "mime": "image/jpeg",
+      "width": 6000,
+      "height": 4000
+    },
+    {
+      "path": "assets/latin-women-singing-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/latin-women-singing-480w.jpg",
+      "mime": "image/jpeg",
+      "width": 480
+    },
+    {
+      "path": "assets/latin-women-singing-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/latin-women-singing-960w.jpg",
+      "mime": "image/jpeg",
+      "width": 960
+    },
+    {
+      "path": "assets/latin-women-singing-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/latin-women-singing-1440w.jpg",
+      "mime": "image/jpeg",
+      "width": 1440
+    },
+    {
+      "path": "assets/moui-fire-logo.webp",
+      "mime": "image/webp",
+      "width": 400,
+      "height": 126
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude.png",
+      "mime": "image/png",
+      "width": 2880,
+      "height": 1800
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/moui-notes-screenshot-claude-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/og.png",
+      "mime": "image/png",
+      "width": 500,
+      "height": 158
+    },
+    {
+      "path": "assets/og-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/og-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll.png",
+      "mime": "image/png",
+      "width": 2878,
+      "height": 1668
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/screenshot-tui-suchprotokoll-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets.png",
+      "mime": "image/png",
+      "width": 2442,
+      "height": 624
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-960w.png",
+      "mime": "image/png",
+      "width": 960
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.webp",
+      "mime": "image/webp",
+      "width": 1440
+    },
+    {
+      "path": "assets/suchprotokoll-screehnshot-google-spreadsheets-1440w.png",
+      "mime": "image/png",
+      "width": 1440
+    },
+    {
+      "path": "assets/yaml-preview-mac.png",
+      "mime": "image/png",
+      "width": 1232,
+      "height": 1058
+    },
+    {
+      "path": "assets/yaml-preview-mac-480w.webp",
+      "mime": "image/webp",
+      "width": 480
+    },
+    {
+      "path": "assets/yaml-preview-mac-480w.png",
+      "mime": "image/png",
+      "width": 480
+    },
+    {
+      "path": "assets/yaml-preview-mac-960w.webp",
+      "mime": "image/webp",
+      "width": 960
+    },
+    {
+      "path": "assets/yaml-preview-mac-960w.png",
+      "mime": "image/png",
+      "width": 960
+    }
+  ]
+}

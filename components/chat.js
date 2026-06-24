@@ -13,6 +13,7 @@
 // absent) the chat behaves exactly as the MVP: an in-memory conversation, no store,
 // no URL writing. The declaration gates the whole feature.
 import { strings } from '../strings.js';
+import { gateView, askOutcome } from './chat-gate.js';
 import { renderAnswer, renumberCitations, monogram } from './chat-render.js';
 import { renderUntrusted } from '../markdown.js';
 import { currentRoute, buildHref } from '../navigation.js';
@@ -68,7 +69,9 @@ async function _mount(root) {
   if (!base) throw new Error('chat root missing data-route');
   const config = _config();
   const endpoint = config && config.endpoint;
-  const code = config && config.code;
+  const gate = config && config.gate;              // {scheme, check} | undefined
+  const SECRET_KEY = 'grove-chat-secret:' + base; // per-chat held secret (per-tab via sessionStorage)
+  const heldSecret = () => sessionStorage.getItem(SECRET_KEY); // the secret string, not a flag
   // Per-chat config keyed by base route. No-fallbacks: persist is a defined value
   // (Task 3 defaults absent → "none" at build), so its absence here means the config
   // is malformed, not "guess none". Treat a missing chats entry as the failed state.
@@ -244,75 +247,6 @@ async function _mount(root) {
     });
   };
 
-  if (persistent) {
-    // `closeDrawer` is declared before createSidebar so the select/new callbacks can
-    // close the drawer after navigating. In app mode (slot present) it stays a no-op
-    // because there is no drawer — the rail is always-visible chrome.
-    let closeDrawer = () => {};
-
-    sidebar = createSidebar({
-      onSelect: (slug) => { closeDrawer(); selectConversation(slug).catch((err) => console.error('chat: select failed', err)); },
-      onNew: () => { closeDrawer(); newConversation().catch((err) => console.error('chat: new failed', err)); },
-      onDelete: deleteConversation,
-    });
-
-    const slot = document.querySelector('[data-chat-sidebar-slot]');
-    if (slot) {
-      // App-shell: the rail is the chrome. Mount the conversation list into its slot.
-      slot.replaceChildren(sidebar.element);
-      // Mobile-first: the rail is an off-canvas drawer toggled by the hamburger; a
-      // backdrop closes it; selecting/new closes it (closeDrawer). Desktop CSS keeps
-      // the rail static and hides the hamburger + backdrop (≥768px).
-      const shell = root.closest('.app-shell');
-      if (shell) {
-        closeDrawer = () => shell.classList.remove('is-rail-open');
-        menu.addEventListener('click', () => shell.classList.toggle('is-rail-open'));
-        const backdrop = document.createElement('div');
-        backdrop.className = 'chat-backdrop';
-        backdrop.addEventListener('click', closeDrawer);
-        shell.appendChild(backdrop);
-      }
-    } else {
-      // In-page chat (page/article body): off-canvas drawer + backdrop as before.
-      // The layout wrapper is the flex row on desktop; on mobile the sidebar is an
-      // off-canvas drawer toggled by `is-drawer-open` on this wrapper (CSS owns the
-      // transform/backdrop).
-      const layout = document.createElement('div');
-      layout.className = 'chat-layout';
-      closeDrawer = () => layout.classList.remove('is-drawer-open');
-
-      // The hamburger toggles the drawer; the backdrop (under the drawer, fades in)
-      // closes it on click. Both are display:none on desktop where the rail is static.
-      menu.addEventListener('click', () => layout.classList.toggle('is-drawer-open'));
-      const backdrop = document.createElement('div');
-      backdrop.className = 'chat-backdrop';
-      backdrop.addEventListener('click', closeDrawer);
-
-      // Lay the sidebar beside the conversation pane. The pane already holds bar + log +
-      // composer. Backdrop sits between sidebar and pane in source order; CSS layers it.
-      root.insertBefore(layout, pane);
-      layout.append(sidebar.element, backdrop, pane);
-    }
-    // Restore BEFORE wiring submit so a deep-linked reload shows its conversation
-    // first; clean a dangling slug before anything renders. Runs once per mount in
-    // BOTH layouts (hoisted out of the branch so it can't be missed by a new branch).
-    await restoreFromUrl(true);
-    await refreshSidebar();
-    // No per-mount popstate listener: subtree restore on back/forward is handled by the
-    // router's remount. The dev catch-all returns this chat fragment for any slug under
-    // the base, so a same-base popstate → router _swap rewrites #main.innerHTML → the
-    // childList MutationObserver fires → _mount runs again → await restoreFromUrl(true)
-    // above re-derives the slug and restores. A chat-owned popstate listener would
-    // duplicate and race that restore, and leak (one dead listener per mount). Revisit
-    // ONLY if a production transport stops remounting on same-base slug changes (diffs
-    // and skips identical fragments); then the router — not a per-mount global listener —
-    // should own subtree restore.
-  } else {
-    // Non-local chat: no store, no sidebar — but the entry state still heads with
-    // the operator intro (when authored). renderFresh paints the empty log + intro.
-    renderFresh();
-  }
-
   // Name a fresh conversation on its first answer: build the record from the backend's
   // title, dedupe its slug against the namespace's taken slugs read FRESH at name time,
   // persist it, set it active, and push the slug into the URL. Transparent to the
@@ -341,63 +275,265 @@ async function _mount(root) {
     await idbPut(ns, rec);
   };
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const question = input.value.trim();
-    if (!question) return;
-    input.value = '';
-    _appendTurn(log, 'user', question);
-    const pending = _append(log, 'pending', strings.chat_working);
-    input.disabled = true; send.disabled = true;
-    try {
-      const headers = { 'Content-Type': 'application/json' };
-      if (code) headers['Authorization'] = 'Bearer ' + code;
-      const res = await fetch(endpoint.replace(/\/$/, '') + '/ask/' + encodeURIComponent(ask), {
-        method: 'POST', headers,
-        // Wire contract: turns are EXACTLY { role, content }. active.history may now
-        // carry `sources` on assistant turns (a client display concern); strip it.
-        body: JSON.stringify({ question, history: toWireTurns(active.history) }),
+  // Wire the submit handler and set up persistence/sidebar.
+  // Called either directly (no gate) or from renderGate's onAccept (after check 204).
+  // All references to `active`, `log`, `form`, `input`, `send`, `pane`, `bar`, `menu`,
+  // `sidebar`, `persistent`, `ns`, `gate`, `heldSecret`, `SECRET_KEY`, `chatCfg`,
+  // `endpoint`, `ask` are closed over from _mount.
+  const mountChatSurface = async () => {
+    if (persistent) {
+      // `closeDrawer` is declared before createSidebar so the select/new callbacks can
+      // close the drawer after navigating. In app mode (slot present) it stays a no-op
+      // because there is no drawer — the rail is always-visible chrome.
+      let closeDrawer = () => {};
+
+      sidebar = createSidebar({
+        onSelect: (slug) => { closeDrawer(); selectConversation(slug).catch((err) => console.error('chat: select failed', err)); },
+        onNew: () => { closeDrawer(); newConversation().catch((err) => console.error('chat: new failed', err)); },
+        onDelete: deleteConversation,
       });
-      pending.remove();
-      // 422 == the engine's citation_check refusal. Wire contract: it MUST match
-      // the serve's _ASK_STATUS["citation_check"] in shapes/corpus/service/app.py.
-      if (res.status === 422) {                              // deterministic refusal (citation_check)
-        const body = await res.json().catch(() => null);
-        const detail = body && body.error && body.error.detail;
-        _append(log, 'refused',
-          strings.chat_error_refused + (detail ? ' (' + detail + ')' : ''));
-        return;
+
+      const slot = document.querySelector('[data-chat-sidebar-slot]');
+      if (slot) {
+        // App-shell: the rail is the chrome. Mount the conversation list into its slot.
+        slot.replaceChildren(sidebar.element);
+        // Mobile-first: the rail is an off-canvas drawer toggled by the hamburger; a
+        // backdrop closes it; selecting/new closes it (closeDrawer). Desktop CSS keeps
+        // the rail static and hides the hamburger + backdrop (≥768px).
+        const shell = root.closest('.app-shell');
+        if (shell) {
+          closeDrawer = () => shell.classList.remove('is-rail-open');
+          menu.addEventListener('click', () => shell.classList.toggle('is-rail-open'));
+          const backdrop = document.createElement('div');
+          backdrop.className = 'chat-backdrop';
+          backdrop.addEventListener('click', closeDrawer);
+          shell.appendChild(backdrop);
+        }
+      } else {
+        // In-page chat (page/article body): off-canvas drawer + backdrop as before.
+        // The layout wrapper is the flex row on desktop; on mobile the sidebar is an
+        // off-canvas drawer toggled by `is-drawer-open` on this wrapper (CSS owns the
+        // transform/backdrop).
+        const layout = document.createElement('div');
+        layout.className = 'chat-layout';
+        closeDrawer = () => layout.classList.remove('is-drawer-open');
+
+        // The hamburger toggles the drawer; the backdrop (under the drawer, fades in)
+        // closes it on click. Both are display:none on desktop where the rail is static.
+        menu.addEventListener('click', () => layout.classList.toggle('is-drawer-open'));
+        const backdrop = document.createElement('div');
+        backdrop.className = 'chat-backdrop';
+        backdrop.addEventListener('click', closeDrawer);
+
+        // Lay the sidebar beside the conversation pane. The pane already holds bar + log +
+        // composer. Backdrop sits between sidebar and pane in source order; CSS layers it.
+        root.insertBefore(layout, pane);
+        layout.append(sidebar.element, backdrop, pane);
       }
-      if (res.status === 401) { _append(log, 'error', strings.chat_error_failed); return; }
-      if (!res.ok) {
-        _append(log, 'error', strings.chat_error_failed);
-        return;
-      }
-      const record = await res.json();
-      // Capture the SAME ordered source list the live render computes (positional,
-      // first-appearance order — sources[0] aligns with the renumbered [1]). It is
-      // stored on the assistant turn so a restored answer renders its sources list.
-      const { sources } = _appendAnswer(log, record, chatCfg);
-      const wasNamed = active.record !== null;
-      active.history.push({ role: 'user', content: question });
-      if (record.answer) active.history.push({ role: 'assistant', content: record.answer, sources });
-      if (persistent) {
-        // A refusal/answer with no answer text still names on first success (the turn
-        // happened); subsequent turns append. The store layer is loud on its own
-        // failures, so we don't swallow — but a persistence failure must not break the
-        // live conversation, which is already rendered.
-        if (!wasNamed) await nameAndPersist(record);
-        else await appendAndPersist();
-        // Reflect the named-on-first-answer record (new list entry, now active) and
-        // the bumped recency ordering after an append.
-        await refreshSidebar();
+      // Restore BEFORE wiring submit so a deep-linked reload shows its conversation
+      // first; clean a dangling slug before anything renders. Runs once per mount in
+      // BOTH layouts (hoisted out of the branch so it can't be missed by a new branch).
+      await restoreFromUrl(true);
+      await refreshSidebar();
+      // No per-mount popstate listener: subtree restore on back/forward is handled by the
+      // router's remount. The dev catch-all returns this chat fragment for any slug under
+      // the base, so a same-base popstate → router _swap rewrites #main.innerHTML → the
+      // childList MutationObserver fires → _mount runs again → await restoreFromUrl(true)
+      // above re-derives the slug and restores. A chat-owned popstate listener would
+      // duplicate and race that restore, and leak (one dead listener per mount). Revisit
+      // ONLY if a production transport stops remounting on same-base slug changes (diffs
+      // and skips identical fragments); then the router — not a per-mount global listener —
+      // should own subtree restore.
+    } else {
+      // Non-local chat: no store, no sidebar — but the entry state still heads with
+      // the operator intro (when authored). renderFresh paints the empty log + intro.
+      renderFresh();
+    }
+
+    if (!form._submitWired) {
+      form._submitWired = true;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const question = input.value.trim();
+        if (!question) return;
+        input.value = '';
+        _appendTurn(log, 'user', question);
+        const pending = _append(log, 'pending', strings.chat_working);
+        input.disabled = true; send.disabled = true;
+        try {
+          // Re-read the secret each ask — never a cached "we're authed" flag.
+          const headers = { 'Content-Type': 'application/json' };
+          const secret = heldSecret();
+          if (secret) headers['Authorization'] = 'Bearer ' + secret;
+          const res = await fetch(endpoint.replace(/\/$/, '') + '/ask/' + encodeURIComponent(ask), {
+            method: 'POST', headers,
+            // Wire contract: turns are EXACTLY { role, content }. active.history may now
+            // carry `sources` on assistant turns (a client display concern); strip it.
+            body: JSON.stringify({ question, history: toWireTurns(active.history) }),
+          });
+          pending.remove();
+          const outcome = askOutcome({ online: navigator.onLine, threw: false, status: res.status });
+          if (outcome === 'refused') {
+            const body = await res.json().catch(() => null);
+            const detail = body && body.error && body.error.detail;
+            _append(log, 'refused', strings.chat_error_refused + (detail ? ' (' + detail + ')' : ''));
+            return;
+          }
+          if (outcome === 'revoked') {                          // 401: secret no longer accepted
+            sessionStorage.removeItem(SECRET_KEY);             // drop the held secret
+            _append(log, 'error', strings.chat_revoked);
+            renderGate(pane, gate, SECRET_KEY, () => mountChatSurface().catch((err) => console.error('chat: mount failed', err)));
+            return;
+          }
+          if (outcome === 'over-limit') {                       // 429: per-request capacity judgment
+            _append(log, 'error', strings.chat_over_limit);    // stay on input, preserve it
+            return;
+          }
+          if (outcome === 'unavailable') {
+            console.warn('[chat] ask unavailable', { status: res.status });  // diagnosable
+            _append(log, 'error', strings.chat_unavailable);
+            return;
+          }
+          // outcome === 'answer'
+          const record = await res.json();
+          // Capture the SAME ordered source list the live render computes (positional,
+          // first-appearance order — sources[0] aligns with the renumbered [1]). It is
+          // stored on the assistant turn so a restored answer renders its sources list.
+          const { sources } = _appendAnswer(log, record, chatCfg);
+          const wasNamed = active.record !== null;
+          active.history.push({ role: 'user', content: question });
+          if (record.answer) active.history.push({ role: 'assistant', content: record.answer, sources });
+          if (persistent) {
+            // A refusal/answer with no answer text still names on first success (the turn
+            // happened); subsequent turns append. The store layer is loud on its own
+            // failures, so we don't swallow — but a persistence failure must not break the
+            // live conversation, which is already rendered.
+            if (!wasNamed) await nameAndPersist(record);
+            else await appendAndPersist();
+            // Reflect the named-on-first-answer record (new list entry, now active) and
+            // the bumped recency ordering after an append.
+            await refreshSidebar();
+          }
+        } catch (err) {
+          pending.remove();
+          const outcome = askOutcome({ online: navigator.onLine, threw: true, status: 0 });
+          if (outcome === 'offline') {
+            _append(log, 'error', strings.chat_offline);
+          } else {
+            // CORS rejection / timeout — collapses to "unavailable" for the user, but the
+            // operator must be able to tell it apart from a clean offline.
+            console.warn('[chat] ask failed (network/CORS/timeout)', err);
+            _append(log, 'error', strings.chat_unavailable);
+          }
+        } finally {
+          input.disabled = false; send.disabled = false;
+          input.focus();
+        }
+      });
+    }
+  };
+
+  // Storage-first boot: read sessionStorage BEFORE rendering anything.
+  // gateView decides gate vs input from secret presence only — no flash on reload.
+  const view = gateView({ hasGate: !!gate, hasSecret: !!heldSecret() });
+  if (view === 'gate') {
+    renderGate(pane, gate, SECRET_KEY, () => mountChatSurface().catch((err) => console.error('chat: mount failed', err)));
+    return;
+  }
+  await mountChatSurface();
+}
+
+// Render the secret-gate form inside the chat pane. Hides the log and composer while
+// the gate is shown; on 204 from gate.check it stores the secret in sessionStorage and
+// calls onAccept (which mounts the chat surface). Non-204 shows the gate error.
+// onAccept is called synchronously in a fire-and-forget pattern — the gate panels is
+// removed before the async mountChatSurface proceeds, so pane layout stays clean.
+function renderGate(pane, gate, secretKey, onAccept) {
+  // Hide log and composer — the gate is the only interactive surface while it's shown.
+  // They remain in the DOM so mountChatSurface (pane's existing children) can re-show
+  // them on accept without re-creating the elements.
+  const log = pane.querySelector('.chat-log');
+  const composer = pane.querySelector('.chat-composer');
+  if (log) log.style.display = 'none';
+  if (composer) composer.style.display = 'none';
+
+  const gatePanel = document.createElement('div');
+  gatePanel.className = 'chat-gate';
+
+  const prompt = document.createElement('p');
+  prompt.className = 'chat-gate-prompt';
+  prompt.textContent = strings.chat_gate_prompt;
+
+  const gateForm = document.createElement('form');
+  gateForm.className = 'chat-gate-form';
+
+  const label = document.createElement('label');
+  label.className = 'chat-gate-label';
+  label.textContent = strings.gate_label;
+
+  const secretInput = document.createElement('input');
+  secretInput.type = 'password';
+  secretInput.className = 'chat-gate-input';
+  secretInput.setAttribute('aria-label', strings.gate_label);
+  secretInput.autocomplete = 'off';
+
+  label.appendChild(secretInput);
+
+  const submitBtn = document.createElement('button');
+  submitBtn.type = 'submit';
+  submitBtn.className = 'chat-gate-submit';
+  submitBtn.textContent = strings.chat_gate_submit;
+
+  const error = document.createElement('p');
+  error.className = 'chat-gate-error';
+  error.style.display = 'none';
+
+  gateForm.append(label, submitBtn, error);
+  gatePanel.append(prompt, gateForm);
+  pane.appendChild(gatePanel);
+  secretInput.focus();
+
+  gateForm.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const secret = secretInput.value.trim();
+    if (!secret) return;
+    submitBtn.disabled = true;
+    error.style.display = 'none';
+    try {
+      const res = await fetch(gate.check, {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + secret },
+      });
+      if (res.status === 204) {
+        sessionStorage.setItem(secretKey, secret); // hold the secret string
+        // Remove the gate panel and restore log/composer before mounting the surface.
+        gatePanel.remove();
+        if (log) log.style.display = '';
+        if (composer) composer.style.display = '';
+        onAccept(); // fire-and-forget: mountChatSurface handles its own errors
+      } else {
+        const outcome = askOutcome({ online: navigator.onLine, threw: false, status: res.status });
+        if (outcome === 'revoked') {
+          error.textContent = strings.chat_gate_rejected;
+        } else {
+          console.warn('[chat] gate check failed', { status: res.status });
+          error.textContent = strings.chat_unavailable;
+        }
+        error.style.display = '';
+        submitBtn.disabled = false;
+        secretInput.focus();
       }
     } catch (err) {
-      pending.remove();
-      _append(log, 'error', strings.chat_error_failed);
-    } finally {
-      input.disabled = false; send.disabled = false;
-      input.focus();
+      const outcome = askOutcome({ online: navigator.onLine, threw: true, status: 0 });
+      if (outcome === 'offline') {
+        error.textContent = strings.chat_offline;
+      } else {
+        console.warn('[chat] gate check failed (network/CORS/timeout)', err);
+        error.textContent = strings.chat_unavailable;
+      }
+      error.style.display = '';
+      submitBtn.disabled = false;
+      secretInput.focus();
     }
   });
 }

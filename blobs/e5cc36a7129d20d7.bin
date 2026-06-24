@@ -1,0 +1,31 @@
+<div class="feed-grid">
+        <article class="card" data-stagger style="--stagger-index: 0">
+    <img class="card-thumbnail" src="/assets/google-ai-overview.png" alt="" loading="lazy">
+    <div class="card-body">
+        <a href="/insights/google-search-end-of-choice/" class="card-link">
+            <time datetime="2026-06-11">11.06.2026</time>
+            <h2 class="card-title">Google Search and the end Of Choice (and why DuckDuckGo is not the answer)</h2>
+            <p class="card-excerpt">Google Search became Google Overview with AI and now we have no transparency on what's an ad, what not. Even worse, the results are declining in quality. What do we do?</p>
+        </a>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 1">
+    <img class="card-thumbnail" src="/assets/QWOP_screenshot.jpg" alt="" loading="lazy">
+    <div class="card-body">
+        <a href="/insights/personal-computing-love-the-machine/" class="card-link">
+            <time datetime="2026-05-04">04.05.2026</time>
+            <h2 class="card-title">Local-First, or: How I Learned to Stop Browsing and Love the Machine</h2>
+            <p class="card-excerpt">Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?</p>
+        </a>
+    </div>
+</article>
+        <article class="card" data-stagger style="--stagger-index: 2">
+    <div class="card-body">
+        <a href="/insights/coding-out-of-first-principles/" class="card-link">
+            <time datetime="2026-04-22">22.04.2026</time>
+            <h2 class="card-title">Building Out Of First Principles</h2>
+            <p class="card-excerpt">How first principles can shape a new wave of creations</p>
+        </a>
+    </div>
+</article>
+        </div>

@@ -1,0 +1,21 @@
+<article class="article-layout">
+    <header class="post-hero">
+        <div class="post-hero-inner">
+            <h1>Data, Interface, Infrastructure</h1>
+            <time datetime="2026-04-13">13.04.2026</time>
+        </div>
+    </header>
+    <div class="post-body">
+        <p>When your data lives inside an application, the application owns the relationship. It decides how your things look, what you can do with them, and whether you can leave.</p>
+<h2>The separation</h2>
+<p>Three layers, loosely coupled:</p>
+<ol>
+<li><strong>Data</strong> — yours to move, verify, protect</li>
+<li><strong>Interface</strong> — replaceable when a better one comes along</li>
+<li><strong>Infrastructure</strong> — swappable when the technology moves</li>
+</ol>
+<p>Your data outlasts both interface and infrastructure, because it was never the application's to begin with.</p>
+
+    </div>
+</article>
+    <script type="application/json" id="toc-data">[{"id": "the-separation", "text": "The separation", "level": 2}]</script>

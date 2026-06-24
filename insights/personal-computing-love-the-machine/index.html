@@ -8,20 +8,23 @@
     <link rel="icon" href="/theme/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/theme/favicon.ico" sizes="32x32">
     <link rel="apple-touch-icon" href="/theme/apple-touch-icon.png">
-    <meta property="og:title" content="Moui Grove">
-    <meta property="og:description" content="A test grove.">
+    <meta property="og:title" content="Local-First, or: How I Learned to Stop Browsing and Love the Machine">
+    <meta property="og:description" content="Once upon a time we owned a personal computer, and it was pretty capable while offline. What happened? And more importantly—can we get that back?">
     <meta property="og:image" content="https://www.moui.io/assets/QWOP_screenshot.jpg">
     <meta property="og:url" content="https://www.moui.io/insights/personal-computing-love-the-machine/">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary">
     <link rel="alternate" type="application/rss+xml" title="Moui Grove" href="https://www.moui.io/feed.xml">
+    <style id="grove-fonts">
+@font-face { font-family: eb-garamond; src: url('/fonts/eb-garamond/EBGaramond-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: eb-garamond; src: url('/fonts/eb-garamond/EBGaramond-VariableItalic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+@font-face { font-family: lato; src: url('/fonts/lato/Lato-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: lato; src: url('/fonts/lato/Lato-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: lora; src: url('/fonts/lora/Lora-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: lora; src: url('/fonts/lora/Lora-VariableItalic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+
+    </style>
     <style id="grove-tokens">
-@font-face { font-family: eb-garamond; src: url('fonts/eb-garamond/EBGaramond-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
-@font-face { font-family: eb-garamond; src: url('fonts/eb-garamond/EBGaramond-VariableItalic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
-@font-face { font-family: lato; src: url('fonts/lato/Lato-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
-@font-face { font-family: lato; src: url('fonts/lato/Lato-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: lora; src: url('fonts/lora/Lora-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
-@font-face { font-family: lora; src: url('fonts/lora/Lora-VariableItalic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
 :root {
   --palette-primary: #ff1055;
   --palette-primary-dark: #d40d47;
@@ -257,48 +260,19 @@
     <link rel="stylesheet" href="/elements.css">
     <link rel="stylesheet" href="/transitions.css">
     <link rel="stylesheet" href="/syntax.css">
-    <link rel="modulepreload" href="/shell-web/transport.js">
-    <link rel="modulepreload" href="/components/gate.js">
     <script>
       (function() {
         var stored = localStorage.getItem('grove-theme');
         var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', theme);
-        var nav = performance.getEntriesByType('navigation')[0];
-        if (!nav || nav.type !== 'back_forward') {
-          document.documentElement.classList.add('animate-entrance');
-        }
-      })();
-      // Dev self-heal: if a service worker was registered on a previous visit,
-      // its cache-first strategy will pin old CSS/JS forever. On localhost we
-      // unregister it and purge caches, then reload once. Guarded by the
-      // registration check so there's no reload loop after the SW is gone.
-      (function() {
-        if (!(location.hostname === 'localhost' || location.hostname === '127.0.0.1')) return;
-        if (!('serviceWorker' in navigator)) return;
-        navigator.serviceWorker.getRegistrations().then(function(regs) {
-          if (regs.length === 0) return;
-          Promise.all(regs.map(function(r) { return r.unregister(); })).then(function() {
-            if ('caches' in self) {
-              caches.keys().then(function(keys) {
-                Promise.all(keys.map(function(k) { return caches.delete(k); })).then(function() {
-                  location.reload();
-                });
-              });
-            } else {
-              location.reload();
-            }
-          });
-        });
       })();
     </script>
 </head>
-<body data-layout="article" data-width="content">
+<body data-layout="index">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header" role="banner">
     <a href="/" class="site-title"><img src="/assets/moui-fire-logo.webp" alt="Moui Grove" class="site-logo" width="400" height="126"></a>
     <div class="header-actions">
-        <a href="/ghost" class="btn btn-accent btn-sm" data-external>Ghost</a>
         <a href="/es" class="btn btn-secondary btn-sm" data-external>ES</a>
         <a href="/archive/" class="btn btn-ghost btn-sm" aria-label="Archive">Archive</a>
         <button class="btn btn-accent btn-sm" data-action="open-search" data-interaction="press" aria-label="Search" type="button">
@@ -307,8 +281,7 @@
         </button>
     </div>
 </header>
-    <main id="main">
-        <article class="article-layout">
+    <main id="main"><article class="article-layout">
     <header class="post-hero">
         <div class="post-hero-inner">
             <h1>Local-First, or: How I Learned to Stop Browsing and Love the Machine</h1>
@@ -356,7 +329,7 @@
 
     </div>
 </article>
-    </main>
+    <script type="application/json" id="toc-data">[{"id": "data-privacy-matters-now-more-than-ever", "text": "Data privacy matters now more than ever", "level": 3}, {"id": "the-solution-is-actually-quite-simple-and-it-s-not-about-adding-cookie-managers-on-top-of-the-poor-ux-we-created", "text": "The solution is actually quite simple, and it's not about adding cookie managers on top of the poor UX we created.", "level": 3}, {"id": "a-few-notes", "text": "A few notes", "level": 6}]</script></main>
     <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
         <span>Moui Grove</span>
@@ -368,11 +341,10 @@
         <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Clear site data" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
         </button>
-        <span class="build-id">e977d0a140ce</span>
+        <span class="build-id">a37c9c735fdc</span>
     </div>
 </footer>
-    <script type="application/json" id="toc-data">[{"id": "data-privacy-matters-now-more-than-ever", "text": "Data privacy matters now more than ever", "level": 3}, {"id": "the-solution-is-actually-quite-simple-and-it-s-not-about-adding-cookie-managers-on-top-of-the-poor-ux-we-created", "text": "The solution is actually quite simple, and it's not about adding cookie managers on top of the poor UX we created.", "level": 3}, {"id": "a-few-notes", "text": "A few notes", "level": 6}]</script>
-    <script type="application/json" id="strings-data">{"search_placeholder": "Search posts...", "search_no_results": "No results found.", "search_aria": "Search", "search_input_aria": "Search posts", "toc": "Table of Contents", "toggle_theme": "Toggle theme", "clear_site": "Clear site data", "reading_progress": "Reading progress", "skip_to_content": "Skip to content", "gate_subtitle": "This site is private. Enter the access code to continue.", "gate_label": "Access code", "gate_submit": "Unlock", "gate_error": "Wrong access code — try again.", "load_error_title": "Unable to load", "load_error_body": "The grove could not be loaded. Check your connection and reload.", "archive_title": "Archive", "chat_input_placeholder": "Give me an idea...", "chat_send": "Write", "chat_working": "Writing...", "chat_sources": "Sources", "chat_error_refused": "The assistant refused this answer (it cited a passage it was not given).", "chat_error_failed": "Could not reach the assistant. Try again.", "chat_sidebar_label": "Drafts", "chat_new": "New draft", "chat_delete": "Delete", "chat_delete_cancel": "Cancel", "chat_delete_confirm": "Delete this draft? This can't be undone."}</script>
+    <script type="application/json" id="strings-data">{"search_placeholder": "Search posts...", "search_no_results": "No results found.", "search_aria": "Search", "search_input_aria": "Search posts", "toc": "Table of Contents", "toggle_theme": "Toggle theme", "clear_site": "Clear site data", "reading_progress": "Reading progress", "skip_to_content": "Skip to content", "gate_subtitle": "This site is private. Enter the access code to continue.", "gate_label": "Access code", "gate_submit": "Unlock", "gate_error": "Wrong access code — try again.", "load_error_title": "Unable to load", "load_error_body": "The grove could not be loaded. Check your connection and reload.", "archive_title": "Archive", "chat_input_placeholder": "Give me an idea...", "chat_send": "Write", "chat_working": "Writing...", "chat_sources": "Sources", "chat_error_refused": "The assistant refused this answer (it cited a passage it was not given).", "chat_error_failed": "Could not reach the assistant. Try again.", "chat_sidebar_label": "Drafts", "chat_new": "New draft", "chat_delete": "Delete", "chat_delete_cancel": "Cancel", "chat_delete_confirm": "Delete this draft? This can't be undone.", "chat_gate_prompt": "Enter your access code to use the assistant.", "chat_gate_submit": "Continue", "chat_gate_rejected": "That code wasn't accepted.", "chat_over_limit": "You're at your limit for this window.", "chat_revoked": "This code is no longer accepted.", "chat_offline": "You're offline.", "chat_unavailable": "The assistant is unavailable."}</script>
     <script type="module" src="/app.js"></script>
 </body>
 </html>
