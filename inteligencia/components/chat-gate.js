@@ -14,6 +14,7 @@ export function askOutcome({ online, threw, status }) {
   if (online === false) return 'offline';
   if (threw) return 'unavailable';     // CORS rejection / timeout — indistinguishable network error
   if (status === 401) return 'revoked';
+  if (status === 403) return 'not_permitted';
   if (status === 429) return 'over-limit';
   if (status === 422) return 'refused';
   if (status === 200) return 'answer';

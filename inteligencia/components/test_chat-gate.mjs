@@ -17,3 +17,11 @@ test('askOutcome: each status is its own first-class state', () => {
   assert.equal(askOutcome({ online: true, threw: false, status: 200 }), 'answer');
   assert.equal(askOutcome({ online: true, threw: false, status: 503 }), 'unavailable');
 });
+
+test('askOutcome maps 403 to not_permitted (valid code, ask not in role)', () => {
+  assert.equal(askOutcome({ online: true, threw: false, status: 403 }), 'not_permitted');
+});
+
+test('askOutcome still maps 401 to revoked (distinct from 403)', () => {
+  assert.equal(askOutcome({ online: true, threw: false, status: 401 }), 'revoked');
+});

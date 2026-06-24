@@ -70,7 +70,8 @@ async function _mount(root) {
   const config = _config();
   const endpoint = config && config.endpoint;
   const gate = config && config.gate;              // {scheme, check} | undefined
-  const SECRET_KEY = 'grove-chat-secret:' + base; // per-chat held secret (per-tab via sessionStorage)
+  const GROVE_KEY = (config && config.grove_key) || base;   // per-grove single entry; fall back to route only if absent
+  const SECRET_KEY = 'grove-chat-secret:' + GROVE_KEY;
   const heldSecret = () => sessionStorage.getItem(SECRET_KEY); // the secret string, not a flag
   // Per-chat config keyed by base route. No-fallbacks: persist is a defined value
   // (Task 3 defaults absent → "none" at build), so its absence here means the config
@@ -377,6 +378,10 @@ async function _mount(root) {
             const body = await res.json().catch(() => null);
             const detail = body && body.error && body.error.detail;
             _append(log, 'refused', strings.chat_error_refused + (detail ? ' (' + detail + ')' : ''));
+            return;
+          }
+          if (outcome === 'not_permitted') {            // 403: valid code, ask not in role
+            _append(log, 'error', strings.chat_not_permitted); // stay on input; no renderGate
             return;
           }
           if (outcome === 'revoked') {                          // 401: secret no longer accepted
