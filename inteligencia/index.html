@@ -379,10 +379,61 @@
   font-style: normal;
 }
 
-/* --- Chat surface: same place as the landing. Fonts (Lato) and colour tokens
-   already come from the theme; this only softens the shapes — pill composer,
-   rounded bubbles, circular animal avatar — so the assistant reads as the same
-   warm, calm world as the cards. Scoped to :root; no engine/renderer changes. --- */
+/* --- Chat surface: the same modern, confident world as the landing.
+   The shared chat defaults shrink everything to 0.85 and mute the hierarchy,
+   which reads bland. The landing's cues — big bold sans headings, tracked-out
+   kicker labels, a strong type hierarchy, teal reserved for ACTIONS — are
+   brought to the assistant here. Scoped to :root; no engine/renderer change. --- */
+
+/* Undo the shared 0.85 shrink — the landing is confident and large. */
+:root .chat-layout { font-size: var(--font-base); }
+
+/* Rail brand reads like the landing wordmark: dark + tracked, not teal. */
+:root .chat-rail-brand .site-title,
+:root .chat-rail-brand {
+  color: var(--color-text-resolved);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: calc(var(--font-base) * 0.92);
+}
+:root .chat-sidebar-label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Bot identity: a confident heading, not a tiny muted label. */
+:root .chat-identity { gap: var(--space-md); margin-bottom: var(--space-md); }
+:root .chat-identity-name,
+:root .chat-identity-header .chat-identity-name {
+  font-family: var(--font-header);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--color-text-resolved);
+}
+
+/* Bigger animal avatar — echoes the landing cards' generous illustration. */
+:root .chat-avatar {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 999px;
+  padding: 4px;
+}
+:root .chat-avatar-mono { border-radius: 999px; }
+
+/* Intro reads like the landing's hero subtext: larger, calm, confident. */
+:root .chat-intro {
+  font-family: var(--font-header);
+  font-size: 1.2rem;
+  line-height: 1.45;
+  color: var(--color-text-resolved);
+  opacity: 0.82;
+}
+
+/* Answer: comfortable reading size. */
+:root .chat-turn-assistant .chat-answer { font-size: 1.05rem; line-height: 1.7; }
+
+/* Composer: soft pill, a touch larger; teal stays the action colour (send). */
 :root .chat-composer {
   border-radius: 999px;
   padding-inline: var(--space-md);
@@ -393,22 +444,23 @@
   background: var(--color-bg-resolved);
   border-color: var(--color-accent-resolved);
 }
-:root .chat-send {
-  border-radius: 999px;
-}
-:root .chat-turn-user {
-  border-radius: 1.1rem 1.1rem 0.35rem 1.1rem;
-}
-:root .chat-avatar,
-:root .chat-avatar-mono {
-  border-radius: 999px;
-}
-:root .chat-identity-name {
+:root .chat-input { font-size: 1.05rem; }
+:root .chat-send { border-radius: 999px; }
+:root .chat-turn-user { border-radius: 1.1rem 1.1rem 0.35rem 1.1rem; }
+
+/* Gate: a confident heading + generous field; teal action kept. */
+:root .chat-gate { gap: var(--space-lg); }
+:root .chat-gate-prompt {
   font-family: var(--font-header);
-  letter-spacing: -0.01em;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
 }
-:root .chat-intro {
-  font-family: var(--font-header);
+:root .chat-gate-input {
+  border-radius: 0.75rem;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 1.05rem;
 }
 /* Inteligencia dark — polish only. Colours come from ../dark/tokens.yaml;
    these are the dark-mode tweaks to shadows/borders on teal-over-charcoal. */
