@@ -807,6 +807,12 @@ body[data-layout="app"] .app-shell.is-rail-open > .chat-backdrop {
   pointer-events: auto;
 }
 
+/* Keep the server-rendered rail out of the first paint until chat.js mounts the
+   conversation surface (it adds .chat-ready). The gated path never adds it — the
+   gate shows instead — so the rail can't flash before the gate hides it. In the
+   dev server the surface is client-rendered, so this is a no-op there. */
+body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; }
+
 @media (min-width: 768px) {
   /* Desktop: the rail is the static left rail; no drawer, no hamburger, no backdrop. */
   body[data-layout="app"] .chat-rail {

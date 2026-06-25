@@ -283,6 +283,11 @@ async function _mount(root) {
   // `sidebar`, `persistent`, `ns`, `gate`, `heldSecret`, `SECRET_KEY`, `chatCfg`,
   // `endpoint`, `ask` are closed over from _mount.
   const mountChatSurface = async () => {
+    // Reveal the rail now that we're mounting the surface (not gating). The rail is
+    // hidden until .chat-ready so the live/static-rendered rail never flashes before
+    // a gate; the gated path (renderGate) never reaches here, so it stays hidden.
+    const appShellEl = root.closest('.app-shell');
+    if (appShellEl) appShellEl.classList.add('chat-ready');
     if (persistent) {
       // `closeDrawer` is declared before createSidebar so the select/new callbacks can
       // close the drawer after navigating. In app mode (slot present) it stays a no-op
