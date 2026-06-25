@@ -447,25 +447,11 @@
 :root .chat-send { border-radius: 999px; }
 :root .chat-turn-user { border-radius: 1.1rem 1.1rem 0.35rem 1.1rem; }
 
-/* Gate: a confident heading + generous field; teal action kept. */
-:root .chat-gate { gap: var(--space-lg); }
-:root .chat-gate-prompt {
-  font-family: var(--font-header);
-  font-size: clamp(1.4rem, 3vw, 1.9rem);
-  font-weight: 800;
-  letter-spacing: -0.015em;
-  line-height: 1.15;
-}
-:root .chat-gate-input {
-  border-radius: 0.75rem;
-  padding: var(--space-sm) var(--space-md);
-  font-size: 1.05rem;
-}
-
 /* Chromeless chat gate — the shared access-gate rendered full-screen into the
    chat root. While gated, the rail/app-shell chrome disappears so the code
    screen stands alone, identical to the encrypted-grove gate. */
 :root .app-shell:has(.chat-gated) .chat-rail { display: none; }
+:root .chat-gated .chat-pane { display: none; }
 :root .chat-gated .gate {
   min-height: 70vh;
   display: flex;
@@ -475,6 +461,20 @@
   gap: var(--space-md);
   text-align: center;
 }
+
+/* The gate prompt reads like the landing: big, bold, confident — not muted prose. */
+:root .gate-subtitle {
+  font-family: var(--font-header);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--color-text-resolved);
+  max-width: 26rem;
+  margin: 0;
+}
+:root .gate-form { gap: var(--space-md); }
+:root .gate-form input { border-radius: 0.75rem; font-size: 1.05rem; }
 /* Inteligencia dark — polish only. Colours come from ../dark/tokens.yaml;
    these are the dark-mode tweaks to shadows/borders on teal-over-charcoal. */
 
@@ -539,12 +539,7 @@
 </head>
 <body data-layout="article" data-width="content">
     <a class="skip-link" href="#main">Ir al contenido</a>
-    <header class="site-header" role="banner">
-    <a href="/inteligencia/" class="site-title">Inteligencia Narrativa</a>
-    <div class="header-actions">
-        
-    </div>
-</header>
+    
     <main id="main">
         <article class="article-layout">
     <header class="post-hero">
@@ -582,7 +577,7 @@
         <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Borrar datos del sitio" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
         </button>
-        <span class="build-id">4f3bc17310c4</span>
+        <span class="build-id">f4874a044b3f</span>
     </div>
 </footer>
     <script type="application/json" id="toc-data">[{"id": "disclaimer-y-transparencia", "text": "Disclaimer y transparencia", "level": 2}, {"id": "c-mo-se-usan-los-datos-que-la-gente-ingresa-en-el-chatbot", "text": "\u00bfC\u00f3mo se usan los datos que la gente ingresa en el chatbot?", "level": 2}, {"id": "uso-justo", "text": "Uso justo", "level": 2}]</script>

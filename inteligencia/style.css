@@ -847,6 +847,29 @@ body[data-layout="app"] .app-shell.is-rail-open > .chat-backdrop {
   margin-bottom: 0;
 }
 
+/* access-gate.js emits a bare <label> wrapping a raw <input>; stack them and
+   give the field real shape so the shared gate isn't an unstyled inline box. */
+.gate-form label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  align-items: stretch;
+  text-align: left;
+}
+.gate-form input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border-resolved);
+  border-radius: 0.6rem;
+  background: var(--color-bg-resolved);
+  color: var(--color-text-resolved);
+  font: inherit;
+}
+.gate-form input:focus {
+  outline: none;
+  border-color: var(--color-accent-resolved);
+}
+
 .gate-error {
   font-size: calc(var(--font-base) * var(--scale-sm));
   min-height: 1.2em;
@@ -1032,36 +1055,6 @@ body[data-layout="app"] .app-shell.is-rail-open > .chat-backdrop {
             border-radius: 50%;
             background: var(--color-btn-primary-resolved);
             color: var(--color-btn-primary-text-resolved); }
-
-/* Secret gate: shown in place of the log+composer until the code is accepted.
- * Centered column, same max-width as the composer, using only existing tokens. */
-.chat-gate { display: flex; flex-direction: column; align-items: center;
-            justify-content: center; flex: 1; gap: var(--space-md);
-            max-width: 36rem; margin: 0 auto; padding: var(--space-lg) 0; }
-.chat-gate-prompt { margin: 0; text-align: center; color: var(--color-text-resolved); }
-.chat-gate-form { display: flex; flex-direction: column; gap: var(--space-sm);
-            width: 100%; }
-.chat-gate-label { display: flex; flex-direction: column; gap: var(--space-xs);
-            font-size: calc(var(--font-base) * var(--scale-sm));
-            color: var(--color-text-secondary-resolved); }
-.chat-gate-input { padding: var(--space-xs) var(--space-sm);
-            border: 1px solid var(--color-border-resolved);
-            border-radius: var(--space-sm);
-            background: var(--color-bg-resolved); color: var(--color-text-resolved);
-            font: inherit; }
-.chat-gate-input:focus { outline: none; border-color: var(--color-accent-resolved); }
-.chat-gate-submit { display: inline-flex; align-items: center; justify-content: center;
-            padding: var(--space-xs) var(--space-md); border: none; cursor: pointer;
-            border-radius: 1.6rem;
-            background: var(--color-btn-primary-resolved);
-            color: var(--color-btn-primary-text-resolved); font: inherit;
-            font-weight: var(--weight-heading); }
-.chat-gate-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-.chat-gate-error { margin: 0; font-size: calc(var(--font-base) * var(--scale-sm));
-            color: var(--color-text-secondary-resolved);
-            border: 1px solid var(--color-banner-error-border-resolved);
-            padding: var(--space-xs) var(--space-sm);
-            border-radius: var(--space-xs); }
 
 /* --- chat sidebar (persist: local) --- */
 /* BASE: off-canvas left drawer over a backdrop scrim. The layout is the positioning

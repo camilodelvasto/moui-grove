@@ -30,12 +30,19 @@ export function createRouter({ strategy, loadPage, basePath, onBeforeNavigate })
     // transport does, since dev has no manifest for onBeforeNavigate). Apply BEFORE the
     // swap so the layout CSS is correct as the new content lands. Prod's loadPage returns
     // only html — onBeforeNavigate already set these from the manifest — so this is a no-op.
+    const fromLayout = document.body.dataset.layout;
     if (result.layout) {
       document.body.dataset.layout = result.layout;
       document.body.dataset.width = result.width || 'content';
     }
+    const toLayout = document.body.dataset.layout;
 
-    if (document.startViewTransition) {
+    // The `app` layout is a full-viewport surface (the chat app-shell). Cross-fading
+    // it against a content/landing page — or vice-versa on Back — reads as a flash and
+    // layout shift, so swap WITHOUT the View Transition whenever either side is `app`.
+    const crossesAppShell = fromLayout === 'app' || toLayout === 'app';
+
+    if (document.startViewTransition && !crossesAppShell) {
       document.startViewTransition(() => { main.innerHTML = result.html; });
     } else {
       main.innerHTML = result.html;
