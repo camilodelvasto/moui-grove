@@ -10,10 +10,9 @@
 import { decryptContent } from '../decrypt-runtime.js';
 import { initBundleTransport, bundleTransport, setBundleMnemonic } from '../bundle-transport.js';
 import { registerTransport } from '../transport.js';
-import { createInput } from '../elements/input.js';
-import { createButton } from '../elements/button.js';
 import { strings } from '../strings.js';
 import { getBasePath } from '../base-path.js';
+import { renderAccessGate } from './access-gate.js';
 
 const SESSION_KEY = 'grove-mnemonic';
 
@@ -116,59 +115,27 @@ function _activate(decryptedBundle, mnemonic, onUnlock) {
 function _renderGate(container, envelope, onUnlock) {
   const siteTitle = envelope.meta?.title || 'Protected site';
 
+  // Site title heading — above the shared access-gate panel.
   const heading = document.createElement('h1');
   heading.textContent = siteTitle;
-
-  const subtitle = document.createElement('p');
-  subtitle.textContent = strings.gate_subtitle || 'This site is private. Enter the access code to continue.';
-  subtitle.className = 'gate-subtitle';
-
-  const form = document.createElement('form');
-  form.autocomplete = 'off';
-  form.className = 'gate-form';
-
-  const inputGroup = createInput({
-    label: strings.gate_label || 'Access code',
-    type: 'password',
-    name: 'mnemonic',
-    required: true,
-  });
-  form.appendChild(inputGroup);
-
-  // Error text — always present, visibility-toggled. No layout shift.
-  const error = document.createElement('p');
-  error.className = 'gate-error';
-  error.textContent = '\u00A0';
-  error.setAttribute('role', 'status');
-  form.appendChild(error);
-
-  const btn = createButton({ label: strings.gate_submit || 'Unlock', type: 'submit' });
-  form.appendChild(btn);
-
   container.appendChild(heading);
-  container.appendChild(subtitle);
-  container.appendChild(form);
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const input = form.querySelector('input[name="mnemonic"]');
-    const mnemonic = input.value.trim();
-    if (!mnemonic) return;
-
-    try {
-      const decrypted = await decryptContent(envelope, mnemonic);
-      sessionStorage.setItem(SESSION_KEY, mnemonic);
-      await _sendMnemonicToSW(mnemonic);
-      _activate(decrypted, mnemonic, onUnlock);
-    } catch (err) {
-      console.error('Gate decrypt failed:', err);
-      error.textContent = strings.gate_error || 'Wrong access code — try again.';
-      error.classList.add('gate-error--visible');
-      input.value = '';
-      input.focus();
-    }
+  // Shared code-entry UI. Decrypt/session/SW logic stays here as the onSubmit.
+  renderAccessGate({
+    root: container,
+    subtitle: strings.gate_subtitle || 'This site is private. Enter the access code to continue.',
+    label: strings.gate_label || 'Access code',
+    submit: strings.gate_submit || 'Unlock',
+    onSubmit: async (mnemonic, { showError }) => {
+      try {
+        const decrypted = await decryptContent(envelope, mnemonic);
+        sessionStorage.setItem(SESSION_KEY, mnemonic);
+        await _sendMnemonicToSW(mnemonic);
+        _activate(decrypted, mnemonic, onUnlock);
+      } catch (err) {
+        console.error('Gate decrypt failed:', err);
+        showError(strings.gate_error || 'Wrong access code — try again.');
+      }
+    },
   });
-
-  const input = form.querySelector('input[name="mnemonic"]');
-  if (input) input.focus();
 }

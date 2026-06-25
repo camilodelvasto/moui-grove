@@ -462,6 +462,20 @@
   padding: var(--space-sm) var(--space-md);
   font-size: 1.05rem;
 }
+
+/* Chromeless chat gate — the shared access-gate rendered full-screen into the
+   chat root. While gated, the rail/app-shell chrome disappears so the code
+   screen stands alone, identical to the encrypted-grove gate. */
+:root .app-shell:has(.chat-gated) .chat-rail { display: none; }
+:root .chat-gated .gate {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  text-align: center;
+}
 /* Inteligencia dark — polish only. Colours come from ../dark/tokens.yaml;
    these are the dark-mode tweaks to shadows/borders on teal-over-charcoal. */
 

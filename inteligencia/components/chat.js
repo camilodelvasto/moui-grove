@@ -21,6 +21,7 @@ import { makeRecord, dedupeSlug, slugFromRoute, toWireTurns, toStoredTurns } fro
 import { get as idbGet, put as idbPut, list as idbList, remove as idbRemove } from './chat-idb.js';
 import { create as createSidebar, confirmDelete } from './chat-sidebar.js';
 import { open as openModal } from './modal.js';
+import { renderAccessGate } from './access-gate.js';
 
 // Static, trusted icon literals — NOT untrusted model/visitor content. Hardcoded SVG
 // constants assigned via innerHTML are safe (no interpolation) and do not touch the
@@ -387,7 +388,7 @@ async function _mount(root) {
           if (outcome === 'revoked') {                          // 401: secret no longer accepted
             sessionStorage.removeItem(SECRET_KEY);             // drop the held secret
             _append(log, 'error', strings.chat_revoked);
-            renderGate(pane, gate, SECRET_KEY, () => mountChatSurface().catch((err) => console.error('chat: mount failed', err)));
+            renderGate(root, gate, SECRET_KEY, () => mountChatSurface().catch((err) => console.error('chat: mount failed', err)));
             return;
           }
           if (outcome === 'over-limit') {                       // 429: per-request capacity judgment
@@ -442,104 +443,57 @@ async function _mount(root) {
   // gateView decides gate vs input from secret presence only — no flash on reload.
   const view = gateView({ hasGate: !!gate, hasSecret: !!heldSecret() });
   if (view === 'gate') {
-    renderGate(pane, gate, SECRET_KEY, () => mountChatSurface().catch((err) => console.error('chat: mount failed', err)));
+    renderGate(root, gate, SECRET_KEY, () => mountChatSurface().catch((err) => console.error('chat: mount failed', err)));
     return;
   }
   await mountChatSurface();
 }
 
-// Render the secret-gate form inside the chat pane. Hides the log and composer while
-// the gate is shown; on 204 from gate.check it stores the secret in sessionStorage and
+// Render the secret-gate full-screen chromeless. The chat root gets a chat-gated class
+// so CSS hides the rail/app-shell while the gate is shown; on 204 from gate.check it
+// stores the secret in sessionStorage, removes the class, removes the gate panel, and
 // calls onAccept (which mounts the chat surface). Non-204 shows the gate error.
-// onAccept is called synchronously in a fire-and-forget pattern — the gate panels is
-// removed before the async mountChatSurface proceeds, so pane layout stays clean.
-function renderGate(pane, gate, secretKey, onAccept) {
-  // Hide log and composer — the gate is the only interactive surface while it's shown.
-  // They remain in the DOM so mountChatSurface (pane's existing children) can re-show
-  // them on accept without re-creating the elements.
-  const log = pane.querySelector('.chat-log');
-  const composer = pane.querySelector('.chat-composer');
-  if (log) log.style.display = 'none';
-  if (composer) composer.style.display = 'none';
+// onAccept is called synchronously in a fire-and-forget pattern — the gate panel is
+// removed before the async mountChatSurface proceeds, so root layout stays clean.
+function renderGate(root, gate, secretKey, onAccept) {
+  root.classList.add('chat-gated');   // CSS hides the rail/app-shell while gated
 
-  const gatePanel = document.createElement('div');
-  gatePanel.className = 'chat-gate';
-
-  const prompt = document.createElement('p');
-  prompt.className = 'chat-gate-prompt';
-  prompt.textContent = strings.chat_gate_prompt;
-
-  const gateForm = document.createElement('form');
-  gateForm.className = 'chat-gate-form';
-
-  const label = document.createElement('label');
-  label.className = 'chat-gate-label';
-  label.textContent = strings.gate_label;
-
-  const secretInput = document.createElement('input');
-  secretInput.type = 'password';
-  secretInput.className = 'chat-gate-input';
-  secretInput.setAttribute('aria-label', strings.gate_label);
-  secretInput.autocomplete = 'off';
-
-  label.appendChild(secretInput);
-
-  const submitBtn = document.createElement('button');
-  submitBtn.type = 'submit';
-  submitBtn.className = 'chat-gate-submit';
-  submitBtn.textContent = strings.chat_gate_submit;
-
-  const error = document.createElement('p');
-  error.className = 'chat-gate-error';
-  error.style.display = 'none';
-
-  gateForm.append(label, submitBtn, error);
-  gatePanel.append(prompt, gateForm);
-  pane.appendChild(gatePanel);
-  secretInput.focus();
-
-  gateForm.addEventListener('submit', async (ev) => {
-    ev.preventDefault();
-    const secret = secretInput.value.trim();
-    if (!secret) return;
-    submitBtn.disabled = true;
-    error.style.display = 'none';
-    try {
-      const res = await fetch(gate.check, {
-        method: 'POST',
-        headers: { 'Authorization': 'Bearer ' + secret },
-      });
-      if (res.status === 204) {
-        sessionStorage.setItem(secretKey, secret); // hold the secret string
-        // Remove the gate panel and restore log/composer before mounting the surface.
-        gatePanel.remove();
-        if (log) log.style.display = '';
-        if (composer) composer.style.display = '';
-        onAccept(); // fire-and-forget: mountChatSurface handles its own errors
-      } else {
+  const gatePanel = renderAccessGate({
+    root,
+    subtitle: strings.chat_gate_prompt,
+    label: strings.gate_label,
+    submit: strings.chat_gate_submit,
+    onSubmit: async (secret, { showError }) => {
+      try {
+        const res = await fetch(gate.check, {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + secret },
+        });
+        if (res.status === 204) {
+          sessionStorage.setItem(secretKey, secret); // hold the secret string
+          // Remove the gate panel and the gated class before mounting the surface.
+          gatePanel.remove();
+          root.classList.remove('chat-gated');
+          onAccept(); // fire-and-forget: mountChatSurface handles its own errors
+          return;
+        }
         const outcome = askOutcome({ online: navigator.onLine, threw: false, status: res.status });
         if (outcome === 'revoked') {
-          error.textContent = strings.chat_gate_rejected;
+          showError(strings.chat_gate_rejected);
         } else {
           console.warn('[chat] gate check failed', { status: res.status });
-          error.textContent = strings.chat_unavailable;
+          showError(strings.chat_unavailable);
         }
-        error.style.display = '';
-        submitBtn.disabled = false;
-        secretInput.focus();
+      } catch (err) {
+        const outcome = askOutcome({ online: navigator.onLine, threw: true, status: 0 });
+        if (outcome === 'offline') {
+          showError(strings.chat_offline);
+        } else {
+          console.warn('[chat] gate check failed (network/CORS/timeout)', err);
+          showError(strings.chat_unavailable);
+        }
       }
-    } catch (err) {
-      const outcome = askOutcome({ online: navigator.onLine, threw: true, status: 0 });
-      if (outcome === 'offline') {
-        error.textContent = strings.chat_offline;
-      } else {
-        console.warn('[chat] gate check failed (network/CORS/timeout)', err);
-        error.textContent = strings.chat_unavailable;
-      }
-      error.style.display = '';
-      submitBtn.disabled = false;
-      secretInput.focus();
-    }
+    },
   });
 }
 

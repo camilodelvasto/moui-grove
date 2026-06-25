@@ -461,6 +461,20 @@
   padding: var(--space-sm) var(--space-md);
   font-size: 1.05rem;
 }
+
+/* Chromeless chat gate — the shared access-gate rendered full-screen into the
+   chat root. While gated, the rail/app-shell chrome disappears so the code
+   screen stands alone, identical to the encrypted-grove gate. */
+:root .app-shell:has(.chat-gated) .chat-rail { display: none; }
+:root .chat-gated .gate {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  text-align: center;
+}
 /* Inteligencia dark — polish only. Colours come from ../dark/tokens.yaml;
    these are the dark-mode tweaks to shadows/borders on teal-over-charcoal. */
 
@@ -576,7 +590,7 @@
         <button class="btn btn-ghost btn-sm btn-icon" data-action="clear-site" data-on-clear="reload" aria-label="Borrar datos del sitio" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
         </button>
-        <span class="build-id">037f3cb0e2bc</span>
+        <span class="build-id">4f3bc17310c4</span>
     </div>
 </footer>
     <script type="application/json" id="toc-data">[{"id": "instrucciones-de-uso", "text": "Instrucciones de uso", "level": 2}, {"id": "qu-se-puede-hacer-con-el-chatbot", "text": "\u00bfQu\u00e9 se puede hacer con el chatbot?", "level": 2}, {"id": "qui-n-hizo-este-chatbot-y-por-qu", "text": "\u00bfQui\u00e9n hizo este chatbot y por qu\u00e9?", "level": 2}, {"id": "cu-les-son-los-contenidos-que-conforman-el-corpus", "text": "\u00bfCu\u00e1les son los contenidos que conforman el corpus?", "level": 2}]</script>

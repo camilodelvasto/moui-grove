@@ -462,6 +462,20 @@
   padding: var(--space-sm) var(--space-md);
   font-size: 1.05rem;
 }
+
+/* Chromeless chat gate — the shared access-gate rendered full-screen into the
+   chat root. While gated, the rail/app-shell chrome disappears so the code
+   screen stands alone, identical to the encrypted-grove gate. */
+:root .app-shell:has(.chat-gated) .chat-rail { display: none; }
+:root .chat-gated .gate {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  text-align: center;
+}
 /* Inteligencia dark — polish only. Colours come from ../dark/tokens.yaml;
    these are the dark-mode tweaks to shadows/borders on teal-over-charcoal. */
 
@@ -528,16 +542,16 @@
     <a class="skip-link" href="#main">Ir al contenido</a>
     
     <main id="main">
-        <style>[data-p-463c3cb2] .land { max-width: 64rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; } [data-p-463c3cb2] .land-brand { display: flex; justify-content: space-between; align-items: center;
-  font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; } [data-p-463c3cb2] .land-logo { font-weight: 700; } [data-p-463c3cb2] .land-kicker { opacity: .6; } [data-p-463c3cb2] .land-hero { padding: 3.5rem 0 2.5rem; } [data-p-463c3cb2] .land-hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.08; margin: 0 0 1rem; } [data-p-463c3cb2] .land-hero p { font-size: 1.15rem; opacity: .8; margin: 0; } [data-p-463c3cb2] .land-actions h2, [data-p-463c3cb2] .land-faq h2 { font-size: 1.4rem; margin: 0 0 1.25rem; } [data-p-463c3cb2] .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; } [data-p-463c3cb2] .card { display: flex; flex-direction: column; gap: .5rem; padding: 1.5rem;
+        <style>[data-p-f08180aa] .land { max-width: 64rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; } [data-p-f08180aa] .land-brand { display: flex; justify-content: space-between; align-items: center;
+  font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; } [data-p-f08180aa] .land-logo { font-weight: 700; } [data-p-f08180aa] .land-kicker { opacity: .6; } [data-p-f08180aa] .land-hero { padding: 3.5rem 0 2.5rem; } [data-p-f08180aa] .land-hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.08; margin: 0 0 1rem; } [data-p-f08180aa] .land-hero p { font-size: 1.15rem; opacity: .8; margin: 0; } [data-p-f08180aa] .land-actions h2, [data-p-f08180aa] .land-faq h2 { font-size: 1.4rem; margin: 0 0 1.25rem; } [data-p-f08180aa] .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; } [data-p-f08180aa] .card { display: flex; flex-direction: column; gap: .5rem; padding: 1.5rem;
   border-radius: 1rem; text-decoration: none; color: inherit;
-  transition: transform .12s ease; } [data-p-463c3cb2] .card:hover { transform: translateY(-3px); } [data-p-463c3cb2] .card img { width: 96px; height: 96px; object-fit: contain; } [data-p-463c3cb2] .card-kicker { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; opacity: .65; } [data-p-463c3cb2] .card-title { font-size: 1.05rem; font-weight: 600; line-height: 1.25; } [data-p-463c3cb2] .card-estratega { background: #F9E0FF; } [data-p-463c3cb2] .card-flexible { background: #FBFFD0; } [data-p-463c3cb2] .card-audiencias { background: #FFE2D0; } [data-p-463c3cb2] .land-faq { padding-top: 3rem; } [data-p-463c3cb2] .land-faq ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; } [data-p-463c3cb2] .land-fine { margin-top: 1.5rem; font-size: .85rem; opacity: .6; }@media (max-width: 640px) {
-   [data-p-463c3cb2] .cards { grid-template-columns: 1fr; }
-   [data-p-463c3cb2] .land-brand { flex-direction: column; gap: .25rem; align-items: flex-start; }
-}</style><main class="land" data-p-463c3cb2>
+  transition: transform .12s ease; } [data-p-f08180aa] .card:hover { transform: translateY(-3px); } [data-p-f08180aa] .card img { width: 96px; height: 96px; object-fit: contain; } [data-p-f08180aa] .card-kicker { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; opacity: .65; } [data-p-f08180aa] .card-title { font-size: 1.05rem; font-weight: 600; line-height: 1.25; } [data-p-f08180aa] .card-estratega { background: #F9E0FF; } [data-p-f08180aa] .card-flexible { background: #FBFFD0; } [data-p-f08180aa] .card-audiencias { background: #FFE2D0; } [data-p-f08180aa] .land-faq { padding-top: 3rem; } [data-p-f08180aa] .land-faq ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; } [data-p-f08180aa] .land-fine { margin-top: 1.5rem; font-size: .85rem; opacity: .6; }@media (max-width: 640px) {
+   [data-p-f08180aa] .cards { grid-template-columns: 1fr; }
+   [data-p-f08180aa] .land-brand { flex-direction: column; gap: .25rem; align-items: flex-start; }
+}</style><main class="land" data-p-f08180aa>
   <header class="land-brand">
     <span class="land-logo">Inteligencia Narrativa</span>
-    <span class="land-kicker">/THE GREEN GRASS TIME/</span>
+    <span class="land-kicker">/PUENTES + SENSATA/</span>
   </header>
 
   <section class="land-hero">
