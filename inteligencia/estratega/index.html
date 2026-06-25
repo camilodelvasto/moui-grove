@@ -378,6 +378,38 @@
   color: var(--color-text-secondary-resolved);
   font-style: normal;
 }
+
+/* --- Chat surface: same place as the landing. Fonts (Lato) and colour tokens
+   already come from the theme; this only softens the shapes — pill composer,
+   rounded bubbles, circular animal avatar — so the assistant reads as the same
+   warm, calm world as the cards. Scoped to :root; no engine/renderer changes. --- */
+:root .chat-composer {
+  border-radius: 999px;
+  padding-inline: var(--space-md);
+  background: color-mix(in srgb, var(--color-accent-resolved) 7%, var(--color-bg-resolved));
+  border-color: transparent;
+}
+:root .chat-composer:focus-within {
+  background: var(--color-bg-resolved);
+  border-color: var(--color-accent-resolved);
+}
+:root .chat-send {
+  border-radius: 999px;
+}
+:root .chat-turn-user {
+  border-radius: 1.1rem 1.1rem 0.35rem 1.1rem;
+}
+:root .chat-avatar,
+:root .chat-avatar-mono {
+  border-radius: 999px;
+}
+:root .chat-identity-name {
+  font-family: var(--font-header);
+  letter-spacing: -0.01em;
+}
+:root .chat-intro {
+  font-family: var(--font-header);
+}
 /* Inteligencia dark — polish only. Colours come from ../dark/tokens.yaml;
    these are the dark-mode tweaks to shadows/borders on teal-over-charcoal. */
 
@@ -439,7 +471,7 @@
         });
       })();
     </script>
-    <script type="application/json" id="chat-config">{"endpoint": "https://ask.moui.co/api", "grove_key": "/inteligencia", "chats": {"/estratega/": {"ask": "estratega", "persist": "local", "name": "Estratega", "avatar": "/inteligencia/assets/capibara.png", "intro_html": "<p>Soy tu estratega de narrativa. Cuéntame en qué país trabajas y qué objetivo\nbuscas, y construimos la estrategia juntas.</p>\n"}, "/flexible/": {"ask": "flexible", "persist": "local", "name": "Persona flexible", "avatar": "/inteligencia/assets/condor.png", "intro_html": "<p>Soy una persona flexible. Háblame y practica cómo me convences.</p>\n"}, "/audiencias/": {"ask": "audiencias", "persist": "local", "name": "Audiencias", "avatar": "/inteligencia/assets/jaguar.png", "intro_html": "<p>Pregúntame sobre las audiencias —simpatizantes, flexibles, antagonistas— y\nte explico con base en la investigación.</p>\n"}}, "gate": {"scheme": "access-code", "check": "https://ask.moui.co/api/check"}}</script>
+    <script type="application/json" id="chat-config">{"endpoint": "https://ask.moui.co/api", "grove_key": "/inteligencia", "chats": {"/estratega/": {"ask": "estratega", "persist": "local", "name": "Estratega", "avatar": "/inteligencia/assets/jaguar.png", "intro_html": "<p>Soy tu estratega de narrativa. Cuéntame en qué país trabajas y qué objetivo\nbuscas, y construimos la estrategia juntas.</p>\n"}, "/flexible/": {"ask": "flexible", "persist": "local", "name": "Persona flexible", "avatar": "/inteligencia/assets/capibara.png", "intro_html": "<p>Soy una persona flexible. Háblame y practica cómo me convences.</p>\n"}, "/audiencias/": {"ask": "audiencias", "persist": "local", "name": "Audiencias", "avatar": "/inteligencia/assets/condor.png", "intro_html": "<p>Pregúntame sobre las audiencias —simpatizantes, flexibles, antagonistas— y\nte explico con base en la investigación.</p>\n"}}, "gate": {"scheme": "access-code", "check": "https://ask.moui.co/api/check"}}</script>
     <script src="/vendor/markdown-it.min.js" defer></script>
 </head>
 <body data-layout="app" data-width="full">

@@ -378,6 +378,38 @@
   color: var(--color-text-secondary-resolved);
   font-style: normal;
 }
+
+/* --- Chat surface: same place as the landing. Fonts (Lato) and colour tokens
+   already come from the theme; this only softens the shapes — pill composer,
+   rounded bubbles, circular animal avatar — so the assistant reads as the same
+   warm, calm world as the cards. Scoped to :root; no engine/renderer changes. --- */
+:root .chat-composer {
+  border-radius: 999px;
+  padding-inline: var(--space-md);
+  background: color-mix(in srgb, var(--color-accent-resolved) 7%, var(--color-bg-resolved));
+  border-color: transparent;
+}
+:root .chat-composer:focus-within {
+  background: var(--color-bg-resolved);
+  border-color: var(--color-accent-resolved);
+}
+:root .chat-send {
+  border-radius: 999px;
+}
+:root .chat-turn-user {
+  border-radius: 1.1rem 1.1rem 0.35rem 1.1rem;
+}
+:root .chat-avatar,
+:root .chat-avatar-mono {
+  border-radius: 999px;
+}
+:root .chat-identity-name {
+  font-family: var(--font-header);
+  letter-spacing: -0.01em;
+}
+:root .chat-intro {
+  font-family: var(--font-header);
+}
 /* Inteligencia dark — polish only. Colours come from ../dark/tokens.yaml;
    these are the dark-mode tweaks to shadows/borders on teal-over-charcoal. */
 
@@ -444,13 +476,13 @@
     <a class="skip-link" href="#main">Ir al contenido</a>
     
     <main id="main">
-        <style>[data-p-409c72ca] .land { max-width: 64rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; } [data-p-409c72ca] .land-brand { display: flex; justify-content: space-between; align-items: center;
-  font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; } [data-p-409c72ca] .land-logo { font-weight: 700; } [data-p-409c72ca] .land-kicker { opacity: .6; } [data-p-409c72ca] .land-hero { padding: 3.5rem 0 2.5rem; } [data-p-409c72ca] .land-hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.08; margin: 0 0 1rem; } [data-p-409c72ca] .land-hero p { font-size: 1.15rem; opacity: .8; margin: 0; } [data-p-409c72ca] .land-actions h2, [data-p-409c72ca] .land-faq h2 { font-size: 1.4rem; margin: 0 0 1.25rem; } [data-p-409c72ca] .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; } [data-p-409c72ca] .card { display: flex; flex-direction: column; gap: .5rem; padding: 1.5rem;
+        <style>[data-p-10d18fff] .land { max-width: 64rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; } [data-p-10d18fff] .land-brand { display: flex; justify-content: space-between; align-items: center;
+  font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; } [data-p-10d18fff] .land-logo { font-weight: 700; } [data-p-10d18fff] .land-kicker { opacity: .6; } [data-p-10d18fff] .land-hero { padding: 3.5rem 0 2.5rem; } [data-p-10d18fff] .land-hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.08; margin: 0 0 1rem; } [data-p-10d18fff] .land-hero p { font-size: 1.15rem; opacity: .8; margin: 0; } [data-p-10d18fff] .land-actions h2, [data-p-10d18fff] .land-faq h2 { font-size: 1.4rem; margin: 0 0 1.25rem; } [data-p-10d18fff] .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; } [data-p-10d18fff] .card { display: flex; flex-direction: column; gap: .5rem; padding: 1.5rem;
   border-radius: 1rem; text-decoration: none; color: inherit;
-  transition: transform .12s ease; } [data-p-409c72ca] .card:hover { transform: translateY(-3px); } [data-p-409c72ca] .card img { width: 96px; height: 96px; object-fit: contain; } [data-p-409c72ca] .card-kicker { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; opacity: .65; } [data-p-409c72ca] .card-title { font-size: 1.05rem; font-weight: 600; line-height: 1.25; } [data-p-409c72ca] .card-estratega { background: #FBFFD0; } [data-p-409c72ca] .card-flexible { background: #FFE2D0; } [data-p-409c72ca] .card-audiencias { background: #F9E0FF; } [data-p-409c72ca] .land-faq { padding-top: 3rem; } [data-p-409c72ca] .land-faq ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; } [data-p-409c72ca] .land-fine { margin-top: 1.5rem; font-size: .85rem; opacity: .6; }@media (max-width: 640px) {
-   [data-p-409c72ca] .cards { grid-template-columns: 1fr; }
-   [data-p-409c72ca] .land-brand { flex-direction: column; gap: .25rem; align-items: flex-start; }
-}</style><main class="land" data-p-409c72ca>
+  transition: transform .12s ease; } [data-p-10d18fff] .card:hover { transform: translateY(-3px); } [data-p-10d18fff] .card img { width: 96px; height: 96px; object-fit: contain; } [data-p-10d18fff] .card-kicker { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; opacity: .65; } [data-p-10d18fff] .card-title { font-size: 1.05rem; font-weight: 600; line-height: 1.25; } [data-p-10d18fff] .card-estratega { background: #F9E0FF; } [data-p-10d18fff] .card-flexible { background: #FBFFD0; } [data-p-10d18fff] .card-audiencias { background: #FFE2D0; } [data-p-10d18fff] .land-faq { padding-top: 3rem; } [data-p-10d18fff] .land-faq ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; } [data-p-10d18fff] .land-fine { margin-top: 1.5rem; font-size: .85rem; opacity: .6; }@media (max-width: 640px) {
+   [data-p-10d18fff] .cards { grid-template-columns: 1fr; }
+   [data-p-10d18fff] .land-brand { flex-direction: column; gap: .25rem; align-items: flex-start; }
+}</style><main class="land" data-p-10d18fff>
   <header class="land-brand">
     <span class="land-logo">Inteligencia Narrativa</span>
     <span class="land-kicker">/THE GREEN GRASS TIME/</span>
@@ -465,17 +497,17 @@
     <h2>¿Qué quieres hacer hoy?</h2>
     <div class="cards">
       <a class="card card-estratega" href="/inteligencia/estratega">
-        <img src="/inteligencia/assets/capibara.png" alt="Capibara" loading="lazy">
+        <img src="/inteligencia/assets/jaguar.png" alt="Jaguar" loading="lazy">
         <span class="card-kicker">Acción Global</span>
         <span class="card-title">Hablar con una estratega de narrativa</span>
       </a>
       <a class="card card-flexible" href="/inteligencia/flexible">
-        <img src="/inteligencia/assets/condor.png" alt="Cóndor" loading="lazy">
+        <img src="/inteligencia/assets/capibara.png" alt="Capibara" loading="lazy">
         <span class="card-kicker">Acción 1</span>
         <span class="card-title">Conversar con una persona flexible</span>
       </a>
       <a class="card card-audiencias" href="/inteligencia/audiencias">
-        <img src="/inteligencia/assets/jaguar.png" alt="Jaguar" loading="lazy">
+        <img src="/inteligencia/assets/condor.png" alt="Cóndor" loading="lazy">
         <span class="card-kicker">Acción 2</span>
         <span class="card-title">Resolver dudas sobre las audiencias</span>
       </a>
