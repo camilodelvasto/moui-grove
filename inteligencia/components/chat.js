@@ -14,7 +14,7 @@
 // no URL writing. The declaration gates the whole feature.
 import { strings } from '../strings.js';
 import { gateView, askOutcome } from './chat-gate.js';
-import { renderAnswer, renumberCitations, monogram } from './chat-render.js';
+import { renderAnswer, monogram } from './chat-render.js';
 import { renderUntrusted } from '../markdown.js';
 import { currentRoute, buildHref } from '../navigation.js';
 import { makeRecord, dedupeSlug, slugFromRoute, toWireTurns, toStoredTurns } from './chat-store.js';
@@ -609,21 +609,17 @@ function _appendSources(el, sources) {
   el.appendChild(ol);
 }
 
-// Render a stored assistant turn: the saved answer string plus its saved `sources`.
-// Citation markers are renumbered ON DISPLAY via the same first-appearance-order pass
-// the live path uses (renumberCitations needs no passages), so restored bodies show
-// [1],[2] identical to live; the stored sources align positionally (sources[0] = [1]).
-// Legacy data: a turn saved before sources were persisted has `sources` undefined —
-// _appendSources renders nothing, so the answer restores without a sources list
-// (today's pre-persistence behavior), not a crash. This is legacy-data handling, not a
-// fallback that masks an error.
+// Render a stored assistant turn: the saved answer string, verbatim — identical to the
+// live path (renderAnswer), which no longer transforms the answer. `sources` is the
+// per-turn saved list; new turns store [] (the engine appends no source list), so
+// _appendSources renders nothing. A legacy turn saved with a non-empty `sources` still
+// restores it — that is restoring what was persisted, not a fallback that masks an error.
 function _appendStoredAnswer(log, answer, sources, chatCfg) {
   const el = document.createElement('div');
   el.className = 'chat-turn chat-turn-assistant';
   const identity = _identityStrip(chatCfg);
   if (identity) el.appendChild(identity);                     // bot face/name beside the turn
-  const { answerText } = renumberCitations(answer);
-  _renderAnswerBody(el, answerText);
+  _renderAnswerBody(el, answer || '');                        // verbatim, same as live
   _appendSources(el, sources);
   log.appendChild(el);
   el.scrollIntoView({ block: 'end' });
