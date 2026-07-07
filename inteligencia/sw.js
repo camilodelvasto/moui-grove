@@ -9,7 +9,7 @@
  * this file runs.
  */
 
-const BUILD_VERSION = 'ae08406ba9f7';
+const BUILD_VERSION = 'b22d33805781';
 const CACHE_STATIC = `grove-static-${BUILD_VERSION}`;
 const CACHE_PAGES = `grove-pages-${BUILD_VERSION}`;
 const CACHE_BLOBS = `grove-blobs-${BUILD_VERSION}`;
@@ -35,7 +35,7 @@ const STATIC_ASSETS = [
 const OWNED_PAGES = ["/", "/archive/", "/audiencias/", "/comienza-aqui/", "/condiciones-de-uso/", "/estratega/", "/flexible/"];
 
 // SPA entry points with client-side routing — grove is multi-page, not SPA.
-const OWNED_SPA_ROOTS = [];
+const OWNED_SPA_ROOTS = ["/estratega", "/flexible", "/audiencias"];
 
 // In-scope but network-only — feeds, indexes, search.
 const OWNED_DYNAMIC_PATHS = ["/feed.xml", "/feed.json", "/sitemap.xml", "/search-index.json", "/first-load-index.json"];
@@ -102,12 +102,18 @@ self.addEventListener('activate', (e) => {
 
 // --- SPA root helpers (encrypted groves) ---
 
+// Returns the subtree page to serve (the owned prefix) for a navigation under
+// a client-routed root, or null. Chat subtrees: a slug under /estratega/ serves
+// /estratega/. Encrypted groves (root '/') serve the grove root, unchanged.
 function _matchesSpaRoot(pathname) {
-  return OWNED_SPA_ROOTS.some(root => {
+  for (const root of OWNED_SPA_ROOTS) {
     const abs = BASE_PATH + root;
     const prefix = abs.endsWith('/') ? abs : abs + '/';
-    return pathname === abs || pathname === prefix || pathname.startsWith(prefix);
-  });
+    if (pathname === abs || pathname === prefix || pathname.startsWith(prefix)) {
+      return prefix;
+    }
+  }
+  return null;
 }
 
 // --- Fetch handler — declaration-gated ---
@@ -157,13 +163,17 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // 6. Navigation under SPA root? → serve cached gate page.
-  //    Encrypted groves are SPA after unlock — all URLs serve the gate page,
-  //    client-side JS loads content from the in-memory bundle.
-  //    Siblings already excluded in step 4.
-  if (e.request.mode === 'navigate' && _matchesSpaRoot(pathname)) {
-    e.respondWith(_networkFirst(new Request(BASE_PATH + '/'), CACHE_PAGES));
-    return;
+  // 6. Navigation under a client-routed root? → serve that root's own page.
+  //    Chat subtrees: a conversation slug under /estratega/ has no static file;
+  //    serving /estratega/ mounts the chat, which restores the conversation
+  //    from IndexedDB by slug. Encrypted groves use root '/', so this serves
+  //    the grove root exactly as before. Siblings already excluded in step 4.
+  if (e.request.mode === 'navigate') {
+    const spaPage = _matchesSpaRoot(pathname);
+    if (spaPage) {
+      e.respondWith(_networkFirst(new Request(spaPage), CACHE_PAGES));
+      return;
+    }
   }
 
   // 7. Not declared → pass through. Not ours.
