@@ -9,7 +9,7 @@
  * this file runs.
  */
 
-const BUILD_VERSION = 'b22d33805781';
+const BUILD_VERSION = '5faab97358f4';
 const CACHE_STATIC = `grove-static-${BUILD_VERSION}`;
 const CACHE_PAGES = `grove-pages-${BUILD_VERSION}`;
 const CACHE_BLOBS = `grove-blobs-${BUILD_VERSION}`;
@@ -51,7 +51,7 @@ const OWNED_ASSETS = ["/assets/capibara.png", "/assets/capibara-480w.webp", "/as
 
 // Sibling shape paths on the same domain — never intercept these.
 // Build-injected from infrastructure/targets/ scan.
-const SIBLING_PATHS = ["/", "/es/", "/interconexion/", "/karaoke/", "/pitch/", "/staging/", "/sx/"];
+const SIBLING_PATHS = [];
 
 // --- Computed sets for O(1) lookup in fetch handler ---
 const _STATIC_SET = new Set(STATIC_ASSETS);
