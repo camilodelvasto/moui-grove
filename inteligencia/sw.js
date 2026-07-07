@@ -19,16 +19,22 @@ const BASE_PATH = self.location.pathname.replace(/\/sw\.js$/, '');
 
 // --- Declarations — build-injected, sentinel = empty array ---
 
+// Static assets present only for some grove types (the local-first
+// manifest.json). Build-injected from what the build actually emitted, so the
+// precache never lists a file that would 404. Precaching is atomic (addAll);
+// a single missing asset would fail the whole SW install.
+const OPTIONAL_STATIC_ASSETS = [];
+
 const STATIC_ASSETS = [
   BASE_PATH + '/style.css',
   BASE_PATH + '/elements.css',
   BASE_PATH + '/transitions.css',
   BASE_PATH + '/app.js',
-  BASE_PATH + '/manifest.json',
   BASE_PATH + '/decrypt-runtime.js',
   BASE_PATH + '/theme/favicon.svg',
   BASE_PATH + '/theme/favicon.ico',
   BASE_PATH + '/theme/apple-touch-icon.png',
+  ...OPTIONAL_STATIC_ASSETS.map(p => BASE_PATH + p),
 ];
 
 // Pages enumerable at build time — network-first, serve cached if offline.
