@@ -1031,6 +1031,29 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
 /* States sit INSIDE the conversation as left-aligned notes, not page banners. */
 .chat-turn-pending { align-self: flex-start; background: transparent;
             color: var(--color-text-secondary-resolved); font-style: italic; }
+/* Thinking indicator: a single soft breathing dot in the accent colour, shown as
+ * the body of the pending assistant turn. The answer later replaces it IN PLACE
+ * (chat.js _fillAnswer) so the identity strip never jumps. */
+.chat-thinking-dot {
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--color-accent-resolved);
+  animation: chat-breathe 1.4s ease-in-out infinite;
+}
+@keyframes chat-breathe {
+  0%, 100% { opacity: 0.25; transform: scale(0.8); }
+  50%      { opacity: 1;    transform: scale(1); }
+}
+/* The answer body eases in when it replaces the dot — smooths the swap. */
+.chat-answer--enter { animation: chat-fade-in 0.25s ease-out both; }
+@keyframes chat-fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-thinking-dot { animation: none; opacity: 0.6; }
+  .chat-answer--enter { animation: none; }
+}
 .chat-turn-refused, .chat-turn-error { align-self: flex-start;
             padding: var(--space-sm) var(--space-md);
             border-radius: var(--space-chat-bubble-radius);
@@ -1171,7 +1194,7 @@ body[data-layout="app"] .chat-log {
   max-width: 48rem;
   width: 100%;
   margin: 0 auto;
-  padding: var(--space-lg) 0;
+  padding: var(--space-lg) 0 var(--space-xxl);
 }
 body[data-layout="app"] .chat-composer {
   flex: 0 0 auto;

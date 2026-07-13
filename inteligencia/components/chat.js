@@ -365,7 +365,7 @@ async function _mount(root) {
         if (!question) return;
         input.value = '';
         _appendTurn(log, 'user', question);
-        const pending = _append(log, 'pending', strings.chat_working);
+        let pending = _appendPending(log, chatCfg);
         input.disabled = true; send.disabled = true;
         try {
           // Re-read the secret each ask — never a cached "we're authed" flag.
@@ -378,29 +378,33 @@ async function _mount(root) {
             // carry `sources` on assistant turns (a client display concern); strip it.
             body: JSON.stringify({ question, history: toWireTurns(active.history) }),
           });
-          pending.remove();
           const outcome = askOutcome({ online: navigator.onLine, threw: false, status: res.status });
           if (outcome === 'refused') {
+            pending.remove();
             const body = await res.json().catch(() => null);
             const detail = body && body.error && body.error.detail;
             _append(log, 'refused', strings.chat_error_refused + (detail ? ' (' + detail + ')' : ''));
             return;
           }
           if (outcome === 'not_permitted') {            // 403: valid code, ask not in role
+            pending.remove();
             _append(log, 'error', strings.chat_not_permitted); // stay on input; no renderGate
             return;
           }
           if (outcome === 'revoked') {                          // 401: secret no longer accepted
+            pending.remove();
             sessionStorage.removeItem(SECRET_KEY);             // drop the held secret
             _append(log, 'error', strings.chat_revoked);
             renderGate(root, gate, SECRET_KEY, () => mountChatSurface().catch((err) => console.error('chat: mount failed', err)));
             return;
           }
           if (outcome === 'over-limit') {                       // 429: per-request capacity judgment
+            pending.remove();
             _append(log, 'error', strings.chat_over_limit);    // stay on input, preserve it
             return;
           }
           if (outcome === 'unavailable') {
+            pending.remove();
             console.warn('[chat] ask unavailable', { status: res.status });  // diagnosable
             _append(log, 'error', strings.chat_unavailable);
             return;
@@ -410,7 +414,8 @@ async function _mount(root) {
           // Capture the SAME ordered source list the live render computes (positional,
           // first-appearance order — sources[0] aligns with the renumbered [1]). It is
           // stored on the assistant turn so a restored answer renders its sources list.
-          const { sources } = _appendAnswer(log, record, chatCfg);
+          const { sources } = _fillAnswer(pending, record, chatCfg);
+          pending = null;   // the pending turn IS the live answer now; the catch must not remove it
           const wasNamed = active.record !== null;
           active.history.push({ role: 'user', content: question });
           if (record.answer) active.history.push({ role: 'assistant', content: record.answer, sources });
@@ -426,7 +431,7 @@ async function _mount(root) {
             await refreshSidebar();
           }
         } catch (err) {
-          pending.remove();
+          if (pending) pending.remove();   // only a still-pending dot; never the filled answer
           const outcome = askOutcome({ online: navigator.onLine, threw: true, status: 0 });
           if (outcome === 'offline') {
             _append(log, 'error', strings.chat_offline);
@@ -625,17 +630,41 @@ function _appendStoredAnswer(log, answer, sources, chatCfg) {
   el.scrollIntoView({ block: 'end' });
 }
 
-// Render a live answer record. Returns { sources } so the caller can store the SAME
-// ordered list on the assistant turn (positional to the rendered [1..n] markers).
-function _appendAnswer(log, record, chatCfg) {
+// Pending assistant turn: the SAME identity strip an answer has, with a single
+// breathing dot as its body. Rendering the identity now means the answer fills in
+// place (see _fillAnswer) with no layout shift. The working string stays as an
+// accessible status label for screen readers.
+function _appendPending(log, chatCfg) {
   const el = document.createElement('div');
-  el.className = 'chat-turn chat-turn-assistant';
+  el.className = 'chat-turn chat-turn-assistant chat-turn-pending';
   const identity = _identityStrip(chatCfg);
-  if (identity) el.appendChild(identity);                     // bot face/name beside the turn
+  if (identity) el.appendChild(identity);
+  const body = document.createElement('div');
+  body.className = 'chat-answer';
+  const dot = document.createElement('span');
+  dot.className = 'chat-thinking-dot';
+  dot.setAttribute('role', 'status');
+  dot.setAttribute('aria-label', strings.chat_working);
+  body.appendChild(dot);
+  el.appendChild(body);
+  log.appendChild(el);
+  el.scrollIntoView({ block: 'end' });
+  return el;
+}
+
+// Fill a pending turn with its answer IN PLACE: drop the dot body, render the
+// answer into the same element (fading it in), append sources. Reuses the identity
+// strip already present, so the strip never re-lays-out. Returns { sources } like
+// _appendAnswer so the caller stores the SAME positional list.
+function _fillAnswer(el, record, chatCfg) {
+  el.classList.remove('chat-turn-pending');
+  const oldBody = el.querySelector('.chat-answer');
+  if (oldBody) oldBody.remove();
   const { answerText, sources } = renderAnswer(record);
   _renderAnswerBody(el, answerText);
+  const body = el.querySelector('.chat-answer');
+  if (body) body.classList.add('chat-answer--enter');
   _appendSources(el, sources);
-  log.appendChild(el);
   el.scrollIntoView({ block: 'end' });
   return { sources };
 }
