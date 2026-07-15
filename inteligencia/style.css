@@ -984,8 +984,10 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
 
 /* Operator-authored collapsible note in a chat intro — a quiet, FLAT disclosure:
  * no card (no border, background, or box padding), just a muted summary row with a
- * chevron and the content flowing beneath. Native open — instant and reliable; no
- * height animation (that clipped the tall content and blocked scrolling). */
+ * chevron and the disclaimer flowing beneath in small italic. The reveal glides open
+ * via ::details-content (block-size 0 → auto, which needs interpolate-size on :root);
+ * the scroll container is the .chat-log, so a tall drawer scrolls, it doesn't clip. */
+:root { interpolate-size: allow-keywords; }
 .chat-note {
   margin: var(--space-sm) 0;
 }
@@ -1013,12 +1015,24 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
   transition: transform 0.2s ease;
 }
 .chat-note[open] > summary::after { transform: rotate(225deg); }  /* points up when open */
-/* Content flows flat; compact headings so ## stays modest. */
-.chat-note h2 { font-size: 1.15rem; line-height: 1.3; margin: 0.4em 0 0.3em; }
-.chat-note h3 { font-size: 1.05rem; line-height: 1.35; margin: 0.4em 0 0.25em; }
+/* The disclaimer body reads as fine print: small + italic, clearly secondary to the
+   greeting above it. Applies to whatever markdown the operator authored (prose here). */
+.chat-note p { font-size: 0.72em; font-style: italic; line-height: 1.6; }
+/* Compact headings so a ## stays modest if an operator uses one. */
+.chat-note h2 { font-size: 1.05rem; line-height: 1.3; margin: 0.4em 0 0.3em; }
+.chat-note h3 { font-size: 1rem; line-height: 1.35; margin: 0.4em 0 0.25em; }
+/* Smooth expand/collapse of the drawer contents. */
+.chat-note::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition: block-size 0.3s ease, content-visibility 0.3s ease;
+  transition-behavior: allow-discrete;
+}
+.chat-note[open]::details-content { block-size: auto; }
 
 @media (prefers-reduced-motion: reduce) {
-  .chat-note > summary::after { transition: none; }
+  .chat-note > summary::after,
+  .chat-note::details-content { transition: none; }
 }
 
 /* Bot identity strip above an assistant turn (and the entry-state header). */
@@ -1253,16 +1267,12 @@ body[data-layout="app"] .chat-composer {
   width: 100%;
   margin: 0 auto var(--space-lg);
 }
-/* Empty state (no turns yet): center the greeting vertically (Claude-style), but keep
-   the log a filling SCROLL container so a tall intro (e.g. an open <details> drawer)
-   scrolls instead of clipping. `justify-content: safe center` centers the greeting when
-   it fits and falls back to top-aligned + scrollable when it overflows — the old
-   `flex: 0 0 auto; margin: auto` made the log content-sized (no scroll) and pushed the
-   top off-screen when tall. The composer keeps its base position (pinned at the bottom).
-   Once a turn exists the :has() stops matching and this rule drops out. */
-body[data-layout="app"] .chat-pane:not(:has(.chat-turn)) .chat-log {
-  justify-content: safe center;
-}
+/* Empty state (no turns yet): the greeting stays TOP-aligned, same as once a turn
+   exists — the log is already a filling scroll container (flex:1 1 auto; overflow-y:auto)
+   with the composer pinned at the bottom, so there is nothing to special-case. An earlier
+   version vertically-centered the greeting, but centering can't hold once an open intro
+   drawer overflows the pane: it snapped from centered to top (an unfixable jump) and the
+   same snap fired on the first message. Top-aligning throughout removes both jumps. */
 /* The sidebar, when mounted into the rail slot, is a static block (not a drawer). */
 body[data-layout="app"] .chat-rail .chat-sidebar {
   position: static;
