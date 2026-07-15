@@ -1253,17 +1253,15 @@ body[data-layout="app"] .chat-composer {
   width: 100%;
   margin: 0 auto var(--space-lg);
 }
-/* Empty state (no turns yet): center the greeting + composer vertically (Claude-style)
-   rather than pinning the composer to the bottom. Uses auto margins (not
-   justify-content) so the mobile top bar / hamburger stays pinned at the top while only
-   the greeting + composer pair centers. Once a turn exists the :has() stops matching and
-   the composer pins to the bottom again. */
+/* Empty state (no turns yet): center the greeting vertically (Claude-style), but keep
+   the log a filling SCROLL container so a tall intro (e.g. an open <details> drawer)
+   scrolls instead of clipping. `justify-content: safe center` centers the greeting when
+   it fits and falls back to top-aligned + scrollable when it overflows — the old
+   `flex: 0 0 auto; margin: auto` made the log content-sized (no scroll) and pushed the
+   top off-screen when tall. The composer keeps its base position (pinned at the bottom).
+   Once a turn exists the :has() stops matching and this rule drops out. */
 body[data-layout="app"] .chat-pane:not(:has(.chat-turn)) .chat-log {
-  flex: 0 0 auto;
-  margin: auto auto 0;     /* top auto pushes the greeting to vertical center */
-}
-body[data-layout="app"] .chat-pane:not(:has(.chat-turn)) .chat-composer {
-  margin: 0 auto auto;     /* bottom auto completes centering the greeting+composer pair */
+  justify-content: safe center;
 }
 /* The sidebar, when mounted into the rail slot, is a static block (not a drawer). */
 body[data-layout="app"] .chat-rail .chat-sidebar {
