@@ -982,6 +982,61 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
 .chat-intro > :first-child { margin-top: 0; }
 .chat-intro > :last-child { margin-bottom: 0; }
 
+/* Operator-authored collapsible note in a chat intro — a native <details> styled
+ * as a soft card: hidden default marker, a chevron that rotates on open, compact
+ * inner headings, and a smooth expand where supported (instant, correct elsewhere). */
+.chat-note {
+  margin-top: var(--space-md);
+  border: 1px solid var(--color-border-resolved);
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--color-accent-resolved) 5%, var(--color-bg-resolved));
+  overflow: clip;
+  interpolate-size: allow-keywords;                 /* lets the expand animate to auto */
+}
+.chat-note > summary {
+  list-style: none;                                 /* Firefox default marker off */
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-weight: 600;
+  color: var(--color-text-resolved);
+}
+.chat-note > summary::-webkit-details-marker { display: none; }   /* Safari/Chrome */
+.chat-note > summary:hover {
+  background: color-mix(in srgb, var(--color-accent-resolved) 9%, transparent);
+}
+.chat-note > summary::after {                       /* chevron, points down when closed */
+  content: "";
+  flex: 0 0 auto;
+  width: 0.5rem; height: 0.5rem;
+  border-right: 2px solid var(--color-accent-resolved);
+  border-bottom: 2px solid var(--color-accent-resolved);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.chat-note[open] > summary::after { transform: rotate(-135deg); }  /* points up when open */
+
+/* Revealed content: pad the markdown children; compact headings so ## stays modest. */
+.chat-note > :not(summary) { padding-inline: var(--space-md); }
+.chat-note > summary + * { padding-top: var(--space-xs); }
+.chat-note > :last-child { padding-bottom: var(--space-md); margin-bottom: 0; }
+.chat-note h2 { font-size: 1.15rem; line-height: 1.3; margin: 0.5em 0 0.3em; }
+.chat-note h3 { font-size: 1.05rem; line-height: 1.35; margin: 0.4em 0 0.25em; }
+
+/* Smooth expand (modern engines); older engines just open instantly, no broken state. */
+@media (prefers-reduced-motion: no-preference) {
+  .chat-note::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size 0.28s ease, content-visibility 0.28s allow-discrete;
+  }
+  .chat-note[open]::details-content { block-size: auto; }
+}
+
 /* Bot identity strip above an assistant turn (and the entry-state header). */
 .chat-identity { display: flex; align-items: center; gap: var(--space-sm);
             margin-bottom: var(--space-xs); }
@@ -1027,6 +1082,18 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
   font-size: var(--font-base);
   line-height: 1.65;
 }
+
+/* An answer is not a page: the model emits #/##/###, but the article heading scale
+ * renders an answer's h1 page-title huge. Give chat answers a compact hierarchy
+ * relative to the body, with tight margins, so headings read as answer sections.
+ * Themes may override; this is the shared baseline for every grove's chat. */
+.chat-turn-assistant .chat-answer h1 { font-size: 1.4rem;  line-height: 1.25; margin: 1.1em 0 0.4em; }
+.chat-turn-assistant .chat-answer h2 { font-size: 1.2rem;  line-height: 1.3;  margin: 1em 0 0.35em; }
+.chat-turn-assistant .chat-answer h3 { font-size: 1.08rem; line-height: 1.35; margin: 0.9em 0 0.3em; }
+.chat-turn-assistant .chat-answer h4,
+.chat-turn-assistant .chat-answer h5,
+.chat-turn-assistant .chat-answer h6 { font-size: 1.05rem; margin: 0.8em 0 0.3em; }
+.chat-turn-assistant .chat-answer > :first-child { margin-top: 0; }
 
 /* States sit INSIDE the conversation as left-aligned notes, not page banners. */
 .chat-turn-pending { align-self: flex-start; background: transparent;
