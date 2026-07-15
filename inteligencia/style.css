@@ -1005,6 +1005,14 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
 }
 .chat-note > summary::-webkit-details-marker { display: none; }   /* Safari/Chrome */
 .chat-note > summary:hover { color: var(--color-text-resolved); }
+/* No focus box on mouse click (it read as an ugly trimmed rectangle); keyboard users
+   still get a clean rounded ring, offset so it isn't clipped against the text. */
+.chat-note > summary:focus { outline: none; }
+.chat-note > summary:focus-visible {
+  outline: 2px solid var(--color-accent-resolved);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
 .chat-note > summary::after {                       /* chevron, points right when closed */
   content: "";
   flex: 0 0 auto;
@@ -1252,19 +1260,22 @@ body[data-layout="app"] .chat-pane {
   max-width: none;
   padding: var(--space-sm) var(--space-md) 0;
 }
+/* The log fills the whole panel and is the scroll container, so the scrollbar sits at
+   the panel edge — not mid-column. The readable content is centered to a fixed 42.5rem
+   (~680px) column via symmetric inline padding: a definite width that does NOT depend on
+   content, so an open intro drawer can't widen or shift it. max() keeps a gutter on
+   narrow screens. */
 body[data-layout="app"] .chat-log {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  max-width: 48rem;
-  width: 100%;
-  margin: 0 auto;
-  padding: var(--space-lg) 0 var(--space-xxl);
+  padding: var(--space-lg) max(0px, calc((100% - 42.5rem) / 2)) var(--space-xxl);
 }
+/* Composer matches the readable column: same fixed width, centered under it. */
 body[data-layout="app"] .chat-composer {
   flex: 0 0 auto;
-  max-width: 48rem;
   width: 100%;
+  max-width: 42.5rem;
   margin: 0 auto var(--space-lg);
 }
 /* Empty state (no turns yet): the greeting stays TOP-aligned, same as once a turn
