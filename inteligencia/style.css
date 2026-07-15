@@ -100,6 +100,10 @@ body[data-layout="app"] main {
   align-items: stretch;
   flex: 1 1 auto;
   min-height: 0;
+  /* Flex item of the flex-row `main`: without min-width:0 its min-width:auto pins it
+     to its content's min-content width, so on narrow screens it can't shrink to the
+     viewport and its overflow is clipped by main's overflow:hidden. Let it shrink. */
+  min-width: 0;
 }
 /* The feature mount ([data-chat-root]) is a flex item of the column; make it a
    flex column itself so the chat pane (and its scrolling log) fills the height. */
@@ -975,7 +979,12 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
 .chat-menu:hover { background: color-mix(in srgb, var(--color-text-resolved) 5%, transparent); }
 
 .chat-log { display: flex; flex-direction: column; gap: var(--space-lg);
-            margin: 0 0 var(--space-lg); }
+            margin: 0 0 var(--space-lg);
+            /* Long unbreakable tokens (filenames, URLs, source paths) must wrap inside
+               the fixed column, not overflow it — an overflow here becomes a horizontal
+               scrollbar since the log is also the vertical scroll container. Inherited,
+               so it covers every turn's prose. */
+            overflow-wrap: break-word; }
 
 /* Operator intro — the one live-HTML block. Heads the log, reads as muted prose. */
 .chat-intro { color: var(--color-text-secondary-resolved); margin-bottom: var(--space-sm); }
