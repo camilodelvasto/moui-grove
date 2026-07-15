@@ -1258,26 +1258,42 @@ body[data-layout="app"] .chat-pane {
   display: flex;
   flex-direction: column;
   max-width: none;
-  padding: var(--space-sm) var(--space-md) 0;
+  /* Kill the base rule's `margin: 0 auto`: auto cross-axis margins on a flex item
+     defeat align-items: stretch, so the pane would size to its content's max-content
+     width and center — widening/shifting as the intro drawer opens. margin: 0 lets it
+     stretch to the full app-column, a stable width independent of content. No horizontal
+     padding: the log and composer own their own gutter so the log spans the full panel
+     width (its scrollbar reaches the wall) and the readable column pins to an exact
+     680px. */
+  margin: 0;
+  padding: var(--space-sm) 0 0;
+  /* Readable column width — a layout constraint in px (NOT rem: this theme's root is
+     18px, so a rem value wouldn't be 680). Single source shared by log + composer. */
+  --chat-readable: 680px;
 }
-/* The log fills the whole panel and is the scroll container, so the scrollbar sits at
-   the panel edge — not mid-column. The readable content is centered to a fixed 42.5rem
-   (~680px) column via symmetric inline padding: a definite width that does NOT depend on
-   content, so an open intro drawer can't widen or shift it. max() keeps a gutter on
-   narrow screens. */
+/* The log is the scroll container and fills the whole pane, so its scrollbar sits flush
+   at the panel edge — not mid-column. scrollbar-gutter: stable reserves that scrollbar
+   space ALWAYS, so the readable column doesn't shift when an expanding intro drawer makes
+   the scrollbar appear. That column is pinned to an exact 42.5rem (~680px) via symmetric
+   inline padding — here 100% IS the pane width (no negative margins / parent padding in
+   the way), so the math is exact. max() keeps a --space-md gutter on narrow screens. */
 body[data-layout="app"] .chat-log {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  padding: var(--space-lg) max(0px, calc((100% - 42.5rem) / 2)) var(--space-xxl);
+  scrollbar-gutter: stable;
+  padding: var(--space-lg) max(var(--space-md), calc((100% - var(--chat-readable)) / 2)) var(--space-xxl);
 }
-/* Composer matches the readable column: same fixed width, centered under it. */
+/* Composer matches the readable column exactly: 42.5rem, or the pane width minus a
+   --space-md gutter each side on narrow screens; centered under the column. */
 body[data-layout="app"] .chat-composer {
   flex: 0 0 auto;
-  width: 100%;
-  max-width: 42.5rem;
+  width: min(var(--chat-readable), 100% - 2 * var(--space-md));
   margin: 0 auto var(--space-lg);
 }
+/* Mobile hamburger bar: give it the same gutter (the pane no longer pads it). Hidden on
+   desktop where the rail is persistent, so this only matters on narrow screens. */
+body[data-layout="app"] .chat-bar { padding-inline: var(--space-md); }
 /* Empty state (no turns yet): the greeting stays TOP-aligned, same as once a turn
    exists — the log is already a filling scroll container (flex:1 1 auto; overflow-y:auto)
    with the composer pinned at the bottom, so there is nothing to special-case. An earlier
