@@ -14,7 +14,7 @@
 // no URL writing. The declaration gates the whole feature.
 import { strings } from '../strings.js';
 import { gateView, askOutcome } from './chat-gate.js';
-import { renderAnswer, monogram } from './chat-render.js';
+import { monogram } from './chat-render.js';
 import { renderUntrusted } from '../markdown.js';
 import { currentRoute, buildHref } from '../navigation.js';
 import { makeRecord, dedupeSlug, slugFromRoute, toWireTurns, toStoredTurns } from './chat-store.js';
@@ -31,6 +31,8 @@ const ICON_MENU =
   '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"></rect><line x1="9.5" y1="4" x2="9.5" y2="20"></line></svg>';
 const ICON_SEND =
   '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>';
+const ICON_STOP =
+  '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect></svg>';
 
 function _config() {
   const el = document.getElementById('chat-config');
@@ -84,9 +86,9 @@ async function _mount(root) {
   log.className = 'chat-log';
   const form = document.createElement('form');
   form.className = 'chat-composer';
-  const input = document.createElement('input');
-  input.type = 'text';
+  const input = document.createElement('textarea');
   input.className = 'chat-input';
+  input.rows = 1;
   // Strings are content, never hardcoded: a grove that declares a chat feature is
   // required at build to provide the chat_* keys (build.py CHAT_STRING_KEYS), so we
   // read them directly with no English fallback.
@@ -98,6 +100,47 @@ async function _mount(root) {
   send.innerHTML = ICON_SEND;                              // static trusted icon, not untrusted content
   send.setAttribute('aria-label', strings.chat_send);     // keyed label kept for a11y
   form.append(input, send);
+
+  const _coarse = window.matchMedia('(pointer: coarse)').matches;   // phones/tablets
+  // Canonical textarea autogrow: collapse to measure the true content height, then set
+  // it. box-sizing: border-box (CSS) makes scrollHeight the exact height to apply — no
+  // double-counted padding. CSS `max-height` + `overflow-y: auto` cap tall input; no JS cap.
+  const _autogrow = () => { input.style.height = 'auto';
+    input.style.height = input.scrollHeight + 'px'; };
+  input.addEventListener('input', _autogrow);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey && !_coarse) {   // desktop Enter → send; Shift+Enter → newline
+      e.preventDefault();
+      form.requestSubmit();
+    }
+  });
+
+  // The one button morphs: idle → send (submits the form); streaming → stop (aborts the
+  // fetch + cancels the reader). On stop the partial answer AND the user turn stay; the
+  // query returns to the composer for editing (spec: option A).
+  const _setComposerMode = (mode) => {
+    if (mode === 'stop') {
+      send.innerHTML = ICON_STOP; send.setAttribute('aria-label', strings.chat_stop);
+      send.type = 'button'; form.dataset.mode = 'stop';
+    } else {
+      send.innerHTML = ICON_SEND; send.setAttribute('aria-label', strings.chat_send);
+      send.type = 'submit'; form.dataset.mode = 'send';
+    }
+  };
+  send.addEventListener('click', () => {
+    if (form.dataset.mode !== 'stop') return;             // send mode → normal submit
+    if (form._reader) form._reader.cancel().catch(() => {});
+    if (form._abort) form._abort.abort();
+    // A turn still marked pending has streamed no tokens (the first token clears that
+    // class in _pushToken): there is nothing to retain, so drop the breathing-dot turn
+    // rather than leave it spinning forever. A turn with partial text is kept (spec: retain).
+    const stuck = log.querySelector('.chat-turn-pending');
+    if (stuck) stuck.remove();
+    input.value = form._lastQuery;                        // restore the query for editing
+    _autogrow(); input.focus();
+    input.disabled = false; send.disabled = false;
+    _setComposerMode('send');
+  });
 
   // The conversation pane (log + composer). For a persist: local chat it sits next
   // to the sidebar inside a layout wrapper; for a non-local chat it is the whole UI.
@@ -141,6 +184,7 @@ async function _mount(root) {
   const renderRecord = (rec) => {
     log.textContent = '';
     _renderIntro(log, chatCfg);
+    _renderInstructions(log, chatCfg);
     active.history = [];
     active.record = rec;
     for (const turn of rec.turns) {
@@ -170,6 +214,7 @@ async function _mount(root) {
       log.appendChild(identity);
     }
     _renderIntro(log, chatCfg);
+    _renderInstructions(log, chatCfg);
     active.history = [];
     active.record = null;
   };
@@ -363,75 +408,75 @@ async function _mount(root) {
         e.preventDefault();
         const question = input.value.trim();
         if (!question) return;
-        input.value = '';
+        form._lastQuery = input.value;                         // Task 9: restore on stop
+        input.value = ''; _autogrow();
         _appendTurn(log, 'user', question);
         let pending = _appendPending(log, chatCfg);
         input.disabled = true; send.disabled = true;
+        _setComposerMode('stop');                              // Task 9
         try {
           // Re-read the secret each ask — never a cached "we're authed" flag.
-          const headers = { 'Content-Type': 'application/json' };
+          const headers = { 'Content-Type': 'application/json', 'Accept': 'application/x-ndjson' };
           const secret = heldSecret();
           if (secret) headers['Authorization'] = 'Bearer ' + secret;
+          const controller = new AbortController();
+          form._abort = controller;                           // stop button reaches it
           const res = await fetch(endpoint.replace(/\/$/, '') + '/ask/' + encodeURIComponent(ask), {
-            method: 'POST', headers,
+            method: 'POST', headers, signal: controller.signal,
             // Wire contract: turns are EXACTLY { role, content }. active.history may now
             // carry `sources` on assistant turns (a client display concern); strip it.
             body: JSON.stringify({ question, history: toWireTurns(active.history) }),
           });
-          const outcome = askOutcome({ online: navigator.onLine, threw: false, status: res.status });
-          if (outcome === 'refused') {
+          if (!res.ok) {                                      // pre-stream failure keeps HTTP semantics
             pending.remove();
-            const body = await res.json().catch(() => null);
-            const detail = body && body.error && body.error.detail;
-            _append(log, 'refused', strings.chat_error_refused + (detail ? ' (' + detail + ')' : ''));
+            await _handleAskStatus(res, log, SECRET_KEY, root, gate, mountChatSurface);
             return;
           }
-          if (outcome === 'not_permitted') {            // 403: valid code, ask not in role
+          // Stream the NDJSON response. Track whether a terminal event arrived — the
+          // relay can crash mid-stream without sending `done` or `error`. A missing
+          // terminal event is a failure; do not silently succeed.
+          let title = null, sources = [], streamErr = null, seenDone = false;
+          await _readStream(res, {
+            'step':    (e) => _setStep(pending, e.text),
+            'token':   (e) => _pushToken(pending, e.text),
+            'sources': (e) => { sources = e.sources; },
+            'title':   (e) => { title = e.text; },
+            'error':   (e) => { streamErr = e; seenDone = true; },  // error IS a terminal event
+            'done':    () => { seenDone = true; },
+          }, (r) => { form._reader = r; });
+          if (!seenDone) {                                    // relay crashed — no terminal event
             pending.remove();
-            _append(log, 'error', strings.chat_not_permitted); // stay on input; no renderGate
-            return;
-          }
-          if (outcome === 'revoked') {                          // 401: secret no longer accepted
-            pending.remove();
-            sessionStorage.removeItem(SECRET_KEY);             // drop the held secret
-            _append(log, 'error', strings.chat_revoked);
-            renderGate(root, gate, SECRET_KEY, () => mountChatSurface().catch((err) => console.error('chat: mount failed', err)));
-            return;
-          }
-          if (outcome === 'over-limit') {                       // 429: per-request capacity judgment
-            pending.remove();
-            _append(log, 'error', strings.chat_over_limit);    // stay on input, preserve it
-            return;
-          }
-          if (outcome === 'unavailable') {
-            pending.remove();
-            console.warn('[chat] ask unavailable', { status: res.status });  // diagnosable
+            pending = null;
             _append(log, 'error', strings.chat_unavailable);
             return;
           }
-          // outcome === 'answer'
-          const record = await res.json();
-          // Capture the SAME ordered source list the live render computes (positional,
-          // first-appearance order — sources[0] aligns with the renumbered [1]). It is
-          // stored on the assistant turn so a restored answer renders its sources list.
-          const { sources } = _fillAnswer(pending, record, chatCfg);
-          pending = null;   // the pending turn IS the live answer now; the catch must not remove it
+          if (streamErr) {                                    // mid-stream engine error
+            _renderStreamError(log, streamErr);
+            pending.remove();
+            pending = null;
+            return;
+          }
+          _appendSources(pending, sources);                   // below the streamed answer
+          const answer = pending._raw || '';
           const wasNamed = active.record !== null;
           active.history.push({ role: 'user', content: question });
-          if (record.answer) active.history.push({ role: 'assistant', content: record.answer, sources });
+          if (answer) active.history.push({ role: 'assistant', content: answer, sources });
+          pending = null;  // the pending element IS the live answer now; catch must not remove it
           if (persistent) {
-            // A refusal/answer with no answer text still names on first success (the turn
-            // happened); subsequent turns append. The store layer is loud on its own
-            // failures, so we don't swallow — but a persistence failure must not break the
-            // live conversation, which is already rendered.
-            if (!wasNamed) await nameAndPersist(record);
-            else await appendAndPersist();
-            // Reflect the named-on-first-answer record (new list entry, now active) and
-            // the bumped recency ordering after an append.
+            // A stream with no answer text still names on first success; subsequent turns append.
+            // Persistence failures must not break the live conversation (already rendered).
+            // A first turn is named/slugged only when the stream delivered a `title` event;
+            // without a title there is no slug, so the turn stays in the live view but is not
+            // persisted (consistent with the project's "only nameable, completed turns persist"
+            // stance). Titled asks always emit a title on the first turn, so this no-persist
+            // branch is the rare backend-anomaly case, not the normal path.
+            if (!wasNamed && title !== null) await nameAndPersist(record_from(title));
+            else if (wasNamed) await appendAndPersist();
             await refreshSidebar();
           }
         } catch (err) {
-          if (pending) pending.remove();   // only a still-pending dot; never the filled answer
+          if (err && err.name === 'AbortError') { return; }  // stop button: its own path owns cleanup
+          if (pending) pending.remove();
           const outcome = askOutcome({ online: navigator.onLine, threw: true, status: 0 });
           if (outcome === 'offline') {
             _append(log, 'error', strings.chat_offline);
@@ -443,6 +488,7 @@ async function _mount(root) {
           }
         } finally {
           input.disabled = false; send.disabled = false;
+          _setComposerMode('send');                          // Task 9
           input.focus();
         }
       });
@@ -519,6 +565,28 @@ function _renderIntro(log, chatCfg) {
   el.className = 'chat-intro';
   el.innerHTML = chatCfg.intro_html;                         // sanctioned: server-rendered operator markdown
   log.appendChild(el);
+}
+
+// Operator instructions: the how-it-works block. collapsible:true → a <details> drawer
+// with the authored summary as its toggle; false → an always-open inline block. Server-
+// rendered operator markdown, so innerHTML is sanctioned here (same rule as _renderIntro).
+function _renderInstructions(log, chatCfg) {
+  if (!chatCfg || !chatCfg.instructions_html) return;
+  if (chatCfg.instructions_collapsible) {
+    const d = document.createElement('details');
+    d.className = 'chat-note';
+    const s = document.createElement('summary');
+    s.textContent = chatCfg.instructions_summary || '';   // inert label
+    const body = document.createElement('div');
+    body.innerHTML = chatCfg.instructions_html;            // sanctioned operator markdown
+    d.append(s, body);
+    log.appendChild(d);
+  } else {
+    const el = document.createElement('div');
+    el.className = 'chat-instructions';
+    el.innerHTML = chatCfg.instructions_html;              // sanctioned operator markdown
+    log.appendChild(el);
+  }
 }
 
 // Build the assistant identity strip (avatar + name) from config — PRESENTATION, pulled
@@ -630,41 +698,122 @@ function _appendStoredAnswer(log, answer, sources, chatCfg) {
   el.scrollIntoView({ block: 'end' });
 }
 
-// Pending assistant turn: the SAME identity strip an answer has, with a single
-// breathing dot as its body. Rendering the identity now means the answer fills in
-// place (see _fillAnswer) with no layout shift. The working string stays as an
-// accessible status label for screen readers.
+// Pending assistant turn: the SAME identity strip an answer has, with a status line
+// that shows the current step text until tokens arrive, then transitions to a
+// growing answer body. The status div carries role="status" for screen readers.
 function _appendPending(log, chatCfg) {
   const el = document.createElement('div');
   el.className = 'chat-turn chat-turn-assistant chat-turn-pending';
   const identity = _identityStrip(chatCfg);
   if (identity) el.appendChild(identity);
-  const body = document.createElement('div');
-  body.className = 'chat-answer';
+  const status = document.createElement('div');
+  status.className = 'chat-status';
+  status.setAttribute('role', 'status');
   const dot = document.createElement('span');
   dot.className = 'chat-thinking-dot';
-  dot.setAttribute('role', 'status');
-  dot.setAttribute('aria-label', strings.chat_working);
-  body.appendChild(dot);
-  el.appendChild(body);
+  status.appendChild(dot);
+  const label = document.createElement('span');
+  label.className = 'chat-status-label';
+  label.textContent = strings.chat_working;                   // initial text for screen readers
+  status.appendChild(label);                 // text updated by the first `step`
+  el.appendChild(status);
   log.appendChild(el);
   el.scrollIntoView({ block: 'end' });
   return el;
 }
 
-// Fill a pending turn with its answer IN PLACE: drop the dot body, render the
-// answer into the same element (fading it in), append sources. Reuses the identity
-// strip already present, so the strip never re-lays-out. Returns { sources } like
-// _appendAnswer so the caller stores the SAME positional list.
-function _fillAnswer(el, record, chatCfg) {
-  el.classList.remove('chat-turn-pending');
-  const oldBody = el.querySelector('.chat-answer');
-  if (oldBody) oldBody.remove();
-  const { answerText, sources } = renderAnswer(record);
-  _renderAnswerBody(el, answerText);
-  const body = el.querySelector('.chat-answer');
-  if (body) body.classList.add('chat-answer--enter');
-  _appendSources(el, sources);
-  el.scrollIntoView({ block: 'end' });
-  return { sources };
+// Update the pending status line's text (a `step` event). No-op once tokens started.
+function _setStep(el, text) {
+  const label = el.querySelector('.chat-status-label');
+  if (label) label.textContent = text;       // inert
 }
+
+// First token: drop the status line, create the growing answer body. Later tokens
+// append and re-render markdown from the accumulated raw text.
+function _pushToken(el, text) {
+  let body = el.querySelector('.chat-answer');
+  if (!body) {
+    const status = el.querySelector('.chat-status');
+    if (status) status.remove();
+    el.classList.remove('chat-turn-pending');
+    body = document.createElement('div');
+    body.className = 'chat-answer chat-answer--enter';
+    el._raw = '';
+    el.appendChild(body);
+  }
+  el._raw += text;
+  const html = renderUntrusted(el._raw);
+  if (html !== null) body.innerHTML = html; else body.textContent = el._raw;
+  el.scrollIntoView({ block: 'end' });
+}
+
+// Read an NDJSON response body line by line, dispatching each event to handlers keyed
+// by its `event` field. Resolves when the stream ends. The reader is returned via
+// onReader so the caller can cancel it (stop button). Buffers partial lines across chunks.
+async function _readStream(res, handlers, onReader) {
+  const reader = res.body.getReader();
+  if (onReader) onReader(reader);
+  const decoder = new TextDecoder();
+  let buf = '';
+  for (;;) {
+    const { value, done } = await reader.read();
+    if (done) break;
+    buf += decoder.decode(value, { stream: true });
+    let nl;
+    while ((nl = buf.indexOf('\n')) >= 0) {
+      const line = buf.slice(0, nl).trim();
+      buf = buf.slice(nl + 1);
+      if (!line) continue;
+      let ev;
+      try { ev = JSON.parse(line); } catch { continue; }   // skip a partial/garbage line
+      const h = handlers[ev.event];
+      if (h) h(ev);
+    }
+  }
+}
+
+// Handle a non-OK HTTP status before streaming: factors out the outcome branches from
+// the submit handler. Reads `outcome` off the HTTP status, dispatches to the right
+// error string / gate path. Mirrors the old inline branches verbatim.
+async function _handleAskStatus(res, log, SECRET_KEY, root, gate, mountChatSurface) {
+  const outcome = askOutcome({ online: navigator.onLine, threw: false, status: res.status });
+  if (outcome === 'refused') {
+    const body = await res.json().catch(() => null);
+    const detail = body && body.error && body.error.detail;
+    _append(log, 'refused', strings.chat_error_refused + (detail ? ' (' + detail + ')' : ''));
+    return;
+  }
+  if (outcome === 'not_permitted') {            // 403: valid code, ask not in role
+    _append(log, 'error', strings.chat_not_permitted); // stay on input; no renderGate
+    return;
+  }
+  if (outcome === 'revoked') {                          // 401: secret no longer accepted
+    sessionStorage.removeItem(SECRET_KEY);             // drop the held secret
+    _append(log, 'error', strings.chat_revoked);
+    renderGate(root, gate, SECRET_KEY, () => mountChatSurface().catch((err) => console.error('chat: mount failed', err)));
+    return;
+  }
+  if (outcome === 'over-limit') {                       // 429: per-request capacity judgment
+    _append(log, 'error', strings.chat_over_limit);    // stay on input, preserve it
+    return;
+  }
+  // outcome === 'unavailable' (and any other non-OK)
+  console.warn('[chat] ask unavailable', { status: res.status });  // diagnosable
+  _append(log, 'error', strings.chat_unavailable);
+}
+
+// Map a mid-stream `error` event's kind to the right string and render it.
+// citation_check → chat_error_refused; synthesis_failed / unknown → chat_unavailable.
+function _renderStreamError(log, e) {
+  if (e.kind === 'citation_check') {
+    _append(log, 'refused', strings.chat_error_refused);
+  } else {
+    _append(log, 'error', strings.chat_unavailable);
+  }
+}
+
+// Build the minimal record object that nameAndPersist consumes: it reads record.title.
+function record_from(title) {
+  return { title };
+}
+

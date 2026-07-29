@@ -991,6 +991,12 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
 .chat-intro > :first-child { margin-top: 0; }
 .chat-intro > :last-child { margin-bottom: 0; }
 
+/* Operator instructions — always-open how-it-works block (collapsible:false). */
+.chat-instructions { color: var(--color-text-secondary-resolved); margin-bottom: var(--space-sm);
+            font-size: 0.82em; line-height: 1.6; }
+.chat-instructions > :first-child { margin-top: 0; }
+.chat-instructions > :last-child { margin-bottom: 0; }
+
 /* Operator-authored collapsible note in a chat intro — a quiet, FLAT disclosure:
  * no card (no border, background, or box padding), just a muted summary row with a
  * chevron and the disclaimer flowing beneath in small italic. The reveal glides open
@@ -1081,6 +1087,9 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
             color: var(--color-text-resolved); }
 
 .chat-turn p:last-child { margin-bottom: 0; }
+/* The visitor turn is inert textContent: preserve the line breaks the user typed
+   (Shift+Enter) instead of collapsing them to a single space. */
+.chat-turn-user p { white-space: pre-wrap; }
 
 /* Visitor: a subtle right-aligned bubble, ~80% width, soft radius, quiet surface. */
 .chat-turn-user { background: var(--color-chat-bubble-user-resolved);
@@ -1116,10 +1125,15 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
 /* Thinking indicator: a single soft breathing dot in the accent colour, shown as
  * the body of the pending assistant turn. The answer later replaces it IN PLACE
  * (chat.js _fillAnswer) so the identity strip never jumps. */
+/* The pending status line: breathing dot + the current step label, on one row. */
+.chat-status { display: inline-flex; align-items: center; gap: var(--space-sm); }
+.chat-status-label { font-size: calc(var(--font-base) * var(--scale-sm));
+  color: var(--color-text-secondary-resolved); }
 .chat-thinking-dot {
   display: inline-block;
-  width: 0.55rem;
-  height: 0.55rem;
+  flex: 0 0 auto;
+  width: 0.7rem;
+  height: 0.7rem;
   border-radius: 50%;
   background: var(--color-accent-resolved);
   animation: chat-breathe 1.4s ease-in-out infinite;
@@ -1152,20 +1166,23 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
 
 /* Composer: a single rounded container holding the input + a send button (Claude-style),
  * not a bare field with a floating button. Border lifts to the accent on focus-within. */
-.chat-composer { display: flex; gap: var(--space-xs); align-items: center;
+.chat-composer { display: flex; gap: var(--space-xs); align-items: flex-end;
             max-width: 36rem; margin: 0 auto;
             padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-md);
             border: 1px solid var(--color-border-resolved); border-radius: 1.6rem;
             background: var(--color-bg-resolved); }
 .chat-composer:focus-within { border-color: var(--color-accent-resolved); }
-.chat-input { flex: 1; min-width: 0; padding: var(--space-xs) 0; border: none;
-            background: transparent; color: var(--color-text-resolved); font: inherit; }
+.chat-input { flex: 1; min-width: 0; box-sizing: border-box; padding: var(--space-xs) 0;
+            border: none; background: transparent; color: var(--color-text-resolved);
+            font: inherit; resize: none; max-height: 200px; overflow-y: auto; line-height: 1.5; }
 .chat-input:focus { outline: none; }
 .chat-send { display: inline-flex; align-items: center; justify-content: center;
             flex: 0 0 auto; width: 2rem; height: 2rem; border: none; cursor: pointer;
             border-radius: 50%;
             background: var(--color-btn-primary-resolved);
             color: var(--color-btn-primary-text-resolved); }
+.chat-composer[data-mode="stop"] .chat-send {
+            background: var(--color-text-resolved); }
 
 /* --- chat sidebar (persist: local) --- */
 /* BASE: off-canvas left drawer over a backdrop scrim. The layout is the positioning
@@ -1297,6 +1314,10 @@ body[data-layout="app"] .chat-log {
    --space-md gutter each side on narrow screens; centered under the column. */
 body[data-layout="app"] .chat-composer {
   flex: 0 0 auto;
+  /* Match the message column exactly: the base rule caps at 36rem (< --chat-readable),
+     which is why the composer read narrower than the messages. Release the cap so the
+     readable width governs and the composer aligns with the log column above it. */
+  max-width: none;
   width: min(var(--chat-readable), 100% - 2 * var(--space-md));
   margin: 0 auto var(--space-lg);
 }
