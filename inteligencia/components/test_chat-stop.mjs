@@ -148,9 +148,10 @@ test('stop is clickable while streaming and aborts the turn (was: disabled → n
   assert.equal(form.dataset.mode, 'send', 'composer re-arms to send after teardown');
 });
 
-test('repeated send→stop cycles never accumulate bubbles (the pile-up bug)', async () => {
+test('repeated DELIBERATE send→stop cycles never accumulate bubbles (the pile-up bug)', async () => {
   const { form, input, send } = await mountFresh();
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 4; i++) {
+    if (i > 0) await wait(700);                    // deliberate cycle: past the resend guard
     STREAM = makeStream();
     input.value = 'quién eres tú?';
     form.requestSubmit();                          // send
@@ -182,7 +183,9 @@ test('double-clicking stop does NOT resubmit the restored query (the duplicate-m
   assert.equal(users(), 0, 'second click is another stop (undo), never a resubmit — no bubble reappears');
 });
 
-test('after a stop, tapping send resends the restored text as-is (no edit required)', async () => {
+const wait = (ms) => new Promise(r => setTimeout(r, ms));
+
+test('mashing stop is absorbed to ONE clean stop — no resend storm', async () => {
   const { form, input, send } = await mountFresh();
   STREAM = makeStream();
   FETCH_COUNT = 0;
@@ -191,33 +194,32 @@ test('after a stop, tapping send resends the restored text as-is (no edit requir
   await tick();
   STREAM.emit({ event: 'step', text: 'Procesando' });
   await tick();
-  send.dispatchEvent({ type: 'click' });            // STOP → undo, restore text
-  await tick(); await tick();
-  assert.equal(input.value, 'quién eres tú?', 'text restored');
-  assert.equal(send.disabled, false, 'send is enabled so the reader can resend as-is');
-  // resend without editing
-  clickButton(form, send);                          // request 2
+  // reader mashes the button expecting "stop stop stop" (all within the guard window)
+  for (let i = 0; i < 10; i++) { clickButton(form, send); await tick(); }
   await tick();
-  assert.equal(FETCH_COUNT, 2, 'tapping send resends the restored query');
-  assert.equal(users(), 1, 'exactly one live user bubble (no pile-up)');
+  assert.equal(FETCH_COUNT, 1, 'the mash fires no extra requests — the first stop is sticky');
+  assert.equal(users(), 0, 'the turn is undone: no bubble left');
+  assert.equal(input.value, 'quién eres tú?', 'text restored, ready to edit or resend');
 });
 
-test('hammering the button never piles up bubbles or overlaps streams', async () => {
+test('a deliberate resend AFTER the guard window still works', async () => {
   const { form, input, send } = await mountFresh();
   STREAM = makeStream();
+  FETCH_COUNT = 0;
   input.value = 'quién eres tú?';
-  clickButton(form, send);
+  clickButton(form, send);                          // request 1
   await tick();
   STREAM.emit({ event: 'step', text: 'Procesando' });
   await tick();
-  // hammer the button; each cycle may fire a request, but the log must never accumulate
-  for (let i = 0; i < 8; i++) {
-    clickButton(form, send);
-    await tick();
-    STREAM = makeStream();                          // a fresh stream for any resubmit
-    assert.ok(users() <= 1, `hammer ${i}: at most one bubble (undo keeps the log clean)`);
-    assert.ok(form.dataset.mode === 'stop' || form.dataset.mode === 'send', 'mode stays valid');
-  }
+  send.dispatchEvent({ type: 'click' });            // STOP
+  await tick(); await tick();
+  assert.equal(FETCH_COUNT, 1, 'still one request right after stop');
+  await wait(700);                                  // pause past the 600ms guard
+  STREAM = makeStream();
+  clickButton(form, send);                          // deliberate resend
+  await tick();
+  assert.equal(FETCH_COUNT, 2, 'resend after the guard window fires exactly one new request');
+  assert.equal(users(), 1, 'one live user bubble, no pile-up');
 });
 
 test('a submit is ignored while a turn is already streaming (one turn at a time)', async () => {

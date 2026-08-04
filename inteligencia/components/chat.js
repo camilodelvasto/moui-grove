@@ -34,6 +34,13 @@ const ICON_SEND =
 const ICON_STOP =
   '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect></svg>';
 
+// The one composer button morphs send↔stop, so it sits at a fixed spot. When the reader
+// mashes it to stop, the clicks would otherwise alternate stop→send→stop… (each "send"
+// starting a fresh request the next "stop" cancels — a canceled-request storm). This guard
+// makes the first stop STICKY: for a short window after a stop, submits are ignored, so a
+// burst of clicks yields ONE clean stop. A deliberate resend a beat later still works.
+const STOP_RESEND_GUARD_MS = 600;
+
 function _config() {
   const el = document.getElementById('chat-config');
   if (!el) return null;
@@ -141,6 +148,7 @@ async function _mount(root) {
   send.addEventListener('click', () => {
     if (form.dataset.mode !== 'stop') return;             // send mode → normal submit
     form._stopped = true;                                 // submit continuation bails on this
+    form._resendGuardUntil = Date.now() + STOP_RESEND_GUARD_MS;  // absorb a button-mash
     if (form._reader) form._reader.cancel().catch(() => {});
     if (form._abort) form._abort.abort();
     // Stop = UNDO the send. Remove the in-flight turn entirely — both the user's message
@@ -425,6 +433,9 @@ async function _mount(root) {
         // is in 'stop' mode. Ignore any submit until it returns to 'send'. This stops
         // overlapping streams and the double-click resubmit that duplicated messages.
         if (form.dataset.mode === 'stop') return;
+        // Sticky stop: ignore a resend that lands in the brief guard window right after a
+        // stop, so mashing the button yields one clean stop instead of a stop→send storm.
+        if (Date.now() < (form._resendGuardUntil || 0)) return;
         const question = input.value.trim();
         if (!question) return;
         form._lastQuery = input.value;                         // Task 9: restore on stop
