@@ -150,8 +150,11 @@ async function _mount(root) {
     if (stuck) stuck.remove();
     input.value = form._lastQuery;                        // restore the query for editing
     _autogrow(); input.focus();
-    input.disabled = false; send.disabled = false;
-    _setComposerMode('send');
+    input.disabled = false;                               // let the reader edit immediately
+    // Do NOT re-arm the send button here. The stream teardown (submit's `finally`) flips
+    // back to send mode once the abort settles. Keeping mode 'stop' for that brief window
+    // means a double-click's second click is another (idempotent) stop — NOT a resubmit of
+    // the query stop just restored. That accidental resubmit was the duplicate-message bug.
   });
 
   // The conversation pane (log + composer). For a persist: local chat it sits next
@@ -418,6 +421,10 @@ async function _mount(root) {
       form._submitWired = true;
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        // One turn at a time: while a turn streams (or tears down after stop) the composer
+        // is in 'stop' mode. Ignore any submit until it returns to 'send'. This stops
+        // overlapping streams and the double-click resubmit that duplicated messages.
+        if (form.dataset.mode === 'stop') return;
         const question = input.value.trim();
         if (!question) return;
         form._lastQuery = input.value;                         // Task 9: restore on stop
