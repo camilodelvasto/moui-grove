@@ -136,9 +136,27 @@ test('stop is clickable while streaming and aborts the turn (was: disabled → n
   assert.equal(ABORTED, true, 'fetch aborted');
   assert.equal(STREAM.cancelled(), true, 'reader cancelled');
   assert.equal(input.value, 'crear una estrategia', 'query restored for editing');
-  assert.equal(users(), 1, 'exactly one user turn');
+  assert.equal(users(), 0, 'stop UNDOES the send: the user bubble is removed');
+  assert.equal(find(MAIN, '.chat-turn-pending'), null, 'the pending/answer turn is removed too');
   assert.equal(find(MAIN, '.chat-turn-error'), null, 'no error surfaced by a user stop');
   assert.equal(form.dataset.mode, 'send', 'composer re-arms to send after teardown');
+});
+
+test('repeated send→stop cycles never accumulate bubbles (the pile-up bug)', async () => {
+  const { form, input, send } = await mountFresh();
+  for (let i = 0; i < 5; i++) {
+    STREAM = makeStream();
+    input.value = 'quién eres tú?';
+    form.requestSubmit();                          // send
+    await tick();
+    assert.equal(users(), 1, `cycle ${i}: one bubble while streaming`);
+    STREAM.emit({ event: 'step', text: 'Procesando' });
+    await tick();
+    send.dispatchEvent({ type: 'click' });         // stop → undo
+    await tick(); await tick();
+    assert.equal(users(), 0, `cycle ${i}: stop cleared the bubble`);
+    assert.equal(input.value, 'quién eres tú?', `cycle ${i}: text restored`);
+  }
 });
 
 test('double-clicking stop does NOT resubmit the restored query (the duplicate-message bug)', async () => {
@@ -155,7 +173,7 @@ test('double-clicking stop does NOT resubmit the restored query (the duplicate-m
   assert.equal(form.dataset.mode, 'stop', 'still in stop mode between the two clicks');
   clickButton(form, send);
   await tick();
-  assert.equal(users(), 1, 'the second click must not resubmit — no duplicate turn');
+  assert.equal(users(), 0, 'second click is another stop (undo), never a resubmit — no bubble reappears');
 });
 
 test('a submit is ignored while a turn is already streaming (one turn at a time)', async () => {

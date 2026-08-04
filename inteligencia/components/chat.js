@@ -143,11 +143,11 @@ async function _mount(root) {
     form._stopped = true;                                 // submit continuation bails on this
     if (form._reader) form._reader.cancel().catch(() => {});
     if (form._abort) form._abort.abort();
-    // A turn still marked pending has streamed no tokens (the first token clears that
-    // class in _pushToken): there is nothing to retain, so drop the breathing-dot turn
-    // rather than leave it spinning forever. A turn with partial text is kept (spec: retain).
-    const stuck = log.querySelector('.chat-turn-pending');
-    if (stuck) stuck.remove();
+    // Stop = UNDO the send. Remove the in-flight turn entirely — both the user's message
+    // AND the pending/partial answer — so the view reflects "not sent", then put the text
+    // back in the composer for editing. (Without this the bubbles pile up on every retry.)
+    if (form._turnAssistant) form._turnAssistant.remove();
+    if (form._turnUser) form._turnUser.remove();
     input.value = form._lastQuery;                        // restore the query for editing
     _autogrow(); input.focus();
     input.disabled = false;                               // let the reader edit immediately
@@ -429,10 +429,12 @@ async function _mount(root) {
         if (!question) return;
         form._lastQuery = input.value;                         // Task 9: restore on stop
         input.value = ''; _autogrow();
-        _appendTurn(log, 'user', question);
+        const userTurn = _appendTurn(log, 'user', question);
         let pending = _appendPending(log, chatCfg);
         input.disabled = true;                                 // freeze input; button stays live as stop
         form._stopped = false;                                 // fresh turn: not (yet) stopped
+        form._turnUser = userTurn;                             // stop removes this pair (undo the send)
+        form._turnAssistant = pending;
         _setComposerMode('stop');                              // Task 9
         try {
           // Re-read the secret each ask — never a cached "we're authed" flag.
