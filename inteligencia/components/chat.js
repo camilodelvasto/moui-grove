@@ -84,6 +84,14 @@ async function _mount(root) {
 
   const log = document.createElement('div');
   log.className = 'chat-log';
+  // Auto-scroll pins the streaming answer to the bottom, but releases the instant the
+  // reader scrolls up so they can read back; scrolling back to the bottom re-arms it.
+  // Programmatic scroll-to-bottom lands AT the bottom, so it keeps the pin set — only a
+  // real scroll-away clears it. (This is how other chatbots behave.)
+  log._pinned = true;
+  log.addEventListener('scroll', () => {
+    log._pinned = log.scrollHeight - log.scrollTop - log.clientHeight < 48;
+  }, { passive: true });
   const form = document.createElement('form');
   form.className = 'chat-composer';
   const input = document.createElement('textarea');
@@ -121,7 +129,10 @@ async function _mount(root) {
   const _setComposerMode = (mode) => {
     if (mode === 'stop') {
       send.innerHTML = ICON_STOP; send.setAttribute('aria-label', strings.chat_stop);
-      send.type = 'button'; form.dataset.mode = 'stop';
+      // Stay clickable: a disabled <button> fires no click, so the stop control must be
+      // enabled while the answer streams — else stop "does nothing". Only the input is
+      // frozen during a turn; the button is always live to abort.
+      send.type = 'button'; send.disabled = false; form.dataset.mode = 'stop';
     } else {
       send.innerHTML = ICON_SEND; send.setAttribute('aria-label', strings.chat_send);
       send.type = 'submit'; form.dataset.mode = 'send';
@@ -129,6 +140,7 @@ async function _mount(root) {
   };
   send.addEventListener('click', () => {
     if (form.dataset.mode !== 'stop') return;             // send mode → normal submit
+    form._stopped = true;                                 // submit continuation bails on this
     if (form._reader) form._reader.cancel().catch(() => {});
     if (form._abort) form._abort.abort();
     // A turn still marked pending has streamed no tokens (the first token clears that
@@ -412,7 +424,8 @@ async function _mount(root) {
         input.value = ''; _autogrow();
         _appendTurn(log, 'user', question);
         let pending = _appendPending(log, chatCfg);
-        input.disabled = true; send.disabled = true;
+        input.disabled = true;                                 // freeze input; button stays live as stop
+        form._stopped = false;                                 // fresh turn: not (yet) stopped
         _setComposerMode('stop');                              // Task 9
         try {
           // Re-read the secret each ask — never a cached "we're authed" flag.
@@ -444,6 +457,8 @@ async function _mount(root) {
             'error':   (e) => { streamErr = e; seenDone = true; },  // error IS a terminal event
             'done':    () => { seenDone = true; },
           }, (r) => { form._reader = r; });
+          if (form._stopped) return;                          // user stopped: its handler owns cleanup,
+                                                              // don't fall through to the crash/error paths
           if (!seenDone) {                                    // relay crashed — no terminal event
             pending.remove();
             pending = null;
@@ -475,7 +490,7 @@ async function _mount(root) {
             await refreshSidebar();
           }
         } catch (err) {
-          if (err && err.name === 'AbortError') { return; }  // stop button: its own path owns cleanup
+          if (form._stopped || (err && err.name === 'AbortError')) { return; }  // stop button: its own path owns cleanup
           if (pending) pending.remove();
           const outcome = askOutcome({ online: navigator.onLine, threw: true, status: 0 });
           if (outcome === 'offline') {
@@ -744,7 +759,11 @@ function _pushToken(el, text) {
   el._raw += text;
   const html = renderUntrusted(el._raw);
   if (html !== null) body.innerHTML = html; else body.textContent = el._raw;
-  el.scrollIntoView({ block: 'end' });
+  // Only glue to the bottom while the reader is pinned there. Once they scroll up the log
+  // clears its pin, and the streaming answer keeps growing off-screen instead of yanking
+  // the viewport back down. `el.parentNode` is the .chat-log scroll container.
+  const container = el.parentNode;
+  if (!container || container._pinned !== false) el.scrollIntoView({ block: 'end' });
 }
 
 // Read an NDJSON response body line by line, dispatching each event to handlers keyed
