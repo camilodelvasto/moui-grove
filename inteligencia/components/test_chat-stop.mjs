@@ -94,9 +94,9 @@ function makeStream() {
     },
   };
 }
-let STREAM = null, ABORTED = false;
+let STREAM = null, ABORTED = false, FETCH_COUNT = 0;
 globalThis.AbortController = class { constructor() { this.signal = { aborted: false }; } abort() { this.signal.aborted = true; ABORTED = true; } };
-globalThis.fetch = async () => ({ ok: true, status: 200, body: { getReader: () => STREAM.reader } });
+globalThis.fetch = async () => { FETCH_COUNT++; return { ok: true, status: 200, body: { getReader: () => STREAM.reader } }; };
 
 CONFIG_EL._text = JSON.stringify({ endpoint: 'https://relay.test', chats: { '/inteligencia/estratega/': { ask: 'estratega', persist: 'none' } } });
 STRINGS_EL._text = JSON.stringify(Object.fromEntries(
@@ -116,8 +116,14 @@ async function mountFresh() {
 }
 const users = () => document.querySelectorAll('.chat-turn-user').length;
 
-// a real click on a type=submit button also submits the form; emulate that
-const clickButton = (form, send) => { const submits = send.type === 'submit' && form.dataset.mode !== 'stop'; send.dispatchEvent({ type: 'click' }); if (submits) form.requestSubmit(); };
+// a real click on an ENABLED type=submit button also submits the form; a disabled button
+// fires no click and never submits — emulate both.
+const clickButton = (form, send) => {
+  if (send.disabled) return;                        // disabled → no click, no submit
+  const submits = send.type === 'submit' && form.dataset.mode !== 'stop';
+  send.dispatchEvent({ type: 'click' });
+  if (submits) form.requestSubmit();
+};
 
 // ---- tests ----------------------------------------------------------------
 test('stop is clickable while streaming and aborts the turn (was: disabled → no-op)', async () => {
@@ -174,6 +180,22 @@ test('double-clicking stop does NOT resubmit the restored query (the duplicate-m
   clickButton(form, send);
   await tick();
   assert.equal(users(), 0, 'second click is another stop (undo), never a resubmit — no bubble reappears');
+});
+
+test('hammering the button after a stop does NOT fire more requests (the canceled-fetch loop)', async () => {
+  const { form, input, send } = await mountFresh();
+  STREAM = makeStream();
+  FETCH_COUNT = 0;
+  input.value = 'quién eres tú?';
+  clickButton(form, send);                          // send → 1 request
+  await tick();
+  STREAM.emit({ event: 'step', text: 'Procesando' });
+  await tick();
+  assert.equal(FETCH_COUNT, 1, 'one request sent');
+  // user hammers the same button spot expecting "stop stop stop"
+  for (let i = 0; i < 6; i++) { clickButton(form, send); await tick(); }
+  await tick();
+  assert.equal(FETCH_COUNT, 1, 'no button spam should ever start a second request');
 });
 
 test('a submit is ignored while a turn is already streaming (one turn at a time)', async () => {
