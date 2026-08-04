@@ -34,13 +34,6 @@ const ICON_SEND =
 const ICON_STOP =
   '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect></svg>';
 
-// The one composer button morphs send↔stop, so it sits at a fixed spot. When the reader
-// mashes it to stop, the clicks would otherwise alternate stop→send→stop… (each "send"
-// starting a fresh request the next "stop" cancels — a canceled-request storm). This guard
-// makes the first stop STICKY: for a short window after a stop, submits are ignored, so a
-// burst of clicks yields ONE clean stop. A deliberate resend a beat later still works.
-const STOP_RESEND_GUARD_MS = 600;
-
 function _config() {
   const el = document.getElementById('chat-config');
   if (!el) return null;
@@ -110,7 +103,7 @@ async function _mount(root) {
   input.placeholder = strings.chat_input_placeholder;
   input.setAttribute('aria-label', strings.chat_input_placeholder);
   const send = document.createElement('button');
-  send.type = 'submit';
+  send.type = 'button';                                    // never native-submits; the click handler routes send/stop
   send.className = 'chat-send';
   send.innerHTML = ICON_SEND;                              // static trusted icon, not untrusted content
   send.setAttribute('aria-label', strings.chat_send);     // keyed label kept for a11y
@@ -130,39 +123,44 @@ async function _mount(root) {
     }
   });
 
-  // The one button morphs: idle → send (submits the form); streaming → stop (aborts the
-  // fetch + cancels the reader). On stop the partial answer AND the user turn stay; the
-  // query returns to the composer for editing (spec: option A).
-  const _setComposerMode = (mode) => {
-    if (mode === 'stop') {
+  // ── Composer model ──────────────────────────────────────────────────────────
+  // `inflight` is the SINGLE source of truth: the turn currently being generated, or null
+  // when idle. The button and input are a pure function of it (renderComposer): a query is
+  // active → STOP + frozen input; none active → SEND + editable input. Every action sets
+  // `inflight` and re-renders SYNCHRONOUSLY, so the view can never drift from the real
+  // state. Each turn captures its own object `t`; a stopped or superseded turn checks
+  // `inflight !== t` in its async continuation and bails without touching the UI — so there
+  // are no shared-state races and no invalid states to "show".
+  let inflight = null;   // { question, controller, reader, userEl, pendingEl } | null
+  const renderComposer = () => {
+    if (inflight) {
       send.innerHTML = ICON_STOP; send.setAttribute('aria-label', strings.chat_stop);
-      // Stay clickable: a disabled <button> fires no click, so the stop control must be
-      // enabled while the answer streams — else stop "does nothing". Only the input is
-      // frozen during a turn; the button is always live to abort.
-      send.type = 'button'; send.disabled = false; form.dataset.mode = 'stop';
+      input.disabled = true;
     } else {
       send.innerHTML = ICON_SEND; send.setAttribute('aria-label', strings.chat_send);
-      send.type = 'submit'; form.dataset.mode = 'send';
+      input.disabled = false;
     }
   };
+  // Stop = undo the in-flight turn. Null `inflight` FIRST (so the turn's own pending fetch/
+  // stream continuation sees `inflight !== t` and bails), then abort, remove its bubbles
+  // (message + pending answer), and restore the query for editing.
+  const stopTurn = () => {
+    const t = inflight;
+    if (!t) return;
+    inflight = null;
+    t.controller.abort();
+    if (t.reader) t.reader.cancel().catch(() => {});
+    t.userEl.remove();
+    t.pendingEl.remove();
+    input.value = t.question;
+    _autogrow();
+    renderComposer();
+    input.focus();
+  };
+  // The button is trivial: a query is active → stop it; none → send.
   send.addEventListener('click', () => {
-    if (form.dataset.mode !== 'stop') return;             // send mode → normal submit
-    form._stopped = true;                                 // submit continuation bails on this
-    form._resendGuardUntil = Date.now() + STOP_RESEND_GUARD_MS;  // absorb a button-mash
-    if (form._reader) form._reader.cancel().catch(() => {});
-    if (form._abort) form._abort.abort();
-    // Stop = UNDO the send. Remove the in-flight turn entirely — both the user's message
-    // AND the pending/partial answer — so the view reflects "not sent", then put the text
-    // back in the composer for editing. (Without this the bubbles pile up on every retry.)
-    if (form._turnAssistant) form._turnAssistant.remove();
-    if (form._turnUser) form._turnUser.remove();
-    input.value = form._lastQuery;                        // restore the query for editing
-    _autogrow(); input.focus();
-    input.disabled = false;                               // let the reader edit immediately
-    // Do NOT re-arm the send button here. The stream teardown (submit's `finally`) flips
-    // back to send mode once the abort settles. Keeping mode 'stop' for that brief window
-    // means a double-click's second click is another (idempotent) stop — NOT a resubmit of
-    // the query stop just restored. That accidental resubmit was the duplicate-message bug.
+    if (inflight) stopTurn();
+    else form.requestSubmit();
   });
 
   // The conversation pane (log + composer). For a persist: local chat it sits next
@@ -429,39 +427,36 @@ async function _mount(root) {
       form._submitWired = true;
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        // One turn at a time: while a turn streams (or tears down after stop) the composer
-        // is in 'stop' mode. Ignore any submit until it returns to 'send'. This stops
-        // overlapping streams and the double-click resubmit that duplicated messages.
-        if (form.dataset.mode === 'stop') return;
-        // Sticky stop: ignore a resend that lands in the brief guard window right after a
-        // stop, so mashing the button yields one clean stop instead of a stop→send storm.
-        if (Date.now() < (form._resendGuardUntil || 0)) return;
+        if (inflight) return;                                 // a query is active (button is STOP) → ignore stray submits
         const question = input.value.trim();
         if (!question) return;
-        form._lastQuery = input.value;                         // Task 9: restore on stop
         input.value = ''; _autogrow();
-        const userTurn = _appendTurn(log, 'user', question);
-        let pending = _appendPending(log, chatCfg);
-        input.disabled = true;                                 // freeze input; button stays live as stop
-        form._stopped = false;                                 // fresh turn: not (yet) stopped
-        form._turnUser = userTurn;                             // stop removes this pair (undo the send)
-        form._turnAssistant = pending;
-        _setComposerMode('stop');                              // Task 9
+        // The turn owns its own state. `inflight === t` is the liveness check every async
+        // step re-tests: once a stop (or a superseding turn) nulls/replaces `inflight`, this
+        // turn's continuation bails without touching the UI.
+        const t = {
+          question,
+          controller: new AbortController(),
+          reader: null,
+          userEl: _appendTurn(log, 'user', question),
+          pendingEl: _appendPending(log, chatCfg),
+        };
+        inflight = t;
+        renderComposer();                                     // → STOP + frozen input (derived, synchronous)
         try {
           // Re-read the secret each ask — never a cached "we're authed" flag.
           const headers = { 'Content-Type': 'application/json', 'Accept': 'application/x-ndjson' };
           const secret = heldSecret();
           if (secret) headers['Authorization'] = 'Bearer ' + secret;
-          const controller = new AbortController();
-          form._abort = controller;                           // stop button reaches it
           const res = await fetch(endpoint.replace(/\/$/, '') + '/ask/' + encodeURIComponent(ask), {
-            method: 'POST', headers, signal: controller.signal,
+            method: 'POST', headers, signal: t.controller.signal,
             // Wire contract: turns are EXACTLY { role, content }. active.history may now
             // carry `sources` on assistant turns (a client display concern); strip it.
             body: JSON.stringify({ question, history: toWireTurns(active.history) }),
           });
+          if (inflight !== t) return;                         // stopped/superseded while awaiting the response
           if (!res.ok) {                                      // pre-stream failure keeps HTTP semantics
-            pending.remove();
+            t.pendingEl.remove();
             await _handleAskStatus(res, log, SECRET_KEY, root, gate, mountChatSurface);
             return;
           }
@@ -470,33 +465,30 @@ async function _mount(root) {
           // terminal event is a failure; do not silently succeed.
           let title = null, sources = [], streamErr = null, seenDone = false;
           await _readStream(res, {
-            'step':    (e) => _setStep(pending, e.text),
-            'token':   (e) => _pushToken(pending, e.text),
+            'step':    (e) => { if (inflight === t) _setStep(t.pendingEl, e.text); },
+            'token':   (e) => { if (inflight === t) _pushToken(t.pendingEl, e.text); },
             'sources': (e) => { sources = e.sources; },
             'title':   (e) => { title = e.text; },
             'error':   (e) => { streamErr = e; seenDone = true; },  // error IS a terminal event
             'done':    () => { seenDone = true; },
-          }, (r) => { form._reader = r; });
-          if (form._stopped) return;                          // user stopped: its handler owns cleanup,
-                                                              // don't fall through to the crash/error paths
+          }, (r) => { t.reader = r; });
+          if (inflight !== t) return;                         // stopped mid-stream — stopTurn() already cleaned up
           if (!seenDone) {                                    // relay crashed — no terminal event
-            pending.remove();
-            pending = null;
+            t.pendingEl.remove();
             _append(log, 'error', strings.chat_unavailable);
             return;
           }
           if (streamErr) {                                    // mid-stream engine error
             _renderStreamError(log, streamErr);
-            pending.remove();
-            pending = null;
+            t.pendingEl.remove();
             return;
           }
-          _appendSources(pending, sources);                   // below the streamed answer
-          const answer = pending._raw || '';
+          _appendSources(t.pendingEl, sources);               // below the streamed answer
+          const answer = t.pendingEl._raw || '';
           const wasNamed = active.record !== null;
           active.history.push({ role: 'user', content: question });
           if (answer) active.history.push({ role: 'assistant', content: answer, sources });
-          pending = null;  // the pending element IS the live answer now; catch must not remove it
+          t.pendingEl = null;  // the element IS the live answer now; cleanup must not remove it
           if (persistent) {
             // A stream with no answer text still names on first success; subsequent turns append.
             // Persistence failures must not break the live conversation (already rendered).
@@ -510,8 +502,8 @@ async function _mount(root) {
             await refreshSidebar();
           }
         } catch (err) {
-          if (form._stopped || (err && err.name === 'AbortError')) { return; }  // stop button: its own path owns cleanup
-          if (pending) pending.remove();
+          if (inflight !== t || (err && err.name === 'AbortError')) return;  // stopped/superseded owns its cleanup
+          if (t.pendingEl) t.pendingEl.remove();
           const outcome = askOutcome({ online: navigator.onLine, threw: true, status: 0 });
           if (outcome === 'offline') {
             _append(log, 'error', strings.chat_offline);
@@ -522,13 +514,9 @@ async function _mount(root) {
             _append(log, 'error', strings.chat_unavailable);
           }
         } finally {
-          // Ready for the next turn. After a stop the restored query is already in the
-          // composer, so re-enabling send lets the reader resend it as-is (tap or Enter) or
-          // edit first. Overlap is prevented by the mode==='stop' guard at submit top, and a
-          // stop always undoes its turn — so a stray click never piles up the log.
-          input.disabled = false; send.disabled = false;
-          _setComposerMode('send');                          // Task 9
-          input.focus();
+          // Only THIS turn clears the composer, and only if it's still the active one — a
+          // stop/supersede already re-rendered, so a stale turn's finally must not touch it.
+          if (inflight === t) { inflight = null; renderComposer(); input.focus(); }
         }
       });
     }
