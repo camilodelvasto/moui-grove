@@ -182,20 +182,42 @@ test('double-clicking stop does NOT resubmit the restored query (the duplicate-m
   assert.equal(users(), 0, 'second click is another stop (undo), never a resubmit — no bubble reappears');
 });
 
-test('hammering the button after a stop does NOT fire more requests (the canceled-fetch loop)', async () => {
+test('after a stop, tapping send resends the restored text as-is (no edit required)', async () => {
   const { form, input, send } = await mountFresh();
   STREAM = makeStream();
   FETCH_COUNT = 0;
   input.value = 'quién eres tú?';
-  clickButton(form, send);                          // send → 1 request
+  clickButton(form, send);                          // send → request 1
   await tick();
   STREAM.emit({ event: 'step', text: 'Procesando' });
   await tick();
-  assert.equal(FETCH_COUNT, 1, 'one request sent');
-  // user hammers the same button spot expecting "stop stop stop"
-  for (let i = 0; i < 6; i++) { clickButton(form, send); await tick(); }
+  send.dispatchEvent({ type: 'click' });            // STOP → undo, restore text
+  await tick(); await tick();
+  assert.equal(input.value, 'quién eres tú?', 'text restored');
+  assert.equal(send.disabled, false, 'send is enabled so the reader can resend as-is');
+  // resend without editing
+  clickButton(form, send);                          // request 2
   await tick();
-  assert.equal(FETCH_COUNT, 1, 'no button spam should ever start a second request');
+  assert.equal(FETCH_COUNT, 2, 'tapping send resends the restored query');
+  assert.equal(users(), 1, 'exactly one live user bubble (no pile-up)');
+});
+
+test('hammering the button never piles up bubbles or overlaps streams', async () => {
+  const { form, input, send } = await mountFresh();
+  STREAM = makeStream();
+  input.value = 'quién eres tú?';
+  clickButton(form, send);
+  await tick();
+  STREAM.emit({ event: 'step', text: 'Procesando' });
+  await tick();
+  // hammer the button; each cycle may fire a request, but the log must never accumulate
+  for (let i = 0; i < 8; i++) {
+    clickButton(form, send);
+    await tick();
+    STREAM = makeStream();                          // a fresh stream for any resubmit
+    assert.ok(users() <= 1, `hammer ${i}: at most one bubble (undo keeps the log clean)`);
+    assert.ok(form.dataset.mode === 'stop' || form.dataset.mode === 'send', 'mode stays valid');
+  }
 });
 
 test('a submit is ignored while a turn is already streaming (one turn at a time)', async () => {

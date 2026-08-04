@@ -115,12 +115,7 @@ async function _mount(root) {
   // double-counted padding. CSS `max-height` + `overflow-y: auto` cap tall input; no JS cap.
   const _autogrow = () => { input.style.height = 'auto';
     input.style.height = input.scrollHeight + 'px'; };
-  input.addEventListener('input', () => {
-    _autogrow();
-    // After a stop, send is disabled until the reader engages with the restored text.
-    // The first edit arms it — so mouse-hammering the button post-stop can't resubmit.
-    if (form._armOnEdit) { form._armOnEdit = false; send.disabled = false; }
-  });
+  input.addEventListener('input', _autogrow);
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey && !_coarse) {   // desktop Enter → send; Shift+Enter → newline
       e.preventDefault();
@@ -438,7 +433,6 @@ async function _mount(root) {
         let pending = _appendPending(log, chatCfg);
         input.disabled = true;                                 // freeze input; button stays live as stop
         form._stopped = false;                                 // fresh turn: not (yet) stopped
-        form._armOnEdit = false;                               // a real send clears any post-stop disarm
         form._turnUser = userTurn;                             // stop removes this pair (undo the send)
         form._turnAssistant = pending;
         _setComposerMode('stop');                              // Task 9
@@ -517,18 +511,12 @@ async function _mount(root) {
             _append(log, 'error', strings.chat_unavailable);
           }
         } finally {
-          input.disabled = false;
+          // Ready for the next turn. After a stop the restored query is already in the
+          // composer, so re-enabling send lets the reader resend it as-is (tap or Enter) or
+          // edit first. Overlap is prevented by the mode==='stop' guard at submit top, and a
+          // stop always undoes its turn — so a stray click never piles up the log.
+          input.disabled = false; send.disabled = false;
           _setComposerMode('send');                          // Task 9
-          if (form._stopped) {
-            // Stopped turn: the restored query waits in the composer for editing. Keep the
-            // send button DISABLED until the reader edits (see the input listener) so that
-            // hammering the button after a stop never fires a fresh request. Enter still
-            // resends the query as-is (a deliberate keyboard action, not a stray click).
-            send.disabled = true;
-            form._armOnEdit = true;
-          } else {
-            send.disabled = false;
-          }
           input.focus();
         }
       });
