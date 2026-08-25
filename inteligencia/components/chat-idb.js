@@ -17,7 +17,8 @@ import { sortByRecency } from './chat-store.js';
 
 const DB_PREFIX = 'grove-chat'; // one IDB database per namespace, keyed by route
 const STORE = 'conversations';
-const DB_VERSION = 1;
+const ATTACH_STORE = 'attachments';
+const DB_VERSION = 2;
 
 // dbNameFor(namespace): a stable, route-derived database name. The route is the only
 // namespacing input; we sanitize it for the IDB name but keep it 1:1 with the route.
@@ -46,6 +47,9 @@ export function openDB(namespace) {
       if (!db.objectStoreNames.contains(STORE)) {
         db.createObjectStore(STORE, { keyPath: 'slug' });
       }
+      if (!db.objectStoreNames.contains(ATTACH_STORE)) {
+        db.createObjectStore(ATTACH_STORE, { keyPath: 'id' });   // content-addressed: id = sha256
+      }
     };
     req.onsuccess = () => resolve(req.result);
     req.onerror = () => {
@@ -68,41 +72,26 @@ export function openDB(namespace) {
 //
 // We close the DB on settle so connections don't leak and block a future
 // onupgradeneeded.
-function withStore(namespace, mode, run) {
+export function withStore(namespace, mode, run, storeName = STORE) {
   return new Promise((resolve, reject) => {
     openDB(namespace).then((db) => {
       let tx;
       try {
-        tx = db.transaction(STORE, mode);
+        tx = db.transaction(storeName, mode);
       } catch (err) {
         console.error('chat-idb: transaction failed for', namespace, err);
-        db.close();
-        reject(err);
-        return;
+        db.close(); reject(err); return;
       }
-      const store = tx.objectStore(STORE);
+      const store = tx.objectStore(storeName);
       let result; // captured from the request; only surfaced once the tx commits
       const req = run(store);
       req.onsuccess = () => { result = req.result; };
       // Note: a request-level onerror that isn't preventDefault()'d aborts the tx,
       // so tx.onabort below is the real reject path. We log here for the precise error.
-      req.onerror = () => {
-        console.error('chat-idb: request failed for', namespace, req.error);
-      };
-      tx.oncomplete = () => {
-        db.close();
-        resolve(result);
-      };
-      tx.onerror = () => {
-        console.error('chat-idb: transaction error for', namespace, tx.error);
-        db.close();
-        reject(tx.error);
-      };
-      tx.onabort = () => {
-        console.error('chat-idb: transaction aborted for', namespace, tx.error);
-        db.close();
-        reject(tx.error);
-      };
+      req.onerror = () => { console.error('chat-idb: request failed for', namespace, req.error); };
+      tx.oncomplete = () => { db.close(); resolve(result); };
+      tx.onerror = () => { console.error('chat-idb: transaction error for', namespace, tx.error); db.close(); reject(tx.error); };
+      tx.onabort = () => { console.error('chat-idb: transaction aborted for', namespace, tx.error); db.close(); reject(tx.error); };
     }).catch(reject);
   });
 }

@@ -17,7 +17,9 @@ import { gateView, askOutcome } from './chat-gate.js';
 import { monogram } from './chat-render.js';
 import { renderUntrusted } from '../markdown.js';
 import { currentRoute, buildHref } from '../navigation.js';
-import { makeRecord, dedupeSlug, slugFromRoute, toWireTurns, toStoredTurns } from './chat-store.js';
+import { makeRecord, dedupeSlug, slugFromRoute, toWireTurns, toStoredTurns, hydrateTurns } from './chat-store.js';
+import { createAttachTray } from './chat-attach.js';
+import { putAttachment, getAttachments, removeAttachments } from './chat-attachments.js';
 import { get as idbGet, put as idbPut, list as idbList, remove as idbRemove } from './chat-idb.js';
 import { create as createSidebar, confirmDelete } from './chat-sidebar.js';
 import { open as openModal } from './modal.js';
@@ -82,6 +84,25 @@ async function _mount(root) {
   const chatCfg = config && config.chats && config.chats[base];
   const persist = chatCfg && chatCfg.persist;
 
+  // The attachments policy lives on the BOX (ask.yaml), not in chat-config — the grove
+  // references the box's domain, never restates its ask policy. Read it live; a present
+  // policy turns on the attach affordance, a null/failed read leaves the chat text-only
+  // (never offer a capability we can't confirm).
+  let attachTray = null;
+  let attachPolicy = null;
+  if (endpoint) {
+    try {
+      const headers = {};
+      const s0 = heldSecret();
+      if (s0) headers['Authorization'] = 'Bearer ' + s0;
+      const pr = await fetch(endpoint.replace(/\/$/, '') + '/ask/' + encodeURIComponent(ask) + '/policy', { headers });
+      if (pr.ok) attachPolicy = (await pr.json()).attachments || null;
+      else console.warn('[chat] policy read failed', pr.status);
+    } catch (err) {
+      console.warn('[chat] policy read failed (network/CORS)', err);   // text-only, loud
+    }
+  }
+
   const log = document.createElement('div');
   log.className = 'chat-log';
   // Auto-scroll pins the streaming answer to the bottom, but releases the instant the
@@ -107,7 +128,26 @@ async function _mount(root) {
   send.className = 'chat-send';
   send.innerHTML = ICON_SEND;                              // static trusted icon, not untrusted content
   send.setAttribute('aria-label', strings.chat_send);     // keyed label kept for a11y
-  form.append(input, send);
+  if (attachPolicy) {
+    attachTray = createAttachTray({
+      endpoint, ask, policy: attachPolicy,
+      secretProvider: heldSecret,
+      onError: (msg) => _append(log, 'error', msg),
+      committedCount: () => active.history.reduce(
+        (n, t) => n + ((t.attachments && t.attachments.length) || 0), 0),
+    });
+    form.append(attachTray.button, input, send);
+    // Drag-and-drop onto the composer (desktop). preventDefault so the browser doesn't
+    // navigate to the dropped file; hand the files to the same path the picker uses.
+    form.addEventListener('dragover', (e) => { e.preventDefault(); form.classList.add('is-drop'); });
+    form.addEventListener('dragleave', () => form.classList.remove('is-drop'));
+    form.addEventListener('drop', (e) => {
+      e.preventDefault(); form.classList.remove('is-drop');
+      if (e.dataTransfer && e.dataTransfer.files) attachTray.handleFiles(e.dataTransfer.files);
+    });
+  } else {
+    form.append(input, send);
+  }
 
   const _coarse = window.matchMedia('(pointer: coarse)').matches;   // phones/tablets
   // Canonical textarea autogrow: collapse to measure the true content height, then set
@@ -179,6 +219,7 @@ async function _mount(root) {
   menu.setAttribute('aria-label', strings.chat_sidebar_label);
   bar.append(menu);
   pane.append(bar, log, form);
+  if (attachTray) form.insertBefore(attachTray.tray, input);
   root.append(pane);
 
   if (!endpoint || !chatCfg) {                              // no-fallbacks: say it, don't pretend
@@ -210,8 +251,8 @@ async function _mount(root) {
     active.record = rec;
     for (const turn of rec.turns) {
       if (turn.role === 'user') {
-        _appendTurn(log, 'user', turn.content);
-        active.history.push({ role: 'user', content: turn.content });
+        _appendUserTurn(log, turn.content, turn.attachments || []);
+        active.history.push({ role: 'user', content: turn.content, attachments: turn.attachments || [] });
       } else {
         // Stored assistant turns carry the answer string plus their saved `sources`
         // ([{n,title}]); re-render both the way a live answer renders. A turn saved
@@ -248,7 +289,13 @@ async function _mount(root) {
     const slug = slugFromRoute(currentRoute(), base);
     if (slug === '') { renderFresh(); return; }              // bare base → fresh
     const rec = await idbGet(ns, slug);
-    if (rec) { renderRecord(rec); return; }                 // deep link / reload → restore
+    if (rec) {
+      const ids = [];
+      for (const t of rec.turns) if (t.role === 'user' && Array.isArray(t.attachments)) ids.push(...t.attachments);
+      const byId = ids.length ? await getAttachments(ns, ids) : new Map();
+      renderRecord({ ...rec, turns: hydrateTurns(rec.turns, byId) });
+      return;
+    }                 // deep link / reload → restore
     // Dangling slug: deleted conversation or a cross-device link. Drop it silently to
     // the bare base, then render fresh. replaceState (not push) so back doesn't return
     // to the dead slug. buildHref makes the href strategy- and basePath-correct.
@@ -305,7 +352,11 @@ async function _mount(root) {
     const close = openModal(node, {
       onClose: async () => {
         if (!confirmed) return;
+        const rec = await idbGet(ns, slug);
+        const ids = [];
+        if (rec) for (const t of rec.turns) if (t.role === 'user' && Array.isArray(t.attachments)) ids.push(...t.attachments);
         await idbRemove(ns, slug);
+        if (ids.length) await removeAttachments(ns, ids);
         if (wasActive) {
           history.pushState(null, '', buildHref(base));
           renderFresh();
@@ -434,11 +485,12 @@ async function _mount(root) {
         // The turn owns its own state. `inflight === t` is the liveness check every async
         // step re-tests: once a stop (or a superseding turn) nulls/replaces `inflight`, this
         // turn's continuation bails without touching the UI.
+        const sending = attachTray ? attachTray.pending() : [];
         const t = {
           question,
           controller: new AbortController(),
           reader: null,
-          userEl: _appendTurn(log, 'user', question),
+          userEl: _appendUserTurn(log, question, sending),
           pendingEl: _appendPending(log, chatCfg),
         };
         inflight = t;
@@ -452,7 +504,9 @@ async function _mount(root) {
             method: 'POST', headers, signal: t.controller.signal,
             // Wire contract: turns are EXACTLY { role, content }. active.history may now
             // carry `sources` on assistant turns (a client display concern); strip it.
-            body: JSON.stringify({ question, history: toWireTurns(active.history) }),
+            body: JSON.stringify({ question, history: toWireTurns(active.history),
+                                   attachments: sending.map((a) => ({
+                                     data: a.data, signature: a.signature, media_type: a.media_type })) }),
           });
           if (inflight !== t) return;                         // stopped/superseded while awaiting the response
           if (!res.ok) {                                      // pre-stream failure keeps HTTP semantics
@@ -486,7 +540,7 @@ async function _mount(root) {
           _appendSources(t.pendingEl, sources);               // below the streamed answer
           const answer = t.pendingEl._raw || '';
           const wasNamed = active.record !== null;
-          active.history.push({ role: 'user', content: question });
+          active.history.push({ role: 'user', content: question, attachments: sending });
           if (answer) active.history.push({ role: 'assistant', content: answer, sources });
           t.pendingEl = null;  // the element IS the live answer now; cleanup must not remove it
           if (persistent) {
@@ -499,6 +553,11 @@ async function _mount(root) {
             // branch is the rare backend-anomaly case, not the normal path.
             if (!wasNamed && title !== null) await nameAndPersist(record_from(title));
             else if (wasNamed) await appendAndPersist();
+            // Guard: only persist blobs for a turn that has a record — no orphaned
+            // blobs without a referencing record (the no-title anomaly leaves active.record null).
+            if (active.record) {
+              for (const a of sending) await putAttachment(ns, a);
+            }
             await refreshSidebar();
           }
         } catch (err) {
@@ -517,6 +576,7 @@ async function _mount(root) {
           // Only THIS turn clears the composer, and only if it's still the active one — a
           // stop/supersede already re-rendered, so a stale turn's finally must not touch it.
           if (inflight === t) { inflight = null; renderComposer(); input.focus(); }
+          if (attachTray) attachTray.reset();
         }
       });
     }
@@ -662,6 +722,25 @@ function _appendTurn(log, role, text) {
   el.appendChild(p);
   log.appendChild(el);
   el.scrollIntoView({ block: 'end' });
+  return el;
+}
+
+// Render a user turn with an optional inert thumbnail strip of its attachments. Images
+// are model/visitor-adjacent content → the <img src> is a data: URL from stored bytes,
+// never innerHTML. Text-only turns are unchanged.
+function _appendUserTurn(log, text, attachments) {
+  const el = _appendTurn(log, 'user', text);
+  if (attachments && attachments.length) {
+    const strip = document.createElement('div');
+    strip.className = 'chat-turn-attachments';
+    for (const a of attachments) {
+      const img = document.createElement('img');
+      img.src = 'data:' + a.media_type + ';base64,' + a.data;   // inert
+      img.alt = '';
+      strip.appendChild(img);
+    }
+    el.appendChild(strip);
+  }
   return el;
 }
 

@@ -62,27 +62,51 @@ export function makeRecord(title, turns) {
   };
 }
 
-// toWireTurns(history): map in-memory turns to the endpoint's wire contract —
-// EXACTLY { role, content } per turn, nothing else. The engine's _render_history
-// reads only role + content; an assistant turn's `sources` is a CLIENT display
-// concern (the stored numbered list) and must never ride the wire. No-fallbacks:
-// we build the shape explicitly rather than trusting extra fields to be ignored.
+// toWireTurns(history): the endpoint wire shape. { role, content } always; plus
+// `attachments` ([{data,signature,media_type}], id dropped) on a turn that carries
+// them — persistent attachments ride EVERY turn so the vision model re-sees them.
+// `sources` (a client display concern) never rides the wire.
 export function toWireTurns(history) {
   if (!Array.isArray(history)) throw new Error('toWireTurns: history must be an array');
-  return history.map((t) => ({ role: t.role, content: t.content }));
+  return history.map((t) => {
+    const turn = { role: t.role, content: t.content };
+    if (Array.isArray(t.attachments) && t.attachments.length) {
+      turn.attachments = t.attachments.map((a) => ({
+        data: a.data, signature: a.signature, media_type: a.media_type }));
+    }
+    return turn;
+  });
 }
 
-// toStoredTurns(history): map in-memory turns to the persisted shape. A user turn is
-// { role, content }; an assistant turn additionally carries its `sources` ([{n,title}])
-// so a restored answer renders the numbered sources list, not just the [1..n] markers.
-// Sources ride along only when present — a turn captured before this change (or one
-// with no citations) simply has none, and restore renders answer-only (legacy compat).
+// toStoredTurns(history): the persisted shape. Attachment bytes live in the separate
+// content-addressed `attachments` store (so the sidebar's getAll over records stays
+// light); a user turn stores only its attachment IDS. Assistant turns keep `sources`.
 export function toStoredTurns(history) {
   if (!Array.isArray(history)) throw new Error('toStoredTurns: history must be an array');
-  return history.map((t) =>
-    t.role === 'assistant' && t.sources
+  return history.map((t) => {
+    if (t.role === 'user' && Array.isArray(t.attachments) && t.attachments.length) {
+      return { role: t.role, content: t.content, attachments: t.attachments.map((a) => a.id) };
+    }
+    return t.role === 'assistant' && t.sources
       ? { role: t.role, content: t.content, sources: t.sources }
-      : { role: t.role, content: t.content });
+      : { role: t.role, content: t.content };
+  });
+}
+
+// hydrateTurns(storedTurns, byId): restore in-memory turns from stored ones, replacing
+// each attachment id with its full record from `byId` (Map<id, attachment>). An id with
+// no record in the map is DROPPED (the turn renders text-only) — the caller has already
+// logged the missing blob loudly; we never fabricate or show a wrong image.
+export function hydrateTurns(storedTurns, byId) {
+  if (!Array.isArray(storedTurns)) throw new Error('hydrateTurns: storedTurns must be an array');
+  if (!(byId instanceof Map)) throw new Error('hydrateTurns: byId must be a Map');
+  return storedTurns.map((t) => {
+    if (t.role === 'user' && Array.isArray(t.attachments) && t.attachments.length) {
+      const full = t.attachments.map((id) => byId.get(id)).filter(Boolean);
+      return { role: t.role, content: t.content, attachments: full };
+    }
+    return t;
+  });
 }
 
 // sortByRecency(list): return a COPY sorted by `updated` descending. Does not mutate.
