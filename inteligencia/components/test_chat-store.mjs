@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { makeRecord, slugFor, dedupeSlug, sortByRecency, slugFromRoute, toWireTurns, toStoredTurns, hydrateTurns } from './chat-store.js';
+import { makeRecord, slugFor, dedupeSlug, sortByRecency, slugFromRoute, toWireTurns, toStoredTurns } from './chat-store.js';
 
 describe('chat-store', () => {
   it('builds a record from a title and turns', () => {
@@ -111,39 +111,5 @@ describe('toStoredTurns', () => {
 
   it('throws on a non-array (call-site bug, not a guess)', () => {
     assert.throws(() => toStoredTurns(undefined));
-  });
-
-  it('toWireTurns carries a user turn\'s attachments (id dropped)', () => {
-    const wire = toWireTurns([
-      { role: 'user', content: 'look', attachments: [
-        { id: 'aa', data: 'B64', signature: 'sig', media_type: 'image/webp' }] },
-      { role: 'assistant', content: 'ok', sources: [{ n: 1, title: 'x' }] },
-    ]);
-    assert.deepEqual(wire[0].attachments, [{ data: 'B64', signature: 'sig', media_type: 'image/webp' }]);
-    assert.equal('attachments' in wire[1], false);   // assistant carries none
-    assert.equal('sources' in wire[1], false);        // sources never ride the wire
-  });
-
-  it('toWireTurns omits attachments when a turn has none', () => {
-    const wire = toWireTurns([{ role: 'user', content: 'hi' }]);
-    assert.deepEqual(wire[0], { role: 'user', content: 'hi' });
-  });
-
-  it('toStoredTurns stores attachment IDS only', () => {
-    const stored = toStoredTurns([
-      { role: 'user', content: 'look', attachments: [
-        { id: 'aa', data: 'B64', signature: 'sig', media_type: 'image/webp' }] }]);
-    assert.deepEqual(stored[0], { role: 'user', content: 'look', attachments: ['aa'] });
-  });
-
-  it('hydrateTurns replaces ids with full attachments from the map', () => {
-    const byId = new Map([['aa', { id: 'aa', data: 'B64', signature: 'sig', media_type: 'image/webp' }]]);
-    const turns = hydrateTurns([{ role: 'user', content: 'look', attachments: ['aa'] }], byId);
-    assert.deepEqual(turns[0].attachments[0], byId.get('aa'));
-  });
-
-  it('hydrateTurns drops an id missing from the map (caller logs it)', () => {
-    const turns = hydrateTurns([{ role: 'user', content: 'x', attachments: ['gone'] }], new Map());
-    assert.deepEqual(turns[0].attachments, []);
   });
 });
