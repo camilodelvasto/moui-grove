@@ -17,7 +17,9 @@ import { gateView, askOutcome } from './chat-gate.js';
 import { monogram } from './chat-render.js';
 import { renderUntrusted } from '../markdown.js';
 import { currentRoute, buildHref } from '../navigation.js';
-import { makeRecord, dedupeSlug, slugFromRoute, toWireTurns, toStoredTurns } from './chat-store.js';
+import { makeRecord, dedupeSlug, slugFromRoute, toWireTurns, answeredTurns, toStoredTurns, hydrateTurns, attachmentIds, unreferencedIds } from './chat-store.js';
+import { createAttachTray } from './chat-attach.js';
+import { putAttachment, getAttachments, removeAttachments } from './chat-attachments.js';
 import { get as idbGet, put as idbPut, list as idbList, remove as idbRemove } from './chat-idb.js';
 import { create as createSidebar, confirmDelete } from './chat-sidebar.js';
 import { open as openModal } from './modal.js';
@@ -62,8 +64,16 @@ export function init() {
   new MutationObserver(mount).observe(main, { childList: true });
 }
 
+// The page-wide drop listeners of the CURRENT chat mount. The router swaps the chat
+// root on navigation and _mount runs again; the previous mount's listeners are
+// aborted here so a dropped file reaches exactly one live tray, never N stale ones.
+let _pageDrop = null;
+
 async function _mount(root) {
   root.dataset.mounted = '1';
+  if (_pageDrop) _pageDrop.abort();
+  _pageDrop = new AbortController();
+  const pageDrop = _pageDrop.signal;
   const ask = root.dataset.ask;
   if (!ask) throw new Error('chat root missing data-ask');
   // The chat's base route (e.g. '/assistant/'). Server emits it on the root so the
@@ -108,6 +118,91 @@ async function _mount(root) {
   send.innerHTML = ICON_SEND;                              // static trusted icon, not untrusted content
   send.setAttribute('aria-label', strings.chat_send);     // keyed label kept for a11y
   form.append(input, send);
+  // The box no longer accepts the held code (a 401 from /policy or /verify): drop it,
+  // say so, and re-gate. One path for every attach-side 401.
+  const _revoked = () => {
+    sessionStorage.removeItem(SECRET_KEY);
+    _append(log, 'error', strings.chat_revoked);
+    renderGate(root, gate, SECRET_KEY, () => mountChatSurface().catch((err) => console.error('chat: mount failed', err)));
+  };
+
+  // The attachments policy lives on the BOX (ask.yaml), not in chat-config — the grove
+  // references the box's domain, never restates its ask policy. It is read live, WITH
+  // the held secret, so on a gated chat it can only be read once the gate has accepted:
+  // enableAttachments() runs from mountChatSurface, never at mount. Returns the declared
+  // policy, the box's explicit null (text-only by declaration), or — on any failure —
+  // null AFTER saying so. A capability we cannot confirm is not offered, and the visitor
+  // is told; never a quiet text-only chat. A 401 is a revoked code, not a missing capability.
+  let attachTray = null;
+  const _readPolicy = async () => {
+    if (!endpoint) return null;
+    const headers = {};
+    const s0 = heldSecret();
+    if (s0) headers['Authorization'] = 'Bearer ' + s0;
+    let pr;
+    try {
+      pr = await fetch(endpoint.replace(/\/$/, '') + '/ask/' + encodeURIComponent(ask) + '/policy', { headers });
+    } catch (err) {
+      console.warn('[chat] policy read failed (network/CORS)', err);
+      _append(log, 'error', strings.chat_attach_unavailable);
+      return null;
+    }
+    if (pr.status === 401) { _revoked(); return null; }
+    if (!pr.ok) {
+      console.warn('[chat] policy read failed', pr.status);
+      _append(log, 'error', strings.chat_attach_unavailable);
+      return null;
+    }
+    let body;
+    try {
+      body = await pr.json();
+    } catch (err) {
+      console.error('[chat] policy response is not JSON', err);
+      _append(log, 'error', strings.chat_attach_unavailable);
+      return null;
+    }
+    if (!body || typeof body !== 'object' || !('attachments' in body)) {
+      console.error('[chat] policy response has no attachments field', body);
+      _append(log, 'error', strings.chat_attach_unavailable);
+      return null;
+    }
+    return body.attachments;
+  };
+
+  // Turn the attach affordance on: read the policy (with the secret), build the tray,
+  // put the paperclip before the input and the thumbnail tray above it, and claim
+  // drag-and-drop for the WHOLE page — a file dropped anywhere attaches; the browser
+  // never navigates to it. Idempotent; called once from mountChatSurface.
+  const enableAttachments = async () => {
+    if (attachTray) return;
+    const policy = await _readPolicy();
+    if (!policy) return;
+    attachTray = createAttachTray({
+      endpoint, ask, policy,
+      secretProvider: heldSecret,
+      onError: (msg) => _append(log, 'error', msg),
+      onRevoked: _revoked,                        // 401 from /verify
+      onPicked: () => input.focus(),              // back to the composer: Enter sends
+      // Count the turns the wire sends: an unanswered turn's images never reach the box.
+      committedCount: () => answeredTurns(active.history).reduce(
+        (n, t) => n + ((t.attachments && t.attachments.length) || 0), 0),
+    });
+    form.insertBefore(attachTray.button, input);
+    form.insertBefore(attachTray.tray, input);
+    const hasFiles = (e) => e.dataTransfer && Array.from(e.dataTransfer.types || []).includes('Files');
+    document.addEventListener('dragover', (e) => {
+      if (!hasFiles(e)) return;
+      e.preventDefault(); form.classList.add('is-drop');
+    }, { signal: pageDrop });
+    document.addEventListener('dragleave', (e) => {
+      if (e.relatedTarget === null || e.relatedTarget === undefined) form.classList.remove('is-drop');   // left the window
+    }, { signal: pageDrop });
+    document.addEventListener('drop', (e) => {
+      e.preventDefault(); form.classList.remove('is-drop');
+      if (e.dataTransfer && e.dataTransfer.files) attachTray.handleFiles(e.dataTransfer.files);
+      input.focus();                              // a drop leaves the caret in the composer
+    }, { signal: pageDrop });
+  };
 
   const _coarse = window.matchMedia('(pointer: coarse)').matches;   // phones/tablets
   // Canonical textarea autogrow: collapse to measure the true content height, then set
@@ -210,8 +305,8 @@ async function _mount(root) {
     active.record = rec;
     for (const turn of rec.turns) {
       if (turn.role === 'user') {
-        _appendTurn(log, 'user', turn.content);
-        active.history.push({ role: 'user', content: turn.content });
+        _appendUserTurn(log, turn.content, turn.attachments || []);
+        active.history.push({ role: 'user', content: turn.content, attachments: turn.attachments || [] });
       } else {
         // Stored assistant turns carry the answer string plus their saved `sources`
         // ([{n,title}]); re-render both the way a live answer renders. A turn saved
@@ -248,7 +343,12 @@ async function _mount(root) {
     const slug = slugFromRoute(currentRoute(), base);
     if (slug === '') { renderFresh(); return; }              // bare base → fresh
     const rec = await idbGet(ns, slug);
-    if (rec) { renderRecord(rec); return; }                 // deep link / reload → restore
+    if (rec) {
+      const ids = attachmentIds(rec);
+      const byId = ids.length ? await getAttachments(ns, ids) : new Map();
+      renderRecord({ ...rec, turns: hydrateTurns(rec.turns, byId) });
+      return;
+    }                 // deep link / reload → restore
     // Dangling slug: deleted conversation or a cross-device link. Drop it silently to
     // the bare base, then render fresh. replaceState (not push) so back doesn't return
     // to the dead slug. buildHref makes the href strategy- and basePath-correct.
@@ -305,7 +405,12 @@ async function _mount(root) {
     const close = openModal(node, {
       onClose: async () => {
         if (!confirmed) return;
+        const rec = await idbGet(ns, slug);
+        // Blobs are content-addressed and shared across conversations: remove only the
+        // ids no other record still references.
+        const orphans = rec ? unreferencedIds(rec, await idbList(ns)) : [];
         await idbRemove(ns, slug);
+        if (orphans.length) await removeAttachments(ns, orphans);
         if (wasActive) {
           history.pushState(null, '', buildHref(base));
           renderFresh();
@@ -422,6 +527,9 @@ async function _mount(root) {
       // the operator intro (when authored). renderFresh paints the empty log + intro.
       renderFresh();
     }
+    // After the gate (if any): the policy read carries the secret. After the log is
+    // painted: restore/renderFresh clear the log, and a failed read's notice must survive.
+    await enableAttachments();
 
     if (!form._submitWired) {
       form._submitWired = true;
@@ -434,11 +542,12 @@ async function _mount(root) {
         // The turn owns its own state. `inflight === t` is the liveness check every async
         // step re-tests: once a stop (or a superseding turn) nulls/replaces `inflight`, this
         // turn's continuation bails without touching the UI.
+        const sending = attachTray ? attachTray.pending() : [];
         const t = {
           question,
           controller: new AbortController(),
           reader: null,
-          userEl: _appendTurn(log, 'user', question),
+          userEl: _appendUserTurn(log, question, sending),
           pendingEl: _appendPending(log, chatCfg),
         };
         inflight = t;
@@ -448,11 +557,24 @@ async function _mount(root) {
           const headers = { 'Content-Type': 'application/json', 'Accept': 'application/x-ndjson' };
           const secret = heldSecret();
           if (secret) headers['Authorization'] = 'Bearer ' + secret;
+          let wireHistory;
+          try {
+            wireHistory = toWireTurns(active.history);
+          } catch (err) {
+            if (err && err.kind === 'attachment_missing') {   // bytes gone from this browser: say so, send nothing
+              t.pendingEl.remove();
+              _append(log, 'error', strings.chat_attach_missing);
+              return;
+            }
+            throw err;
+          }
           const res = await fetch(endpoint.replace(/\/$/, '') + '/ask/' + encodeURIComponent(ask), {
             method: 'POST', headers, signal: t.controller.signal,
-            // Wire contract: turns are EXACTLY { role, content }. active.history may now
-            // carry `sources` on assistant turns (a client display concern); strip it.
-            body: JSON.stringify({ question, history: toWireTurns(active.history) }),
+            // Wire contract: turns are { role, content } plus `attachments` on user turns
+            // that carry images. `sources` (a client display concern) is stripped.
+            body: JSON.stringify({ question, history: wireHistory,
+                                   attachments: sending.map((a) => ({
+                                     data: a.data, signature: a.signature, media_type: a.media_type })) }),
           });
           if (inflight !== t) return;                         // stopped/superseded while awaiting the response
           if (!res.ok) {                                      // pre-stream failure keeps HTTP semantics
@@ -483,22 +605,45 @@ async function _mount(root) {
             t.pendingEl.remove();
             return;
           }
-          _appendSources(t.pendingEl, sources);               // below the streamed answer
           const answer = t.pendingEl._raw || '';
+          if (!answer.trim()) {                               // `done` with no answer is a failure, not a turn:
+            t.pendingEl.remove();                             // a lone user turn would break the alternation
+            _append(log, 'error', strings.chat_error_failed); // the box requires; the images stay in the tray
+            return;
+          }
+          _appendSources(t.pendingEl, sources);               // below the streamed answer
           const wasNamed = active.record !== null;
-          active.history.push({ role: 'user', content: question });
-          if (answer) active.history.push({ role: 'assistant', content: answer, sources });
+          active.history.push({ role: 'user', content: question, attachments: sending });
+          active.history.push({ role: 'assistant', content: answer, sources });
           t.pendingEl = null;  // the element IS the live answer now; cleanup must not remove it
+          if (attachTray) attachTray.release(sending);   // committed: these images are the turn's now
           if (persistent) {
-            // A stream with no answer text still names on first success; subsequent turns append.
+            // The first answered turn names the conversation; subsequent turns append.
             // Persistence failures must not break the live conversation (already rendered).
             // A first turn is named/slugged only when the stream delivered a `title` event;
             // without a title there is no slug, so the turn stays in the live view but is not
             // persisted (consistent with the project's "only nameable, completed turns persist"
             // stance). Titled asks always emit a title on the first turn, so this no-persist
             // branch is the rare backend-anomaly case, not the normal path.
-            if (!wasNamed && title !== null) await nameAndPersist(record_from(title));
-            else if (wasNamed) await appendAndPersist();
+            const willHaveRecord = wasNamed || title !== null;
+            if (willHaveRecord) {
+              // Bytes BEFORE the record that names them: a stored record never references
+              // a blob that is not stored. Every image of the conversation is re-put —
+              // content-addressed, so idempotent — which retries any an earlier turn lost.
+              const failed = [];
+              for (const turn of active.history) {
+                for (const a of turn.attachments || []) {
+                  if (!(await putAttachment(ns, a))) failed.push(a.id);
+                }
+              }
+              if (failed.length) {
+                _append(log, 'error', strings.chat_attach_not_saved);
+              } else if (!wasNamed) {
+                await nameAndPersist(record_from(title));
+              } else {
+                await appendAndPersist();
+              }
+            }
             await refreshSidebar();
           }
         } catch (err) {
@@ -516,6 +661,8 @@ async function _mount(root) {
         } finally {
           // Only THIS turn clears the composer, and only if it's still the active one — a
           // stop/supersede already re-rendered, so a stale turn's finally must not touch it.
+          // A stopped or failed turn keeps its verified images in the tray, like it
+          // keeps the question in the input: the user resends, nothing re-uploads.
           if (inflight === t) { inflight = null; renderComposer(); input.focus(); }
         }
       });
@@ -662,6 +809,33 @@ function _appendTurn(log, role, text) {
   el.appendChild(p);
   log.appendChild(el);
   el.scrollIntoView({ block: 'end' });
+  return el;
+}
+
+// Render a user turn: its images as a block ABOVE the text (what was sent, then what
+// was asked about it), then the text. Images are model/visitor-adjacent content → the
+// <img src> is a data: URL from stored bytes, never innerHTML. Text-only turns are
+// unchanged.
+function _appendUserTurn(log, text, attachments) {
+  const el = _appendTurn(log, 'user', text);
+  if (attachments && attachments.length) {
+    const block = document.createElement('div');
+    block.className = 'chat-turn-attachments';
+    for (const a of attachments) {
+      if (a.missing) {                                          // bytes gone from this browser
+        const gone = document.createElement('span');
+        gone.className = 'chat-turn-attachment-missing';
+        gone.textContent = strings.chat_attach_missing;          // keyed, inert
+        block.appendChild(gone);
+        continue;
+      }
+      const img = document.createElement('img');
+      img.src = 'data:' + a.media_type + ';base64,' + a.data;   // inert
+      img.alt = '';
+      block.appendChild(img);
+    }
+    el.insertBefore(block, el.children[0]);
+  }
   return el;
 }
 

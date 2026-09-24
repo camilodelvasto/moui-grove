@@ -976,7 +976,14 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
             padding: var(--space-xs); border: none; cursor: pointer;
             border-radius: var(--space-sm); background: transparent;
             color: var(--color-text-resolved); }
-.chat-menu:hover { background: color-mix(in srgb, var(--color-text-resolved) 5%, transparent); }
+/* One hover language for every chat button (menu, send, attach, thumb-remove): a
+   150ms ease-out on the properties that change; quiet buttons tint 5%, the primary
+   send darkens 10%. Reduced-motion collapses the transition globally above. */
+.chat-menu, .chat-send, .chat-attach, .chat-attach-remove {
+            transition: background-color 150ms ease-out, color 150ms ease-out,
+                        border-color 150ms ease-out; }
+.chat-menu:hover, .chat-attach-remove:hover {
+            background: color-mix(in srgb, var(--color-text-resolved) 5%, transparent); }
 
 .chat-log { display: flex; flex-direction: column; gap: var(--space-lg);
             margin: 0 0 var(--space-lg);
@@ -1166,7 +1173,7 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
 
 /* Composer: a single rounded container holding the input + a send button (Claude-style),
  * not a bare field with a floating button. Border lifts to the accent on focus-within. */
-.chat-composer { display: flex; gap: var(--space-xs); align-items: flex-end;
+.chat-composer { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: flex-end;
             max-width: 36rem; margin: 0 auto;
             padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-md);
             border: 1px solid var(--color-border-resolved); border-radius: 1.6rem;
@@ -1181,8 +1188,42 @@ body[data-layout="app"] .app-shell:not(.chat-ready) .chat-rail { display: none; 
             border-radius: 50%;
             background: var(--color-btn-primary-resolved);
             color: var(--color-btn-primary-text-resolved); }
+.chat-send:hover { background: color-mix(in srgb, var(--color-btn-primary-resolved) 90%, var(--color-text-resolved)); }
 .chat-composer[data-mode="stop"] .chat-send {
             background: var(--color-text-resolved); }
+.chat-composer[data-mode="stop"] .chat-send:hover {
+            background: color-mix(in srgb, var(--color-text-resolved) 85%, var(--color-bg-resolved)); }
+
+/* --- chat attachment composer --- */
+/* the attach button is the send button's twin: same circle, quiet instead of primary */
+.chat-attach { display: inline-flex; align-items: center; justify-content: center;
+            flex: 0 0 auto; width: 2rem; height: 2rem; padding: 0; cursor: pointer;
+            border: 1px solid var(--color-border-resolved); border-radius: 50%;
+            background: transparent; color: var(--color-text-secondary-resolved); }
+.chat-attach:hover { color: var(--color-text-resolved); border-color: var(--color-text-secondary-resolved);
+            background: color-mix(in srgb, var(--color-text-resolved) 5%, transparent); }
+.chat-composer:has(.chat-attach) { padding-left: var(--space-xs); }
+.chat-composer.is-drop { border-color: var(--color-accent-resolved); border-style: dashed; }
+.chat-attach-input { position: absolute; width: 1px; height: 1px; padding: 0;
+            margin: -1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; }   /* visually hidden */
+/* the pending tray is its own row ABOVE the input row: full width, first in the wrap */
+.chat-attach-tray { display: flex; flex-wrap: wrap; gap: 0.5rem; flex-basis: 100%; order: -1;
+            padding: var(--space-xs) var(--space-xs) 0; }
+.chat-attach-tray:empty { display: none; }
+.chat-attach-thumb { position: relative; width: 4.5rem; height: 4.5rem; border-radius: 0.5rem;
+            overflow: hidden; border: 1px solid var(--color-border-resolved); }
+.chat-attach-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.chat-attach-remove { position: absolute; top: 0; right: 0; width: 1.25rem; height: 1.25rem;
+            line-height: 1; border: none; border-radius: 0 0 0 0.5rem; cursor: pointer;
+            background: var(--color-surface-resolved); color: var(--color-text-resolved); }
+/* a sent user turn's images: a block above the text, at its natural aspect */
+.chat-turn-user .chat-turn-attachments { display: flex; flex-wrap: wrap; gap: 0.5rem;
+            margin-bottom: var(--space-xs); }
+.chat-turn-user .chat-turn-attachments img { display: block; max-width: 100%; height: auto;
+            max-height: 20rem; border-radius: 0.5rem; }
+.chat-turn-attachment-missing { display: inline-block; padding: var(--space-xs) var(--space-sm);
+            border: 1px dashed var(--color-border-resolved); border-radius: 0.5rem;
+            color: var(--color-text-secondary-resolved); font-size: 0.875em; }
 
 /* --- chat sidebar (persist: local) --- */
 /* BASE: off-canvas left drawer over a backdrop scrim. The layout is the positioning
