@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>beyond regulation and awareness</title>
+    <script>
+      // Excalidraw fonts load from here, not a CDN (copied into public/ by `npm run fonts`).
+      window.EXCALIDRAW_ASSET_PATH = new URL('./', document.baseURI).href
+    </script>
+    <style>
+      html, body, #root { margin: 0; height: 100%; }
+      .deck { position: fixed; inset: 0; }
+      .videos { position: absolute; inset: 0; z-index: 5; overflow: hidden; pointer-events: none; }
+      /* presenting: canvas only */
+      .presenting .layer-ui__wrapper, .presenting .App-menu, .presenting .App-bottom-bar, .presenting .excalidraw-textEditorContainer { display: none !important; }
+      .present { position: fixed; right: 16px; bottom: 72px; z-index: 1000; padding: 8px 16px; font: 600 14px system-ui; border-radius: 8px; border: 1px solid #ccc; background: #fff; cursor: pointer; }
+    </style>
+    <script type="module" crossorigin src="./assets/index-DoDbSjSX.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C6xAThXA.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
