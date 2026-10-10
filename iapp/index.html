@@ -12,11 +12,14 @@
       html, body, #root { margin: 0; height: 100%; }
       .deck { position: fixed; inset: 0; }
       .media { position: absolute; inset: 0; z-index: 5; overflow: hidden; pointer-events: none; }
+      /* the moui banding: a true full-bleed gradient strip, screen-space, bookend slides only */
+      .band { position: fixed; left: 0; right: 0; bottom: 0; height: 8px; z-index: 6; pointer-events: none; background: linear-gradient(90deg, #ff1055, #e5f20d); opacity: 0; transition: opacity 350ms; }
+      .band.on { opacity: 1; }
       /* presenting: canvas only */
       .presenting .layer-ui__wrapper, .presenting .App-menu, .presenting .App-bottom-bar, .presenting .excalidraw-textEditorContainer { display: none !important; }
       .present { position: fixed; right: 16px; bottom: 72px; z-index: 1000; padding: 8px 16px; font: 600 14px system-ui; border-radius: 8px; border: 1px solid #ccc; background: #fff; cursor: pointer; }
     </style>
-    <script type="module" crossorigin src="./assets/index-QWW_WaMt.js"></script>
+    <script type="module" crossorigin src="./assets/index-DZfCKJuA.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-C6xAThXA.css">
   </head>
   <body>
